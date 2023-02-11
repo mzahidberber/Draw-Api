@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ninject" Version="3.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Draw.Core\Draw.Core.csproj" />
+    <ProjectReference Include="..\Draw.DataAccess2\Draw.DataAccess.csproj" />
+    <ProjectReference Include="..\Draw.Entities\Draw.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
