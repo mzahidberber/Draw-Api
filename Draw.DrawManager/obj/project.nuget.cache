@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eKxtqWxlCDKCioQzoocoKrck6xg4rjShIeOcqclk2n261gzPembZSdjXecbh22fGgYA0qOc+w2//EQ9VSMintw==",
+  "dgSpecHash": "76Wb4v20S5M3LbeE08yMLM73dV2QFzTYWJdj7dvH5OLZEpiV6ccMbKTqP+9gCIZShsdBAR0rIRfDfF+D1QsbMA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj",
+  "projectFilePath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",
@@ -60,7 +60,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "'PostSharp 4.2.17' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
+      "message": "Package 'PostSharp 4.2.17' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "PostSharp",
       "targetGraphs": [
         "net6.0"
