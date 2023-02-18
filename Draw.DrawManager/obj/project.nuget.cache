@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qtel0Bzrk7vP1X0h+yOoAhOxPlr1MQqT8Sde3iJ9r612nvoAErhz+jHavmPHxnQ4OkH48g9fXk5x+NmtQSIwfA==",
+  "dgSpecHash": "f1GiEd1/M45cMpX5yX/+p0JYbJNVOVeoGImA24zoe+RvWyp+p+4F9b35jucJO+UAFnxrpKTSIOG0gCy8KhlCXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj",
+  "projectFilePath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",

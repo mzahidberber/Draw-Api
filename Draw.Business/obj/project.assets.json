@@ -2464,11 +2464,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Business\\Draw.Business.csproj",
+      "projectUniqueName": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Business\\Draw.Business.csproj",
       "projectName": "Draw.Business",
-      "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Business\\Draw.Business.csproj",
+      "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Business\\Draw.Business.csproj",
       "packagesPath": "C:\\Users\\mzahidberber\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Business\\obj\\",
+      "outputPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mzahidberber\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2485,14 +2485,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj"
+            "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj": {
+              "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj"
             },
-            "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj": {
-              "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj"
+            "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj": {
+              "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj"
             },
-            "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
-              "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj"
+            "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
+              "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj": {}
+    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj": {
+    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj",
+        "projectUniqueName": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj",
         "projectName": "Draw.DataAccess.Tests",
-        "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj",
+        "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj",
         "packagesPath": "C:\\Users\\mzahidberber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\obj\\",
+        "outputPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mzahidberber\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj"
+              "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj": {
+                "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj"
               }
             }
           }
@@ -85,14 +85,14 @@
         }
       }
     },
-    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj": {
+    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj",
+        "projectUniqueName": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj",
         "projectName": "Draw.DataAccess",
-        "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj",
+        "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\Draw.DataAccess.csproj",
         "packagesPath": "C:\\Users\\mzahidberber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\obj\\",
+        "outputPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mzahidberber\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -109,8 +109,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
-                "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj"
+              "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
+                "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj"
               }
             }
           }
@@ -178,14 +178,14 @@
         }
       }
     },
-    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
+    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
+        "projectUniqueName": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
         "projectName": "Draw.Entities",
-        "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
+        "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
         "packagesPath": "C:\\Users\\mzahidberber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\obj\\",
+        "outputPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mzahidberber\\AppData\\Roaming\\NuGet\\NuGet.Config",
