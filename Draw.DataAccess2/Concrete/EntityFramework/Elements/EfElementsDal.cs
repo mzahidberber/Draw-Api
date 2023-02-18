@@ -2,11 +2,13 @@
 using Draw.DataAccess.Concrete.EntityFramework.Context;
 using Draw.Entities.Abstract;
 using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Tracing;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Elements
 {
+    
     public class EfElementsDal:EfEntityRepositoryBase<Element,DrawContext>,IElementDal
     {
         public void AddElementAll(Element element)
@@ -51,49 +53,76 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
                 var elements = new List<Element>();
                 foreach (var id in elementsIdList)
                 {
-                    var element = context.Elements.Where(u => u.ElementId == id).Single();
-                    element.Points= context.Points.Where(u => u.ElementId == id).ToList();
-                    //element.Layer=context.Layers.Where(u => u.LayerId==element.LayerId).Single();
-                    elements.Add(element);
-
+                    if(context.Elements!=null && context.Points != null)
+                    {
+                        var element = context.Elements.Where(u => u.ElementId == id).Single();
+                        element.Points = context.Points.Where(u => u.ElementId == id).ToList();
+                        //element.Layer=context.Layers.Where(u => u.LayerId==element.LayerId).Single();
+                        elements.Add(element);
+                    }
                 }
                 return elements;
             }
         }
 
-        public List<Element> GetElementsInDrawBox(int drawBoxId)
+        public List<Element>? GetElementsInDrawBox(int drawBoxId)
         {
             using (DrawContext context = new DrawContext())
             {
-                var elements = context.Elements.Where(e => e.Layer.DrawBoxId == drawBoxId).ToList();
-                foreach (var element in elements)
-                {
-                    element.Layer = context.Layers.Where(l => l.LayerId == element.LayerId).Single();
-                    element.Pen = context.Pens.Where(l => l.PenId == element.PenId).Single();
-                    element.Pen.PenColor=context.Colors.Where(l => l.ColorId== element.Pen.PenColorId).Single();
-                    element.Pen.PenStyle = context.PenStyles.Where(l => l.PenStyleId == element.Pen.PenStyleId).Single();
-                    element.Pen.Elements = null;
-                    element.Pen.Layers = null;
-                    element.Points = context.Points.Where(l => l.ElementId == element.ElementId).ToList();
-                    element.Radiuses = context.Radiuses.Where(l => l.RadiusElementId == element.ElementId).ToList();
-                    element.SSAngles = context.SSAngles.Where(l => l.SSAngleElementId == element.ElementId).ToList();
-                    element.Layer.Elements = null;
-                }
+                if (context.Elements != null && 
+                    context.Points != null && 
+                    context.Layers != null && 
+                    context.Pens != null &&
+                    context.Colors != null &&
+                    context.PenStyles != null &&
+                    context.Radiuses != null &&
+                    context.SSAngles != null)
+                { 
+                    var elements = context.Elements.Where(e => e.Layer.DrawBoxId == drawBoxId).ToList();
+                    foreach (var element in elements)
+                    {
+                        element.Layer = context.Layers.Where(l => l.LayerId == element.LayerId).Single();
+                        element.Pen = context.Pens.Where(l => l.PenId == element.PenId).Single();
+                        element.Pen.PenColor=context.Colors.Where(l => l.ColorId== element.Pen.PenColorId).Single();
+                        element.Pen.PenStyle = context.PenStyles.Where(l => l.PenStyleId == element.Pen.PenStyleId).Single();
+                        element.Pen.Elements = new List<Element>();
+                        element.Pen.Layers = new List<Layer>();
+                        element.Points = context.Points.Where(l => l.ElementId == element.ElementId).ToList();
+                        element.Radiuses = context.Radiuses.Where(l => l.RadiusElementId == element.ElementId).ToList();
+                        element.SSAngles = context.SSAngles.Where(l => l.SSAngleElementId == element.ElementId).ToList();
+                        element.Layer.Elements = new List<Element>();
+                    }
                 
-                return elements;
+                    return elements;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
-        public Element GetElementBesidePointsAndLayer(Element element)
+        public Element? GetElementBesidePointsAndLayer(Element element)
         {
             using (DrawContext context = new DrawContext())
             {
-                element.Points = context.Points.Where(u => u.ElementId == element.ElementId).ToList();
-                element.Layer = context.Layers.Where(u => u.LayerId == element.LayerId).Single();
-                element.Layer.Pen=context.Pens.Where(p=>p.PenId==element.Layer.PenId).Single();
-                element.Layer.Pen.PenColor=context.Colors.Where(c=>c.ColorId==element.Layer.Pen.PenColorId).Single();
-                element.Layer.Pen.PenStyle=context.PenStyles.Where(c=>c.PenStyleId==element.Layer.Pen.PenStyleId).Single();
-                return element;
+                if (context.Points != null &&
+                    context.Layers != null &&
+                    context.Pens != null &&
+                    context.Colors != null &&
+                    context.PenStyles != null)
+                {
+                    element.Points = context.Points.Where(u => u.ElementId == element.ElementId).ToList();
+                    element.Layer = context.Layers.Where(u => u.LayerId == element.LayerId).Single();
+                    element.Layer.Pen = context.Pens.Where(p => p.PenId == element.Layer.PenId).Single();
+                    element.Layer.Pen.PenColor = context.Colors.Where(c => c.ColorId == element.Layer.Pen.PenColorId).Single();
+                    element.Layer.Pen.PenStyle = context.PenStyles.Where(c => c.PenStyleId == element.Layer.Pen.PenStyleId).Single();
+                    return element;
+                }else
+                {
+                    return null;
+                }
+                    
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Draw.Business.Concrete
 {
     public class DrawBusinessManager:DrawServiceAbstract
     {
-        private static DrawBusinessManager _drawBaseManager;
+        private static DrawBusinessManager? _drawBaseManager;
         static object _lockObject = new object();
         private DrawBusinessManager() { }
 

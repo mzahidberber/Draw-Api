@@ -1,4 +1,5 @@
 ﻿using Draw.DataAccess.Abstract.Commands;
+using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.DrawManager.Concrete.Helpers;
 using Draw.Entities.Concrete.Elements;
 
@@ -6,6 +7,10 @@ namespace Draw.DrawManager.Concrete.DrawCommands
 {
     public class CircleCenterRadiusCommand:BaseCommanAbstract
     {
+        public CircleCenterRadiusCommand(CommandMemory commandMemory) : base(commandMemory)
+        {
+        }
+
         protected override object ControlCommand()
         {
             Console.WriteLine("CircleCenterRadiues Command");

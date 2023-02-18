@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rBUCbmnkIkrDMihnADM0JbGNQke1x+dTsCw42T1DSmDYNtAkEomLtUskn6anc+8ISPs8/WGrXao9tT6eePs1Zg==",
+  "dgSpecHash": "eKxtqWxlCDKCioQzoocoKrck6xg4rjShIeOcqclk2n261gzPembZSdjXecbh22fGgYA0qOc+w2//EQ9VSMintw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\Draw.DrawManager\\Draw.DrawManager.csproj",
+  "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",
@@ -28,6 +28,7 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\ninject\\3.3.6\\ninject.3.3.6.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.2\\pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\postsharp\\4.2.17\\postsharp.4.2.17.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.6\\sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlitepclraw.core\\2.0.6\\sqlitepclraw.core.2.0.6.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.6\\sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",

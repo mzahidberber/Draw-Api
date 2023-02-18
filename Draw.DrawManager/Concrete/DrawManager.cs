@@ -10,27 +10,21 @@ namespace Draw.DrawManager.Concrete
     {
         private string _userName { get; set; }
 
-        private CommandContext _commandContext = new CommandContext();
+        private CommandContext _commandContext;
         
         private CommandMemory _commandMemory;
-        
-        private SnapCommand _snapCommand;
         
         public DrawManager(string userName)
         {
             this._userName = userName;
 
-            _commandContext= new CommandContext();
-            _commandContext.SetContextDefaultCommand();
 
-            _commandMemory= new CommandMemory();
-            _commandMemory.SetUserName(this._userName);
+            _commandMemory= new CommandMemory(DrawMemoryMultiton.GetDrawMemory(this._userName), this._userName);
+            
+            _commandContext= new CommandContext(_commandMemory);
 
-            _commandMemory.SetDrawMemory(DrawMemoryMultiton.GetDrawMemory(this._userName));
 
-            _snapCommand = new SnapCommand();
-            _snapCommand.SetCommandMemory(this._commandMemory);
-
+            
 
         }
         public object StartCommand(CommandEnums commandEnum,int userDrawBoxId,int userLayerId,int userPenId)
@@ -53,9 +47,9 @@ namespace Draw.DrawManager.Concrete
         public bool GetIsWorkingCommand() { return _commandMemory.IsWorkingCommand; }
 
         public void SetSnapPoints(HelperEnums snapPoint , bool openOrClose) => _commandMemory.SetSnapPoint(snapPoint , openOrClose);
-        public void AddSnapPointElements (List<int> snapElementsId) => _commandMemory.SetSnapElementsId(snapElementsId);
-        public Point GetSnapPoint (MouseInformation mouseInformation) { return this._snapCommand.GetSnapPointCoordinate(mouseInformation); }
+       
         
+       
         public void AddRadius(double radius) => _commandMemory.SetRadius(radius);
         
         public void AddEditElementsId(List<int> editElementsId) => _commandMemory.SetEditElementsId(editElementsId);
@@ -119,9 +113,10 @@ namespace Draw.DrawManager.Concrete
 
         private IBaseCommand GetCommandEnumsToCommand(CommandEnums commandEnum) 
         {
-            var command = CommandsMultiton.GetCommand(commandEnum);
-            command.SetCommandMemory(this._commandMemory);
-            return command;
+            var commandType = CommandsMultiton.GetCommand(commandEnum);
+            var command=(BaseCommanAbstract?)Activator.CreateInstance(commandType,this._commandMemory);
+            //command.SetCommandMemory(this._commandMemory);
+            return command!=null ? command : throw new NullReferenceException();
         }
 
         

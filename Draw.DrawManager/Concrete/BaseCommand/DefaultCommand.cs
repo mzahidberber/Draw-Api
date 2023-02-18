@@ -5,6 +5,10 @@ namespace Draw.DrawManager.Concrete.BaseCommand
 {
     internal class DefaultCommand : BaseCommanAbstract
     {
+        public DefaultCommand(CommandMemory commandMemory) : base(commandMemory)
+        {
+        }
+
         public override object AddPoint(MouseInformation mouseInformations)
         {
             Console.WriteLine("Default Command");

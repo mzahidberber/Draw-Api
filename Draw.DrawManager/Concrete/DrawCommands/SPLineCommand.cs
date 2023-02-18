@@ -1,4 +1,5 @@
 ﻿using Draw.DataAccess.Abstract.Commands;
+using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
 
@@ -6,6 +7,10 @@ namespace Draw.DrawManager.Concrete.DrawCommands
 {
     public class SPLineCommand:BaseCommanAbstract
     {
+        public SPLineCommand(CommandMemory commandMemory) : base(commandMemory)
+        {
+        }
+
         protected override object ControlCommand()
         {
             Console.WriteLine("SPLine Command");

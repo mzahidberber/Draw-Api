@@ -14,21 +14,20 @@ namespace Draw.DataAccess.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
 
             modelBuilder.Entity("Draw.Entities.Concrete.Commands.DrawCommand", b =>
                 {
                     b.Property<int>("DrawCommandId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("DrawCommandDrawBoxId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("DrawCommandName")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("DrawCommandId");
 
@@ -61,15 +60,15 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("DrawBoxId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("DrawName")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("DrawBoxId");
 
@@ -102,17 +101,17 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("ElementId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ElementTypeId")
                         .HasMaxLength(200)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("LayerId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PenId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ElementId");
 
@@ -166,19 +165,19 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("PointId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ElementId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PointTypeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("PointX")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.Property<double>("PointY")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.HasKey("PointId");
 
@@ -251,13 +250,13 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("RadiusId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("RadiusElementId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("RadiusValue")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.HasKey("RadiusId");
 
@@ -284,17 +283,17 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("SSAngleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SSAngleElementId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SSAngleType")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<double>("SSAngleValue")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.HasKey("SSAngleId");
 
@@ -323,20 +322,20 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("ColorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ColorBlue")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ColorGreen")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ColorName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ColorRed")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ColorId");
 
@@ -405,11 +404,11 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("ElementTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ElementTypeName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ElementTypeId");
 
@@ -452,27 +451,27 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("LayerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("DrawBoxId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("LayerLock")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LayerName")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("LayerThickness")
-                        .HasColumnType("float");
+                        .HasColumnType("REAL");
 
                     b.Property<bool>("LayerVisibility")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PenId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("LayerId");
 
@@ -521,17 +520,17 @@ namespace Draw.DataAccess.Migrations
             modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Pen", b =>
                 {
                     b.Property<int>("PenId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PenColorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PenName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("PenStyleId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PenId");
 
@@ -558,11 +557,11 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("PenStyleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PenStyleName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PenStyleId");
 
@@ -585,11 +584,11 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("PointTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PointTypeName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PointTypeId");
 
@@ -617,17 +616,17 @@ namespace Draw.DataAccess.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserPassword")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId");
 

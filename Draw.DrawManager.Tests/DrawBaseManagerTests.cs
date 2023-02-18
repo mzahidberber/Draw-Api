@@ -68,24 +68,7 @@ namespace Draw.DrawManager.Tests
             Assert.Pass();
         }
 
-        [Test]
-        public void snapTest()
-        {
-           
-            var mouse = new MouseInformation(6, 3, 1, 0);
-            
-            Concrete.DrawManager drawBoxManager = new Concrete.DrawManager("zahid");
-
-            drawBoxManager.SetSnapPoints(HelperEnums.end, true);
-            //drawBoxManager.SetSnapPoints(HelperEnums.center,true);
-            //drawBoxManager.SetSnapPoints(HelperEnums.middle,true);
-            drawBoxManager.AddSnapPointElements(new List<int> { 1,2,3,4,5 });
-
-            var point = drawBoxManager.GetSnapPoint(mouse);
-            Console.WriteLine($"{point.PointX}  {point.PointY}");
-
-            Assert.Pass();
-        }
+       
         [Test]
         public void DrawBaseManager_MoveCommand_Test()
         {

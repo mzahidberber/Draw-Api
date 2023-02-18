@@ -8,9 +8,9 @@ namespace Draw.DrawManager.Concrete.HelperCommands
         private CommandMemory _commandMemory { get; set; }
         internal void SetCommandMemory(CommandMemory commandMemory) => this._commandMemory = commandMemory;
 
-        internal LayerCommand()
+        internal LayerCommand(CommandMemory commadMemory)
         {
-            
+            this._commandMemory=commadMemory;
         }
 
         internal void AddLayer(Layer layer)

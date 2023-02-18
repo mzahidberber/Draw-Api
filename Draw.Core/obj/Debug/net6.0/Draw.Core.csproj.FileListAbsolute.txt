@@ -22,3 +22,15 @@ C:\Users\mzahidberber\Desktop\Draw\Draw.Core\obj\Debug\net6.0\Draw.Core.dll
 C:\Users\mzahidberber\Desktop\Draw\Draw.Core\obj\Debug\net6.0\refint\Draw.Core.dll
 C:\Users\mzahidberber\Desktop\Draw\Draw.Core\obj\Debug\net6.0\Draw.Core.pdb
 C:\Users\mzahidberber\Desktop\Draw\Draw.Core\obj\Debug\net6.0\ref\Draw.Core.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Core.deps.json
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Core.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Core.pdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.csproj.AssemblyReference.cache
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.AssemblyInfoInputs.cache
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.AssemblyInfo.cs
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.csproj.CoreCompileInputs.cache
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\refint\Draw.Core.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.pdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\ref\Draw.Core.dll

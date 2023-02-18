@@ -8,9 +8,10 @@ namespace Draw.DrawManager.Concrete.BaseCommand
 
         private DefaultCommand _defaultcommand;
 
-        public CommandContext()
+        public CommandContext(CommandMemory commandMemory)
         {
-            this._defaultcommand= new DefaultCommand();
+            this._defaultcommand= new DefaultCommand(commandMemory);
+            _command = this._defaultcommand;
         }
         
         public void SetCommand(IBaseCommand command)

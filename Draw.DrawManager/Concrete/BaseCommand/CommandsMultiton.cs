@@ -8,21 +8,21 @@ namespace Draw.DrawManager.Concrete.BaseCommand
 {
     internal class CommandsMultiton
     {
-        private static Dictionary<CommandEnums, IBaseCommand> _commands = new Dictionary<CommandEnums, IBaseCommand>
+        private static Dictionary<CommandEnums,Type> _commands = new Dictionary<CommandEnums,Type>
         {
-            { CommandEnums.line,new LineCommand() },
-            { CommandEnums.circleTwoPoint,new CircleTwoPointsCommand() },
-            { CommandEnums.circleCenterPoint,new CircleCenterPointCommand() },
-            { CommandEnums.circleCenterRadius,new CircleCenterRadiusCommand() },
-            { CommandEnums.circleTreePoint,new CircleTreePointCommand() },
-            { CommandEnums.rectangle,new RectangleCommand() },
-            { CommandEnums.spline,new SPLineCommand() },
-            { CommandEnums.move,new MoveCommands() },
-            { CommandEnums.copy,new CopyCommand() }
+            { CommandEnums.line,typeof(LineCommand) },
+            { CommandEnums.circleTwoPoint,typeof(CircleTwoPointsCommand) },
+            { CommandEnums.circleCenterPoint,typeof(CircleCenterPointCommand) },
+            { CommandEnums.circleCenterRadius,typeof(CircleCenterRadiusCommand) },
+            { CommandEnums.circleTreePoint,typeof(CircleTreePointCommand) },
+            { CommandEnums.rectangle,typeof(RectangleCommand) },
+            { CommandEnums.spline,typeof(SPLineCommand) },
+            { CommandEnums.move,typeof(MoveCommands) },
+            { CommandEnums.copy,typeof(CopyCommand) }
         };
         private CommandsMultiton() { }
 
-        public static IBaseCommand GetCommand(CommandEnums commandEnum)
+        public static Type GetCommand(CommandEnums commandEnum)
         {
             return _commands[commandEnum];
         }

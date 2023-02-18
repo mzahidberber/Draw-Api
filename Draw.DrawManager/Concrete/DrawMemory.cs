@@ -58,7 +58,7 @@ namespace Draw.DrawManager.Concrete
         }
         public object GetElements(int userDrawBoxId)
         {
-            return _efElementDal.GetElementsInDrawBox(userDrawBoxId);
+            return _efElementDal.GetElementsInDrawBox(userDrawBoxId) ?? throw new NullReferenceException();
         }
 
 
@@ -82,7 +82,7 @@ namespace Draw.DrawManager.Concrete
         }
         public object GetElement(Element element)
         {
-            return _efElementDal.GetElementBesidePointsAndLayer(element);
+            return _efElementDal.GetElementBesidePointsAndLayer(element) ?? throw new NullReferenceException();
         }
 
 

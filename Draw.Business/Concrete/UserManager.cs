@@ -7,19 +7,14 @@ namespace Draw.Business.Concrete
 {
     public class UserManager
     {
-        private static EfUserDal _userDal;
+        private static EfUserDal _userDal = new EfUserDal();
 
-        private static UserManager _userManager;
+        private static UserManager? _userManager;
 
-        private static List<UserInformation> _loginUsers;
+        private static List<UserInformation> _loginUsers= new List<UserInformation>();
 
         static object _lockObject = new object();
-        private UserManager()
-        {
-            
-            _userDal= new EfUserDal();
-            _loginUsers = new List<UserInformation>();
-        }
+        
         public static UserManager CreateUserManager()
         {
             lock (_lockObject)
@@ -75,7 +70,8 @@ namespace Draw.Business.Concrete
         public static object Login(string username, string password)
         {
             var user = _userDal.Get(u => u.UserName == username && u.UserPassword == password);
-            if (user != null && !_loginUsers.Any(u=>u.UserName==username))
+            
+            if (user != null && _loginUsers!=null && !_loginUsers.Any(u=>u.UserName==username))
             {
                 AddLoginUser(username);
                 LoginInformation result = new LoginInformation { login=true};

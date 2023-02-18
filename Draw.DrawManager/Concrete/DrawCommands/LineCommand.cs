@@ -1,6 +1,7 @@
 ﻿using Draw.Core.Aspects.PostSharp.CacheAspects;
 using Draw.Core.CrosCuttingConcers.Caching.Microsoft;
 using Draw.DataAccess.Abstract.Commands;
+using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
 
@@ -8,6 +9,9 @@ namespace Draw.DrawManager.Concrete.DrawCommands
 {
     public class LineCommand : BaseCommanAbstract
     {
+        public LineCommand(CommandMemory commandMemory) : base(commandMemory)
+        {
+        }
 
         protected override object ControlCommand()
         {

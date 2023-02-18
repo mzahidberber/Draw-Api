@@ -6,26 +6,40 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Users
 {
     public class EfUserDal : EfEntityRepositoryBase<User, DrawContext>, IUserDal
     {
-        public User getUserAll(string userName)
+        public User? getUserAll(string userName)
         {
             using(DrawContext drawContext= new DrawContext())
             {
-                var user=drawContext.Users.Where(u => u.UserName == userName).SingleOrDefault();
-                user.DrawBoxs=drawContext.Draws.Where(db=>db.User.UserName == userName).ToList();
-                foreach (var db in user.DrawBoxs)
+                if(drawContext.Layers!=null &&
+                   drawContext.Draws != null &&
+                   drawContext.Users != null &&
+                   drawContext.Points != null &&
+                   drawContext.Elements != null)
                 {
-                    db.Layers=drawContext.Layers.Where(l=>l.DrawBoxId==db.DrawBoxId).ToList();
-                    foreach (var layer in db.Layers)
+                    var user = drawContext.Users.Where(u => u.UserName == userName).SingleOrDefault();
+                    if (user != null)
                     {
-                        layer.Elements=drawContext.Elements.Where(e=>e.LayerId==layer.LayerId).ToList();
-                        foreach (var element in layer.Elements)
+                        user.DrawBoxs = drawContext.Draws.Where(db => db.User.UserName == userName).ToList();
+                        foreach (var db in user.DrawBoxs)
                         {
-                            element.Points = drawContext.Points.Where(p => p.ElementId == element.ElementId).ToList();
+                            db.Layers = drawContext.Layers.Where(l => l.DrawBoxId == db.DrawBoxId).ToList();
+                            foreach (var layer in db.Layers)
+                            {
+                                layer.Elements = drawContext.Elements.Where(e => e.LayerId == layer.LayerId).ToList();
+                                foreach (var element in layer.Elements)
+                                {
+                                    element.Points = drawContext.Points.Where(p => p.ElementId == element.ElementId).ToList();
 
+                                }
+                            }
                         }
                     }
+                    return user;
+                }else
+                {
+                    return null;
                 }
-                return user;
+                
             }
         }
 
@@ -33,7 +47,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Users
         {
             using (DrawContext drawContext = new DrawContext())
             {
-                return drawContext.Users.Where(u=>u.UserId==user.UserId).SingleOrDefault();
+                return drawContext.Users != null ? drawContext.Users.Where(u=>u.UserId==user.UserId).SingleOrDefault() :null;
             }
         }
 
@@ -41,7 +55,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Users
         {
             using (DrawContext drawContext = new DrawContext())
             {
-                return drawContext.Users.Where(u => u.UserName == userName).SingleOrDefault();
+                return drawContext.Users!=null ? drawContext.Users.Where(u => u.UserName == userName).SingleOrDefault():null;
             }
         }
     }
