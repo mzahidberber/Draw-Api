@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A5hmu/MU0yxfVRpqRIyjxnYj7e8d9ILIykIx+5e/PqpcDslStclHf1PWuTsBobbB8KXVL5X1dZRVzlRVn7WLng==",
+  "dgSpecHash": "oA1QexQlpXFVOyz+QcdMs7ydmXUjd1FCIwah3XxeoomgGzgTY8ketVOY/hBfG/ltnXAghXfmh8fC9xsLFnJ2sA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
-    "C:\\Users\\mzahidberber\\.nuget\\packages\\postsharp\\4.2.17\\postsharp.4.2.17.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.configuration.configurationmanager\\7.0.0\\system.configuration.configurationmanager.7.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.runtime.caching\\7.0.0\\system.runtime.caching.7.0.0.nupkg.sha512",
@@ -13,16 +12,5 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.security.permissions\\7.0.0\\system.security.permissions.7.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "'PostSharp 4.2.17' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
-      "libraryId": "PostSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

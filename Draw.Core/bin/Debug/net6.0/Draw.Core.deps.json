@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v6.0": {
       "Draw.Core/1.0.0": {
         "dependencies": {
-          "PostSharp": "4.2.17",
           "System.Runtime.Caching": "7.0.0"
         },
         "runtime": {
@@ -28,14 +27,6 @@
             "assetType": "runtime",
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.22.51805"
-          }
-        }
-      },
-      "PostSharp/4.2.17": {
-        "runtime": {
-          "lib/net35-client/PostSharp.dll": {
-            "assemblyVersion": "4.2.17.0",
-            "fileVersion": "4.2.17.0"
           }
         }
       },
@@ -149,13 +140,6 @@
       "sha512": "sha512-2nXPrhdAyAzir0gLl8Yy8S5Mnm/uBSQQA7jEsILOS1MTyS7DbmV1NgViMtvV1sfCD1ebITpNwb1NIinKeJgUVQ==",
       "path": "microsoft.win32.systemevents/7.0.0",
       "hashPath": "microsoft.win32.systemevents.7.0.0.nupkg.sha512"
-    },
-    "PostSharp/4.2.17": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-b7THtwQmAxkDwo5+AGIE6mysPx8QY/v2rV6yxfh8ByWkidZ70V5Ssy1sqIK9ao4wMec2T3r1obUGxrR/lpIf2A==",
-      "path": "postsharp/4.2.17",
-      "hashPath": "postsharp.4.2.17.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/7.0.0": {
       "type": "package",

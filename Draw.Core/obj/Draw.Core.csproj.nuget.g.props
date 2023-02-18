@@ -12,7 +12,4 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="C:\Users\mzahidberber\.nuget\packages\" />
   </ItemGroup>
-  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgPostSharp Condition=" '$(PkgPostSharp)' == '' ">C:\Users\mzahidberber\.nuget\packages\postsharp\4.2.17</PkgPostSharp>
-  </PropertyGroup>
 </Project>

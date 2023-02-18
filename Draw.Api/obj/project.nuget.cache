@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RY5CQiS966TB1dt2zmAWrIpyFymGNsvfIztsrslYD0E6pGDPrHTLd8deE+czNZ2UUFKJ33zGD9rKvRuSFPT8Nw==",
+  "dgSpecHash": "LgUftQ9fPWX/P7QsPUHF3uRy9YhAvZrbNYBnxUInL+wkQnFVgHCQyForgyGaW3S6lzGe9Sduf6vzm+rHdVCQ9g==",
   "success": true,
   "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Api\\Draw.Api.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,6 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\mysqlconnector\\2.1.2\\mysqlconnector.2.1.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\ninject\\3.3.6\\ninject.3.3.6.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.2\\pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",
-    "C:\\Users\\mzahidberber\\.nuget\\packages\\postsharp\\4.2.17\\postsharp.4.2.17.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.6\\sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\sqlitepclraw.core\\2.0.6\\sqlitepclraw.core.2.0.6.nupkg.sha512",
@@ -62,16 +61,5 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "'PostSharp 4.2.17' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
-      "libraryId": "PostSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -381,19 +381,6 @@
           }
         }
       },
-      "PostSharp/4.2.17": {
-        "type": "package",
-        "compile": {
-          "lib/net35-client/PostSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net35-client/PostSharp.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "SQLite/3.13.0": {
         "type": "package",
         "compile": {
@@ -898,7 +885,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "PostSharp": "4.2.17",
           "System.Runtime.Caching": "7.0.0"
         },
         "compile": {
@@ -1401,30 +1387,6 @@
         "lib/net6.0/Pomelo.EntityFrameworkCore.MySql.xml",
         "pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",
         "pomelo.entityframeworkcore.mysql.nuspec"
-      ]
-    },
-    "PostSharp/4.2.17": {
-      "sha512": "b7THtwQmAxkDwo5+AGIE6mysPx8QY/v2rV6yxfh8ByWkidZ70V5Ssy1sqIK9ao4wMec2T3r1obUGxrR/lpIf2A==",
-      "type": "package",
-      "path": "postsharp/4.2.17",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net35-client/PostSharp.dll",
-        "lib/net35-client/PostSharp.xml",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8/PostSharp.dll",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8/PostSharp.xml",
-        "postsharp.4.2.17.nupkg.sha512",
-        "postsharp.nuspec",
-        "tools/PostSharp-Tools.exe",
-        "tools/PostSharp.MSBuild.v4.2.17.Release.dll",
-        "tools/PostSharp.Version.properties",
-        "tools/PostSharp.properties",
-        "tools/PostSharp.targets",
-        "tools/PostSharp.tasks",
-        "tools/install.ps1",
-        "tools/uninstall.ps1"
       ]
     },
     "SQLite/3.13.0": {
@@ -2549,17 +2511,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "'PostSharp 4.2.17' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
-      "libraryId": "PostSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

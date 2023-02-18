@@ -253,14 +253,6 @@
           }
         }
       },
-      "PostSharp/4.2.17": {
-        "runtime": {
-          "lib/net35-client/PostSharp.dll": {
-            "assemblyVersion": "4.2.17.0",
-            "fileVersion": "4.2.17.0"
-          }
-        }
-      },
       "SQLite/3.13.0": {
         "runtimeTargets": {
           "runtimes/linux-x64/native/libsqlite3.so": {
@@ -581,7 +573,6 @@
       },
       "Draw.Core/1.0.0": {
         "dependencies": {
-          "PostSharp": "4.2.17",
           "System.Runtime.Caching": "7.0.0"
         },
         "runtime": {
@@ -785,13 +776,6 @@
       "sha512": "sha512-KvlZ800CnEuEGnxj5OT1fCKGjQXxW5kpPlCP91JqBYG+2Z3927eqXmlX6LLKUt4swqE8ZsEQ+Zkpab8bqstf4g==",
       "path": "pomelo.entityframeworkcore.mysql/6.0.2",
       "hashPath": "pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512"
-    },
-    "PostSharp/4.2.17": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-b7THtwQmAxkDwo5+AGIE6mysPx8QY/v2rV6yxfh8ByWkidZ70V5Ssy1sqIK9ao4wMec2T3r1obUGxrR/lpIf2A==",
-      "path": "postsharp/4.2.17",
-      "hashPath": "postsharp.4.2.17.nupkg.sha512"
     },
     "SQLite/3.13.0": {
       "type": "package",

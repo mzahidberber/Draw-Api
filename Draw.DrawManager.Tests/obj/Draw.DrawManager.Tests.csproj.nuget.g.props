@@ -21,7 +21,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\17.3.2\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\17.3.2\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgPostSharp Condition=" '$(PkgPostSharp)' == '' ">C:\Users\mzahidberber\.nuget\packages\postsharp\4.2.17</PkgPostSharp>
     <PkgNUnit_Analyzers Condition=" '$(PkgNUnit_Analyzers)' == '' ">C:\Users\mzahidberber\.nuget\packages\nunit.analyzers\3.3.0</PkgNUnit_Analyzers>
     <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\mzahidberber\.nuget\packages\newtonsoft.json\9.0.1</PkgNewtonsoft_Json>
   </PropertyGroup>

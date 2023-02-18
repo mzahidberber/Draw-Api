@@ -1,5 +1,4 @@
-﻿using Draw.Core.Aspects.PostSharp.CacheAspects;
-using Draw.Core.CrosCuttingConcers.Caching.Microsoft;
+﻿using Draw.Core.CrosCuttingConcers.Caching.Microsoft;
 using Draw.DataAccess.Abstract.Commands;
 using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.Entities.Concrete.Elements;
@@ -20,7 +19,7 @@ namespace Draw.DrawManager.Concrete.DrawCommands
             return CommandMemory.PointsList.Count == 2 ? AddLine() : ReturnErrorMessage(2);
         }
 
-        //[CacheAspect(typeof(MemoryCacheManager))]
+        
         private object AddLine()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
