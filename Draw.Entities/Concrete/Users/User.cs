@@ -11,8 +11,8 @@ namespace Draw.Entities.Concrete.Users
             this.DrawBoxs = new List<DrawBox>();
         }
         public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
+        public string UserName { get; set; }= null!;
+        public string UserPassword { get; set; }= null!;
 
         public ICollection<DrawBox> DrawBoxs { get; set; }
     }

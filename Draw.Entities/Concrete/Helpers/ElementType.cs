@@ -11,7 +11,7 @@ namespace Draw.Entities.Concrete.Helpers
             this.Elements=new List<Element>();
         }
         public int ElementTypeId { get; set; }
-        public string ElementTypeName { get; set; }
+        public string ElementTypeName { get; set; }= null!;
 
         public List<Element> Elements { get; set; }
     }

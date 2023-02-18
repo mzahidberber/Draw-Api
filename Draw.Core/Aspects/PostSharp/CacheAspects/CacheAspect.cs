@@ -9,7 +9,7 @@ namespace Draw.Core.Aspects.PostSharp.CacheAspects
     {
         private Type _cacheType;
         private int _cacheByMinute;
-        ICacheManager _cacheManager;
+        ICacheManager? _cacheManager;
 
         public CacheAspect(Type cacheType, int cacheByMinute=60)
         {
@@ -23,7 +23,7 @@ namespace Draw.Core.Aspects.PostSharp.CacheAspects
             {
                 throw new Exception("Wrong Cache Manager");
             }
-            _cacheManager= (ICacheManager)Activator.CreateInstance(_cacheType);
+            _cacheManager= (ICacheManager?)Activator.CreateInstance(_cacheType);
 
             base.RuntimeInitialize(method);
         }
@@ -31,22 +31,23 @@ namespace Draw.Core.Aspects.PostSharp.CacheAspects
         public override void OnInvoke(MethodInterceptionArgs args)
         {
             var methodName=string.Format("{0}.{1}.{2}",
-                args.Method.ReflectedType.Namespace,
-                args.Method.ReflectedType.Name,
-                args.Method.Name);
+            args.Method.ReflectedType?.Namespace,
+            args.Method.ReflectedType?.Name,
+            args.Method.Name);
+            
 
             var arguments = args.Arguments.ToList();
 
             var key=string.Format("{0}({1})",methodName,string.Join(",",arguments.Select(x=>x!=null?x.ToString():"<Null>")));
 
-            if(_cacheManager.IsAdd(key))
+            if(_cacheManager!=null && _cacheManager.IsAdd(key))
             {
                 args.ReturnValue = _cacheManager.Get<object>(key);
             }
 
             base.OnInvoke(args);
 
-            _cacheManager.Add(key,args.ReturnValue,_cacheByMinute);
+            _cacheManager?.Add(key,args.ReturnValue,_cacheByMinute);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Draw.Entities.Concrete.Helpers
             this.Pens = new List<Pen>();
         }
         public int PenStyleId { get; set; }
-        public string PenStyleName { get; set; }
+        public string PenStyleName { get; set; }= null!;
 
         public List<Pen> Pens { get; set; }
 

@@ -7,6 +7,6 @@ namespace Draw.Entities.Concrete.Elements
         public int RadiusId { get; set; }
         public double RadiusValue { get; set; }
         public int RadiusElementId { get; set; }
-        public Element RadiusElement { get; set; }
+        public Element RadiusElement { get; set; }= null!;
     }
 }

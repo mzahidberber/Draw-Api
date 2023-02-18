@@ -6,9 +6,9 @@ namespace Draw.Entities.Concrete.Commands
     public class DrawCommand:IEntity
     {
         public int DrawCommandId { get; set; }
-        public string DrawCommandName { get; set; }
+        public string DrawCommandName { get; set; } = null!;
         
         public int DrawCommandDrawBoxId { get; set; }
-        public DrawBox DrawCommandDrawBox { get; set; }
+        public DrawBox DrawCommandDrawBox { get; set; }= null!;
     }
 }

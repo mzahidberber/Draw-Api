@@ -16,17 +16,6 @@ namespace Draw.DataAccess.Tests
         {
             Assert.Pass();
         }
-        [Test]
-        public void data_test()
-        {
-            using(DrawContext context=new DrawContext())
-            {
-                var a = context.Colors.Where(u => u.ColorId == 1).Single();
-                Console.WriteLine(a);
-            }
-            //var efuserdal=new EfColorDal();
-            //var users=efuserdal.GetAll();
-            //Console.WriteLine(users);
-        }
+        
     }
 }

@@ -11,7 +11,7 @@ namespace Draw.Entities.Concrete.Helpers
             this.PointTypePoints = new List<Point>();
         }
         public int PointTypeId { get; set; }
-        public string PointTypeName { get; set; }
+        public string PointTypeName { get; set; }= null!;
 
         public List<Point> PointTypePoints { get; set; }
     }

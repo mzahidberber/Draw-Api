@@ -13,16 +13,16 @@ namespace Draw.Entities.Concrete.Helpers
         }
 
         public int LayerId { get; set; }
-        public string LayerName { get; set; }
+        public string LayerName { get; set; }= null!;
         public bool LayerLock { get; set; }
         public bool LayerVisibility { get; set; }
         public float LayerThickness { get; set; }
         
         public int DrawBoxId { get; set; }
-        public DrawBox DrawBox { get; set; }
+        public DrawBox DrawBox { get; set; }= null!;
 
         public int PenId { get; set; }
-        public Pen Pen { get; set; }
+        public Pen Pen { get; set; }= null!;
 
         public List<Element> Elements { get; set; }
     }

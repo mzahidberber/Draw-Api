@@ -13,15 +13,23 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
             using (DrawContext context = new DrawContext())
             {
                 var pens = new List<Pen>();
-                foreach (var id in context.Pens.Select(p=>p.PenId).ToList())
+                if(context.Pens!=null && context.Colors!=null && context.PenStyles!=null)
                 {
-                    var pen = context.Pens.Where(p=>p.PenId==id).Single();
-                    pen.PenColor = context.Colors.Where(u => u.ColorId == pen.PenColorId).Single();
-                    pen.PenStyle = context.PenStyles.Where(u => u.PenStyleId == pen.PenStyleId).Single();
-                    pens.Add(pen);
+                    foreach (var id in context.Pens.Select(p=>p.PenId).ToList())
+                    {
+                        var pen = context.Pens.Where(p=>p.PenId==id).Single();
+                        pen.PenColor = context.Colors.Where(u => u.ColorId == pen.PenColorId).Single();
+                        pen.PenStyle = context.PenStyles.Where(u => u.PenStyleId == pen.PenStyleId).Single();
+                        pens.Add(pen);
 
+                    }
+                    return pens;
                 }
-                return pens;
+                else
+                {
+                    throw new NullReferenceException();
+                }
+                
             }
         }
     }

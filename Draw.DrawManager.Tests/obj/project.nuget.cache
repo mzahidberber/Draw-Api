@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PanhrM8fz7iYFtIGsKfVwOi/zh2Q8llMVcSXSIz2sNPpaaalTkOgJlH/Ro6hGL6tis97g1nRTxYO152TZl6GrQ==",
+  "dgSpecHash": "YoFlslZfFdvRY18OGXIqv6J8m4YgFeErQHNYaAzJd2JCsdTIs5b/GDqF+F34BnWQ0W9NAVbNbksI9YuEolpO7Q==",
   "success": true,
-  "projectFilePath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager.Tests\\Draw.DrawManager.Tests.csproj",
+  "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager.Tests\\Draw.DrawManager.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzahidberber\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",
@@ -97,7 +97,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'PostSharp 4.2.17' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "'PostSharp 4.2.17' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
       "libraryId": "PostSharp",
       "targetGraphs": [
         "net6.0"
