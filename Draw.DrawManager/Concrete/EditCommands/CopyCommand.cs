@@ -7,17 +7,17 @@ namespace Draw.DrawManager.Concrete.EditCommands
 {
     public class CopyCommand:BaseCommanAbstract
     {
-        private Point _point1;
-        private Point _point2;
+        private Point _point1=null!;
+        private Point _point2= null!;
 
         public CopyCommand(CommandMemory commandMemory) : base(commandMemory)
         {
-            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
-            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
+            
         }
 
         protected override object ControlCommand()
         {
+            
             Console.WriteLine("Copy Command");
             CommandMemory.SetElementTypeId(1);
             if (CommandMemory.EditElementsId.Count == 0) { return "Last Add Edit Elements"; };
@@ -26,6 +26,8 @@ namespace Draw.DrawManager.Concrete.EditCommands
 
         private object MoveElements()
         {
+            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
+            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
             var editElements = CommandMemory.DrawMemory.GetElementsId(CommandMemory.EditElementsId);
             var x = DrawMath.DifferancePointsX(this._point1, this._point2);
             var y = DrawMath.DifferancePointsY(this._point1, this._point2);

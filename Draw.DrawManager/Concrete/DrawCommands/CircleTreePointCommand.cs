@@ -9,17 +9,14 @@ namespace Draw.DrawManager.Concrete.DrawCommands
     {
         public CircleTreePointCommand(CommandMemory commandMemory) : base(commandMemory)
         {
-            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
-            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
-            this._point3 = CreatePoint(CommandMemory.PointsList[2].X, CommandMemory.PointsList[2].Y, 1);
+            
         }
 
-        private Point _point1 { get; set; }
-        private Point _point2 { get; set; }
-        private Point _point3 { get; set; }
+        private Point _point1 { get; set; } = null!;
+        private Point _point2 { get; set; } = null!;
+        private Point _point3 { get; set; } = null!;
         protected override object ControlCommand()
         {
-            
             ///////Düzenle
             CommandMemory.SetElementTypeId(2);
             Console.WriteLine("circleTreePoint Command");
@@ -27,7 +24,9 @@ namespace Draw.DrawManager.Concrete.DrawCommands
         }
         private object AddCircle()
         {
-            
+            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
+            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
+            this._point3 = CreatePoint(CommandMemory.PointsList[2].X, CommandMemory.PointsList[2].Y, 1);
 
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();

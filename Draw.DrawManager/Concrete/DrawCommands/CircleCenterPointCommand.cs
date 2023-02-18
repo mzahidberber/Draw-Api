@@ -7,16 +7,14 @@ namespace Draw.DrawManager.Concrete.DrawCommands
 {
     public class CircleCenterPointCommand:BaseCommanAbstract
     {
-        private Point _point1 { get; set; }
-        private Point _point2 { get; set; }
+        private Point _point1 { get; set; } = null!;
+        private Point _point2 { get; set; } = null!;
         public CircleCenterPointCommand(CommandMemory commandMemory) : base(commandMemory)
         {
-            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
-            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
+            
         }
         protected override object ControlCommand()
         {
-            
             Console.WriteLine("CircleCenterPoint Command");
             CommandMemory.SetElementTypeId(2);
             return CommandMemory.PointsList.Count == 2 ? AddCircle() : ReturnErrorMessage(2);
@@ -24,6 +22,8 @@ namespace Draw.DrawManager.Concrete.DrawCommands
 
         private object AddCircle()
         {
+            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
+            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var radius = GetRadius();
