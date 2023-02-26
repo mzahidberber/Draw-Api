@@ -9,8 +9,8 @@ namespace Draw.DrawManager.Models
         public int? IsSelectedUserDrawBoxId { get; set; }
         public int? IsSelectedUserLayerId { get; set; }
         //private DrawBoxManager _drawBoxManager { get; set; }
-        public DrawManager.Concrete.DrawManager DrawManager {get;set;}
-        public UserInformation(string UserName, bool isStartCommand,int? selectedUserDrawBoxId,int? selectedUserLayerId,DrawManager.Concrete.DrawManager drawManager) 
+        public DrawM DrawManager {get;set;}
+        public UserInformation(string UserName, bool isStartCommand,int? selectedUserDrawBoxId,int? selectedUserLayerId,DrawM drawManager) 
         { 
             this.UserName = UserName;
             this.IsStartCommand = isStartCommand;

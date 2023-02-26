@@ -1,20 +1,15 @@
 ﻿using Draw.DataAccess.Concrete.EntityFramework.Users;
-using Draw.DrawManager.Concrete;
 using Draw.DrawManager.Models;
 using Draw.Entities.Concrete.Users;
+using Draw.DrawManager.Concrete;
+using Draw.Business.Abstract;
 
 namespace Draw.Business.Concrete
 {
-    public class UserManager
+    public class UserManager:IUserService
     {
-        private static EfUserDal _userDal = new EfUserDal();
-
         private static UserManager? _userManager;
-
-        private static List<UserInformation> _loginUsers= new List<UserInformation>();
-
         static object _lockObject = new object();
-        
         public static UserManager CreateUserManager()
         {
             lock (_lockObject)
@@ -27,7 +22,10 @@ namespace Draw.Business.Concrete
             return _userManager;
         }
 
-        public static DrawManager.Concrete.DrawManager GetLogginUserDrawManager(string username)
+        private static EfUserDal _userDal = new EfUserDal();
+        private static List<UserInformation> _loginUsers= new List<UserInformation>();
+
+        public static DrawM GetLogginUserDrawManager(string username)
         {
             return _loginUsers.Where(u => u.UserName == username).Select(u => u.DrawManager).Single();
         }
@@ -37,7 +35,7 @@ namespace Draw.Business.Concrete
             {
                 if (!_loginUsers.Any(u => u.UserName == userName))
                 {
-                    _loginUsers.Add(new UserInformation(userName, false, null, null,new DrawManager.Concrete.DrawManager(userName)));
+                    _loginUsers.Add(new UserInformation(userName, false, null, null,new DrawM (userName)));
                     Console.WriteLine($"Giriş Yapan Kullanıcılara {userName} eklendi");
                 }
                 else

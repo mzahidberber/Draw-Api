@@ -19,7 +19,7 @@ namespace Draw.DrawManager.Tests
             var mouse = new MouseInformation(10, 10, 1, 0);
             var mouse1 = new MouseInformation(20.5, 10, 1, 0);
             var mouse2 = new MouseInformation(15, 10, 1, 0);
-            Concrete.DrawManager drawBoxManager = new Concrete.DrawManager("zahid");
+            Concrete.DrawM drawBoxManager = new Concrete.DrawM("zahid");
             drawBoxManager.StartCommand(CommandEnums.circleTreePoint,1,2,1);
             var result=drawBoxManager.AddCoordinate(mouse);
             var result2=drawBoxManager.AddCoordinate(mouse1);
@@ -74,7 +74,7 @@ namespace Draw.DrawManager.Tests
         {
             var mouse = new MouseInformation(0, 0, 1, 0);
             var mouse1 = new MouseInformation(10, 10, 1, 0);
-            Concrete.DrawManager drawBoxManager = new Concrete.DrawManager("zahid");
+            Concrete.DrawM drawBoxManager = new Concrete.DrawM("zahid");
             drawBoxManager.StartCommand(CommandEnums.move, 1, 2, 1);
             drawBoxManager.AddEditElementsId(new List<int> { 1,2,3 }) ;
             var result = drawBoxManager.AddCoordinate(mouse);

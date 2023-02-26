@@ -8,7 +8,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost":"localhost",
         "dbName":"drawdb",
-        "dbPassword":"mysql123."
+        "dbPassword":"mysql123.",
+        "dbPort":"3306"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"

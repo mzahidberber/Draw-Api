@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <!-- <PackageReference Include="PostSharp" Version="4.2.17" /> -->
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="System.Runtime.Caching" Version="7.0.0" />
   </ItemGroup>
 

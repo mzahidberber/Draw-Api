@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.Api", "Draw.Api\Draw.Api.csproj", "{BF0E5099-860B-457E-9875-E9AFD470C7B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.DataAccess", "Draw.DataAccess2\Draw.DataAccess.csproj", "{A5D4CBBF-0BB6-421D-8FCB-E4BCCAD05DFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.DataAccess", "Draw.DataAccess\Draw.DataAccess.csproj", "{A5D4CBBF-0BB6-421D-8FCB-E4BCCAD05DFF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.DrawManager", "Draw.DrawManager\Draw.DrawManager.csproj", "{B6CBE4F9-DEDB-45AE-B9FD-CECFAD6EB51E}"
 EndProject
@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.Core", "Draw.Core\Draw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.Entities", "Draw.Entities\Draw.Entities.csproj", "{EA1591C0-792B-4FB9-BE8F-D25E5D92CC4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draw.DataAccess.Tests", "Draw.DataAccess.Tests\Draw.DataAccess.Tests.csproj", "{873A43DA-5DD7-43E6-B30C-36122D4F2957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.DataAccess.Tests", "Draw.DataAccess.Tests\Draw.DataAccess.Tests.csproj", "{873A43DA-5DD7-43E6-B30C-36122D4F2957}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draw.Core.Tests", "Draw.Core.Tests\Draw.Core.Tests.csproj", "{B1565FE6-F715-49C0-9DAB-785EBA705C1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{873A43DA-5DD7-43E6-B30C-36122D4F2957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{873A43DA-5DD7-43E6-B30C-36122D4F2957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{873A43DA-5DD7-43E6-B30C-36122D4F2957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1565FE6-F715-49C0-9DAB-785EBA705C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1565FE6-F715-49C0-9DAB-785EBA705C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1565FE6-F715-49C0-9DAB-785EBA705C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1565FE6-F715-49C0-9DAB-785EBA705C1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

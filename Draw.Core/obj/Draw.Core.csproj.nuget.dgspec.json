@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj": {}
+    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj": {
+    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
+        "projectUniqueName": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
         "projectName": "Draw.Core",
-        "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
+        "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
         "packagesPath": "C:\\Users\\mzahidberber\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\obj\\",
+        "outputPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mzahidberber\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "System.Runtime.Caching": {
               "target": "Package",
               "version": "[7.0.0, )"

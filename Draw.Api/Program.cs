@@ -1,3 +1,4 @@
+using Draw.DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,12 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        
+        // using(DrawContext context=new DrawContext())
+        // {
+        //     context.Database.EnsureCreated();
+        //     context.Database.Migrate();
+        // }
 
         builder.Services.AddControllersWithViews()
                 .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);

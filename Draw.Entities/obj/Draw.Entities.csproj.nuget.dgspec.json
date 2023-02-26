@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {}
+    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
+    "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
         "projectName": "Draw.Entities",
-        "projectPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
+        "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj",
         "packagesPath": "C:\\Users\\mzahidberber\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\obj\\",
+        "outputPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mzahidberber\\AppData\\Roaming\\NuGet\\NuGet.Config",

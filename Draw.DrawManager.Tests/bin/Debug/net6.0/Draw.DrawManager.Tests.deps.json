@@ -1150,6 +1150,7 @@
       },
       "Draw.Core/1.0.0": {
         "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
           "System.Runtime.Caching": "7.0.0"
         },
         "runtime": {
@@ -1162,6 +1163,7 @@
           "Microsoft.EntityFrameworkCore": "6.0.7",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.7",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.7",
+          "Ninject": "3.3.6",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.2",
           "SQLite": "3.13.0"
         },
