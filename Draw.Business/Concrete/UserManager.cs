@@ -23,6 +23,7 @@ namespace Draw.Business.Concrete
         }
 
         private static EfUserDal _userDal = new EfUserDal();
+        //private static EfUserDal __userdal=Instance
         private static List<UserInformation> _loginUsers= new List<UserInformation>();
 
         public static DrawM GetLogginUserDrawManager(string username)

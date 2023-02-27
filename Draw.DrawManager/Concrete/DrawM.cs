@@ -9,23 +9,13 @@ namespace Draw.DrawManager.Concrete
     public class DrawM
     {
         private string _userName { get; set; }
-
         private CommandContext _commandContext;
-        
         private CommandMemory _commandMemory;
-        
         public DrawM(string userName)
         {
             this._userName = userName;
-
-
-            _commandMemory= new CommandMemory(DrawMemoryMultiton.GetDrawMemory(this._userName), this._userName);
-            
+             _commandMemory= new CommandMemory(DrawMemoryMultiton.GetDrawMemory(this._userName), this._userName);
             _commandContext= new CommandContext(_commandMemory);
-
-
-            
-
         }
         public object StartCommand(CommandEnums commandEnum,int userDrawBoxId,int userLayerId,int userPenId)
         {

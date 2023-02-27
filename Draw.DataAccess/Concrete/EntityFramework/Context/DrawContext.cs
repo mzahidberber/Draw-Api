@@ -58,7 +58,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
                 var dbPort=Environment.GetEnvironmentVariable("dbPort");
                 //var cnn=$"server={dbHost};port={dbPort};database={dbName};user=root;password={dbPassword};";
                 //optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
-                var cnn2= $"server=localhost;port=3306;database=drawdb;user=root;password=mysql123.;";
+                var cnn2= $"server=127.0.0.1;port=3306;database=drawdb;user=root;password=123456;";
                 optionsBuilder.UseMySql(cnn2,ServerVersion.AutoDetect(cnn2));
                 // var environmentName =Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 

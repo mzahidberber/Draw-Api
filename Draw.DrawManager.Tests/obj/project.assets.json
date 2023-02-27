@@ -1725,7 +1725,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "6.0.7",
           "System.Runtime.Caching": "7.0.0"
         },
         "compile": {
