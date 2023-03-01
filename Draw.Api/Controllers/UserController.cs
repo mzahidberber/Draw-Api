@@ -1,4 +1,7 @@
-﻿using Draw.Business.Concrete;
+﻿using Draw.Business.Abstract;
+using Draw.Business.Concrete;
+using Draw.Business.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
@@ -7,28 +10,28 @@ namespace Draw.Api.Controllers
     [Route("[controller]")]
     public class UserController: ControllerBase
     {
-        [HttpPost("register/")]
-        public string register(string userName,string password)
+        private IUserService _userManager;
+        public UserController()
         {
-            UserManager.CreateUserManager();
-            var result = UserManager.RegisterUser(userName,password);
-            return result;
+            _userManager= InstanceFactory.GetInstance<IUserService>();
+        }
+        
+        [HttpPost("register")]
+        public object register(User user)
+        {
+            return _userManager.Register(user);
         }
 
-        [HttpPost("login/")]
-        public object login(string username, string password)
+        [HttpPost("login")]
+        public object login(User user)
         {
-            UserManager.CreateUserManager();
-            var result = UserManager.Login(username,password);
-            return result;
+            return _userManager.Login(user);
         }
 
-        [HttpPost("logout/")]
-        public object logout(string username, string password)
+        [HttpPost("logout")]
+        public object logout(User user)
         {
-            UserManager.CreateUserManager();
-            var result = UserManager.LogOut(username,password);
-            return result;
+            return _userManager.Logout(user);
         }
     }
 }

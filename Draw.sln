@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.Entities", "Draw.Entit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.DataAccess.Tests", "Draw.DataAccess.Tests\Draw.DataAccess.Tests.csproj", "{873A43DA-5DD7-43E6-B30C-36122D4F2957}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draw.Core.Tests", "Draw.Core.Tests\Draw.Core.Tests.csproj", "{B1565FE6-F715-49C0-9DAB-785EBA705C1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Draw.Core.Tests", "Draw.Core.Tests\Draw.Core.Tests.csproj", "{B1565FE6-F715-49C0-9DAB-785EBA705C1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -19,10 +19,10 @@ namespace Draw.Entities.Concrete.Helpers
         public float LayerThickness { get; set; }
         
         public int DrawBoxId { get; set; }
-        public DrawBox DrawBox { get; set; }= null!;
+        public DrawBox? DrawBox { get; set; }
 
         public int PenId { get; set; }
-        public Pen Pen { get; set; }= null!;
+        public Pen? Pen { get; set; }
 
         public List<Element> Elements { get; set; }
     }

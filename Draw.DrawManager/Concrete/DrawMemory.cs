@@ -88,7 +88,13 @@ namespace Draw.DrawManager.Concrete
 
 
         public void AddDrawBox(DrawBox drawBox)=> this._drawBoxes.Add(drawBox);
-        public void AddLayer(Layer layer) => this._layers.Add(layer);
+        public void AddLayer(Layer layer)
+        {
+            this._efLayerDal.Add(layer);
+            this._layers.Add(layer);
+        }
+
+        
 
         public List<DrawBox> GetUserDrawBoxes(string userName)
         {

@@ -6,6 +6,18 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
 {
     public class EfLayerDal:EfEntityRepositoryBase<Layer,DrawContext>,ILayerDal
     {
+        public void DeleteFromId(int layerId)
+        {
+            using (DrawContext context = new DrawContext())
+            {
+                if(context.Layers!=null)
+                {
+                    var layer = context.Layers.Where(l => l.LayerId == layerId).Single();
+                    context.Layers.Remove(layer);
+                    context.SaveChanges();
+                }
+            }
+        }
         public List<Layer> GetLayersAndPen(int drawBoxId)
         {
             using (DrawContext context = new DrawContext())

@@ -1,6 +1,7 @@
-﻿using Draw.Business.DependencyResolvers.Ninject;
+﻿
 using Draw.DataAccess.Abstract.Elements;
 using Draw.DataAccess.Concrete.EntityFramework.Context;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Abstract;
 using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;

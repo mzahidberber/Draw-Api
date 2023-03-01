@@ -1,8 +1,9 @@
-﻿using Draw.DataAccess.Concrete.EntityFramework.Users;
-using Draw.DrawManager.Models;
-using Draw.Entities.Concrete.Users;
+﻿using Draw.Business.Abstract;
+using Draw.Business.Models;
+using Draw.DataAccess.Concrete.EntityFramework.Users;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.DrawManager.Concrete;
-using Draw.Business.Abstract;
+using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Concrete
 {
@@ -22,25 +23,33 @@ namespace Draw.Business.Concrete
             return _userManager;
         }
 
-        private static EfUserDal _userDal = new EfUserDal();
-        //private static EfUserDal __userdal=Instance
-        private static List<UserInformation> _loginUsers= new List<UserInformation>();
+        private UserManager() { }
 
-        public static DrawM GetLogginUserDrawManager(string username)
+        
+
+        private EfUserDal _userDal = InstanceFactory.GetInstance<EfUserDal>();
+        private List<UserInformation> _loginUsers= new List<UserInformation>();
+        private List<string> _loginUserss= new List<string>();
+
+
+
+        public DrawM GetLogginUserDrawManager(string username)
         {
             return _loginUsers.Where(u => u.UserName == username).Select(u => u.DrawManager).Single();
         }
-        public static void AddLoginUser(string userName)
+        public void AddLoginUser(User user)
         {
-            if (UserNameDataControl(userName) != null)
+            if (UserNameDataControl(user.UserName) != null)
             {
-                if (!_loginUsers.Any(u => u.UserName == userName))
+                if (!_loginUsers.Any(u => u.UserName == user.UserName))
                 {
-                    _loginUsers.Add(new UserInformation(userName, false, null, null,new DrawM (userName)));
-                    Console.WriteLine($"Giriş Yapan Kullanıcılara {userName} eklendi");
+                    _loginUsers.Add(new UserInformation(user.UserName, false, null, null,new DrawM (user.UserName)));
+                    _loginUserss.Add(user.UserName);
+                    Console.WriteLine($"Giriş Yapan Kullanıcılara {user.UserName} eklendi");
                 }
                 else
                 {
+                   
                     Console.WriteLine("Zaten giriş yapılmış");
                 }
             }
@@ -50,7 +59,7 @@ namespace Draw.Business.Concrete
             }
         }
 
-        public static void RemoveLoginUser(string userName)
+        public void RemoveLoginUser(string userName)
         {
             if (_loginUsers.Any(u => u.UserName == userName))
             {
@@ -63,86 +72,83 @@ namespace Draw.Business.Concrete
             }
         }
 
-        public static List<UserInformation> GetLoginUsers() { return _loginUsers; }
+        public List<UserInformation> GetLoginUsers() { return _loginUsers; }
 
 
-        public static object Login(string username, string password)
+        public object Login(User user)
         {
-            var user = _userDal.Get(u => u.UserName == username && u.UserPassword == password);
+            var loginUser = _userDal.Get(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword);
             
-            if (user != null && _loginUsers!=null && !_loginUsers.Any(u=>u.UserName==username))
+            if (user != null && !_loginUsers.Any(u=>u.UserName==user.UserName))
             {
-                AddLoginUser(username);
+                AddLoginUser(user);
                 LoginInformation result = new LoginInformation { login=true};
                 return result;
             }
-
-            return "Bilgiler yanlış veya daha önce giriş yapılmış";
+            return new Exception("Information false or user logged");
         }
-
-        public static object LogOut(string username,string password)
+        public object Logout(User user)
         {
-            
-            var logoutuser=_loginUsers.Where(u => u.UserName == username).SingleOrDefault();
-            if (logoutuser!=null)
+            var logoutuser = _loginUsers.Where(u => u.UserName == user.UserName).SingleOrDefault();
+            if (logoutuser != null)
             {
                 RemoveLoginUser(logoutuser.UserName);
                 string result = "LogOut : " + logoutuser.UserName;
                 return result;
             }
 
-            return "Önce Giriş Yapılmalı";
+            return new Exception("User Not Found");
         }
 
-        public static string RegisterUser(string username,string password)
+        public object Register(User user)
         {
-            var userControl=_userDal.Get(u=>u.UserName== username);
+            var userControl = _userDal.Get(u => u.UserName == user.UserName);
             if (userControl == null)
             {
-                User newUser = new User { UserName = username, UserPassword = password };
-                _userDal.Add(newUser);
-                return "Kayit Başarılı";
+                _userDal.Add(user);
+                return "Register Success";
             }
-            return "Kayit Başarısız";
+            return new Exception("Register Unsuccess");
+
+
         }
-        internal static void StartCommandUser(string username)
+
+        internal void StartCommandUser(string username)
         {
             if (_loginUsers.Any(u=>u.UserName==username))
             {
                 _loginUsers.Where(u=>u.UserName==username).Single().IsStartCommand = true;
             }
         }
-        internal static void StopCommandUser(string username)
+        internal void StopCommandUser(string username)
         {
             if (_loginUsers.Any(u => u.UserName == username))
             {
                 _loginUsers.Where(u => u.UserName == username).Single().IsStartCommand = false;
             }
         }
-        internal static bool IsStartCommandUser(string userName)
+        internal bool IsStartCommandUser(User user)
         {
-            foreach (var item in _loginUsers)
-            {
-                Console.WriteLine(item.UserName);
-            }
-            return IsLoggedUser(userName) ? _loginUsers.Where(u => u.UserName == userName).Single().IsStartCommand : false;
+            return IsLoggedUser(user) ? _loginUsers.Where(u => u.UserName ==user.UserName).Single().IsStartCommand : false;
         }
 
-        internal static bool IsLoggedUser(string userName)
+        public bool IsLoggedUser(User user)
         {
-            var loggedUser = _loginUsers.Where(u => u.UserName == userName);
-            return loggedUser == null ? false : true;
+            return _loginUsers.Any(u => u.UserName == user.UserName);
         }
 
-        private static User? UserNameDataControl(string userName)
+        internal User? UserNameDataControl(string userName)
         {
             return _userDal.IsUserName(userName);
         }
 
-        private static User? UserIdDataControl(User user)
+        internal User? UserIdDataControl(User user)
         {
             return _userDal.IsUserId(user);
         }
+
+        
+        
     }
 
     public class LoginInformation

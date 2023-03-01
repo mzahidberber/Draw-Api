@@ -1,16 +1,26 @@
-﻿using Draw.DataAccess.Abstract.Commands;
+﻿using Draw.Core.Draw.Abstract;
+using Draw.DataAccess.Abstract.Commands;
+using Draw.DataAccess.Concrete.EntityFramework.Draws;
+using Draw.DataAccess.Concrete.EntityFramework.Elements;
+using Draw.DataAccess.Concrete.EntityFramework.Helpers;
 using Draw.DrawManager.Concrete.BaseCommand;
-using Draw.DrawManager.Concrete.HelperCommands;
-using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete.Helpers;
 using Draw.Manager.Concrete.DrawElements;
 
 namespace Draw.DrawManager.Concrete
 {
-    public class DrawM
+    public class DrawM:IDrawManager
     {
         private string _userName { get; set; }
         private CommandContext _commandContext;
         private CommandMemory _commandMemory;
+
+        private EfElementsDal _efElementDal = new EfElementsDal();
+        private EfDrawBoxDal _efDrawBoxDal = new EfDrawBoxDal();
+        private EfLayerDal _efLayerDal = new EfLayerDal();
+        private EfColorDal _efColorDal = new EfColorDal();
+        private EfPenStyleDal _efPenStylesDal = new EfPenStyleDal();
+        private EfPenDal _efPenDal = new EfPenDal();
         public DrawM(string userName)
         {
             this._userName = userName;
@@ -76,6 +86,24 @@ namespace Draw.DrawManager.Concrete
         public object GetLayers(int userDrawBoxId)
         {
             return _commandMemory.DrawMemory.GetLayers(userDrawBoxId);
+        }
+
+        public object AddLayer(int userDrawBoxId, Layer layer)
+        {
+            _efLayerDal.Add(layer);
+            return true;
+        }
+
+        public object DeleteLayer(int userDrawBoxId, int layerId)
+        {
+            _efLayerDal.DeleteFromId(layerId);
+            return true;
+        }
+
+        public object UpdateLayer(int userDrawBoxId, Layer layer)
+        {
+            _efLayerDal.Update(layer);
+            return true;
         }
 
         public object GetElements(int userDrawBoxId)

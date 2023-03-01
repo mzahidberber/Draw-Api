@@ -9,21 +9,19 @@ namespace Draw.Api.Controllers
     [Route("[controller]")]
     public class DrawController : ControllerBase
     {
-        
+        private DrawBusinessManager _drawBusinessManager = DrawBusinessManager.CreateDrawBusinessManager();
 
         [HttpPost ("startCommand")]
         public object startCommand([FromBody] CommandEnums command,string userName,int userDrawBoxId,int userLayerId)
         {
-            DrawBusinessManager.CreateDrawBusinessManager();
-            var result = DrawBusinessManager.StartCommand(command,userName,userDrawBoxId,userLayerId);
+            var result = _drawBusinessManager.StartCommand(command,userName,userDrawBoxId,userLayerId);
             return result;
         }
 
-        [HttpPost ("mousePosition/")]
+        [HttpPost ("mousePosition")]
         public object mousePosition([FromBody]MouseInformation mouseInformation,string userName)
         {
-            DrawBusinessManager.CreateDrawBusinessManager();
-            var result= DrawBusinessManager.AddCoordinates(mouseInformation, userName);
+            var result= _drawBusinessManager.AddCoordinates(mouseInformation, userName);
             Console.WriteLine(result);
             return result;
         }

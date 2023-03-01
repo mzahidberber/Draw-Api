@@ -27,7 +27,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
+                "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,9 +44,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Castle.Core": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[6.0.7, )"
+              "version": "[13.0.2, )"
+            },
+            "PostSharp": {
+              "target": "Package",
+              "version": "[2023.0.3, )"
             },
             "System.Runtime.Caching": {
               "target": "Package",

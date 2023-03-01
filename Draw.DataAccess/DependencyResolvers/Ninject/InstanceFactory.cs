@@ -1,12 +1,12 @@
 ﻿using Ninject;
 
-namespace Draw.Business.DependencyResolvers.Ninject
+namespace Draw.DataAccess.DependencyResolvers.Ninject
 {
     public class InstanceFactory
     {
         public static T GetInstance<T>()
         {
-            var kernel = new StandardKernel(new BusinessModule());
+            var kernel = new StandardKernel(new DataAccessModule());
             return kernel.Get<T>();
         }
     }

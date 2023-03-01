@@ -31,6 +31,12 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.AssemblyInfo.cs
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.csproj.CoreCompileInputs.cache
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.dll
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\refint\Draw.Core.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.pdb
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\ref\Draw.Core.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Core.pssym
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Core.pspdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\PostSharp\touch
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\PostSharp\AdditionalBuildDependencies.txt
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\PostSharp\postsharp.app.config
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Entities.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\bin\Debug\net6.0\Draw.Entities.pdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Core\obj\Debug\net6.0\Draw.Core.csproj.CopyComplete

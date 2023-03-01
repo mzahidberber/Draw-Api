@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Draw.Core\Draw.Core.csproj" />
     <ProjectReference Include="..\Draw.DataAccess\Draw.DataAccess.csproj" />
     <ProjectReference Include="..\Draw.DrawManager\Draw.DrawManager.csproj" />
     <ProjectReference Include="..\Draw.Entities\Draw.Entities.csproj" />
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="PostSharp" Version="2023.0.3" />
   </ItemGroup>
 
 </Project>

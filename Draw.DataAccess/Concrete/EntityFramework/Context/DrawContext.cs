@@ -60,21 +60,6 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
                 //optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
                 var cnn2= $"server=127.0.0.1;port=3306;database=drawdb;user=root;password=123456;";
                 optionsBuilder.UseMySql(cnn2,ServerVersion.AutoDetect(cnn2));
-                // var environmentName =Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-                // if(environmentName=="Development")
-                // {
-                //     var cnn=$"server=localhost;port=3306;database=drawdb;user=root;password=mysql123.;";
-                //     optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
-                // }
-                // else
-                // {
-                //     var dbHost=Environment.GetEnvironmentVariable("dbHost");
-                //     var dbName=Environment.GetEnvironmentVariable("dbName");
-                //     var dbPassword=Environment.GetEnvironmentVariable("dbPassword");
-                //     var cnn=$"server={dbHost};port=3306;database={dbName};user=root;password={dbPassword};";
-                //     optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
-                // }
             
                 
             }
