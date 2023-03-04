@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Draws
 {
-    internal interface IDrawBoxDal : IEntityRepository<DrawBox>
+    public interface IDrawBoxDal : IEntityRepository<DrawBox>
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Helpers
 {
-    internal interface IPenDal : IEntityRepository<Pen>
+    public interface IPenDal : IEntityRepository<Pen>
     {
     }
 }

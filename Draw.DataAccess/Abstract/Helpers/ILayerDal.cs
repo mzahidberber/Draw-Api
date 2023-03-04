@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Helpers
 {
-    internal interface ILayerDal : IEntityRepository<Layer>
+    public interface ILayerDal : IEntityRepository<Layer>
     {
     }
 }

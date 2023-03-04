@@ -1,13 +1,17 @@
 ﻿using Draw.Api.Models.LayerRequest;
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
+using Draw.Core.DTOs;
+using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class LayerController:ControllerBase
+    public class LayerController:CustomBaseController
     {
         private ILayerService _layerManager;
 
@@ -17,45 +21,45 @@ namespace Draw.Api.Controllers
         }
         
         [HttpGet("layers")]
-        public object GetLayers(UserDrawBoxIdRequest request)
+        public async Task<Response<IEnumerable<Layer>>> GetLayers(UserDrawBoxIdRequest request)
         {
-            return _layerManager.GetAll(request.user, request.userDrawBoxId);
+            return await _layerManager.GetAllAsync();
         }
 
         [HttpPost("layers/add")]
-        public object AddLayers(UserLayersDrawBoxIdRequest request)
+        public async Task<Response<IEnumerable<Layer>>> AddLayers(UserLayersDrawBoxIdRequest request)
         {
-            return _layerManager.AddAll(request.user, request.userDrawBoxId,request.layers);
+            return await _layerManager.AddAllAsync(request.layers);
         }
-
+        //Buna Tekrar Bak List<int> olmalı
         [HttpDelete("layers/delete")]
-        public object DeleteLayers(UserLayersDrawBoxIdRequest request)
+        public async Task<Response<NoDataDto>> DeleteLayers(UserLayersDrawBoxIdRequest request)
         {
-            return _layerManager.DeleteAll(request.user, request.userDrawBoxId, request.layers);
+            return await _layerManager.DeleteAllAsync(request.layers);
         }
 
         [HttpPut("layers/update")]
-        public object UpdateLayers(UserLayersDrawBoxIdRequest request)
+        public async Task<Response<NoDataDto>> UpdateLayers(UserLayersDrawBoxIdRequest request)
         {
-            return _layerManager.UpdateAll(request.user, request.userDrawBoxId, request.layers);
+            return await _layerManager.UpdateAllAsync(request.layers);
         }
 
-        [HttpGet("layers/layer")]
-        public object GetLayer(UserLayerDrawBoxIdRequest request)
+        [HttpGet("layers/{id}")]
+        public async Task<Response<Layer>> GetLayer(int id)
         {
-            return _layerManager.Get(request.user, request.userDrawBoxId,request.userLayerId);
+            return await _layerManager.GetAsync(id);
         }
 
         [HttpGet("layers/layer/elements")]
-        public object GetElements(UserLayerDrawBoxIdRequest request)
+        public async Task<Response<IEnumerable<Element>>> GetElements(UserLayerDrawBoxIdRequest request)
         {
-            return _layerManager.GetElements(request.user, request.userDrawBoxId, request.userLayerId);
+            return await _layerManager.GetElementsAsync(request.userLayerId);
         }
 
         [HttpGet("layers/layer/pen")]
-        public object GetPen(UserLayerDrawBoxIdRequest request)
+        public async Task<Response<Pen>> GetPen(UserLayerDrawBoxIdRequest request)
         {
-            return _layerManager.GetPen(request.user, request.userDrawBoxId, request.userLayerId);
+            return await _layerManager.GetPenAsync(request.userLayerId);
         }
 
         

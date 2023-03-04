@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Helpers
 {
-    internal interface IPenStyleDal : IEntityRepository<PenStyle>
+    public interface IPenStyleDal : IEntityRepository<PenStyle>
     {
     }
 }

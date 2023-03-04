@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Elements
 {
-    internal interface IPointDal : IEntityRepository<Point>
+    public interface IPointDal : IEntityRepository<Point>
     {
     }
 }

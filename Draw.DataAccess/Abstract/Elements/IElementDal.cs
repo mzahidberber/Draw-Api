@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Draw.DataAccess.Abstract.Elements
 {
-    internal interface IElementDal : IEntityRepository<Element>
+    public interface IElementDal : IEntityRepository<Element>
     {
     }
 }

@@ -2,9 +2,9 @@
 
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
-using Draw.Core.Aspects.PostSharp.LoginAspects;
+using Draw.Core.DTOs;
+using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Concrete
 {
@@ -15,43 +15,38 @@ namespace Draw.Business.Concrete
         {
             _userManager=InstanceFactory.GetInstance<IUserService>();
         }
-        public object GetAll(User user, int drawId)
-        {
-            throw new NotImplementedException();
-            //return _userManager.IsLoggedUser(user) ?
-            //    _userManager.GetLogginUserDrawManager(user.UserName).GetLayers(userDrawBoxId) :
-            //    new Exception("Last Login");
-        }
-        //[LoginAspect(typeof(LogginUsers))]
-        public object Get(User user, int drawId, int entityId)
+
+        public Task<Response<IEnumerable<Layer>>> AddAllAsync(List<Layer> entities)
         {
             throw new NotImplementedException();
         }
 
-        public object AddAll(User user, int drawId, List<Layer> entities)
-        {
-            throw new NotImplementedException();
-            //return _userManager.IsLoggedUser(user) ?
-            //    _userManager.GetLogginUserDrawManager(user.UserName).AddLayer(userDrawBoxId, layer) :
-            //    new Exception("Last Login");
-        }
-
-        public object UpdateAll(User user, int drawId, List<Layer> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(List<Layer> entities)
         {
             throw new NotImplementedException();
         }
 
-        public object DeleteAll(User user, int drawId, List<Layer> entities)
+        public Task<Response<IEnumerable<Layer>>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public object GetElements(User user, int drawId, int entityId)
+        public Task<Response<Layer>> GetAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public object GetPen(User user, int drawId, int entityId)
+        public Task<Response<Element>> GetElementsAsync(int entityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response<Pen>> GetPenAsync(int entityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response<NoDataDto>> UpdateAllAsync(List<Layer> entities)
         {
             throw new NotImplementedException();
         }

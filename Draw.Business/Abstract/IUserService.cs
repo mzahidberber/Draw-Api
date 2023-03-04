@@ -6,8 +6,8 @@ namespace Draw.Business.Abstract
 {
     public interface IUserService
     {
-        object Login(User user);
-        object Logout(User user);
-        object Register(User user);
+        object? Login(User user);
+        object? Logout(User user);
+        object? Register(User user);
     }
 }

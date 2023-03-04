@@ -1,17 +1,18 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Concrete
 {
     public class PointTypeManager : IPointTypeService
     {
-        public object AddAll(User user, List<Point> entities)
+        public object AddAll(User user, List<PointType> entities)
         {
             throw new NotImplementedException();
         }
 
-        public object DeleteAll(User user, List<Point> entities)
+        public object DeleteAll(User user, List<PointType> entities)
         {
             throw new NotImplementedException();
         }
@@ -26,7 +27,7 @@ namespace Draw.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public object UpdateAll(User user, List<Point> entities)
+        public object UpdateAll(User user, List<PointType> entities)
         {
             throw new NotImplementedException();
         }

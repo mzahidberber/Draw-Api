@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Abstract
 {
-    public interface IPointTypeService:IHelperService<User,PointType>
+    public interface IPointTypeService:IBaseService<User,PointType>
     {
     }
 }

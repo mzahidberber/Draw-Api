@@ -25,9 +25,9 @@ namespace Draw.Api.Controllers
         }
 
         [HttpGet("colors/color")]
-        public object GetColor(UserColorIdRequest request)
+        public object? GetColor(UserColorIdRequest request)
         {
-            return _colorManager.Get(request.user, request.colorId);
+            return _colorManager.Get(request.user,u=>u.ColorId==request.colorId);
         }
 
         [HttpPost("colors/add")]

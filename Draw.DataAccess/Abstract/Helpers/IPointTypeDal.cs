@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Helpers
 {
-    internal interface IPointTypeDal : IEntityRepository<PointType>
+    public interface IPointTypeDal : IEntityRepository<PointType>
     {
     }
 }

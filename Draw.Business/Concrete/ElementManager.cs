@@ -1,64 +1,83 @@
 ﻿using Draw.Business.Abstract;
+using Draw.DataAccess.Abstract.Elements;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
+using System.Linq.Expressions;
 
 namespace Draw.Business.Concrete
 {
     public class ElementManager : IElementService
     {
-        public object AddAll(User user, int drawId, int layerId, List<Element> entities)
+        IElementDal _elementDal;
+        public ElementManager()
         {
-            throw new NotImplementedException();
+            _elementDal=InstanceFactory.GetInstance<IElementDal>();
         }
 
-        public object DeleteAll(User user, int drawId, int layerId, List<Element> entities)
+        public void AddAll(User user, List<Element> entities)
         {
-            throw new NotImplementedException();
+            foreach (var entity in entities)
+            {
+                _elementDal.Add(entity);
+            }
         }
 
-        public object Get(User user, int drawId, int layerId, int entityId)
+        public void DeleteAll(User user, List<Element> entities)
         {
-            throw new NotImplementedException();
+            foreach (var entity in entities)
+            {
+                _elementDal.Delete(entity);
+            }
         }
 
-        public object GetAll(User user, int drawId, int layerId)
+        public object? Get(User user, Expression<Func<Element, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(filter);
         }
 
-        public object GetElementType(User user, int drawId, int layerId, int entityId)
+        public object? GetAll(User user, Expression<Func<Element, bool>>? filter = null)
         {
-            throw new NotImplementedException();
+            return _elementDal.GetAll(filter);
         }
 
-        public object GetLayer(User user, int drawId, int layerId, int entityId)
+        public object? GetElementType(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(e=>e.ElementId==entityId)?.ElementType;
         }
 
-        public object GetPen(User user, int drawId, int layerId, int entityId)
+        public object? GetLayer(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(e => e.ElementId == entityId)?.Layer;
         }
 
-        public object GetPoints(User user, int drawId, int layerId, int entityId)
+        public object? GetPen(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(e => e.ElementId == entityId)?.Pen;
         }
 
-        public object GetRadiuses(User user, int drawId, int layerId, int entityId)
+        public object? GetPoints(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(e => e.ElementId == entityId)?.Points;
         }
 
-        public object GetSSAngles(User user, int drawId, int layerId, int entityId)
+        public object? GetRadiuses(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(e => e.ElementId == entityId)?.Radiuses;
         }
 
-        public object UpdateAll(User user, int drawId, int layerId, List<Element> entities)
+        public object? GetSSAngles(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _elementDal.Get(e => e.ElementId == entityId)?.SSAngles;
+        }
+
+        public void UpdateAll(User user, List<Element> entities)
+        {
+            foreach (var entity in entities)
+            {
+                _elementDal.Update(entity);
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Abstract
 {
-    public interface IPenStyleService:IHelperService<User,PenStyle>
+    public interface IPenStyleService:IBaseService<User,PenStyle>
     {
     }
 }

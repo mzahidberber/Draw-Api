@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.Abstract.Commands
 {
-    internal interface IDrawCommandDal : IEntityRepository<DrawCommand>
+    public interface IDrawCommandDal : IEntityRepository<DrawCommand>
     {
     }
 }

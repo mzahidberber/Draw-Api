@@ -27,7 +27,7 @@ namespace Draw.DataAccess.DependencyResolvers.Ninject
             Bind<IElementTypeDal>().To<EfElementTypeDal>().InSingletonScope();
             Bind<ILayerDal>().To<EfLayerDal>().InSingletonScope();
             Bind<IPenDal>().To<EfPenDal>().InSingletonScope();
-            Bind<EfPenStyleDal>().To<EfPenStyleDal>().InSingletonScope();
+            Bind<IPenStyleDal>().To<EfPenStyleDal>().InSingletonScope();
             Bind<IPointTypeDal>().To<EfPointTypeDal>().InSingletonScope();
             Bind<IUserDal>().To<EfUserDal>().InSingletonScope();
             Bind<DbContext>().To<DrawContext>().InSingletonScope();

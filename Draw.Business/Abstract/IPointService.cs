@@ -1,16 +1,12 @@
-﻿using Draw.Entities.Concrete.Elements;
+﻿using Draw.Business.Abstract.BaseSevice;
+using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Abstract
 {
-    public interface IPointService
+    public interface IPointService:IBaseService<User, Point>
     {
-        object GetAll(User user, int drawId, int layerId,int elementId);
-        object Get(User user, int drawId, int layerId, int elementId, int entityId);
-        object AddAll(User user, int drawId, int layerId, int elementId, List<Point> entities);
-        object UpdateAll(User user, int drawId, int layerId, int elementId, List<Point> entities);
-        object DeleteAll(User user, int drawId, int layerId, int elementId, List<Point> entities);
-        object GetElement(User user, int drawId, int layerId, int elementId, int entityId);
-        object GetPointType(User user, int drawId, int layerId, int elementId, int entityId);
+        object? GetElement(User user, int entityId);
+        object? GetPointType(User user, int entityId);
     }
 }

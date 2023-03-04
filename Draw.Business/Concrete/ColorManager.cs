@@ -1,34 +1,53 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
+using Draw.DataAccess.Abstract.Helpers;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using System.Linq.Expressions;
 
 namespace Draw.Business.Concrete
 {
     public class ColorManager : IColorService
     {
-        public object AddAll(User user, List<Color> entities)
+        private IColorDal _colorDal;
+
+        public ColorManager()
         {
-            throw new NotImplementedException();
+            _colorDal = InstanceFactory.GetInstance<IColorDal>();
         }
 
-        public object DeleteAll(User user, List<Color> entities)
+        public void AddAll(User user, List<Color> entities)
         {
-            throw new NotImplementedException();
+            foreach (var color in entities)
+            {
+                _colorDal.Add(color);
+            }
         }
 
-        public object Get(User user, int entityId)
+        public void DeleteAll(User user, List<Color> entities)
         {
-            throw new NotImplementedException();
+            foreach (var color in entities)
+            {
+                _colorDal.Delete(color);
+            }
         }
 
-        public object GetAll(User user)
+        public object? Get(User user, int entityId)
         {
-            throw new NotImplementedException();
+            return _colorDal.Get(c=>c.ColorId==entityId);
         }
 
-        public object UpdateAll(User user, List<Color> entities)
+        public object? GetAll(User user)
         {
-            throw new NotImplementedException();
+            return _colorDal.GetAll();
+        }
+
+        public void UpdateAll(User user, List<Color> entities)
+        {
+            foreach (var color in entities)
+            {
+                _colorDal.Update(color);
+            }
         }
     }
 }

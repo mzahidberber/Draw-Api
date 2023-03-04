@@ -1,16 +1,13 @@
-﻿using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
+﻿using Draw.Business.Abstract.BaseSevice;
+using Draw.Core.DTOs;
+using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete.Helpers;
 
 namespace Draw.Business.Abstract
 {
-    public interface ILayerService
+    public interface ILayerService:IBaseService<Layer>
     {
-        object GetAll(User user,int drawId);
-        object Get(User user, int drawId, int entityId);
-        object GetElements(User user, int drawId, int entityId);
-        object GetPen(User user, int drawId, int entityId);
-        object AddAll(User user,int drawId,List<Layer> entities);
-        object UpdateAll(User user, int drawId,List<Layer> entities);
-        object DeleteAll(User user, int drawId,List<Layer> entities);
+        Task<Response<IEnumerable<Element>>> GetElementsAsync(int entityId);
+        Task<Response<Pen>> GetPenAsync(int entityId);
     }
 }

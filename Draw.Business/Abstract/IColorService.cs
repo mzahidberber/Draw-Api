@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Abstract
 {
-    public interface IColorService:IHelperService<User,Color>
+    public interface IColorService:IBaseService<User,Color>
     {   
     }
 }
