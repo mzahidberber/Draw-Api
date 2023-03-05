@@ -1,13 +1,12 @@
 ﻿using Draw.Business.Abstract.BaseSevice;
 using Draw.Core.DTOs;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
+using Draw.Core.DTOs.Concrete;
 
 namespace Draw.Business.Abstract
 {
-    public interface ILayerService:IBaseService<Layer>
+    public interface ILayerService:IBaseService<LayerDTO>
     {
-        Task<Response<IEnumerable<Element>>> GetElementsAsync(int entityId);
-        Task<Response<Pen>> GetPenAsync(int entityId);
+        Task<Response<IEnumerable<ElementDTO>>> GetElementsAsync(int entityId);
+        Task<Response<PenDTO>> GetPenAsync(int entityId);
     }
 }

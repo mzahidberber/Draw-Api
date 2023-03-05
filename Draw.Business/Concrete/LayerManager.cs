@@ -3,6 +3,7 @@
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
 using Draw.Core.DTOs;
+using Draw.Core.DTOs.Concrete;
 using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
 
@@ -16,37 +17,37 @@ namespace Draw.Business.Concrete
             _userManager=InstanceFactory.GetInstance<IUserService>();
         }
 
-        public Task<Response<IEnumerable<Layer>>> AddAllAsync(List<Layer> entities)
+        public Task<Response<IEnumerable<LayerDTO>>> AddAllAsync(List<LayerDTO> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(List<Layer> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entitiesId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<IEnumerable<Layer>>> GetAllAsync()
+        public Task<Response<IEnumerable<LayerDTO>>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<Layer>> GetAsync(int entityId)
+        public Task<Response<LayerDTO>> GetAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<Element>> GetElementsAsync(int entityId)
+        public Task<Response<IEnumerable<ElementDTO>>> GetElementsAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<Pen>> GetPenAsync(int entityId)
+        public Task<Response<PenDTO>> GetPenAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(List<Layer> entities)
+        public Task<Response<NoDataDto>> UpdateAllAsync(List<LayerDTO> entities)
         {
             throw new NotImplementedException();
         }

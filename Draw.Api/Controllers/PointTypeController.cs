@@ -1,6 +1,8 @@
 ﻿using Draw.Api.Models.PenStyleRequest;
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
+using Draw.Core.DTOs;
+using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +19,9 @@ namespace Draw.Api.Controllers
             _pointTypeService = InstanceFactory.GetInstance<IPointTypeService>();
         }
         [HttpGet("pointTypes")]
-        public object GetPointTypes(User user)
+        public async Task<Response<IEnumerable<PointType>>> GetPointTypes()
         {
-            return _pointTypeService.GetAll(user);
+            return await _pointTypeService.GetAllAsync();
         }
 
         [HttpGet("pointTypes/pointType")]

@@ -1,9 +1,8 @@
-﻿using Draw.Api.Models.LayerRequest;
+﻿using Draw.Api.Models;
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
 using Draw.Core.DTOs;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
+using Draw.Core.DTOs.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
@@ -21,45 +20,45 @@ namespace Draw.Api.Controllers
         }
         
         [HttpGet("layers")]
-        public async Task<Response<IEnumerable<Layer>>> GetLayers(UserDrawBoxIdRequest request)
+        public async Task<Response<IEnumerable<LayerDTO>>> GetLayers()
         {
             return await _layerManager.GetAllAsync();
         }
 
         [HttpPost("layers/add")]
-        public async Task<Response<IEnumerable<Layer>>> AddLayers(UserLayersDrawBoxIdRequest request)
+        public async Task<Response<IEnumerable<LayerDTO>>> AddLayers(LayerRequest layers)
         {
-            return await _layerManager.AddAllAsync(request.layers);
+            return await _layerManager.AddAllAsync(layers.layers);
         }
-        //Buna Tekrar Bak List<int> olmalı
+
         [HttpDelete("layers/delete")]
-        public async Task<Response<NoDataDto>> DeleteLayers(UserLayersDrawBoxIdRequest request)
+        public async Task<Response<NoDataDto>> DeleteLayers(List<int> ids)
         {
-            return await _layerManager.DeleteAllAsync(request.layers);
+            return await _layerManager.DeleteAllAsync(ids);
         }
 
         [HttpPut("layers/update")]
-        public async Task<Response<NoDataDto>> UpdateLayers(UserLayersDrawBoxIdRequest request)
+        public async Task<Response<NoDataDto>> UpdateLayers(LayerRequest layers)
         {
-            return await _layerManager.UpdateAllAsync(request.layers);
+            return await _layerManager.UpdateAllAsync(layers.layers);
         }
 
         [HttpGet("layers/{id}")]
-        public async Task<Response<Layer>> GetLayer(int id)
+        public async Task<Response<LayerDTO>> GetLayer(int id)
         {
             return await _layerManager.GetAsync(id);
         }
 
-        [HttpGet("layers/layer/elements")]
-        public async Task<Response<IEnumerable<Element>>> GetElements(UserLayerDrawBoxIdRequest request)
+        [HttpGet("layers/{id}/elements")]
+        public async Task<Response<IEnumerable<ElementDTO>>> GetElements(int id)
         {
-            return await _layerManager.GetElementsAsync(request.userLayerId);
+            return await _layerManager.GetElementsAsync(id);
         }
 
-        [HttpGet("layers/layer/pen")]
-        public async Task<Response<Pen>> GetPen(UserLayerDrawBoxIdRequest request)
+        [HttpGet("layers/{id}/pen")]
+        public async Task<Response<PenDTO>> GetPen(int id)
         {
-            return await _layerManager.GetPenAsync(request.userLayerId);
+            return await _layerManager.GetPenAsync(id);
         }
 
         
