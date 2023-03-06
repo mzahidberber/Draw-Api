@@ -1,11 +1,8 @@
 ﻿using Draw.Api.Models.ColorRequest;
-using Draw.Api.Models.PenStyleRequest;
 using Draw.Business.Abstract;
-using Draw.Business.Concrete;
 using Draw.Business.DependencyResolvers.Ninject;
-using Draw.Core.DTOs.Concrete;
 using Draw.Core.DTOs;
-using Draw.Entities.Concrete.Users;
+using Draw.Core.DTOs.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
