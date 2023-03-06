@@ -2,7 +2,7 @@
 
 namespace Draw.DataAccess.DependencyResolvers.Ninject
 {
-    public class InstanceFactory
+    public class DataInstanceFactory
     {
         public static T GetInstance<T>()
         {

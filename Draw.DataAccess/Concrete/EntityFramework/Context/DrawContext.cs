@@ -4,17 +4,14 @@ using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Context
 {
-    
+
     public class DrawContext : DbContext
     {
         
 
-        public DbSet<User>? Users { get; set; }
         public DbSet<DrawBox>? Draws { get; set; }
         public DbSet<DrawCommand>? Commands { get; set; }
         public DbSet<Layer>? Layers { get; set; }
@@ -32,7 +29,6 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new DrawMapping());
             modelBuilder.ApplyConfiguration(new DrawCommandMapping());
             modelBuilder.ApplyConfiguration(new LayerMapping());
@@ -58,7 +54,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
                 var dbPort=Environment.GetEnvironmentVariable("dbPort");
                 //var cnn=$"server={dbHost};port={dbPort};database={dbName};user=root;password={dbPassword};";
                 //optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
-                var cnn2= $"server=127.0.0.1;port=3306;database=drawdb;user=root;password=123456;";
+                var cnn2= $"server=localhost;port=3306;database=drawdb1;user=root;password=mysql123.;";
                 optionsBuilder.UseMySql(cnn2,ServerVersion.AutoDetect(cnn2));
             
                 

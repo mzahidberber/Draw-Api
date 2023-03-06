@@ -1,59 +1,57 @@
 ﻿using Draw.DataAccess.Abstract;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq.Expressions;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
-    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
+    public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
-        where TContext : DrawContext, new()
     {
-        public void Add(TEntity entity)
+        protected DbContext _context;
+        protected DbSet<TEntity> _dbSet;
+        public EfEntityRepositoryBase()
         {
-            using (TContext context = new TContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
+            _context = DataInstanceFactory.GetInstance<DbContext>();
+            _dbSet=_context.Set<TEntity>();
+        }
+        public async Task AddAsync(TEntity entity)
+        {
+            await _dbSet.AddAsync(entity);
         }
 
         public void Delete(TEntity entity)
         {
-            using (TContext context = new TContext())
-            {
-                var deleteEntity = context.Entry(entity);
-                deleteEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
+            _dbSet.Remove(entity);
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+
+        public IQueryable<TEntity> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
-            using (TContext context = new TContext())
-            {
-                return context.Set<TEntity>().SingleOrDefault(filter) ?? throw new NullReferenceException();
-            }
+            return _dbSet.AsQueryable();
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            using (TContext context = new TContext())
+            var entity = await _dbSet.FindAsync(id);
+            if (entity != null)
             {
-                return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
+                _context.Entry(entity).State = EntityState.Detached;
             }
+            return entity ?? Activator.CreateInstance<TEntity>();
+        }
+
+        public IQueryable<TEntity> GetWhereAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            return _dbSet.Where(filter);
         }
 
         public void Update(TEntity entity)
         {
-            using (TContext context = new TContext())
-            {
-                var updateEntity = context.Entry(entity);
-                updateEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
+            _context.Entry(entity).State = EntityState.Modified;
         }
+
     }
 }

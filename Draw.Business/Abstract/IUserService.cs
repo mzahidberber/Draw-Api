@@ -1,13 +1,9 @@
-
-
-using Draw.Entities.Concrete.Users;
+﻿using Draw.Business.Abstract.BaseSevice;
+using Draw.Core.DTOs.Concrete;
 
 namespace Draw.Business.Abstract
 {
     public interface IUserService
     {
-        object? Login(User user);
-        object? Logout(User user);
-        object? Register(User user);
     }
 }

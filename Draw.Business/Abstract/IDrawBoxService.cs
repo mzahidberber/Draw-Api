@@ -1,12 +1,10 @@
 ﻿using Draw.Business.Abstract.BaseSevice;
-using Draw.Entities.Concrete.Draw;
-using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
+using Draw.Core.DTOs.Concrete;
 
 namespace Draw.Business.Abstract
 {
-    public interface IDrawBoxService:IBaseService<User,DrawBox>
+    public interface IDrawBoxService:IBaseService<DrawBoxDTO>
     {
-        object? GetLayers(User user, int drawId);
+        Task<IEnumerable<LayerDTO>> GetLayersAsync(int drawId);
     }
 }

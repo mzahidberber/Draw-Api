@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Draws
 {
-    public class EfDrawBoxDal:EfEntityRepositoryBase<DrawBox,DrawContext>,IDrawBoxDal
+    public class EfDrawBoxDal:EfEntityRepositoryBase<DrawBox>,IDrawBoxDal
     {
     }
 }

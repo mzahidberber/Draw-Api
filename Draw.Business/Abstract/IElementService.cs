@@ -1,17 +1,16 @@
 ﻿using Draw.Business.Abstract.BaseSevice;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Users;
+using Draw.Core.DTOs.Concrete;
 
 namespace Draw.Business.Abstract
 {
-    public interface IElementService:IBaseService<User,Element>
+    public interface IElementService:IBaseService<ElementDTO>
     {
-        object? GetPen(User user, int entityId);
-        object? GetElementType(User user, int entityId);
-        object? GetLayer(User user, int entityId);
-        object? GetRadiuses(User user, int entityId);
-        object? GetSSAngles(User user, int entityId);
-        object? GetPoints(User user, int entityId);
+        Task<PenDTO> GetPenAsync(int entityId);
+        Task<ElementTypeDTO> GetElementTypeAsync(int entityId);
+        Task<LayerDTO> GetLayerAsync(int entityId);
+        Task<IEnumerable<RadiusDTO>> GetRadiusesAsync(int entityId);
+        Task<IEnumerable<SSAngleDTO>> GetSSAnglesAsync(int entityId);
+        Task<IEnumerable<PointDTO>> GetPointsAsync(int entityId);
         
     }
 }

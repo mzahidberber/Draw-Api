@@ -1,8 +1,8 @@
 ﻿using Draw.Entities.Abstract;
 using Draw.Entities.Concrete.Commands;
+using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
-using System.Collections.Generic;
 
 namespace Draw.Entities.Concrete.Draw
 {
@@ -16,8 +16,9 @@ namespace Draw.Entities.Concrete.Draw
         public int DrawBoxId { get; set; }
         public string DrawName { get; set; }= null!;
 
-        public int UserId { get; set; }
-        public User User { get; set; }= null!;
+        public string UserId { get; set; } = null!;
+
+        //public User User { get; set; } = null!;
 
         public ICollection<DrawCommand> DrawCommands { get; set; }
 

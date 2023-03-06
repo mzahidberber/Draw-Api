@@ -3,13 +3,12 @@ using Draw.DataAccess.Abstract.Commands;
 using Draw.DataAccess.Abstract.Draws;
 using Draw.DataAccess.Abstract.Elements;
 using Draw.DataAccess.Abstract.Helpers;
-using Draw.DataAccess.Abstract.Users;
+using Draw.DataAccess.Concrete;
 using Draw.DataAccess.Concrete.EntityFramework.Commands;
 using Draw.DataAccess.Concrete.EntityFramework.Context;
 using Draw.DataAccess.Concrete.EntityFramework.Draws;
 using Draw.DataAccess.Concrete.EntityFramework.Elements;
 using Draw.DataAccess.Concrete.EntityFramework.Helpers;
-using Draw.DataAccess.Concrete.EntityFramework.Users;
 using Microsoft.EntityFrameworkCore;
 using Ninject.Modules;
 
@@ -29,8 +28,8 @@ namespace Draw.DataAccess.DependencyResolvers.Ninject
             Bind<IPenDal>().To<EfPenDal>().InSingletonScope();
             Bind<IPenStyleDal>().To<EfPenStyleDal>().InSingletonScope();
             Bind<IPointTypeDal>().To<EfPointTypeDal>().InSingletonScope();
-            Bind<IUserDal>().To<EfUserDal>().InSingletonScope();
             Bind<DbContext>().To<DrawContext>().InSingletonScope();
+            Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
             
         }
     }

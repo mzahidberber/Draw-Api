@@ -24,11 +24,11 @@ namespace Draw.DrawManager.Concrete
         {
             this._elements = new List<Element>();
             this._layers = new List<Layer>();
-            this._drawBoxes = GetUserDrawBoxes(userName);
-            foreach (var drawBox in _drawBoxes)
-            {
-                _layers.AddRange(GetUserLayers(drawBox.DrawBoxId));
-            }
+            //this._drawBoxes = GetUserDrawBoxes(userName);
+            //foreach (var drawBox in _drawBoxes)
+            //{
+            //    _layers.AddRange(GetUserLayers(drawBox.DrawBoxId));
+            //}
         }
         public void AddElement(Element element)
         {
@@ -62,19 +62,19 @@ namespace Draw.DrawManager.Concrete
         }
 
 
-        public object GetDrawBoxes()
-        {
-            return _efDrawBoxDal.GetAll();
-        }
-        public object GetColors()
-        {
-            return _efColorDal.GetAll();
-        }
+        //public object GetDrawBoxes()
+        //{
+        //    return _efDrawBoxDal.GetAll();
+        //}
+        //public object GetColors()
+        //{
+        //    return _efColorDal.GetAll();
+        //}
 
-        public object GetPenStyles()
-        {
-            return _efPenStylesDal.GetAll();
-        }
+        //public object GetPenStyles()
+        //{
+        //    return _efPenStylesDal.GetAll();
+        //}
 
         public object GetPens()
         {
@@ -88,21 +88,21 @@ namespace Draw.DrawManager.Concrete
 
 
         public void AddDrawBox(DrawBox drawBox)=> this._drawBoxes.Add(drawBox);
-        public void AddLayer(Layer layer)
-        {
-            this._efLayerDal.Add(layer);
-            this._layers.Add(layer);
-        }
+        //public void AddLayer(Layer layer)
+        //{
+        //    this._efLayerDal.Add(layer);
+        //    this._layers.Add(layer);
+        //}
 
         
 
-        public List<DrawBox> GetUserDrawBoxes(string userName)
-        {
-            return _efDrawBoxDal.GetAll(d => d.User.UserName == userName).ToList();
-        }
-        public List<Layer> GetUserLayers(int drawBoxId)
-        {
-            return _efLayerDal.GetAll(d => d.DrawBoxId == drawBoxId).ToList();
-        }
+        //public List<DrawBox> GetUserDrawBoxes(string userName)
+        //{
+        //    return _efDrawBoxDal.GetAll(d => d.User.UserName == userName).ToList();
+        //}
+        //public List<Layer> GetUserLayers(int drawBoxId)
+        //{
+        //    return _efLayerDal.GetAll(d => d.DrawBoxId == drawBoxId).ToList();
+        //}
     }
 }

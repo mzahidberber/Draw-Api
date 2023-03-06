@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Commands;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Commands
 {
-    public class EfDrawCommandDal:EfEntityRepositoryBase<DrawCommand,DrawContext>,IDrawCommandDal
+    public class EfDrawCommandDal:EfEntityRepositoryBase<DrawCommand>,IDrawCommandDal
     {
     }
 }

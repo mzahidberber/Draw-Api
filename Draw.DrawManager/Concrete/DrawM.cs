@@ -88,11 +88,11 @@ namespace Draw.DrawManager.Concrete
             return _commandMemory.DrawMemory.GetLayers(userDrawBoxId);
         }
 
-        public object AddLayer(int userDrawBoxId, Layer layer)
-        {
-            _efLayerDal.Add(layer);
-            return true;
-        }
+        //public async object AddLayer(int userDrawBoxId, Layer layer)
+        //{
+        //    await _efLayerDal.AddAsync(layer);
+        //    return true;
+        //}
 
         public object DeleteLayer(int userDrawBoxId, int layerId)
         {
@@ -111,19 +111,19 @@ namespace Draw.DrawManager.Concrete
             return _commandMemory.DrawMemory.GetElements(userDrawBoxId);
         }
 
-        public object GetColors()
-        {
-            return _commandMemory.DrawMemory.GetColors();
-        }
-        public object GetDrawBoxes()
-        {
-            return _commandMemory.DrawMemory.GetDrawBoxes();
-        }
+        //public object GetColors()
+        //{
+        //    return _commandMemory.DrawMemory.GetColors();
+        //}
+        //public object GetDrawBoxes()
+        //{
+        //    return _commandMemory.DrawMemory.GetDrawBoxes();
+        //}
 
-        public object GetPenStyles()
-        {
-            return _commandMemory.DrawMemory.GetPenStyles();
-        }
+        //public object GetPenStyles()
+        //{
+        //    return _commandMemory.DrawMemory.GetPenStyles();
+        //}
         public object GetPens()
         {
             return _commandMemory.DrawMemory.GetPens();

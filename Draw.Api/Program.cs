@@ -1,8 +1,11 @@
+using Draw.Core.Configuration;
 using Draw.DataAccess.Concrete.EntityFramework.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PostSharp.Extensibility;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -11,8 +14,31 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
+        var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+        }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts =>
+        {
+            opts.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+            {
+                ValidIssuer = tokenOptions.Issuer,
+                ValidAudience = tokenOptions.Audience[0],
+                IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
+
+                ValidateIssuerSigningKey = true,
+                ValidateAudience = true,
+                ValidateIssuer = true,
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
         // Add services to the container.
-        
+
         // using(DrawContext context=new DrawContext())
         // {
         //     context.Database.EnsureCreated();
@@ -44,7 +70,7 @@ internal class Program
         }
 
         app.UseHttpsRedirection();
-
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Helpers;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
 {
-    public class EfLayerDal:EfEntityRepositoryBase<Layer,DrawContext>,ILayerDal
+    public class EfLayerDal:EfEntityRepositoryBase<Layer>,ILayerDal
     {
         public void DeleteFromId(int layerId)
         {

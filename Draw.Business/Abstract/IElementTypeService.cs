@@ -1,10 +1,9 @@
 ﻿using Draw.Business.Abstract.BaseSevice;
-using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
+using Draw.Core.DTOs.Concrete;
 
 namespace Draw.Business.Abstract
 {
-    public interface IElementTypeService:IBaseService<User,ElementType>
+    public interface IElementTypeService:IBaseService<ElementTypeDTO>
     {
     }
 }

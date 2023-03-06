@@ -15,7 +15,7 @@ namespace Draw.Business.Concrete
 
         public DrawBoxManager()
         {
-            _drawBoxDal = InstanceFactory.GetInstance<IDrawBoxDal>();
+            _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
         }
         public void AddAll(User user, List<DrawBox> entities)
         {

@@ -39,14 +39,14 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             builder.Property(u => u.DrawName).IsRequired().HasMaxLength(200);
 
             builder.HasData(
-                new DrawBox { DrawBoxId = 1, DrawName = "c1", UserId = 1 },
-                new DrawBox { DrawBoxId = 2, DrawName = "c2", UserId = 1 },
-                new DrawBox { DrawBoxId = 3, DrawName = "c1", UserId = 2 }
+                new DrawBox { DrawBoxId = 1, DrawName = "c1", UserId = "1" },
+                new DrawBox { DrawBoxId = 2, DrawName = "c2", UserId = "1" },
+                new DrawBox { DrawBoxId = 3, DrawName = "c1", UserId = "1" }
             );
 
-            builder.HasOne(d => d.User)
-                .WithMany(u => u.DrawBoxs)
-                .HasForeignKey(d => d.UserId);
+            //builder.HasOne(d => d.User)
+            //    .WithMany(u => u.DrawBoxs)
+            //    .HasForeignKey(d => d.UserId);
 
         }
     }

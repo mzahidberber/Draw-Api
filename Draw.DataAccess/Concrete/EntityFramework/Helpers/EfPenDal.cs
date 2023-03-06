@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
 {
-    public class EfPenDal:EfEntityRepositoryBase<Pen,DrawContext>,IPenDal
+    public class EfPenDal:EfEntityRepositoryBase<Pen>,IPenDal
     {
         public List<Pen> GetPensColorAndPenStyle()
         {

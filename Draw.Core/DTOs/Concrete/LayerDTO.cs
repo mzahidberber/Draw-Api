@@ -1,7 +1,4 @@
-﻿using Draw.Entities.Concrete.Draw;
-using Draw.Entities.Concrete.Elements;
-
-namespace Draw.Core.DTOs.Concrete
+﻿namespace Draw.Core.DTOs.Concrete
 {
     public class LayerDTO
     {

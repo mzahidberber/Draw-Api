@@ -2,10 +2,14 @@
 using Draw.Business.Concrete;
 using Draw.Business.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete.Users;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Draw.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController: ControllerBase

@@ -1,12 +1,11 @@
 ﻿using Draw.Business.Abstract.BaseSevice;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Users;
+using Draw.Core.DTOs.Concrete;
 
 namespace Draw.Business.Abstract
 {
-    public interface IPointService:IBaseService<User, Point>
+    public interface IPointService:IBaseService<PointDTO>
     {
-        object? GetElement(User user, int entityId);
-        object? GetPointType(User user, int entityId);
+        Task<ElementDTO> GetElementAsync(int entityId);
+        Task<PointTypeDTO> GetPointTypeAsync(int entityId);
     }
 }

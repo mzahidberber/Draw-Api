@@ -1,76 +1,66 @@
 ﻿
 using Draw.DataAccess.Abstract.Elements;
 using Draw.DataAccess.Concrete.EntityFramework.Context;
-using Draw.DataAccess.DependencyResolvers.Ninject;
-using Draw.Entities.Abstract;
 using Draw.Entities.Concrete.Elements;
 using Draw.Entities.Concrete.Helpers;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Tracing;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Elements
 {
-    
-    public class EfElementsDal:EfEntityRepositoryBase<Element,DrawContext>,IElementDal
+
+    public class EfElementsDal:EfEntityRepositoryBase<Element>,IElementDal
     {
-        DbContext _context;
-        public EfElementsDal()
-        {
-            _context=InstanceFactory.GetInstance<DbContext>();
-        }
+        
 
         public void AddElementAll(Element element)
         {
-            using (DrawContext context = new DrawContext())
+            var addedEntity = _context.Entry(element);
+            addedEntity.State = EntityState.Added;
+
+            foreach (var item in element.Points)
             {
-                var addedEntity = context.Entry(element);
-                addedEntity.State = EntityState.Added;
-
-                foreach (var item in element.Points)
-                {
-                    var adddPoint = context.Entry(item);
-                    adddPoint.State = EntityState.Added;
-                }
-                if(element.Radiuses!= null)
-                {
-                    foreach (var item in element.Radiuses)
-                    {
-                        var addRadius = context.Entry(item);
-                        addRadius.State = EntityState.Added;
-                    }
-                }
-                
-                if(element.SSAngles!= null)
-                {
-                    foreach (var item in element.SSAngles)
-                    {
-                        var addSSAngles = context.Entry(item);
-                        addSSAngles.State = EntityState.Added;
-                    }
-                }
-                
-
-                context.SaveChanges();
+                var adddPoint = _context.Entry(item);
+                adddPoint.State = EntityState.Added;
             }
+            if(element.Radiuses!= null)
+            {
+                foreach (var item in element.Radiuses)
+                {
+                    var addRadius = _context.Entry(item);
+                    addRadius.State = EntityState.Added;
+                }
+            }
+            
+            if(element.SSAngles!= null)
+            {
+                foreach (var item in element.SSAngles)
+                {
+                    var addSSAngles = _context.Entry(item);
+                    addSSAngles.State = EntityState.Added;
+                }
+            }
+            
+
+            _context.SaveChanges();
+            
         }
 
         public List<Element> GetElementBesidePoints (List<int> elementsIdList)
         {
-            using (DrawContext context = new DrawContext())
+            var elements = new List<Element>();
+            foreach (var id in elementsIdList)
             {
-                var elements = new List<Element>();
-                foreach (var id in elementsIdList)
+                var pointDb = _context.Set<Point>();
+                if(_dbSet != null && pointDb != null)
                 {
-                    if(context.Elements!=null && context.Points != null)
-                    {
-                        var element = context.Elements.Where(u => u.ElementId == id).Single();
-                        element.Points = context.Points.Where(u => u.ElementId == id).ToList();
-                        //element.Layer=context.Layers.Where(u => u.LayerId==element.LayerId).Single();
-                        elements.Add(element);
-                    }
+                    var element = _dbSet.Where(u => u.ElementId == id).Single();
+                    element.Points = pointDb.Where(u => u.ElementId == id).ToList();
+                    //element.Layer=context.Layers.Where(u => u.LayerId==element.LayerId).Single();
+                    elements.Add(element);
                 }
-                return elements;
             }
+            return elements;
+            
         }
 
         public void Deneme()

@@ -3,11 +3,12 @@ using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class LayerController:CustomBaseController

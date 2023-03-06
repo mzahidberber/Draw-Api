@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2IhO7LqmNaMszZQWGd3Mci6KTgm8LFohuUOW0FQBoD39MBDo+fu5av30aT9NherliFjAgvdxEu4lARCTVaEbJg==",
+  "dgSpecHash": "yPTIa4ZVQv+tGVmwKxp2zyikbR2q5ND8KLfJxzdNCbCDrm1og57aC9YHbaBsHT4hBYz/Zv5OBlMpyWQC36VGdg==",
   "success": true,
   "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Api\\Draw.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.0\\microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
-    "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.7\\microsoft.entityframeworkcore.abstractions.6.0.7.nupkg.sha512",

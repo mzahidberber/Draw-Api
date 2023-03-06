@@ -3,6 +3,8 @@ using Draw.Api.Models.PenStyleRequest;
 using Draw.Business.Abstract;
 using Draw.Business.Concrete;
 using Draw.Business.DependencyResolvers.Ninject;
+using Draw.Core.DTOs.Concrete;
+using Draw.Core.DTOs;
 using Draw.Entities.Concrete.Users;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +21,9 @@ namespace Draw.Api.Controllers
             _colorManager = InstanceFactory.GetInstance<IColorService>();
         }
         [HttpGet("colors")]
-        public object GetColors(User user)
+        public async Task<Response<IEnumerable<ColorDTO>>> GetColors()
         {
-            return _colorManager.GetAll(user);
+            return await _colorManager.GetAllAsync();
         }
 
         [HttpGet("colors/color")]

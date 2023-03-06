@@ -4,7 +4,7 @@ using Draw.Entities.Concrete.Helpers;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
 {
-    public class EfPenStyleDal:EfEntityRepositoryBase<PenStyle,DrawContext>,IPenStyleDal
+    public class EfPenStyleDal:EfEntityRepositoryBase<PenStyle>,IPenStyleDal
     {
     }
 }

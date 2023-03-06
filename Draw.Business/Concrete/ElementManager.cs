@@ -13,7 +13,7 @@ namespace Draw.Business.Concrete
         IElementDal _elementDal;
         public ElementManager()
         {
-            _elementDal=InstanceFactory.GetInstance<IElementDal>();
+            _elementDal=DataInstanceFactory.GetInstance<IElementDal>();
         }
 
         public void AddAll(User user, List<Element> entities)

@@ -27,7 +27,7 @@ namespace Draw.Business.Concrete
 
         
 
-        private EfUserDal _userDal = InstanceFactory.GetInstance<EfUserDal>();
+        private EfUserDal _userDal = DataInstanceFactory.GetInstance<EfUserDal>();
         private List<UserInformation> _loginUsers= new List<UserInformation>();
         private List<string> _loginUserss= new List<string>();
 
