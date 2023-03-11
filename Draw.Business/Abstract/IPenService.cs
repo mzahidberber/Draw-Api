@@ -1,5 +1,4 @@
-﻿using Draw.Business.Abstract.BaseSevice;
-using Draw.Core.DTOs.Concrete;
+﻿using Draw.Core.DTOs.Concrete;
 using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
 

@@ -473,3 +473,4 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

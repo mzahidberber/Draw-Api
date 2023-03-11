@@ -33,7 +33,7 @@ namespace Draw.DrawManager.Concrete
         public void AddElement(Element element)
         {
             _efElementDal.AddElementAll(element);
-            GetElement(element);
+            //GetElement(element);
             this._elements.Add(element);
         }
 
@@ -52,14 +52,14 @@ namespace Draw.DrawManager.Concrete
             return _efElementDal.GetElementBesidePoints(elementsIdList);
         }
 
-        public object GetLayers(int userDrawBoxId)
-        {
-            return _efLayerDal.GetLayersAndPen(userDrawBoxId);
-        }
-        public object GetElements(int userDrawBoxId)
-        {
-            return _efElementDal.GetElementsInDrawBox(userDrawBoxId) ?? throw new NullReferenceException();
-        }
+        //public object GetLayers(int userDrawBoxId)
+        //{
+        //    return _efLayerDal.GetLayersAndPen(userDrawBoxId);
+        //}
+        //public object GetElements(int userDrawBoxId)
+        //{
+        //    return _efElementDal.GetElementsInDrawBox(userDrawBoxId) ?? throw new NullReferenceException();
+        //}
 
 
         //public object GetDrawBoxes()
@@ -76,14 +76,14 @@ namespace Draw.DrawManager.Concrete
         //    return _efPenStylesDal.GetAll();
         //}
 
-        public object GetPens()
-        {
-            return _efPenDal.GetPensColorAndPenStyle();
-        }
-        public object GetElement(Element element)
-        {
-            return _efElementDal.GetElementBesidePointsAndLayer(element) ?? throw new NullReferenceException();
-        }
+        //public object GetPens()
+        //{
+        //    return _efPenDal.GetPensColorAndPenStyle();
+        //}
+        //public object GetElement(Element element)
+        //{
+        //    return _efElementDal.GetElementBesidePointsAndLayer(element) ?? throw new NullReferenceException();
+        //}
 
 
 

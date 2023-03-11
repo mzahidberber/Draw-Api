@@ -1,10 +1,5 @@
-﻿
-using Draw.Core.Business.Abstract;
-using Draw.Entities.Concrete.Users;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Serialization;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
 
 namespace Draw.Core.Aspects.PostSharp.LoginAspects
 {

@@ -1,8 +1,6 @@
-﻿using Draw.Core.CrosCuttingConcers.Caching.Microsoft;
-using Draw.DataAccess.Abstract.Commands;
+﻿using Draw.DataAccess.Abstract.Commands;
 using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
 
 namespace Draw.DrawManager.Concrete.DrawCommands
 {

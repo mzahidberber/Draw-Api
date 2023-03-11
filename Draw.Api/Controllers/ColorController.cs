@@ -1,50 +1,46 @@
-﻿using Draw.Api.Models.ColorRequest;
-using Draw.Business.Abstract;
-using Draw.Business.DependencyResolvers.Ninject;
-using Draw.Core.DTOs;
-using Draw.Core.DTOs.Concrete;
+﻿using Draw.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
-    public class ColorController: ControllerBase
+    public class ColorController : CustomBaseController
     {
-        private IColorService _colorManager;
 
-        public ColorController()
-        {
-            _colorManager = InstanceFactory.GetInstance<IColorService>();
-        }
         [HttpGet("colors")]
-        public async Task<Response<IEnumerable<ColorDTO>>> GetColors()
+        public async Task<IActionResult> GetColors()
         {
-            return await _colorManager.GetAllAsync();
+            return ActionResultInstance(await _colorManager.GetAllAsync());
         }
 
-        [HttpGet("colors/color")]
-        public object? GetColor(UserColorIdRequest request)
+        [HttpGet("colors/{id}")]
+        public async Task<IActionResult> GetColor(int id)
         {
-            return _colorManager.Get(request.user,u=>u.ColorId==request.colorId);
+            return ActionResultInstance(await _colorManager.GetAsync(id));
         }
-
+        
+        [Authorize(Roles = "admin,manager")]
         [HttpPost("colors/add")]
-        public object AddColors(UserColorsRequest request)
+        public async Task<IActionResult> AddColors(ColorRequest request)
         {
-            return _colorManager.AddAll(request.user, request.colors);
+            return ActionResultInstance(await _colorManager.AddAllAsync(request.colors));
         }
-
+        
+        [Authorize(Roles = "admin,manager")]
         [HttpDelete("colors/delete")]
-        public object DeleteColors(UserColorsRequest request)
+        public async Task<IActionResult> DeleteColors(List<int> request)
         {
-            return _colorManager.DeleteAll(request.user, request.colors);
+            return ActionResultInstance(await _colorManager.DeleteAllAsync(request));
         }
-
+        
+        [Authorize(Roles = "admin,manager")]
         [HttpPut("colors/update")]
-        public object UpdateColors(UserColorsRequest request)
+        public async Task<IActionResult> UpdateColors(ColorRequest request)
         {
-            return _colorManager.UpdateAll(request.user, request.colors);
+            return ActionResultInstance(await _colorManager.UpdateAllAsync(request.colors));
         }
 
     }

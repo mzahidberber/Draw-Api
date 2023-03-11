@@ -1,5 +1,8 @@
+using Draw.Api.Validation;
 using Draw.Core.Configuration;
+using Draw.Core.Extensions;
 using Draw.DataAccess.Concrete.EntityFramework.Context;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -51,7 +54,9 @@ internal class Program
 
         builder.Services.AddControllers();
 
-        
+        builder.Services.AddValidatorsFromAssemblyContaining<LayerRequestValidation>();
+
+        builder.Services.UseCustomValidationResponse();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();

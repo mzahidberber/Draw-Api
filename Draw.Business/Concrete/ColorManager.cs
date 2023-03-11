@@ -22,7 +22,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<IEnumerable<ColorDTO>>> AddAllAsync(List<ColorDTO> entities)
         {
-            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<Color>(e));
+            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<Entities.Concrete.Helpers.Color>(e));
             foreach (var color in entitiesList)
             {
                 await _colorDal.AddAsync(color);
@@ -60,6 +60,8 @@ namespace Draw.Business.Concrete
         {
             throw new NotImplementedException();
         }
+
+        
 
         public Task<Response<NoDataDto>> UpdateAllAsync(List<ColorDTO> entities)
         {

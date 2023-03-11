@@ -1,4 +1,6 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Core.DTOs;
+using Draw.Core.DTOs.Concrete;
 using Draw.Entities.Concrete.Helpers;
 using Draw.Entities.Concrete.Users;
 
@@ -6,27 +8,27 @@ namespace Draw.Business.Concrete
 {
     public class IElementTypeManager : IElementTypeService
     {
-        public object AddAll(User user, List<ElementType> entities)
+        public Task<Response<IEnumerable<ElementTypeDTO>>> AddAllAsync(List<ElementTypeDTO> entities)
         {
             throw new NotImplementedException();
         }
 
-        public object DeleteAll(User user, List<ElementType> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
             throw new NotImplementedException();
         }
 
-        public object Get(User user, int entityId)
+        public Task<Response<IEnumerable<ElementTypeDTO>>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public object GetAll(User user)
+        public Task<Response<ElementTypeDTO>> GetAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public object UpdateAll(User user, List<ElementType> entities)
+        public Task<Response<NoDataDto>> UpdateAllAsync(List<ElementTypeDTO> entities)
         {
             throw new NotImplementedException();
         }

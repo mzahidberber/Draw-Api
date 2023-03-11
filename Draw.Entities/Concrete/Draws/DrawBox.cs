@@ -18,7 +18,7 @@ namespace Draw.Entities.Concrete.Draw
 
         public string UserId { get; set; } = null!;
 
-        //public User User { get; set; } = null!;
+        public User User { get; set; } = null!;
 
         public ICollection<DrawCommand> DrawCommands { get; set; }
 

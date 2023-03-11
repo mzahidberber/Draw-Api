@@ -5,30 +5,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class DrawController : ControllerBase
-    {
-        private DrawBusinessManager _drawBusinessManager = DrawBusinessManager.CreateDrawBusinessManager();
+    //[ApiController]
+    //[Route("[controller]")]
+    //public class DrawController : ControllerBase
+    //{
+    //    private DrawBusinessManager _drawBusinessManager = DrawBusinessManager.CreateDrawBusinessManager();
 
-        [HttpPost ("startCommand")]
-        public object startCommand([FromBody] CommandEnums command,string userName,int userDrawBoxId,int userLayerId)
-        {
-            var result = _drawBusinessManager.StartCommand(command,userName,userDrawBoxId,userLayerId);
-            return result;
-        }
+    //    [HttpPost ("startCommand")]
+    //    public object startCommand([FromBody] CommandEnums command,string userName,int userDrawBoxId,int userLayerId)
+    //    {
+    //        var result = _drawBusinessManager.StartCommand(command,userName,userDrawBoxId,userLayerId);
+    //        return result;
+    //    }
 
-        [HttpPost ("mousePosition")]
-        public object mousePosition([FromBody]MouseInformation mouseInformation,string userName)
-        {
-            var result= _drawBusinessManager.AddCoordinates(mouseInformation, userName);
-            Console.WriteLine(result);
-            return result;
-        }
+    //    [HttpPost ("mousePosition")]
+    //    public object mousePosition([FromBody]MouseInformation mouseInformation,string userName)
+    //    {
+    //        var result= _drawBusinessManager.AddCoordinates(mouseInformation, userName);
+    //        Console.WriteLine(result);
+    //        return result;
+    //    }
         
         
 
-    }
+    //}
 
 
     

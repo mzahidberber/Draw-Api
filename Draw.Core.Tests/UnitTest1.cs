@@ -56,7 +56,7 @@ namespace Draw.Core.Tests
         {
             Console.WriteLine("deneme");
         }
-        [LoginAspect(typeof(UserManager))]
+        [LoginAspect(typeof(UserManager1))]
         public void Denemee1(string userName)
         {
             Console.WriteLine("func");

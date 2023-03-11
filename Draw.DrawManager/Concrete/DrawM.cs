@@ -83,10 +83,10 @@ namespace Draw.DrawManager.Concrete
             
         }
 
-        public object GetLayers(int userDrawBoxId)
-        {
-            return _commandMemory.DrawMemory.GetLayers(userDrawBoxId);
-        }
+        //public object GetLayers(int userDrawBoxId)
+        //{
+        //    return _commandMemory.DrawMemory.GetLayers(userDrawBoxId);
+        //}
 
         //public async object AddLayer(int userDrawBoxId, Layer layer)
         //{
@@ -94,22 +94,22 @@ namespace Draw.DrawManager.Concrete
         //    return true;
         //}
 
-        public object DeleteLayer(int userDrawBoxId, int layerId)
-        {
-            _efLayerDal.DeleteFromId(layerId);
-            return true;
-        }
+        //public object DeleteLayer(int userDrawBoxId, int layerId)
+        //{
+        //    _efLayerDal.DeleteFromId(layerId);
+        //    return true;
+        //}
 
-        public object UpdateLayer(int userDrawBoxId, Layer layer)
-        {
-            _efLayerDal.Update(layer);
-            return true;
-        }
+        //public object UpdateLayer(int userDrawBoxId, Layer layer)
+        //{
+        //    _efLayerDal.Update(layer);
+        //    return true;
+        //}
 
-        public object GetElements(int userDrawBoxId)
-        {
-            return _commandMemory.DrawMemory.GetElements(userDrawBoxId);
-        }
+        //public object GetElements(int userDrawBoxId)
+        //{
+        //    return _commandMemory.DrawMemory.GetElements(userDrawBoxId);
+        //}
 
         //public object GetColors()
         //{
@@ -124,10 +124,10 @@ namespace Draw.DrawManager.Concrete
         //{
         //    return _commandMemory.DrawMemory.GetPenStyles();
         //}
-        public object GetPens()
-        {
-            return _commandMemory.DrawMemory.GetPens();
-        }
+        //public object GetPens()
+        //{
+        //    return _commandMemory.DrawMemory.GetPens();
+        //}
 
         private IBaseCommand GetCommandEnumsToCommand(CommandEnums commandEnum) 
         {

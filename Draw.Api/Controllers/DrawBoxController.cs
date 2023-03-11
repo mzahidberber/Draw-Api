@@ -1,56 +1,48 @@
-﻿using Draw.Api.Models.DrawBoxRequest;
-using Draw.Api.Models.LayerRequest;
-using Draw.Business.Abstract;
-using Draw.Business.Concrete;
-using Draw.Business.DependencyResolvers.Ninject;
-using Draw.Entities.Concrete.Users;
+﻿using Draw.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class DrawBoxController:ControllerBase
+    public class DrawBoxController : CustomBaseController
     {
-        private IDrawBoxService _drawBoxManager;
-        public DrawBoxController()
-        {
-            _drawBoxManager=InstanceFactory.GetInstance<IDrawBoxService>();
-        }
         [HttpGet("drawBoxes")]
-        public object GetDrawBoxes(User user)
+        public async Task<IActionResult> GetDrawBoxes()
         {
-            return _drawBoxManager.GetAll(user);
+            return ActionResultInstance(await _drawBoxManager.GetAllAsync());
         }
 
         [HttpPost("drawBoxes/add")]
-        public object AddDrawBoxes(UserDrawBoxesRequest request)
+        public async Task<IActionResult> AddDrawBoxes(DrawBoxRequest request)
         {
-            return _drawBoxManager.AddAll(request.user, request.drawBoxes);
+            return ActionResultInstance(await _drawBoxManager.AddAllAsync(request.drawBoxes));
         }
 
         [HttpDelete("drawBoxes/delete")]
-        public object DeleteDrawBoxes(UserDrawBoxesRequest request)
+        public async Task<IActionResult> DeleteDrawBoxes(List<int> ids)
         {
-            return _drawBoxManager.DeleteAll(request.user, request.drawBoxes);
+            return ActionResultInstance(await _drawBoxManager.DeleteAllAsync(ids));
         }
 
         [HttpPut("drawBoxes/update")]
-        public object UpdateDrawBoxes(UserDrawBoxesRequest request)
+        public async Task<IActionResult> UpdateDrawBoxes(DrawBoxRequest request)
         {
-            return _drawBoxManager.UpdateAll(request.user, request.drawBoxes);
+            return ActionResultInstance(await _drawBoxManager.UpdateAllAsync(request.drawBoxes));
         }
 
-        [HttpGet("drawBoxes/drawBox")]
-        public object GetDrawBox(UserDrawBoxRequest request)
+        [HttpGet("drawBoxes/{id}")]
+        public async Task<IActionResult> GetDrawBox(int id)
         {
-            return _drawBoxManager.Get(request.user, request.drawBoxId);
+            return ActionResultInstance(await _drawBoxManager.GetAsync(id));
         }
 
-        [HttpGet("drawBoxes/drawBox/layers")]
-        public object GetLayers(UserDrawBoxRequest request)
+        [HttpGet("drawBoxes/{id}/layers")]
+        public async Task<IActionResult> GetLayers(int id)
         {
-            return _drawBoxManager.GetLayers(request.user, request.drawBoxId);
+            return ActionResultInstance(await _drawBoxManager.GetLayersAsync(id));
         }
 
     }

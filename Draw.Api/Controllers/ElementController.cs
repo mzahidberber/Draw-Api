@@ -1,84 +1,77 @@
-﻿using Draw.Api.Models.ElementRequest;
-using Draw.Business.Abstract;
-using Draw.Business.DependencyResolvers.Ninject;
+﻿using Draw.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class ElementController:ControllerBase
-    {
-        private IElementService _elementManager;
-        public ElementController()
-        {
-            _elementManager=InstanceFactory.GetInstance<IElementService>();
-        }
-        [HttpGet("elements")]
-        public object GetElements(UserElementRequest request)
-        {
-            return _elementManager.GetAll(request.user, request.drawId,request.layerId);
-        }
+    //[ApiController]
+    //[Route("[controller]")]
+    //public class ElementController:CustomBaseController
+    //{
+    //    [HttpGet("elements")]
+    //    public async Task<IActionResult> GetElements()
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetAllAsync());
+    //    }
 
-        [HttpPost("elements/add")]
-        public object AddElements(UserDLElementsRequest request)
-        {
-            return _elementManager.AddAll(request.user, request.drawId, request.layerId, request.elements);
-        }
+    //    [HttpPost("elements/add")]
+    //    public async Task<IActionResult> AddElements(ElementRequest request)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetAllAsync());
+    //    }
 
-        [HttpDelete("elements/delete")]
-        public object DeleteElements(UserDLElementsRequest request)
-        {
-            return _elementManager.DeleteAll(request.user, request.drawId, request.layerId, request.elements);
-        }
+    //    [HttpDelete("elements/delete")]
+    //    public async Task<IActionResult> DeleteElements(List<int> ids)
+    //    {
+    //        return ActionResultInstance(await _elementManager.DeleteAllAsync(ids));
+    //    }
 
-        [HttpPut("elements/update")]
-        public object UpdateElements(UserDLElementsRequest request)
-        {
-            return _elementManager.UpdateAll(request.user, request.drawId, request.layerId, request.elements);
-        }
+    //    [HttpPut("elements/update")]
+    //    public async Task<IActionResult> UpdateElements(ElementRequest request)
+    //    {
+    //        return ActionResultInstance(await _elementManager.UpdateAllAsync(request.elements));
+    //    }
 
-        [HttpGet("elements/element")]
-        public object GetElement(UserDLElementRequest request)
-        {
-            return _elementManager.Get(request.user, request.drawId, request.layerId,request.elementId);
-        }
+    //    [HttpGet("elements/{id}")]
+    //    public async Task<IActionResult> GetElement(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetAsync(id));
+    //    }
 
-        [HttpGet("elements/element/elementType")]
-        public object GetElementType(UserDLElementRequest request)
-        {
-            return _elementManager.GetElementType(request.user, request.drawId, request.layerId, request.elementId);
-        }
+    //    [HttpGet("elements/{id}/elementType")]
+    //    public async Task<IActionResult> GetElementType(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetElementTypeAsync(id));
+    //    }
 
-        [HttpGet("elements/element/pen")]
-        public object GetPen(UserDLElementRequest request)
-        {
-            return _elementManager.GetPen(request.user, request.drawId, request.layerId, request.elementId);
-        }
+    //    [HttpGet("elements/{id}/pen")]
+    //    public async Task<IActionResult> GetPen(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetPenAsync(id));
+    //    }
 
-        [HttpGet("elements/element/layer")]
-        public object GetLayer(UserDLElementRequest request)
-        {
-            return _elementManager.GetLayer(request.user, request.drawId, request.layerId, request.elementId);
-        }
-        [HttpGet("elements/element/radiuses")]
-        public object GetRadiuses(UserDLElementRequest request)
-        {
-            return _elementManager.GetRadiuses(request.user, request.drawId, request.layerId, request.elementId);
-        }
+    //    [HttpGet("elements/{id}/layer")]
+    //    public async Task<IActionResult> GetLayer(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetLayerAsync(id));
+    //    }
+    //    [HttpGet("elements/{id}/radiuses")]
+    //    public async Task<IActionResult> GetRadiuses(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetRadiusesAsync(id));
+    //    }
 
-        [HttpGet("elements/element/ssangles")]
-        public object GetSSAngles(UserDLElementRequest request)
-        {
-            return _elementManager.GetSSAngles(request.user, request.drawId, request.layerId, request.elementId);
-        }
+    //    [HttpGet("elements/{id}/ssangles")]
+    //    public async Task<IActionResult> GetSSAngles(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetSSAnglesAsync(id));
+    //    }
         
-        [HttpGet("elements/element/points")]
-        public object GetPoints(UserDLElementRequest request)
-        {
-            return _elementManager.GetPoints(request.user, request.drawId, request.layerId, request.elementId);
-        }
+    //    [HttpGet("elements/{id}/points")]
+    //    public async Task<IActionResult> GetPoints(int id)
+    //    {
+    //        return ActionResultInstance(await _elementManager.GetPointsAsync(id));
+    //    }
 
 
-    }
+    //}
 }

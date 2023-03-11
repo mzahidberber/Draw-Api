@@ -1,4 +1,6 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Core.DTOs;
+using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract.Elements;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete.Elements;
@@ -10,74 +12,128 @@ namespace Draw.Business.Concrete
 {
     public class ElementManager : IElementService
     {
-        IElementDal _elementDal;
-        public ElementManager()
+        //IElementDal _elementDal;
+        //public ElementManager()
+        //{
+        //    _elementDal=DataInstanceFactory.GetInstance<IElementDal>();
+        //}
+
+        //public void AddAll(User user, List<Element> entities)
+        //{
+        //    foreach (var entity in entities)
+        //    {
+        //        _elementDal.Add(entity);
+        //    }
+        //}
+
+        //public void DeleteAll(User user, List<Element> entities)
+        //{
+        //    foreach (var entity in entities)
+        //    {
+        //        _elementDal.Delete(entity);
+        //    }
+        //}
+
+        //public object? Get(User user, Expression<Func<Element, bool>> filter)
+        //{
+        //    return _elementDal.Get(filter);
+        //}
+
+        //public object? GetAll(User user, Expression<Func<Element, bool>>? filter = null)
+        //{
+        //    return _elementDal.GetAll(filter);
+        //}
+
+        //public object? GetElementType(User user, int entityId)
+        //{
+        //    return _elementDal.Get(e=>e.ElementId==entityId)?.ElementType;
+        //}
+
+        //public object? GetLayer(User user, int entityId)
+        //{
+        //    return _elementDal.Get(e => e.ElementId == entityId)?.Layer;
+        //}
+
+        //public object? GetPen(User user, int entityId)
+        //{
+        //    return _elementDal.Get(e => e.ElementId == entityId)?.Pen;
+        //}
+
+        //public object? GetPoints(User user, int entityId)
+        //{
+        //    return _elementDal.Get(e => e.ElementId == entityId)?.Points;
+        //}
+
+        //public object? GetRadiuses(User user, int entityId)
+        //{
+        //    return _elementDal.Get(e => e.ElementId == entityId)?.Radiuses;
+        //}
+
+        //public object? GetSSAngles(User user, int entityId)
+        //{
+        //    return _elementDal.Get(e => e.ElementId == entityId)?.SSAngles;
+        //}
+
+        //public void UpdateAll(User user, List<Element> entities)
+        //{
+        //    foreach (var entity in entities)
+        //    {
+        //        _elementDal.Update(entity);
+        //    }
+        //}
+        public Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(List<ElementDTO> entities)
         {
-            _elementDal=DataInstanceFactory.GetInstance<IElementDal>();
+            throw new NotImplementedException();
         }
 
-        public void AddAll(User user, List<Element> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            foreach (var entity in entities)
-            {
-                _elementDal.Add(entity);
-            }
+            throw new NotImplementedException();
         }
 
-        public void DeleteAll(User user, List<Element> entities)
+        public Task<Response<IEnumerable<ElementDTO>>> GetAllAsync()
         {
-            foreach (var entity in entities)
-            {
-                _elementDal.Delete(entity);
-            }
+            throw new NotImplementedException();
         }
 
-        public object? Get(User user, Expression<Func<Element, bool>> filter)
+        public Task<Response<ElementDTO>> GetAsync(int entityId)
         {
-            return _elementDal.Get(filter);
+            throw new NotImplementedException();
         }
 
-        public object? GetAll(User user, Expression<Func<Element, bool>>? filter = null)
+        public Task<Response<ElementTypeDTO>> GetElementTypeAsync(int entityId)
         {
-            return _elementDal.GetAll(filter);
+            throw new NotImplementedException();
         }
 
-        public object? GetElementType(User user, int entityId)
+        public Task<Response<LayerDTO>> GetLayerAsync(int entityId)
         {
-            return _elementDal.Get(e=>e.ElementId==entityId)?.ElementType;
+            throw new NotImplementedException();
         }
 
-        public object? GetLayer(User user, int entityId)
+        public Task<Response<PenDTO>> GetPenAsync(int entityId)
         {
-            return _elementDal.Get(e => e.ElementId == entityId)?.Layer;
+            throw new NotImplementedException();
         }
 
-        public object? GetPen(User user, int entityId)
+        public Task<Response<IEnumerable<PointDTO>>> GetPointsAsync(int entityId)
         {
-            return _elementDal.Get(e => e.ElementId == entityId)?.Pen;
+            throw new NotImplementedException();
         }
 
-        public object? GetPoints(User user, int entityId)
+        public Task<Response<IEnumerable<RadiusDTO>>> GetRadiusesAsync(int entityId)
         {
-            return _elementDal.Get(e => e.ElementId == entityId)?.Points;
+            throw new NotImplementedException();
         }
 
-        public object? GetRadiuses(User user, int entityId)
+        public Task<Response<IEnumerable<SSAngleDTO>>> GetSSAnglesAsync(int entityId)
         {
-            return _elementDal.Get(e => e.ElementId == entityId)?.Radiuses;
+            throw new NotImplementedException();
         }
 
-        public object? GetSSAngles(User user, int entityId)
+        public Task<Response<NoDataDto>> UpdateAllAsync(List<ElementDTO> entities)
         {
-            return _elementDal.Get(e => e.ElementId == entityId)?.SSAngles;
-        }
-
-        public void UpdateAll(User user, List<Element> entities)
-        {
-            foreach (var entity in entities)
-            {
-                _elementDal.Update(entity);
-            }
+            throw new NotImplementedException();
         }
     }
 }

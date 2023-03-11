@@ -1,4 +1,6 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Core.DTOs;
+using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract.Draws;
 using Draw.DataAccess.Abstract.Helpers;
 using Draw.DataAccess.DependencyResolvers.Ninject;
@@ -11,50 +13,79 @@ namespace Draw.Business.Concrete
 {
     public class DrawBoxManager : IDrawBoxService
     {
-        private IDrawBoxDal _drawBoxDal;
+        //private IDrawBoxDal _drawBoxDal;
 
-        public DrawBoxManager()
+        //public DrawBoxManager()
+        //{
+        //    _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
+        //}
+        //public void AddAll(User user, List<DrawBox> entities)
+        //{
+        //    foreach (var drawBox in entities)
+        //    {
+        //        _drawBoxDal.Add(drawBox);
+        //    }
+        //}
+
+        //public void DeleteAll(User user, List<DrawBox> entities)
+        //{
+        //    foreach (var drawBox in entities)
+        //    {
+        //        _drawBoxDal.Delete(drawBox);
+        //    }
+        //}
+
+
+        //public object? Get(User user, Expression<Func<DrawBox, bool>> filter)
+        //{
+        //    return _drawBoxDal.Get(filter);
+        //}
+
+        //public object? GetAll(User user, Expression<Func<DrawBox, bool>>? filter = null)
+        //{
+        //    return _drawBoxDal.GetAll(filter);
+        //}
+
+        //public object? GetLayers(User user, int drawId)
+        //{
+        //    return _drawBoxDal.Get(d => d.DrawBoxId == drawId)?.Layers;
+        //}
+
+        //public void UpdateAll(User user, List<DrawBox> entities)
+        //{
+        //    foreach (var drawBox in entities)
+        //    {
+        //        _drawBoxDal.Update(drawBox);
+        //    }
+        //}
+        public Task<Response<IEnumerable<DrawBoxDTO>>> AddAllAsync(List<DrawBoxDTO> entities)
         {
-            _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
+            throw new NotImplementedException();
         }
-        public void AddAll(User user, List<DrawBox> entities)
+
+        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            foreach (var drawBox in entities)
-            {
-                _drawBoxDal.Add(drawBox);
-            }
+            throw new NotImplementedException();
         }
 
-        public void DeleteAll(User user, List<DrawBox> entities)
+        public Task<Response<IEnumerable<DrawBoxDTO>>> GetAllAsync()
         {
-            foreach (var drawBox in entities)
-            {
-                _drawBoxDal.Delete(drawBox);
-            }
+            throw new NotImplementedException();
         }
 
-
-        public object? Get(User user, Expression<Func<DrawBox, bool>> filter)
+        public Task<Response<DrawBoxDTO>> GetAsync(int entityId)
         {
-            return _drawBoxDal.Get(filter);
+            throw new NotImplementedException();
         }
 
-        public object? GetAll(User user, Expression<Func<DrawBox, bool>>? filter = null)
+        public Task<Response<IEnumerable<LayerDTO>>> GetLayersAsync(int drawId)
         {
-            return _drawBoxDal.GetAll(filter);
+            throw new NotImplementedException();
         }
 
-        public object? GetLayers(User user, int drawId)
+        public Task<Response<NoDataDto>> UpdateAllAsync(List<DrawBoxDTO> entities)
         {
-            return _drawBoxDal.Get(d => d.DrawBoxId == drawId)?.Layers;
-        }
-
-        public void UpdateAll(User user, List<DrawBox> entities)
-        {
-            foreach (var drawBox in entities)
-            {
-                _drawBoxDal.Update(drawBox);
-            }
+            throw new NotImplementedException();
         }
     }
 }

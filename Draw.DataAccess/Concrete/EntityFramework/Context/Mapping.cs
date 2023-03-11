@@ -8,20 +8,36 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Context
 {
+    internal class UserRefreshTokenConfiguration : IEntityTypeConfiguration<UserRefreshToken>
+    {
+        public void Configure(EntityTypeBuilder<UserRefreshToken> builder)
+        {
+            builder.HasKey(x => x.UserId);
+            builder.Property(x => x.Code).IsRequired().HasMaxLength(300);
+        }
+    }
+
+    internal class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
+    {
+        public void Configure(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.HasData(
+                new UserRole { Id = Guid.NewGuid().ToString(), Name = "admin",NormalizedName="ADMIN"},
+                new UserRole { Id = Guid.NewGuid().ToString(), Name = "manager",NormalizedName="MANAGER"},
+                new UserRole { Id = Guid.NewGuid().ToString(), Name = "user",NormalizedName="USER"}
+
+                );
+        }
+    }
     internal class UserMapping : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(u => u.UserId);
-
-            builder.Property(u => u.UserName).IsRequired().HasMaxLength(200);
-
-            builder.Property(u => u.UserPassword).IsRequired().HasMaxLength(200);
 
             builder.HasData(
-                new User { UserId = 1, UserName = "zahid", UserPassword = "123456" },
-                new User { UserId = 2, UserName = "ali", UserPassword = "123456" },
-                new User { UserId = 3, UserName = "zeynep", UserPassword = "123456" }
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca", UserName = "zahid" ,EmailConfirmed=false,PhoneNumber="513",PhoneNumberConfirmed=true,TwoFactorEnabled=false,LockoutEnabled=false,AccessFailedCount=1},
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb", UserName = "ali", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc", UserName = "zeynep", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 }
 
                 );
 
@@ -39,14 +55,14 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             builder.Property(u => u.DrawName).IsRequired().HasMaxLength(200);
 
             builder.HasData(
-                new DrawBox { DrawBoxId = 1, DrawName = "c1", UserId = "1" },
-                new DrawBox { DrawBoxId = 2, DrawName = "c2", UserId = "1" },
-                new DrawBox { DrawBoxId = 3, DrawName = "c1", UserId = "1" }
+                new DrawBox { DrawBoxId = 1, DrawName = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new DrawBox { DrawBoxId = 2, DrawName = "c2", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new DrawBox { DrawBoxId = 3, DrawName = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7cb" }
             );
 
-            //builder.HasOne(d => d.User)
-            //    .WithMany(u => u.DrawBoxs)
-            //    .HasForeignKey(d => d.UserId);
+            builder.HasOne(d => d.User)
+                .WithMany(u => u.DrawBoxs)
+                .HasForeignKey(d => d.UserId);
 
         }
     }
@@ -88,9 +104,9 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             builder.Property(l => l.LayerThickness).IsRequired();
 
             builder.HasData(
-                new Layer { LayerId = 1, LayerName = "0", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1 ,PenId=1},
-                new Layer { LayerId = 2, LayerName = "a", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1 ,PenId=2},
-                new Layer { LayerId = 3, LayerName = "b", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1 , PenId = 1 }
+                new Layer { LayerId = 1, LayerName = "0", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 1 },
+                new Layer { LayerId = 2, LayerName = "a", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 2 },
+                new Layer { LayerId = 3, LayerName = "b", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 1 }
 
             );
             builder.HasOne(l => l.Pen)
@@ -110,11 +126,10 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
         {
             builder.HasKey(u => u.ElementId);
 
-            builder.Property(u => u.ElementTypeId).IsRequired().HasMaxLength(200);
-            //builder.HasIndex(u => u.ElementType).IsUnique();
+            builder.Property(u => u.ElementTypeId).IsRequired();
 
             builder.HasData(
-                new Element { ElementId = 1, ElementTypeId = 1, PenId = 1, LayerId = 1 },
+                new Element { ElementId = 1, ElementTypeId = 1, PenId=1, LayerId = 1 },
                 new Element { ElementId = 2, ElementTypeId = 1, PenId = 1, LayerId = 1 },
                 new Element { ElementId = 3, ElementTypeId = 1, PenId = 1, LayerId = 1 },
                 new Element { ElementId = 4, ElementTypeId = 5, PenId = 1, LayerId = 1 },
@@ -287,8 +302,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
 
 
             builder.HasData(
-                new Radius { RadiusId = 1,RadiusValue=10 ,RadiusElementId=4},
-                new Radius { RadiusId = 2,RadiusValue=15,RadiusElementId=4}
+                new Radius { RadiusId = 1, RadiusValue = 10, RadiusElementId = 4 },
+                new Radius { RadiusId = 2, RadiusValue = 15, RadiusElementId = 4 }
                 );
 
             builder.HasOne(d => d.RadiusElement)
@@ -306,8 +321,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             builder.Property(u => u.SSAngleType).IsRequired();
 
             builder.HasData(
-                new SSAngle { SSAngleId = 1, SSAngleType = "start", SSAngleValue = 0,SSAngleElementId =1},
-                new SSAngle { SSAngleId = 2, SSAngleType = "stop",SSAngleValue=30 ,SSAngleElementId =1}
+                new SSAngle { SSAngleId = 1, SSAngleType = "start", SSAngleValue = 0, SSAngleElementId = 1 },
+                new SSAngle { SSAngleId = 2, SSAngleType = "stop", SSAngleValue = 30, SSAngleElementId = 1 }
                 );
 
             builder.HasOne(d => d.SSAngleElement)
