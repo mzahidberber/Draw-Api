@@ -22,13 +22,13 @@ namespace Draw.Api.Controllers
         [HttpGet("penstyles")]
         public async Task<IActionResult> GetPenStyles()
         {
-            return ActionResultInstance(await _penStyleManager.GetAllAsync(GetUserId(User)));
+            return ActionResultInstance(await _penStyleManager.GetAllAsync());
         }
         [Authorize]
         [HttpGet("penstyles/{id}")]
         public async Task<IActionResult> GetPenStyle(int id)
         {
-            return ActionResultInstance(await _penStyleManager.GetAsync(GetUserId(User),id));
+            return ActionResultInstance(await _penStyleManager.GetAsync(id));
         }
         
         [Authorize(Roles = "admin,manager")]
@@ -42,14 +42,14 @@ namespace Draw.Api.Controllers
         [HttpDelete("penstyles/delete")]
         public async Task<IActionResult> DeletePenStyles(List<int> ids)
         {
-            return ActionResultInstance(await _penStyleManager.DeleteAllAsync(GetUserId(User),ids));
+            return ActionResultInstance(await _penStyleManager.DeleteAllAsync(ids));
         }
         
         [Authorize(Roles = "admin,manager")]
         [HttpPut("penstyles/update")]
         public async Task<IActionResult> UpdatePenStyles(PenStyleRequest request)
         {
-            return ActionResultInstance(await _penStyleManager.UpdateAllAsync(GetUserId(User),request.penstyles));
+            return ActionResultInstance(await _penStyleManager.UpdateAllAsync(request.penstyles));
         }
     }
 }

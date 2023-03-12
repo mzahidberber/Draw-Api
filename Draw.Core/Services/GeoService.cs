@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System.Net;
-using System.Net.Http.Json;
 using System.Text;
 
 namespace Draw.Core.Services
-{   public class PointGeo
+{
+    public class PointGeo
     {
         public double X { get; set; }
         public double Y { get; set; }

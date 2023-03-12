@@ -22,14 +22,14 @@ namespace Draw.Api.Controllers
         [HttpGet("pointTypes")]
         public async Task<IActionResult> GetPointTypes()
         {
-            return ActionResultInstance(await _pointTypeService.GetAllAsync(GetUserId(User)));
+            return ActionResultInstance(await _pointTypeService.GetAllAsync());
         }
 
         [Authorize]
         [HttpGet("pointTypes/{id}")]
         public async Task<IActionResult> GetPointType(int id)
         {
-            return ActionResultInstance(await _pointTypeService.GetAllAsync(GetUserId(User)));
+            return ActionResultInstance(await _pointTypeService.GetAllAsync());
         }
 
         [Authorize(Roles = "admin,manager")]
@@ -43,14 +43,14 @@ namespace Draw.Api.Controllers
         [HttpDelete("pointTypes/delete")]
         public async Task<IActionResult> DeletePointTypes(List<int> ids)
         {
-            return ActionResultInstance(await _pointTypeService.DeleteAllAsync(GetUserId(User), ids));
+            return ActionResultInstance(await _pointTypeService.DeleteAllAsync( ids));
         }
 
         [Authorize(Roles = "admin,manager")]
         [HttpPut("pointTypes/update")]
         public async Task<IActionResult> UpdatePointTypes(PointTypeRequest request)
         {
-            return ActionResultInstance(await _pointTypeService.UpdateAllAsync(GetUserId(User), request.pointTypes));
+            return ActionResultInstance(await _pointTypeService.UpdateAllAsync(request.pointTypes));
         }
     }
 }

@@ -21,13 +21,13 @@ namespace Draw.Api.Controllers
         [HttpGet("colors")]
         public async Task<IActionResult> GetColors()
         {
-            return ActionResultInstance(await _colorManager.GetAllAsync(GetUserId(User)));
+            return ActionResultInstance(await _colorManager.GetAllAsync());
         }
         [Authorize]
         [HttpGet("colors/{id}")]
         public async Task<IActionResult> GetColor(int id)
         {
-            return ActionResultInstance(await _colorManager.GetAsync(GetUserId(User),id));
+            return ActionResultInstance(await _colorManager.GetAsync(id));
         }
         
         [Authorize(Roles = "admin,manager")]
@@ -41,14 +41,14 @@ namespace Draw.Api.Controllers
         [HttpDelete("colors/delete")]
         public async Task<IActionResult> DeleteColors(List<int> request)
         {
-            return ActionResultInstance(await _colorManager.DeleteAllAsync(GetUserId(User), request));
+            return ActionResultInstance(await _colorManager.DeleteAllAsync(request));
         }
         
         [Authorize(Roles = "admin,manager")]
         [HttpPut("colors/update")]
         public async Task<IActionResult> UpdateColors(ColorRequest request)
         {
-            return ActionResultInstance(await _colorManager.UpdateAllAsync(GetUserId(User), request.colors));
+            return ActionResultInstance(await _colorManager.UpdateAllAsync(request.colors));
         }
 
     }

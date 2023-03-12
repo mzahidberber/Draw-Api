@@ -2,7 +2,7 @@
 
 namespace Draw.Business.Abstract
 {
-    public interface IColorService:IBaseService<ColorDTO>
+    public interface IColorService:IBaseHelperService<ColorDTO>
     {   
     }
 }

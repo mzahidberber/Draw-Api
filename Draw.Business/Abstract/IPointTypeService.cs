@@ -2,7 +2,7 @@
 
 namespace Draw.Business.Abstract
 {
-    public interface IPointTypeService:IBaseService<PointTypeDTO>
+    public interface IPointTypeService:IBaseHelperService<PointTypeDTO>
     {
     }
 }

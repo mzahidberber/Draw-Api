@@ -2,7 +2,7 @@
 
 namespace Draw.Business.Abstract
 {
-    public interface IPenStyleService:IBaseService<PenStyleDTO>
+    public interface IPenStyleService:IBaseHelperService<PenStyleDTO>
     {
     }
 }

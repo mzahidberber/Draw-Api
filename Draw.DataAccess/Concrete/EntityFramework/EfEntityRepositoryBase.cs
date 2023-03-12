@@ -3,7 +3,6 @@ using Draw.DataAccess.Concrete.EntityFramework.Context;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq.Expressions;
 
 namespace Draw.DataAccess.Concrete.EntityFramework

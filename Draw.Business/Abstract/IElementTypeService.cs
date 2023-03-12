@@ -2,7 +2,7 @@
 
 namespace Draw.Business.Abstract
 {
-    public interface IElementTypeService:IBaseService<ElementTypeDTO>
+    public interface IElementTypeService:IBaseHelperService<ElementTypeDTO>
     {
     }
 }

@@ -1,10 +1,13 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Business.Mapper;
+using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
 using Draw.DataAccess.Abstract.Helpers;
 using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
@@ -20,7 +23,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<IEnumerable<ColorDTO>>> AddAllAsync(List<ColorDTO> entities)
         {
-            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<Entities.Concrete.Color>(e));
+            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<Color>(e));
             foreach (var color in entitiesList)
             {
                 await _colorDal.AddAsync(color);
@@ -29,43 +32,44 @@ namespace Draw.Business.Concrete
             var data = entitiesList.Select(e => ObjectMapper.Mapper.Map<ColorDTO>(e));
             return Response<IEnumerable<ColorDTO>>.Success(data, 200);
         }
-        public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entitiesId)
+
+        public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            foreach (var id in entitiesId)
+            var deleteColors = new List<Color>();
+            foreach (var id in entities)
             {
                 var entity = await _colorDal.GetByIdAsync(id);
                 if (entity == null)
                 {
                     return Response<NoDataDto>.Fail($"{id}'s entity not found", 404, true);
                 }
+                deleteColors.Add(entity);
             }
-            foreach (var id in entitiesId)
-            {
-                var entity = await _colorDal.GetByIdAsync(id);
-                _colorDal.Delete(entity);
-            }
+            if (deleteColors.Count > 0) deleteColors.ForEach((c) => _colorDal.Delete(c));
             await _unitOfWork.CommitAsync();
             return Response<NoDataDto>.Success(204);
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
+        public async Task<Response<IEnumerable<ColorDTO>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var colors =await _colorDal.GetAllAsync().Select(c => ObjectMapper.Mapper.Map<ColorDTO>(c)).ToListAsync();
+            if (colors == null) throw new CustomException("Color Not Found");
+            return Response<IEnumerable<ColorDTO>>.Success(colors, 200);
         }
 
-        public Task<Response<IEnumerable<ColorDTO>>> GetAllAsync(string userId)
+        public async Task<Response<ColorDTO>> GetAsync(int entityId)
         {
-            throw new NotImplementedException();
+            var color = await _colorDal.GetByIdAsync(entityId);
+            if (color == null) throw new CustomException("Color Not Found");
+            return Response<ColorDTO>.Success(ObjectMapper.Mapper.Map<ColorDTO>(color), 200);
         }
 
-        public Task<Response<ColorDTO>> GetAsync(string userId, int entityId)
+        public async Task<Response<NoDataDto>> UpdateAllAsync(List<ColorDTO> entities)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<ColorDTO> entities)
-        {
-            throw new NotImplementedException();
+            var colors=entities.Select(c => ObjectMapper.Mapper.Map<Color>(c));
+            colors.ToList().ForEach(c=>_colorDal.Update(c));
+            await _unitOfWork.CommitAsync();
+            return Response<NoDataDto>.Success(204);
         }
     }
 }

@@ -22,13 +22,13 @@ namespace Draw.Api.Controllers
         [HttpGet("elementTypes")]
         public async Task<IActionResult> GetElementTypes()
         {
-            return ActionResultInstance(await _elementTypeManager.GetAllAsync(GetUserId(User)));
+            return ActionResultInstance(await _elementTypeManager.GetAllAsync());
         }
         [Authorize]
         [HttpGet("elementTypes/{id}")]
         public async Task<IActionResult> GetElementType(int id)
         {
-            return ActionResultInstance(await _elementTypeManager.GetAsync(GetUserId(User),id));
+            return ActionResultInstance(await _elementTypeManager.GetAsync(id));
         }
         
         [Authorize(Roles = "admin,manager")]
@@ -42,14 +42,14 @@ namespace Draw.Api.Controllers
         [HttpDelete("elementTypes/delete")]
         public async Task<IActionResult> DeletePenStyles(List<int> ids)
         {
-            return ActionResultInstance(await _elementTypeManager.DeleteAllAsync(GetUserId(User), ids));
+            return ActionResultInstance(await _elementTypeManager.DeleteAllAsync( ids));
         }
         
         [Authorize(Roles = "admin,manager")]
         [HttpPut("elementTypes/update")]
         public async Task<IActionResult> UpdatePenStyles(ElementTypeRequest request)
         {
-            return ActionResultInstance(await _elementTypeManager.UpdateAllAsync(GetUserId(User), request.elementTypes));
+            return ActionResultInstance(await _elementTypeManager.UpdateAllAsync( request.elementTypes));
         }
     }
 }
