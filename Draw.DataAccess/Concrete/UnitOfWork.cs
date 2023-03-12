@@ -1,5 +1,5 @@
 ﻿using Draw.DataAccess.Abstract;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 namespace Draw.DataAccess.Concrete

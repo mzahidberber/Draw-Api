@@ -11,22 +11,22 @@ namespace Draw.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<IEnumerable<PenStyleDTO>>> GetAllAsync(string userId)
+        public Task<Response<IEnumerable<PenStyleDTO>>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<PenStyleDTO>> GetAsync(string userId, int entityId)
+        public Task<Response<PenStyleDTO>> GetAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PenStyleDTO> entities)
+        public Task<Response<NoDataDto>> UpdateAllAsync(List<PenStyleDTO> entities)
         {
             throw new NotImplementedException();
         }

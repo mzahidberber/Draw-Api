@@ -1,39 +1,88 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Business.Mapper;
+using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
     public class DrawBoxManager : IDrawBoxService
     {
-        public Task<Response<IEnumerable<DrawBoxDTO>>> AddAllAsync(List<DrawBoxDTO> entities)
+        private IDrawBoxDal _drawBoxDal;
+        private IUnitOfWork _unitOfWork;
+        public DrawBoxManager()
         {
-            throw new NotImplementedException();
+            _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
+            _unitOfWork = DataInstanceFactory.GetInstance<IUnitOfWork>();
+        }
+        public async Task<Response<IEnumerable<DrawBoxDTO>>> AddAllAsync(List<DrawBoxDTO> entities)
+        {
+            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<DrawBox>(e));
+            foreach (var draw in entitiesList)
+            {
+                await _drawBoxDal.AddAsync(draw);
+            }
+            await _unitOfWork.CommitAsync();
+            var data = entitiesList.Select(e => ObjectMapper.Mapper.Map<DrawBoxDTO>(e));
+            return Response<IEnumerable<DrawBoxDTO>>.Success(data, 200);
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
+        public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
-            throw new NotImplementedException();
+            var deleteDraws = new List<DrawBox>();
+            foreach (var id in entities)
+            {
+                var entity = await _drawBoxDal.GetByIdAsync(id);
+                if (entity == null || entity.UserId != userId)
+                {
+                    return Response<NoDataDto>.Fail($"{id}'s entity not found", 404, true);
+                }
+                deleteDraws.Add(entity);
+            }
+            if (deleteDraws.Count > 0) deleteDraws.ForEach((c) => _drawBoxDal.Delete(c));
+            await _unitOfWork.CommitAsync();
+            return Response<NoDataDto>.Success(204);
         }
 
-        public Task<Response<IEnumerable<DrawBoxDTO>>> GetAllAsync(string userId)
+        public async Task<Response<IEnumerable<DrawBoxDTO>>> GetAllAsync(string userId)
         {
-            throw new NotImplementedException();
+            var draws = await _drawBoxDal
+                .GetAllAsync(d=>d.UserId==userId)
+                .Select(c => ObjectMapper.Mapper.Map<DrawBoxDTO>(c))
+                .ToListAsync();
+            if (draws == null) throw new CustomException("Draw Not Found");
+            return Response<IEnumerable<DrawBoxDTO>>.Success(draws, 200);
         }
 
-        public Task<Response<DrawBoxDTO>> GetAsync(string userId, int entityId)
+        public async Task<Response<DrawBoxDTO>> GetAsync(string userId, int entityId)
         {
-            throw new NotImplementedException();
+            var draw = await _drawBoxDal.GetByIdAsync(entityId);
+            if (draw == null || draw.UserId!=userId) throw new CustomException("Draw Not Found");
+            return Response<DrawBoxDTO>.Success(ObjectMapper.Mapper.Map<DrawBoxDTO>(draw), 200);
         }
 
-        public Task<Response<IEnumerable<LayerDTO>>> GetLayersAsync(string userId, int drawId)
+        public async Task<Response<IEnumerable<LayerDTO>>> GetLayersAsync(string userId, int drawId)
         {
-            throw new NotImplementedException();
+            var draw = await _drawBoxDal.GetByIdWithLayersAsync(drawId);
+            if (draw == null || draw.UserId != userId) throw new CustomException("Draw Not Found");
+            var data = draw.Layers.Select(l => ObjectMapper.Mapper.Map<LayerDTO>(l));
+            if (data == null) throw new CustomException("Draw in Layer Not Found");
+            return Response<IEnumerable<LayerDTO>>.Success(data, 200);
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<DrawBoxDTO> entities)
+        public async Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<DrawBoxDTO> entities)
         {
-            throw new NotImplementedException();
+            var draws = entities.Select(c => ObjectMapper.Mapper.Map<DrawBox>(c));
+            draws.ToList().ForEach((d) => {
+                if (d.UserId != userId) throw new CustomException("Draw Not Found");
+                else _drawBoxDal.Update(d);
+            });
+            await _unitOfWork.CommitAsync();
+            return Response<NoDataDto>.Success(204);
         }
     }
 }

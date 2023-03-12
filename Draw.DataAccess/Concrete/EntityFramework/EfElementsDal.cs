@@ -1,28 +1,27 @@
-﻿
-using Draw.DataAccess.Abstract.Elements;
+﻿using Draw.DataAccess.Abstract;
 using Draw.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace Draw.DataAccess.Concrete.EntityFramework.Elements
+namespace Draw.DataAccess.Concrete.EntityFramework
 {
 
-    public class EfElementsDal:EfEntityRepositoryBase<Element>,IElementDal
+    public class EfElementsDal : EfEntityRepositoryBase<Element>, IElementDal
     {
-        
+
 
         public void AddElementAll(Element element)
         {
             var addedEntity = _context.Entry(element);
             addedEntity.State = EntityState.Added;
 
-            
+
 
             foreach (var item in element.Points)
             {
                 var adddPoint = _context.Entry(item);
                 adddPoint.State = EntityState.Added;
             }
-            if(element.Radiuses!= null)
+            if (element.Radiuses != null)
             {
                 foreach (var item in element.Radiuses)
                 {
@@ -30,8 +29,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
                     addRadius.State = EntityState.Added;
                 }
             }
-            
-            if(element.SSAngles!= null)
+
+            if (element.SSAngles != null)
             {
                 foreach (var item in element.SSAngles)
                 {
@@ -39,19 +38,19 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
                     addSSAngles.State = EntityState.Added;
                 }
             }
-            
+
 
             _context.SaveChanges();
-            
+
         }
 
-        public List<Element> GetElementBesidePoints (List<int> elementsIdList)
+        public List<Element> GetElementBesidePoints(List<int> elementsIdList)
         {
             var elements = new List<Element>();
             foreach (var id in elementsIdList)
             {
                 var pointDb = _context.Set<Point>();
-                if(_dbSet != null && pointDb != null)
+                if (_dbSet != null && pointDb != null)
                 {
                     var element = _dbSet.Where(u => u.ElementId == id).Single();
                     element.Points = pointDb.Where(u => u.ElementId == id).ToList();
@@ -60,7 +59,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
                 }
             }
             return elements;
-            
+
         }
 
         //public void Deneme()
@@ -86,12 +85,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
         //        System.Console.WriteLine(quary.ToList());
         //        System.Console.WriteLine(element.Single());
         //    }
-                
+
         //}
 
         //public List<Element>? GetElementsInDrawBox(int drawBoxId)
         //{
-            
+
 
 
         //    using (DrawContext context = new DrawContext())
@@ -119,7 +118,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
         //                element.SSAngles = context.SSAngles.Where(l => l.SSAngleElementId == element.ElementId).ToList();
         //                element.Layer.Elements = new List<Element>();
         //            }
-                
+
         //            return elements;
         //        }
         //        else
@@ -149,7 +148,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Elements
         //        {
         //            return null;
         //        }
-                    
+
         //    }
         //}
     }

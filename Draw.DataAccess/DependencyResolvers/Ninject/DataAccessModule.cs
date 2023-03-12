@@ -1,15 +1,6 @@
 ﻿using Draw.DataAccess.Abstract;
-using Draw.DataAccess.Abstract.Commands;
-using Draw.DataAccess.Abstract.Draws;
-using Draw.DataAccess.Abstract.Elements;
-using Draw.DataAccess.Abstract.Helpers;
 using Draw.DataAccess.Concrete;
-using Draw.DataAccess.Concrete.EntityFramework.Commands;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
-using Draw.DataAccess.Concrete.EntityFramework.Draws;
-using Draw.DataAccess.Concrete.EntityFramework.Elements;
-using Draw.DataAccess.Concrete.EntityFramework.Helpers;
-using Microsoft.EntityFrameworkCore;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Ninject.Modules;
 
 namespace Draw.DataAccess.DependencyResolvers.Ninject

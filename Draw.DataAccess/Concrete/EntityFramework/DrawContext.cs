@@ -1,16 +1,15 @@
 ﻿using Draw.Entities.Concrete;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Draw.DataAccess.Concrete.EntityFramework.Context
+namespace Draw.DataAccess.Concrete.EntityFramework
 {
 
     public class DrawContext : IdentityDbContext<User, UserRole, string>
     {
         //public DrawContext(DbContextOptions<DrawContext> opt):base(opt)
         //{
-            
+
         //}
 
         public DbSet<DrawBox>? Draws { get; set; }
@@ -48,7 +47,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             modelBuilder.ApplyConfiguration(new SSAngleMapping());
 
         }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var cnn2 = $"server=localhost;port=3306;database=drawdb1;user=root;password=mysql123.;";
@@ -63,8 +62,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             //    //optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
             //    var cnn2= $"server=localhost;port=3306;database=drawdb1;user=root;password=mysql123.;";
             //    optionsBuilder.UseMySql(cnn2,ServerVersion.AutoDetect(cnn2));
-            
-                
+
+
             //}
         }
     }

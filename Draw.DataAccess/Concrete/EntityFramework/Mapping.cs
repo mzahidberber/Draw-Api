@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Draw.DataAccess.Concrete.EntityFramework.Context
+namespace Draw.DataAccess.Concrete.EntityFramework
 {
     internal class UserRefreshTokenConfiguration : IEntityTypeConfiguration<UserRefreshToken>
     {
@@ -18,9 +18,9 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
             builder.HasData(
-                new UserRole { Id = Guid.NewGuid().ToString(), Name = "admin",NormalizedName="ADMIN"},
-                new UserRole { Id = Guid.NewGuid().ToString(), Name = "manager",NormalizedName="MANAGER"},
-                new UserRole { Id = Guid.NewGuid().ToString(), Name = "user",NormalizedName="USER"}
+                new UserRole { Id = Guid.NewGuid().ToString(), Name = "admin", NormalizedName = "ADMIN" },
+                new UserRole { Id = Guid.NewGuid().ToString(), Name = "manager", NormalizedName = "MANAGER" },
+                new UserRole { Id = Guid.NewGuid().ToString(), Name = "user", NormalizedName = "USER" }
 
                 );
         }
@@ -31,7 +31,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
         {
 
             builder.HasData(
-                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca", UserName = "zahid" ,EmailConfirmed=false,PhoneNumber="513",PhoneNumberConfirmed=true,TwoFactorEnabled=false,LockoutEnabled=false,AccessFailedCount=1},
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca", UserName = "zahid", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
                 new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb", UserName = "ali", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
                 new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc", UserName = "zeynep", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 }
 
@@ -125,7 +125,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             builder.Property(u => u.ElementTypeId).IsRequired();
 
             builder.HasData(
-                new Element { ElementId = 1, ElementTypeId = 1, PenId=1, LayerId = 1 },
+                new Element { ElementId = 1, ElementTypeId = 1, PenId = 1, LayerId = 1 },
                 new Element { ElementId = 2, ElementTypeId = 1, PenId = 1, LayerId = 1 },
                 new Element { ElementId = 3, ElementTypeId = 1, PenId = 1, LayerId = 1 },
                 new Element { ElementId = 4, ElementTypeId = 5, PenId = 1, LayerId = 1 },
@@ -278,12 +278,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Context
             builder.Property(u => u.PenName).IsRequired();
 
             builder.HasData(
-                new Pen { PenId = 1,PenName = "pen1", PenColorId = 1, PenStyleId = 1 },
+                new Pen { PenId = 1, PenName = "pen1", PenColorId = 1, PenStyleId = 1 },
                 new Pen { PenId = 2, PenName = "pen2", PenColorId = 2, PenStyleId = 2 }
                 );
 
             builder.HasOne(c => c.PenColor).WithMany(p => p.Pens).HasForeignKey(c => c.PenId);
-            
+
             builder.HasOne(c => c.PenStyle).WithMany(p => p.Pens).HasForeignKey(c => c.PenId);
 
 

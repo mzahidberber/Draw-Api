@@ -1,17 +1,16 @@
-﻿using Draw.DataAccess.Abstract.Helpers;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
+﻿using Draw.DataAccess.Abstract;
 using Draw.Entities.Concrete;
 
-namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
+namespace Draw.DataAccess.Concrete.EntityFramework
 {
-    public class EfLayerDal:EfEntityRepositoryBase<Layer>,ILayerDal
+    public class EfLayerDal : EfEntityRepositoryBase<Layer>, ILayerDal
     {
         public override bool IsUserEntity(int entityId, string userId)
         {
             var layer = _dbSet.Where(c => c.LayerId == entityId).SingleOrDefault();
-            var draw=_context.Draws.Where(d=>d.DrawBoxId==layer.DrawBoxId).SingleOrDefault();
-            
-            if(draw.UserId==userId)
+            var draw = _context.Draws.Where(d => d.DrawBoxId == layer.DrawBoxId).SingleOrDefault();
+
+            if (draw.UserId == userId)
                 return true;
             else
                 return false;

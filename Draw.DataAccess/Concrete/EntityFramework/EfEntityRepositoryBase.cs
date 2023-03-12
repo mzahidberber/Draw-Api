@@ -1,5 +1,4 @@
 ﻿using Draw.DataAccess.Abstract;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +32,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             return _dbSet.AsQueryable();
         }
 
-        public async Task<TEntity?> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
             var entity = await _dbSet.FindAsync(id);
             if (entity != null)

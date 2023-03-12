@@ -1,9 +1,9 @@
-﻿using Draw.DataAccess.Abstract.Helpers;
+﻿using Draw.DataAccess.Abstract;
 using Draw.Entities.Concrete;
 
-namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
+namespace Draw.DataAccess.Concrete.EntityFramework
 {
-    public class EfPenDal:EfEntityRepositoryBase<Pen>,IPenDal
+    public class EfPenDal : EfEntityRepositoryBase<Pen>, IPenDal
     {
         //public List<Pen> GetPensColorAndPenStyle()
         //{
@@ -26,7 +26,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
         //        {
         //            throw new NullReferenceException();
         //        }
-                
+
         //    }
         //}
     }
