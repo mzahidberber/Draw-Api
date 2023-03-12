@@ -1,4 +1,4 @@
-﻿using Draw.Api.Models.Layer;
+﻿using Draw.Api.Models;
 using FluentValidation;
 
 namespace Draw.Api.Validation

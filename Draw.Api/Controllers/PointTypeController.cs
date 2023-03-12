@@ -1,45 +1,56 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Draw.Api.Models;
+using Draw.Business.Abstract;
+using Draw.Business.DependencyResolvers.Ninject;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //public class PointTypeController: ControllerBase
-    //{
-    //    private IPointTypeService _pointTypeService;
 
-    //    public PointTypeController()
-    //    {
-    //        _pointTypeService = InstanceFactory.GetInstance<IPointTypeService>();
-    //    }
-    //    [HttpGet("pointTypes")]
-    //    public async Task<Response<IEnumerable<PointType>>> GetPointTypes()
-    //    {
-    //        return await _pointTypeService.GetAllAsync();
-    //    }
+    [ApiController]
+    [Route("[controller]")]
+    public class PointTypeController : CustomBaseController
+    {
+        private IPointTypeService _pointTypeService;
 
-    //    [HttpGet("pointTypes/pointType")]
-    //    public object GetPointType(UserPointTypeIdRequest request)
-    //    {
-    //        return _pointTypeService.Get(request.user, request.pointTypeId);
-    //    }
+        public PointTypeController()
+        {
+            _pointTypeService = BusinessInstanceFactory.GetInstance<IPointTypeService>();
+        }
 
-    //    [HttpPost("pointTypes/add")]
-    //    public object AddPointTypes(UserPointTypeRequest request)
-    //    {
-    //        return _pointTypeService.AddAll(request.user, request.pointTypes);
-    //    }
+        [Authorize]
+        [HttpGet("pointTypes")]
+        public async Task<IActionResult> GetPointTypes()
+        {
+            return ActionResultInstance(await _pointTypeService.GetAllAsync(GetUserId(User)));
+        }
 
-    //    [HttpDelete("pointTypes/delete")]
-    //    public object DeletePointTypes(UserPointTypeRequest request)
-    //    {
-    //        return _pointTypeService.DeleteAll(request.user, request.pointTypes);
-    //    }
+        [Authorize]
+        [HttpGet("pointTypes/{id}")]
+        public async Task<IActionResult> GetPointType(int id)
+        {
+            return ActionResultInstance(await _pointTypeService.GetAllAsync(GetUserId(User)));
+        }
 
-    //    [HttpPut("pointTypes/update")]
-    //    public object UpdatePointTypes(UserPointTypeRequest request)
-    //    {
-    //        return _pointTypeService.UpdateAll(request.user, request.pointTypes);
-    //    }
-    //}
+        [Authorize(Roles = "admin,manager")]
+        [HttpPost("pointTypes/add")]
+        public async Task<IActionResult> AddPointTypes(PointTypeRequest request)
+        {
+            return ActionResultInstance(await _pointTypeService.AddAllAsync(request.pointTypes));
+        }
+
+        [Authorize(Roles = "admin,manager")]
+        [HttpDelete("pointTypes/delete")]
+        public async Task<IActionResult> DeletePointTypes(List<int> ids)
+        {
+            return ActionResultInstance(await _pointTypeService.DeleteAllAsync(GetUserId(User), ids));
+        }
+
+        [Authorize(Roles = "admin,manager")]
+        [HttpPut("pointTypes/update")]
+        public async Task<IActionResult> UpdatePointTypes(PointTypeRequest request)
+        {
+            return ActionResultInstance(await _pointTypeService.UpdateAllAsync(GetUserId(User), request.pointTypes));
+        }
+    }
 }

@@ -5,12 +5,14 @@ namespace Draw.Business.Abstract
 {
     public interface IElementService:IBaseService<ElementDTO>
     {
-        Task<Response<PenDTO>> GetPenAsync(int entityId);
-        Task<Response<ElementTypeDTO>> GetElementTypeAsync(int entityId);
-        Task<Response<LayerDTO>> GetLayerAsync(int entityId);
-        Task<Response<IEnumerable<RadiusDTO>>> GetRadiusesAsync(int entityId);
-        Task<Response<IEnumerable<SSAngleDTO>>> GetSSAnglesAsync(int entityId);
-        Task<Response<IEnumerable<PointDTO>>> GetPointsAsync(int entityId);
+        Task<Response<IEnumerable<ElementDTO>>> GetAllByDrawAsync(string userId,int drawId);
+        Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerAsync(string userId,int layerId);
+        Task<Response<PenDTO>> GetPenAsync(string userId,int entityId);
+        Task<Response<ElementTypeDTO>> GetElementTypeAsync(string userId, int entityId);
+        Task<Response<LayerDTO>> GetLayerAsync(string userId, int entityId);
+        Task<Response<IEnumerable<RadiusDTO>>> GetRadiusesAsync(string userId, int entityId);
+        Task<Response<IEnumerable<SSAngleDTO>>> GetSSAnglesAsync(string userId, int entityId);
+        Task<Response<IEnumerable<PointDTO>>> GetPointsAsync(string userId, int entityId);
         
     }
 }

@@ -11,18 +11,6 @@ namespace Draw.Api.Controllers
     
     public class CustomBaseController:ControllerBase
     {
-
-        protected IColorService _colorManager;
-        protected ILayerService _layerManager;
-        protected IDrawBoxService _drawBoxManager;
-        protected IElementService _elementManager;
-        public CustomBaseController()
-        {
-            _colorManager = InstanceFactory.GetInstance<IColorService>();
-            _layerManager = InstanceFactory.GetInstance<ILayerService>();
-            _drawBoxManager = InstanceFactory.GetInstance<IDrawBoxService>();
-            _elementManager = InstanceFactory.GetInstance<IElementService>();
-        }
         public IActionResult ActionResultInstance<T>(Response<T> response) where T : class
         {
             return new ObjectResult(response)

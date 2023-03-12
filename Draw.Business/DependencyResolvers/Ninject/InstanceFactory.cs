@@ -2,7 +2,7 @@
 
 namespace Draw.Business.DependencyResolvers.Ninject
 {
-    public class InstanceFactory
+    public class BusinessInstanceFactory
     {
         public static T GetInstance<T>()
         {

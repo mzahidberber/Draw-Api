@@ -1,4 +1,6 @@
-﻿using Draw.Api.Models.Layer;
+﻿using Draw.Api.Models;
+using Draw.Business.Abstract;
+using Draw.Business.DependencyResolvers.Ninject;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +11,23 @@ namespace Draw.Api.Controllers
     [Route("[controller]")]
     public class LayerController : CustomBaseController
     {
+        private readonly ILayerService _layerManager;
+
+        public LayerController()
+        {
+            _layerManager = BusinessInstanceFactory.GetInstance<ILayerService>();
+        }
+
         [HttpGet("layers")]
         public async Task<IActionResult> GetLayers()
         {
             return ActionResultInstance(await _layerManager.GetAllAsync(GetUserId(User)));
         }
-
+        
         [HttpPost("layers")]
-        public async Task<IActionResult> GetLayersAtDraw(LayerDrawRequest draw)
+        public async Task<IActionResult> GetLayersAtDraw(int drawId)
         {
-            return ActionResultInstance(await _layerManager.GetAllByDrawAsync(GetUserId(User), draw.drawId));
+            return ActionResultInstance(await _layerManager.GetAllByDrawAsync(GetUserId(User), drawId));
         }
 
         [HttpPost("layers/add")]
