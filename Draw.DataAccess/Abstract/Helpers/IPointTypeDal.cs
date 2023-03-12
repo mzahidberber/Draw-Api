@@ -1,4 +1,4 @@
-﻿using Draw.Entities.Concrete.Helpers;
+﻿using Draw.Entities.Concrete;
 
 namespace Draw.DataAccess.Abstract.Helpers
 {

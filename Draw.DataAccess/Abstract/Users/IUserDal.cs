@@ -1,4 +1,4 @@
-﻿using Draw.Entities.Concrete.Users;
+﻿using Draw.Entities.Concrete;
 
 namespace Draw.DataAccess.Abstract.Users
 {

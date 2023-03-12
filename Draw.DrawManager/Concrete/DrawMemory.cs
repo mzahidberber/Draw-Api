@@ -1,9 +1,7 @@
 ﻿using Draw.DataAccess.Concrete.EntityFramework.Draws;
 using Draw.DataAccess.Concrete.EntityFramework.Elements;
 using Draw.DataAccess.Concrete.EntityFramework.Helpers;
-using Draw.Entities.Concrete.Draw;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
+using Draw.Entities.Concrete;
 
 namespace Draw.DrawManager.Concrete
 {

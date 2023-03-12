@@ -1,8 +1,4 @@
-﻿using Draw.Entities.Concrete.Commands;
-using Draw.Entities.Concrete.Draw;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
+﻿using Draw.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

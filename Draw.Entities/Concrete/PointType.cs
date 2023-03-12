@@ -1,17 +1,16 @@
 ﻿using Draw.Entities.Abstract;
-using Draw.Entities.Concrete.Elements;
 using System.Collections.Generic;
 
-namespace Draw.Entities.Concrete.Helpers
+namespace Draw.Entities.Concrete
 {
-    public class PointType:IEntity
+    public class PointType : IEntity
     {
         public PointType()
         {
-            this.PointTypePoints = new List<Point>();
+            PointTypePoints = new List<Point>();
         }
         public int PointTypeId { get; set; }
-        public string PointTypeName { get; set; }= null!;
+        public string PointTypeName { get; set; } = null!;
 
         public List<Point> PointTypePoints { get; set; }
     }

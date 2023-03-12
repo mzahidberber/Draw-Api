@@ -6,7 +6,7 @@ using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
 using Draw.DataAccess.Abstract.Helpers;
 using Draw.DataAccess.DependencyResolvers.Ninject;
-using Draw.Entities.Concrete.Helpers;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {

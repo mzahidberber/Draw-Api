@@ -1,7 +1,7 @@
 using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.DrawManager.Concrete.HelperCommands;
 using Draw.DrawManager.Concrete.Helpers;
-using Draw.Entities.Concrete.Elements;
+using Draw.Entities.Concrete;
 using Draw.Manager.Concrete.DrawElements;
 
 namespace Draw.DrawManager.Tests

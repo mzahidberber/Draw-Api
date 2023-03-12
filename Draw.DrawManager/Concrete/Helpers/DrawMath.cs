@@ -1,4 +1,4 @@
-﻿using Draw.Entities.Concrete.Elements;
+﻿using Draw.Entities.Concrete;
 
 namespace Draw.DrawManager.Concrete.Helpers
 {

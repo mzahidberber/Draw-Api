@@ -1,16 +1,16 @@
 ﻿using Draw.Entities.Abstract;
 using System.Collections.Generic;
 
-namespace Draw.Entities.Concrete.Helpers
+namespace Draw.Entities.Concrete
 {
-    public class PenStyle:IEntity
+    public class PenStyle : IEntity
     {
         public PenStyle()
         {
-            this.Pens = new List<Pen>();
+            Pens = new List<Pen>();
         }
         public int PenStyleId { get; set; }
-        public string PenStyleName { get; set; }= null!;
+        public string PenStyleName { get; set; } = null!;
 
         public List<Pen> Pens { get; set; }
 

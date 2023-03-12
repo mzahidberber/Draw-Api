@@ -1,4 +1,4 @@
-﻿using Draw.Entities.Concrete.Draw;
+﻿using Draw.Entities.Concrete;
 
 namespace Draw.DataAccess.Abstract.Draws
 {

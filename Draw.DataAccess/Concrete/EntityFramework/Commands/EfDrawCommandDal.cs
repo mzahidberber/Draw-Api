@@ -1,6 +1,6 @@
 ﻿using Draw.DataAccess.Abstract.Commands;
 using Draw.DataAccess.Concrete.EntityFramework.Context;
-using Draw.Entities.Concrete.Commands;
+using Draw.Entities.Concrete;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Commands
 {

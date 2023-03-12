@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Draw.Core.DTOs.Concrete;
-using Draw.Entities.Concrete.Draw;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Mapper
 {
