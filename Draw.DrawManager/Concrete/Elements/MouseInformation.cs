@@ -1,6 +1,4 @@
 ﻿using Draw.DataAccess.Concrete.Elements;
-using Draw.Entities.Abstract;
-using Draw.Entities.Concrete.Elements;
 
 namespace Draw.Manager.Concrete.DrawElements
 {

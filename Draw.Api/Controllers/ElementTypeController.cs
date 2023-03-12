@@ -49,7 +49,7 @@ namespace Draw.Api.Controllers
         [HttpPut("elementTypes/update")]
         public async Task<IActionResult> UpdatePenStyles(ElementTypeRequest request)
         {
-            return ActionResultInstance(await _elementTypeManager.DeleteAllAsync(GetUserId(User), request.elementTypes));
+            return ActionResultInstance(await _elementTypeManager.UpdateAllAsync(GetUserId(User), request.elementTypes));
         }
     }
 }

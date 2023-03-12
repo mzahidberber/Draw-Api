@@ -1,8 +1,5 @@
 ﻿using Draw.DataAccess.Abstract.Helpers;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
 using Draw.Entities.Concrete;
-using Draw.Entities.Concrete.Elements;
-using Microsoft.EntityFrameworkCore;
 
 namespace Draw.DataAccess.Concrete.EntityFramework.Helpers
 {

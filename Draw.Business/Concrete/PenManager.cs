@@ -1,8 +1,6 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
-using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Concrete
 {
@@ -13,32 +11,32 @@ namespace Draw.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<IEnumerable<PenDTO>>> GetAllAsync()
+        public Task<Response<IEnumerable<PenDTO>>> GetAllAsync(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<PenDTO>> GetAsync(int entityId)
+        public Task<Response<PenDTO>> GetAsync(string userId, int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ColorDTO> GetColorAsync(int penId)
+        public Task<Response<ColorDTO>> GetColorAsync(string userId, int penId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PenStyleDTO> GetPenStyleAsync(int penId)
+        public Task<Response<PenStyleDTO>> GetPenStyleAsync(string userId, int penId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(List<PenDTO> entities)
+        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PenDTO> entities)
         {
             throw new NotImplementedException();
         }

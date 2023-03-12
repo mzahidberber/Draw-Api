@@ -1,14 +1,11 @@
-﻿using Draw.Business.Abstract;
-using Draw.Business.Abstract.BaseSevice;
-using Draw.Business.DependencyResolvers.Ninject;
-using Draw.Core.CrosCuttingConcers.Handling;
+﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Draw.Api.Controllers
 {
-    
+
     public class CustomBaseController:ControllerBase
     {
         public IActionResult ActionResultInstance<T>(Response<T> response) where T : class

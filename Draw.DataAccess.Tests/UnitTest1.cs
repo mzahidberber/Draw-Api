@@ -1,5 +1,4 @@
 using Draw.DataAccess.Concrete.EntityFramework.Context;
-using Draw.DataAccess.Concrete.EntityFramework.Elements;
 
 
 namespace Draw.DataAccess.Tests

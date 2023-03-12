@@ -64,14 +64,7 @@ namespace Draw.Business.Concrete
 
         public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<LayerDTO> entities)
         {
-            foreach (var entity in entities)
-            {
-                var layer = _layerDal.GetByIdAsync(entity.LayerId);
-                if (layer != null)
-                {
-                    throw new CustomException("Layer not found ");
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }

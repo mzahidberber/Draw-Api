@@ -1,7 +1,5 @@
 ﻿using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
-using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Abstract
 {

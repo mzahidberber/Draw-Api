@@ -1,7 +1,4 @@
-﻿using Draw.DrawManager.Concrete;
-using Draw.Entities.Concrete.Users;
-
-namespace Draw.Business.Concrete
+﻿namespace Draw.Business.Concrete
 {
     public class UserManager1
     {

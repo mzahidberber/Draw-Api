@@ -1,6 +1,4 @@
 ﻿using Draw.DrawManager.Concrete.BaseCommand;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Helpers;
 using Draw.Manager.Concrete.DrawElements;
 
 namespace Draw.DataAccess.Abstract.Commands

@@ -1,8 +1,6 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
-using Draw.Entities.Concrete.Elements;
-using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Concrete
 {
@@ -13,32 +11,47 @@ namespace Draw.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<IEnumerable<PointDTO>>> GetAllAsync()
+        public Task<Response<IEnumerable<PointDTO>>> GetAllAsync(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<PointDTO>> GetAsync(int entityId)
+        public Task<Response<IEnumerable<PointDTO>>> GetAllByDrawAsync(string userId, int drawId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ElementDTO> GetElementAsync(int entityId)
+        public Task<Response<IEnumerable<PointDTO>>> GetAllByElementAsync(string userId, int elementId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PointTypeDTO> GetPointTypeAsync(int entityId)
+        public Task<Response<IEnumerable<PointDTO>>> GetAllByLayerAsync(string userId, int layerId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(List<PointDTO> entities)
+        public Task<Response<PointDTO>> GetAsync(string userId, int entityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response<ElementDTO>> GetElementAsync(string userId, int entityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response<PointTypeDTO>> GetPointTypeAsync(string userId, int entityId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PointDTO> entities)
         {
             throw new NotImplementedException();
         }

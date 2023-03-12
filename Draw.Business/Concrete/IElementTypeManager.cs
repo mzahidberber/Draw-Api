@@ -1,8 +1,6 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
-using Draw.Entities.Concrete.Helpers;
-using Draw.Entities.Concrete.Users;
 
 namespace Draw.Business.Concrete
 {
@@ -13,22 +11,22 @@ namespace Draw.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
+        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<IEnumerable<ElementTypeDTO>>> GetAllAsync()
+        public Task<Response<IEnumerable<ElementTypeDTO>>> GetAllAsync(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<ElementTypeDTO>> GetAsync(int entityId)
+        public Task<Response<ElementTypeDTO>> GetAsync(string userId, int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(List<ElementTypeDTO> entities)
+        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<ElementTypeDTO> entities)
         {
             throw new NotImplementedException();
         }
