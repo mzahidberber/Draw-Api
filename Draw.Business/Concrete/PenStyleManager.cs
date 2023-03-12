@@ -1,34 +1,42 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class PenStyleManager : IPenStyleService
+    public class PenStyleManager :AbstractManager, IPenStyleService
     {
-        public Task<Response<IEnumerable<PenStyleDTO>>> AddAllAsync(List<PenStyleDTO> entities)
+        private IPenStyleDal _penStyleDal;
+        public PenStyleManager()
         {
-            throw new NotImplementedException();
+            _penStyleDal=DataInstanceFactory.GetInstance<IPenStyleDal>();
+        }
+        public async Task<Response<IEnumerable<PenStyleDTO>>> AddAllAsync(List<PenStyleDTO> entities)
+        {
+            return await base.BaseAddAllAsync<PenStyleDTO, PenStyle>(entities, _penStyleDal);
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
+        public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseDeleteAllAsync<PenStyle>(entities, _penStyleDal);
         }
 
-        public Task<Response<IEnumerable<PenStyleDTO>>> GetAllAsync()
+        public async Task<Response<IEnumerable<PenStyleDTO>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PenStyleDTO, PenStyle>( _penStyleDal);
         }
 
-        public Task<Response<PenStyleDTO>> GetAsync(int entityId)
+        public async Task<Response<PenStyleDTO>> GetAsync(int entityId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAsync<PenStyleDTO, PenStyle>(entityId, _penStyleDal);
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(List<PenStyleDTO> entities)
+        public async Task<Response<NoDataDto>> UpdateAllAsync(List<PenStyleDTO> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseUpdateAsync<PenStyleDTO, PenStyle>(entities, _penStyleDal);
         }
     }
 }

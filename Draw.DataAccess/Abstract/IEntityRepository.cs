@@ -3,7 +3,8 @@ using System.Linq.Expressions;
 
 namespace Draw.DataAccess.Abstract
 {
-    public interface IEntityRepository<T> where T: class,IEntity,new()
+    public interface IEntityRepository<T> :IUnitOfWork
+        where T: class,IEntity,new()
     {
         IQueryable<T> GetAllAsync(Expression<Func<T,bool>>? filter =null);
         IQueryable<T> GetWhereAsync(Expression<Func<T, bool>> filter);

@@ -1,4 +1,6 @@
-﻿using Draw.DataAccess.Concrete.EntityFramework;
+﻿using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawManager.Concrete
@@ -8,13 +10,13 @@ namespace Draw.DrawManager.Concrete
         private List<DrawBox> _drawBoxes;
         private List<Layer> _layers;
         private List<Element> _elements;
-        
-        private EfElementsDal _efElementDal = new EfElementsDal();
-        private EfDrawBoxDal _efDrawBoxDal = new EfDrawBoxDal();
-        private EfLayerDal _efLayerDal = new EfLayerDal();
-        private EfColorDal _efColorDal = new EfColorDal();
-        private EfPenStyleDal _efPenStylesDal = new EfPenStyleDal();
-        private EfPenDal _efPenDal = new EfPenDal();
+
+        private IElementDal _efElementDal = DataInstanceFactory.GetInstance<IElementDal>();
+        private IDrawBoxDal _efDrawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
+        private ILayerDal _efLayerDal = DataInstanceFactory.GetInstance<ILayerDal>();
+        private IColorDal _efColorDal = DataInstanceFactory.GetInstance<IColorDal>();
+        private IPenStyleDal _efPenStylesDal = DataInstanceFactory.GetInstance<IPenStyleDal>();
+        private IPenDal _efPenDal = DataInstanceFactory.GetInstance<IPenDal>();
 
         public DrawMemory(string userName)
         {
@@ -28,7 +30,7 @@ namespace Draw.DrawManager.Concrete
         }
         public void AddElement(Element element)
         {
-            _efElementDal.AddElementAll(element);
+            //_efElementDal.AddElementAll(element);
             //GetElement(element);
             this._elements.Add(element);
         }
@@ -45,7 +47,8 @@ namespace Draw.DrawManager.Concrete
 
         internal List<Element> GetElementsId(List<int> elementsIdList)
         {
-            return _efElementDal.GetElementBesidePoints(elementsIdList);
+            //return _efElementDal.GetElementBesidePoints(elementsIdList);
+            throw new NotImplementedException();
         }
 
         //public object GetLayers(int userDrawBoxId)

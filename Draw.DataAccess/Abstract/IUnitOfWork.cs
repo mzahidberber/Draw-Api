@@ -1,8 +1,8 @@
 ﻿namespace Draw.DataAccess.Abstract
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork:IDisposable
     {
-        Task CommitAsync();
-        void Commit();
+        Task<bool> CommitAsync(bool state = true);
+        bool Commit(bool state=true);
     }
 }

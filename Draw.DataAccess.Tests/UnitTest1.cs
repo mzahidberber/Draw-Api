@@ -1,4 +1,8 @@
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete;
 using Draw.DataAccess.Concrete.EntityFramework;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
 
 namespace Draw.DataAccess.Tests
 {
@@ -34,6 +38,37 @@ namespace Draw.DataAccess.Tests
             }
             Assert.Pass();
         }
-        
+
+        [Test]
+        public void Test2()
+        {
+            var element = new Element { PenId=1,LayerId=2,ElementTypeId=1};
+
+            var elementDAl = DataInstanceFactory.GetInstance<IElementDal>();
+            //var unitwork = DataInstanceFactory.GetInstance<IUnitOfWork>();
+            //var db=DataInstanceFactory.GetInstance<DrawContext>();
+            //var elementDAl = new EfElementsDal(db);
+            //var unitwork = new UnitOfWork(db);
+
+            elementDAl.AddAsync(element).Wait();
+            elementDAl.Commit();
+            //unitwork.CommitAsync().Wait();
+            //elementDAl._context.SaveChanges();
+            //conte.SaveChanges();
+            //var context=new DrawContext();
+            //var dbset = context.Set<Element>();
+            //var c=dbset.AddAsync(element).Result;
+            //context.SaveChangesAsync().Wait();
+
+            //using (DrawContext context=new DrawContext())
+            //{
+            //    //var a=context.Elements.AddAsync(element).Result;
+            //    var dbset = context.Set<Element>();
+            //    var b=dbset.AddAsync(element).Result;
+            //    //context.SaveChangesAsync().Wait();
+            //    context.SaveChangesAsync().Wait();
+            //}
+        }
+
     }
 }

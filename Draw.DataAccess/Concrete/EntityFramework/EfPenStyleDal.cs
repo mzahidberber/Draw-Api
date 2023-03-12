@@ -5,5 +5,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 {
     public class EfPenStyleDal : EfEntityRepositoryBase<PenStyle>, IPenStyleDal
     {
+        public EfPenStyleDal(DrawContext context) : base(context)
+        {
+        }
     }
 }

@@ -1,5 +1,7 @@
-﻿using Draw.DataAccess.Abstract.Commands;
+﻿using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Abstract.Commands;
 using Draw.DataAccess.Concrete.EntityFramework;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.DrawManager.Concrete.BaseCommand;
 using Draw.Manager.Concrete.DrawElements;
 
@@ -11,12 +13,12 @@ namespace Draw.DrawManager.Concrete
         private CommandContext _commandContext;
         private CommandMemory _commandMemory;
 
-        private EfElementsDal _efElementDal = new EfElementsDal();
-        private EfDrawBoxDal _efDrawBoxDal = new EfDrawBoxDal();
-        private EfLayerDal _efLayerDal = new EfLayerDal();
-        private EfColorDal _efColorDal = new EfColorDal();
-        private EfPenStyleDal _efPenStylesDal = new EfPenStyleDal();
-        private EfPenDal _efPenDal = new EfPenDal();
+        private IElementDal _efElementDal = DataInstanceFactory.GetInstance<IElementDal>();
+        private IDrawBoxDal _efDrawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
+        private ILayerDal _efLayerDal = DataInstanceFactory.GetInstance<ILayerDal>();
+        private IColorDal _efColorDal = DataInstanceFactory.GetInstance<IColorDal>();
+        private IPenStyleDal _efPenStylesDal = DataInstanceFactory.GetInstance<IPenStyleDal>();
+        private IPenDal _efPenDal = DataInstanceFactory.GetInstance<IPenDal>();
         public DrawM(string userName)
         {
             this._userName = userName;

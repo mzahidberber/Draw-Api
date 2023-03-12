@@ -13,13 +13,13 @@ namespace Draw.Entities.Concrete
         public int ElementId { get; set; }
 
         public int PenId { get; set; }
-        public Pen Pen { get; set; } = null!;
+        public Pen Pen { get; set; }
 
         public int ElementTypeId { get; set; }
-        public ElementType ElementType { get; set; } = null!;
+        public ElementType ElementType { get; set; } 
 
         public int LayerId { get; set; }
-        public Layer Layer { get; set; } = null!;
+        public Layer Layer { get; set; } 
 
         public List<SSAngle> SSAngles { get; set; }
 

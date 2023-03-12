@@ -10,25 +10,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
-    public class DrawBoxManager : IDrawBoxService
+    public class DrawBoxManager :AbstractManager, IDrawBoxService
     {
         private IDrawBoxDal _drawBoxDal;
-        private IUnitOfWork _unitOfWork;
         public DrawBoxManager()
         {
             _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
-            _unitOfWork = DataInstanceFactory.GetInstance<IUnitOfWork>();
         }
         public async Task<Response<IEnumerable<DrawBoxDTO>>> AddAllAsync(List<DrawBoxDTO> entities)
         {
-            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<DrawBox>(e));
-            foreach (var draw in entitiesList)
-            {
-                await _drawBoxDal.AddAsync(draw);
-            }
-            await _unitOfWork.CommitAsync();
-            var data = entitiesList.Select(e => ObjectMapper.Mapper.Map<DrawBoxDTO>(e));
-            return Response<IEnumerable<DrawBoxDTO>>.Success(data, 200);
+            return await base.BaseAddAllAsync<DrawBoxDTO, DrawBox>(entities, _drawBoxDal);
         }
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
@@ -44,7 +35,7 @@ namespace Draw.Business.Concrete
                 deleteDraws.Add(entity);
             }
             if (deleteDraws.Count > 0) deleteDraws.ForEach((c) => _drawBoxDal.Delete(c));
-            await _unitOfWork.CommitAsync();
+            await _drawBoxDal.CommitAsync();
             return Response<NoDataDto>.Success(204);
         }
 
@@ -81,7 +72,7 @@ namespace Draw.Business.Concrete
                 if (d.UserId != userId) throw new CustomException("Draw Not Found");
                 else _drawBoxDal.Update(d);
             });
-            await _unitOfWork.CommitAsync();
+            await _drawBoxDal.CommitAsync();
             return Response<NoDataDto>.Success(204);
         }
     }

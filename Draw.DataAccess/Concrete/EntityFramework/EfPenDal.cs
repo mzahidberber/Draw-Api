@@ -29,5 +29,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
         //    }
         //}
+        public EfPenDal(DrawContext context) : base(context)
+        {
+        }
     }
 }

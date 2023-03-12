@@ -1,14 +1,37 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Business.Mapper;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class ElementManager : IElementService
+
+    public class ElementManager :AbstractManager, IElementService
     {
-        public Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(List<ElementDTO> entities)
+        private IElementDal _elementDal;
+        public ElementManager()
         {
-            throw new NotImplementedException();
+            _elementDal = DataInstanceFactory.GetInstance<IElementDal>();
+        }
+
+        public async Task<Response<IEnumerable<ElementDTO>>> AddAllAsync1(List<ElementDTO> entities)
+        {
+            return await base.BaseAddAllAsync<ElementDTO, Element>(entities, _elementDal);
+        }
+        public async Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(List<ElementDTO> entities)
+        {
+            var entitiesList = entities.Select(e => ObjectMapper.Mapper.Map<Element>(e));
+            foreach (var element in entitiesList)
+            {
+                await _elementDal.AddAsync(element);
+            }
+             _elementDal.Commit();
+            var data = entitiesList.Select(e => ObjectMapper.Mapper.Map<ElementDTO>(e));
+            return Response<IEnumerable<ElementDTO>>.Success(data, 200);
         }
 
         public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)

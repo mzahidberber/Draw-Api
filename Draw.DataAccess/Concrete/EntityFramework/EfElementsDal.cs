@@ -7,7 +7,9 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
     public class EfElementsDal : EfEntityRepositoryBase<Element>, IElementDal
     {
-
+        public EfElementsDal(DrawContext context) : base(context)
+        {
+        }
 
         public void AddElementAll(Element element)
         {

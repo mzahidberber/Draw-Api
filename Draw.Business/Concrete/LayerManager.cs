@@ -3,31 +3,23 @@ using Draw.Business.Mapper;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class LayerManager : ILayerService
+    public class LayerManager :AbstractManager, ILayerService
     {
         private readonly ILayerDal _layerDal;
-        private readonly IUnitOfWork _unitOfWork;
         public LayerManager()
         {
-            _unitOfWork = DataInstanceFactory.GetInstance<IUnitOfWork>();
             _layerDal=DataInstanceFactory.GetInstance<ILayerDal>(); 
         }
         
         public async Task<Response<IEnumerable<LayerDTO>>> AddAllAsync(List<LayerDTO> entities)
         {
-            var layerList=new List<LayerDTO>();
-            foreach (var entity in entities)
-            {
-                await _layerDal.AddAsync(ObjectMapper.Mapper.Map<Layer>(entity));
-                await _unitOfWork.CommitAsync();
-                layerList.Add(ObjectMapper.Mapper.Map<LayerDTO>(entity));
-            }
-            return Response<IEnumerable<LayerDTO>>.Success(layerList,200);
+            return await base.BaseAddAllAsync<LayerDTO, Layer>(entities, _layerDal);
         }
 
         public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)

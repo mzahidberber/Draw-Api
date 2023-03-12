@@ -5,5 +5,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 {
     public class EfDrawCommandDal : EfEntityRepositoryBase<DrawCommand>, IDrawCommandDal
     {
+        public EfDrawCommandDal(DrawContext context) : base(context)
+        {
+        }
     }
 }

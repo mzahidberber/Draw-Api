@@ -1,34 +1,42 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class PointTypeManager : IPointTypeService
+    public class PointTypeManager :AbstractManager, IPointTypeService
     {
-        public Task<Response<IEnumerable<PointTypeDTO>>> AddAllAsync(List<PointTypeDTO> entities)
+        private IPointTypeDal _pointTypeDal;
+        public PointTypeManager()
         {
-            throw new NotImplementedException();
+            _pointTypeDal=DataInstanceFactory.GetInstance<IPointTypeDal>();
+        }
+        public async Task<Response<IEnumerable<PointTypeDTO>>> AddAllAsync(List<PointTypeDTO> entities)
+        {
+            return await base.BaseAddAllAsync<PointTypeDTO, PointType>(entities, _pointTypeDal);
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
+        public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseDeleteAllAsync< PointType>(entities, _pointTypeDal);
         }
 
-        public Task<Response<IEnumerable<PointTypeDTO>>> GetAllAsync()
+        public async Task<Response<IEnumerable<PointTypeDTO>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PointTypeDTO, PointType>(_pointTypeDal);
         }
 
-        public Task<Response<PointTypeDTO>> GetAsync(int entityId)
+        public async Task<Response<PointTypeDTO>> GetAsync(int entityId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAsync<PointTypeDTO, PointType>(entityId, _pointTypeDal);
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(List<PointTypeDTO> entities)
+        public async Task<Response<NoDataDto>> UpdateAllAsync(List<PointTypeDTO> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseUpdateAsync<PointTypeDTO, PointType>(entities, _pointTypeDal);
         }
     }
 }

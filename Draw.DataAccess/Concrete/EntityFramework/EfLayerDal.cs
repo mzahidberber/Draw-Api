@@ -5,6 +5,10 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 {
     public class EfLayerDal : EfEntityRepositoryBase<Layer>, ILayerDal
     {
+        public EfLayerDal(DrawContext context) : base(context)
+        {
+        }
+
         public override bool IsUserEntity(int entityId, string userId)
         {
             var layer = _dbSet.Where(c => c.LayerId == entityId).SingleOrDefault();

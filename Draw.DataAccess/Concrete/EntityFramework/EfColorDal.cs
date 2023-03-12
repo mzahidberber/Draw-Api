@@ -5,6 +5,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 {
     public class EfColorDal : EfEntityRepositoryBase<Color>, IColorDal
     {
-
+        public EfColorDal(DrawContext context) : base(context)
+        {
+        }
     }
 }
