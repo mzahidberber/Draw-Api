@@ -1,14 +1,8 @@
+using Draw.Api.Configuration;
+using Draw.Api.Extensions;
 using Draw.Api.Validation;
-using Draw.Core.Configuration;
-using Draw.Core.Extensions;
-using Draw.DataAccess.Concrete.EntityFramework.Context;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using PostSharp.Extensibility;
 using System.Text.Json.Serialization;
 
 internal class Program

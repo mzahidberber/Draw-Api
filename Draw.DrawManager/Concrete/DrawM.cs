@@ -1,15 +1,13 @@
-﻿using Draw.Core.Draw.Abstract;
-using Draw.DataAccess.Abstract.Commands;
+﻿using Draw.DataAccess.Abstract.Commands;
 using Draw.DataAccess.Concrete.EntityFramework.Draws;
 using Draw.DataAccess.Concrete.EntityFramework.Elements;
 using Draw.DataAccess.Concrete.EntityFramework.Helpers;
 using Draw.DrawManager.Concrete.BaseCommand;
-using Draw.Entities.Concrete.Helpers;
 using Draw.Manager.Concrete.DrawElements;
 
 namespace Draw.DrawManager.Concrete
 {
-    public class DrawM:IDrawManager
+    public class DrawM
     {
         private string _userName { get; set; }
         private CommandContext _commandContext;

@@ -47,7 +47,7 @@ namespace Draw.Core.Tests
         void Denemee1();
     }
 
-    public class Draw : IDrawManager 
+    public class Draw  
     { 
     }
     public class Deneme

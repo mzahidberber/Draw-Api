@@ -1,4 +1,4 @@
-﻿namespace Draw.Core.Configuration
+﻿namespace Draw.Api.Configuration
 {
     public class CustomTokenOption
     {

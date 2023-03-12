@@ -1,8 +1,7 @@
 ﻿using Draw.Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Draw.Core.Extensions
+namespace Draw.Api.Extensions
 {
     public static class CustomValidationResponse
     {
