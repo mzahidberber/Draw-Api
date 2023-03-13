@@ -68,6 +68,8 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        app.UseCustomException();
+
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();

@@ -1,6 +1,7 @@
 ﻿using Draw.Api.Models;
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
+using Draw.Core.CrosCuttingConcers.Handling;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace Draw.Api.Controllers
     {
         private readonly IColorService _colorManager;
 
-        public ColorController(IColorService colorService)
+        public ColorController()
         {
             _colorManager = BusinessInstanceFactory.GetInstance<IColorService>();
         }
