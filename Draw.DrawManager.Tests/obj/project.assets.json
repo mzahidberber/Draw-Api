@@ -1569,6 +1569,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Draw.Core": "1.0.0",
           "Draw.Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.7",

@@ -8,7 +8,9 @@ namespace Draw.Entities.Concrete
         public User()
         {
             DrawBoxs = new List<DrawBox>();
+            Pens = new List<Pen>();
         }
         public ICollection<DrawBox> DrawBoxs { get; set; }
+        public ICollection<Pen> Pens { get; set; }
     }
 }

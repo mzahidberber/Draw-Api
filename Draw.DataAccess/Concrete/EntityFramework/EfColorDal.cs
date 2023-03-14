@@ -3,10 +3,11 @@ using Draw.Entities.Concrete;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
-    public class EfColorDal : EfEntityRepositoryBase<Color>, IColorDal
+    public class EfColorDal : EfEntityRepositoryBaseAbstract<Color>, IColorDal
     {
         public EfColorDal(DrawContext context) : base(context)
         {
         }
+
     }
 }

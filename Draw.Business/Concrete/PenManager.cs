@@ -1,44 +1,61 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Business.Mapper;
+using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class PenManager : IPenService
+    public class PenManager : AbstractManager,IPenService
     {
-        public Task<Response<IEnumerable<PenDTO>>> AddAllAsync(List<PenDTO> entities)
+        private readonly IPenDal _penDal;
+        public PenManager()
         {
-            throw new NotImplementedException();
+            _penDal=DataInstanceFactory.GetInstance<IPenDal>();
+        }
+        public async Task<Response<IEnumerable<PenDTO>>> AddAllAsync(List<PenDTO> entities)
+        {
+            return await base.BaseAddAllAsync<PenDTO, Pen>(entities, _penDal);
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
+        public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseDeleteAllAsync<Pen>(_penDal, x => entities.Contains(x.PenId) && x.PenUserId == userId);
         }
 
-        public Task<Response<IEnumerable<PenDTO>>> GetAllAsync(string userId)
+        public async Task<Response<IEnumerable<PenDTO>>> GetAllAsync(string userId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PenDTO, Pen>(_penDal, e => e.PenUserId == userId);
         }
 
-        public Task<Response<PenDTO>> GetAsync(string userId, int entityId)
+        public async Task<Response<PenDTO>> GetAsync(string userId, int entityId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetWhereAsync<PenDTO, Pen>(_penDal, x => x.PenId == entityId && x.PenUserId == userId);
         }
 
-        public Task<Response<ColorDTO>> GetColorAsync(string userId, int penId)
+        public async Task<Response<ColorDTO>> GetColorAsync(string userId, int penId)
         {
-            throw new NotImplementedException();
+            var pen = await _penDal.GetPenWithColorAsync(userId, penId);
+            return Response<ColorDTO>.Success(ObjectMapper.Mapper.Map<ColorDTO>(pen.PenColor), 200);
         }
 
-        public Task<Response<PenStyleDTO>> GetPenStyleAsync(string userId, int penId)
+        public async Task<Response<PenStyleDTO>> GetPenStyleAsync(string userId, int penId)
         {
-            throw new NotImplementedException();
+            var pen = await _penDal.GetPenWithPenStyleAsync(userId, penId);
+            return Response<PenStyleDTO>.Success(ObjectMapper.Mapper.Map<PenStyleDTO>(pen.PenStyle), 200);
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PenDTO> entities)
+        public async Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PenDTO> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseUpdateAsync<PenDTO, Pen>(entities, _penDal, () =>
+            {
+                var idList = entities.Select(x => x.PenId).ToList();
+                var elementsCount = _penDal.GetWhereAsync(x => idList.Contains(x.PenId) && x.PenUserId == userId).Count();
+                if (elementsCount != entities.Count) throw new CustomException("Entity Not Found");
+            });
         }
     }
 }

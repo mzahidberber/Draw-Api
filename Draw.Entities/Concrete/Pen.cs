@@ -11,11 +11,14 @@ namespace Draw.Entities.Concrete
             Elements = new List<Element>();
         }
         public int PenId { get; set; }
-        public string PenName { get; set; } = null!;
+        public string PenName { get; set; }
         public int PenColorId { get; set; }
-        public Color PenColor { get; set; } = null!;
+        public Color PenColor { get; set; }
+
+        public string PenUserId { get; set; }
+        public User PenUser { get; set; }
         public int PenStyleId { get; set; }
-        public PenStyle PenStyle { get; set; } = null!;
+        public PenStyle PenStyle { get; set; }
         public List<Layer> Layers { get; set; }
         public List<Element> Elements { get; set; }
 

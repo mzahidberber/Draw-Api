@@ -7,10 +7,10 @@ using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class IElementTypeManager :AbstractManager, IElementTypeService
+    public class ElementTypeManager :AbstractManager, IElementTypeService
     {
         private readonly IElementTypeDal _elementTypeService;
-        public IElementTypeManager()
+        public ElementTypeManager()
         {
             _elementTypeService=DataInstanceFactory.GetInstance<IElementTypeDal>();
         }
@@ -21,7 +21,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            return await base.BaseDeleteAllAsync<ElementType>(entities, _elementTypeService);
+            return await base.BaseDeleteAllAsync<ElementType>(_elementTypeService,x=>entities.Contains(x.ElementTypeId));
         }
 
         public async Task<Response<IEnumerable<ElementTypeDTO>>> GetAllAsync()

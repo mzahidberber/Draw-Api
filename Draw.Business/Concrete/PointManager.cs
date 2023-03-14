@@ -1,59 +1,76 @@
 ﻿using Draw.Business.Abstract;
+using Draw.Business.Mapper;
+using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-    public class PointManager : IPointService
+    public class PointManager :AbstractManager, IPointService
     {
-        public Task<Response<IEnumerable<PointDTO>>> AddAllAsync(List<PointDTO> entities)
+        private readonly IPointDal _pointDal;
+        public PointManager()
         {
-            throw new NotImplementedException();
+            _pointDal=DataInstanceFactory.GetInstance<IPointDal>();
+        }
+        public async Task<Response<IEnumerable<PointDTO>>> AddAllAsync(List<PointDTO> entities)
+        {
+            return await base.BaseAddAllAsync<PointDTO, Point>(entities, _pointDal);
         }
 
-        public Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
+        public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseDeleteAllAsync<Point>(_pointDal, x => entities.Contains(x.PointId) && x.Element.Layer.DrawBox.UserId == userId);
         }
 
-        public Task<Response<IEnumerable<PointDTO>>> GetAllAsync(string userId)
+        public async Task<Response<IEnumerable<PointDTO>>> GetAllAsync(string userId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PointDTO, Point>(_pointDal, e => e.Element.Layer.DrawBox.UserId == userId);
         }
 
-        public Task<Response<IEnumerable<PointDTO>>> GetAllByDrawAsync(string userId, int drawId)
+        public async Task<Response<IEnumerable<PointDTO>>> GetAllByDrawAsync(string userId, int drawId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PointDTO, Point>(_pointDal, e => e.Element.Layer.DrawBox.UserId == userId && e.Element.Layer.DrawBoxId == drawId);
         }
 
-        public Task<Response<IEnumerable<PointDTO>>> GetAllByElementAsync(string userId, int elementId)
+        public async Task<Response<IEnumerable<PointDTO>>> GetAllByElementAsync(string userId, int elementId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PointDTO, Point>(_pointDal, e => e.Element.Layer.DrawBox.UserId == userId && e.ElementId == elementId);
         }
 
-        public Task<Response<IEnumerable<PointDTO>>> GetAllByLayerAsync(string userId, int layerId)
+        public async Task<Response<IEnumerable<PointDTO>>> GetAllByLayerAsync(string userId, int layerId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetAllAsync<PointDTO, Point>(_pointDal, e => e.Element.Layer.DrawBox.UserId == userId && e.Element.LayerId == layerId);
         }
 
-        public Task<Response<PointDTO>> GetAsync(string userId, int entityId)
+        public async Task<Response<PointDTO>> GetAsync(string userId, int entityId)
         {
-            throw new NotImplementedException();
+            return await base.BaseGetWhereAsync<PointDTO, Point>(_pointDal, x => x.PointId == entityId && x.Element.Layer.DrawBox.UserId == userId);
         }
 
-        public Task<Response<ElementDTO>> GetElementAsync(string userId, int entityId)
+        public async Task<Response<ElementDTO>> GetElementAsync(string userId, int entityId)
         {
-            throw new NotImplementedException();
+            var point = await _pointDal.GetPointWithElementAsync(userId, entityId);
+            return Response<ElementDTO>.Success(ObjectMapper.Mapper.Map<ElementDTO>(point.Element), 200);
         }
 
-        public Task<Response<PointTypeDTO>> GetPointTypeAsync(string userId, int entityId)
+        public async Task<Response<PointTypeDTO>> GetPointTypeAsync(string userId, int entityId)
         {
-            throw new NotImplementedException();
+            var point = await _pointDal.GetPointWithElementAsync(userId, entityId);
+            return Response<PointTypeDTO>.Success(ObjectMapper.Mapper.Map<PointTypeDTO>(point.PointType), 200);
         }
 
-        public Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PointDTO> entities)
+        public async Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PointDTO> entities)
         {
-            throw new NotImplementedException();
+            return await base.BaseUpdateAsync<PointDTO, Point>(entities, _pointDal, () =>
+            {
+                var idList = entities.Select(x => x.PointId).ToList();
+                var elementsCount = _pointDal.GetWhereAsync(x => idList.Contains(x.PointId) && x.Element.Layer.DrawBox.UserId == userId).Count();
+                if (elementsCount != entities.Count) throw new CustomException("Entity Not Found");
+            });
         }
     }
 }

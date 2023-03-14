@@ -4,6 +4,7 @@ using Draw.Core.DTOs;
 using Draw.DataAccess.Abstract;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Draw.Business.Concrete
 {
@@ -23,34 +24,38 @@ namespace Draw.Business.Concrete
             return Response<IEnumerable<TDTO>>.Success(data, 200);
         }
 
-        protected async Task<Response<NoDataDto>> BaseDeleteAllAsync<T>(List<int> entities, IEntityRepository<T> dal)
+        protected async Task<Response<NoDataDto>> BaseDeleteAllAsync<T>(IEntityRepository<T> dal,Expression<Func<T,bool>> filter)
             where T : class, IEntity, new()
         {
-            var deleteColors = new List<T>();
-            foreach (var id in entities)
-            {
-                var entity = await dal.GetByIdAsync(id);
-                if (entity == null)
-                {
-                    return Response<NoDataDto>.Fail($"{id}'s entity not found", 404, true);
-                }
-                deleteColors.Add(entity);
-            }
-            if (deleteColors.Count > 0) deleteColors.ForEach((c) => dal.Delete(c));
+            var entites = dal.GetWhereAsync(filter);
+            if (entites == null) return Response<NoDataDto>.Fail($"entities not found", 404, true);
+            else await entites.ForEachAsync(e => dal.Delete(e));
             await dal.CommitAsync();
             return Response<NoDataDto>.Success(204);
         }
 
-        protected async Task<Response<IEnumerable<TDTO>>> BaseGetAllAsync<TDTO, T>(IEntityRepository<T> dal)
+        protected async Task<Response<IEnumerable<TDTO>>> BaseGetAllAsync<TDTO, T>(IEntityRepository<T> dal, Expression<Func<T, bool>>? filter=null)
             where T : class, IEntity, new()
             where TDTO : class, new()
         {
-            var entites = await dal.GetAllAsync().Select(c => ObjectMapper.Mapper.Map<TDTO>(c)).ToListAsync();
-            if (entites == null) throw new CustomException("Entity Not Found");
-            return Response<IEnumerable<TDTO>>.Success(entites, 200);
+            List<TDTO> entities;
+            if(filter!=null) entities = await dal.GetWhereAsync(filter).Select(c => ObjectMapper.Mapper.Map<TDTO>(c)).ToListAsync();
+            else entities = await dal.GetAllAsync().Select(c => ObjectMapper.Mapper.Map<TDTO>(c)).ToListAsync();
+            if (entities == null) throw new CustomException("Entity Not Found");
+            return Response<IEnumerable<TDTO>>.Success(entities, 200);
         }
 
-        protected async Task<Response<TDTO>> BaseGetAsync<TDTO, T>(int entityId,IEntityRepository<T> dal)
+
+        protected async Task<Response<TDTO>> BaseGetWhereAsync<TDTO, T>(IEntityRepository<T> dal, Expression<Func<T, bool>> filter = null)
+            where T : class, IEntity, new()
+            where TDTO : class, new()
+        {
+            var entity = await dal.GetWhereAsync(filter).FirstOrDefaultAsync();
+            if (entity == null) throw new CustomException("Entity Not Found");
+            return Response<TDTO>.Success(ObjectMapper.Mapper.Map<TDTO>(entity), 200);
+        }
+
+        protected async Task<Response<TDTO>> BaseGetAsync<TDTO, T>(int entityId,IEntityRepository<T> dal, Expression<Func<T, bool>>? filter = null)
             where T : class, IEntity, new()
             where TDTO : class, new()
         {
@@ -59,12 +64,16 @@ namespace Draw.Business.Concrete
             return Response<TDTO>.Success(ObjectMapper.Mapper.Map<TDTO>(entity), 200);
         }
 
-        protected async Task<Response<NoDataDto>> BaseUpdateAsync<TDTO, T>(List<TDTO> entitiesDTO, IEntityRepository<T> dal)
+        protected async Task<Response<NoDataDto>> BaseUpdateAsync<TDTO, T>(List<TDTO> entitiesDTO, IEntityRepository<T> dal,Action? userControl=null)
             where T : class, IEntity, new()
             where TDTO : class, new()
         {
             var entities = entitiesDTO.Select(c => ObjectMapper.Mapper.Map<T>(c));
-            entities.ToList().ForEach(c => dal.Update(c));
+            if (userControl != null)
+            {
+                userControl.Invoke();
+            }
+            entities.ToList().ForEach(c =>dal.Update(c));
             await dal.CommitAsync();
             return Response<NoDataDto>.Success(204);
         }

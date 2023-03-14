@@ -278,14 +278,17 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             builder.Property(u => u.PenName).IsRequired();
 
             builder.HasData(
-                new Pen { PenId = 1, PenName = "pen1", PenColorId = 1, PenStyleId = 1 },
-                new Pen { PenId = 2, PenName = "pen2", PenColorId = 2, PenStyleId = 2 }
+                new Pen { PenId = 1, PenName = "pen1", PenColorId = 1, PenStyleId = 1 ,PenUserId= "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new Pen { PenId = 2, PenName = "pen2", PenColorId = 2, PenStyleId = 2, PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
                 );
 
             builder.HasOne(c => c.PenColor).WithMany(p => p.Pens).HasForeignKey(c => c.PenId);
 
             builder.HasOne(c => c.PenStyle).WithMany(p => p.Pens).HasForeignKey(c => c.PenId);
 
+            builder.HasOne(d => d.PenUser)
+                .WithMany(u => u.Pens)
+                .HasForeignKey(d => d.PenUserId);
 
         }
     }

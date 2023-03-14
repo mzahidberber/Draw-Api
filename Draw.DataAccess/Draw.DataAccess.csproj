@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Draw.Core\Draw.Core.csproj" />
     <ProjectReference Include="..\Draw.Entities\Draw.Entities.csproj" />
   </ItemGroup>
 

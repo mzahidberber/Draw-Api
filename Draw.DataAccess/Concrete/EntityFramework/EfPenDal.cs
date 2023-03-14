@@ -1,36 +1,30 @@
-﻿using Draw.DataAccess.Abstract;
+﻿using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.DataAccess.Abstract;
 using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
-    public class EfPenDal : EfEntityRepositoryBase<Pen>, IPenDal
+    public class EfPenDal : EfEntityRepositoryBaseAbstract<Pen>, IPenDal
     {
-        //public List<Pen> GetPensColorAndPenStyle()
-        //{
-        //    using (DrawContext context = new DrawContext())
-        //    {
-        //        var pens = new List<Pen>();
-        //        if(context.Pens!=null && context.Colors!=null && context.PenStyles!=null)
-        //        {
-        //            foreach (var id in context.Pens.Select(p=>p.PenId).ToList())
-        //            {
-        //                var pen = context.Pens.Where(p=>p.PenId==id).Single();
-        //                pen.PenColor = context.Colors.Where(u => u.ColorId == pen.PenColorId).Single();
-        //                pen.PenStyle = context.PenStyles.Where(u => u.PenStyleId == pen.PenStyleId).Single();
-        //                pens.Add(pen);
-
-        //            }
-        //            return pens;
-        //        }
-        //        else
-        //        {
-        //            throw new NullReferenceException();
-        //        }
-
-        //    }
-        //}
         public EfPenDal(DrawContext context) : base(context)
         {
+        }
+
+        public async Task<Pen> GetPenWithColorAsync(string userId, int penId)
+        {
+            return await _dbSet
+                .Where(x => x.PenId == penId && x.PenUserId == userId)
+                .Include(x => x.PenColor)
+                .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
+        }
+
+        public async Task<Pen> GetPenWithPenStyleAsync(string userId, int penId)
+        {
+            return await _dbSet
+                .Where(x => x.PenId == penId && x.PenUserId == userId)
+                .Include(x => x.PenStyle)
+                .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
     }
 }

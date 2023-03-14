@@ -1,27 +1,27 @@
-﻿using Draw.DataAccess.Abstract;
+﻿using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
-namespace Draw.DataAccess.Concrete.EntityFramework
+namespace Draw.DataAccess.Abstract
 {
-    public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity>
+    public abstract class EfEntityRepositoryBaseAbstract<TEntity> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
     {
         protected readonly DrawContext _context;
         protected readonly DbSet<TEntity> _dbSet;
-        private readonly IDbContextTransaction transaction;
-        public EfEntityRepositoryBase(DrawContext context)
+        protected readonly IDbContextTransaction transaction;
+        public EfEntityRepositoryBaseAbstract(DrawContext context)
         {
             _context = context;
             _dbSet = _context.Set<TEntity>();
             transaction = _context.Database.BeginTransaction();
         }
+
         public async Task AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
-            //_context.SaveChanges();
         }
 
         public bool Commit(bool state = true)
@@ -48,18 +48,20 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             return true;
         }
 
-        public void Delete(TEntity entity)
-        {
-            _dbSet.Remove(entity);
-        }
-
         public void Dispose()
         {
             throw new NotImplementedException();
         }
 
+        public void Delete(TEntity entity)
+        {
+            _dbSet.Remove(entity);
+        }
+
+
         public IQueryable<TEntity> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
+            if(filter != null) return _dbSet.Where(filter).AsQueryable();
             return _dbSet.AsQueryable();
         }
 
@@ -76,11 +78,6 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public IQueryable<TEntity> GetWhereAsync(Expression<Func<TEntity, bool>> filter)
         {
             return _dbSet.Where(filter);
-        }
-
-        public virtual bool IsUserEntity(int entityId, string userId)
-        {
-            return false;
         }
 
         public void Update(TEntity entity)

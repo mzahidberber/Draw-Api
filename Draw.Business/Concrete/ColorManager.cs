@@ -22,7 +22,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            return await base.BaseDeleteAllAsync(entities, _colorDal);
+            return await base.BaseDeleteAllAsync<Color>(_colorDal,x => entities.Contains(x.ColorId));
         }
 
         public async Task<Response<IEnumerable<ColorDTO>>> GetAllAsync()

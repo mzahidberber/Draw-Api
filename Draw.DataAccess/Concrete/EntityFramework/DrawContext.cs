@@ -1,6 +1,7 @@
 ﻿using Draw.Entities.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
@@ -51,7 +52,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var cnn2 = $"server=localhost;port=3306;database=drawdb1;user=root;password=mysql123.;";
-            optionsBuilder.UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
+            optionsBuilder.LogTo(Console.WriteLine,LogLevel.Information).UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
             //if (!optionsBuilder.IsConfigured)
             //{
             //    var dbHost=Environment.GetEnvironmentVariable("dbHost");

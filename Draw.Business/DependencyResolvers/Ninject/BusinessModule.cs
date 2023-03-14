@@ -13,7 +13,7 @@ namespace Draw.Business.DependencyResolvers.Ninject
             Bind<IColorService>().To<ColorManager>().InSingletonScope();
             Bind<IDrawBoxService>().To<DrawBoxManager>().InSingletonScope();
             Bind<IElementService>().To<ElementManager>().InSingletonScope();
-            Bind<IElementTypeService>().To<IElementTypeManager>().InSingletonScope();
+            Bind<IElementTypeService>().To<ElementTypeManager>().InSingletonScope();
             Bind<ILayerService>().To<LayerManager>().InSingletonScope();
             Bind<IPenService>().To<PenManager>().InSingletonScope();
             Bind<IPenStyleService>().To<PenStyleManager>().InSingletonScope();
