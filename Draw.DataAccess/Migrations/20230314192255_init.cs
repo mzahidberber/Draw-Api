@@ -304,11 +304,19 @@ namespace Draw.DataAccess.Migrations
                     PenName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PenColorId = table.Column<int>(type: "int", nullable: false),
+                    PenUserId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     PenStyleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pens", x => x.PenId);
+                    table.ForeignKey(
+                        name: "FK_Pens_AspNetUsers_PenUserId",
+                        column: x => x.PenUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Pens_Colors_PenId",
                         column: x => x.PenId,
@@ -490,9 +498,9 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "15936a03-f075-429c-9e6c-107710ea500e", "e671a9ba-15d0-4937-bf04-ff5c4b7fc131", "user", "USER" },
-                    { "4bf83e9d-0954-4de5-a2f0-4c72d1960d1b", "8de2157f-635c-493d-8468-be40ef6795e0", "manager", "MANAGER" },
-                    { "6881c656-d38d-42ba-be2c-f51b65fe8fec", "c4aa477b-50b6-40ac-bcfa-06c0b34b70b8", "admin", "ADMIN" }
+                    { "1e231979-ce48-4302-9135-4ed4f58b8e5b", "5ca76dab-f4e5-4609-a1a3-744859fde081", "admin", "ADMIN" },
+                    { "36eb07d4-994c-478f-9a7f-e3e1433b8614", "fdb75b50-a7b6-42d9-8f7b-524e56e5461d", "manager", "MANAGER" },
+                    { "a6bd876a-e101-49b9-bdd6-1756891f40fc", "19399d6e-7b88-44f0-84b4-3af989754cee", "user", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -500,9 +508,9 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7ca", 1, "5f224274-319f-403e-b440-036848f36ffc", null, false, false, null, null, null, null, "513", true, "af2c18e0-17c3-4de8-828c-eeff4f0e2e7a", false, "zahid" },
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7cb", 1, "164c56a8-64d1-43c0-b196-62190d931839", null, false, false, null, null, null, null, "513", true, "63919bf6-6ee9-4016-84b3-c8bf9ee1a497", false, "ali" },
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7cc", 1, "dac9f1cd-0445-46ca-aba6-4f39ec1f65b6", null, false, false, null, null, null, null, "513", true, "af1e497a-953e-4ebf-80e8-afe23437c152", false, "zeynep" }
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7ca", 1, "a6c0f15c-7891-46be-8175-6bd292c4d03a", null, false, false, null, null, null, null, "513", true, "3fd5de85-033f-47b6-b659-d31bb4a78bfb", false, "zahid" },
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7cb", 1, "e6a926c3-b851-4c42-b6e8-01c7b5b813db", null, false, false, null, null, null, null, "513", true, "bea719ff-9afa-4a6c-a066-680808ad607c", false, "ali" },
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7cc", 1, "279af533-9d22-4be5-b2cd-81d496905a7c", null, false, false, null, null, null, null, "513", true, "6e7730a9-8f00-4f8f-acf5-5687a463bcec", false, "zeynep" }
                 });
 
             migrationBuilder.InsertData(
@@ -563,11 +571,11 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pens",
-                columns: new[] { "PenId", "PenColorId", "PenName", "PenStyleId" },
+                columns: new[] { "PenId", "PenColorId", "PenName", "PenStyleId", "PenUserId" },
                 values: new object[,]
                 {
-                    { 1, 1, "pen1", 1 },
-                    { 2, 2, "pen2", 2 }
+                    { 1, 1, "pen1", 1, "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                    { 2, 2, "pen2", 2, "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
                 });
 
             migrationBuilder.InsertData(
@@ -711,6 +719,11 @@ namespace Draw.DataAccess.Migrations
                 name: "IX_Layers_PenId",
                 table: "Layers",
                 column: "PenId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pens_PenUserId",
+                table: "Pens",
+                column: "PenUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Points_ElementId",

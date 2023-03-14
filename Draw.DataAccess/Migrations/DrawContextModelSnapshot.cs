@@ -19,47 +19,89 @@ namespace Draw.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Commands.DrawCommand", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Color", b =>
                 {
-                    b.Property<int>("DrawCommandId")
+                    b.Property<int>("ColorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DrawCommandDrawBoxId")
+                    b.Property<int>("ColorBlue")
                         .HasColumnType("int");
 
-                    b.Property<string>("DrawCommandName")
+                    b.Property<int>("ColorGreen")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ColorName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("DrawCommandId");
+                    b.Property<int>("ColorRed")
+                        .HasColumnType("int");
 
-                    b.HasIndex("DrawCommandDrawBoxId");
+                    b.HasKey("ColorId");
 
-                    b.ToTable("Commands");
+                    b.ToTable("Colors");
 
                     b.HasData(
                         new
                         {
-                            DrawCommandId = 1,
-                            DrawCommandDrawBoxId = 1,
-                            DrawCommandName = "dc1"
+                            ColorId = 1,
+                            ColorBlue = 255,
+                            ColorGreen = 255,
+                            ColorName = "white",
+                            ColorRed = 255
                         },
                         new
                         {
-                            DrawCommandId = 2,
-                            DrawCommandDrawBoxId = 1,
-                            DrawCommandName = "dc2"
+                            ColorId = 2,
+                            ColorBlue = 0,
+                            ColorGreen = 0,
+                            ColorName = "red",
+                            ColorRed = 211
                         },
                         new
                         {
-                            DrawCommandId = 3,
-                            DrawCommandDrawBoxId = 1,
-                            DrawCommandName = "dc3"
+                            ColorId = 3,
+                            ColorBlue = 127,
+                            ColorGreen = 0,
+                            ColorName = "orange",
+                            ColorRed = 255
+                        },
+                        new
+                        {
+                            ColorId = 4,
+                            ColorBlue = 184,
+                            ColorGreen = 255,
+                            ColorName = "blue",
+                            ColorRed = 99
+                        },
+                        new
+                        {
+                            ColorId = 5,
+                            ColorBlue = 0,
+                            ColorGreen = 0,
+                            ColorName = "black",
+                            ColorRed = 0
+                        },
+                        new
+                        {
+                            ColorId = 6,
+                            ColorBlue = 153,
+                            ColorGreen = 153,
+                            ColorName = "gray",
+                            ColorRed = 153
+                        },
+                        new
+                        {
+                            ColorId = 7,
+                            ColorBlue = 128,
+                            ColorGreen = 77,
+                            ColorName = "green",
+                            ColorRed = 74
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawBox", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
                 {
                     b.Property<int>("DrawBoxId")
                         .ValueGeneratedOnAdd()
@@ -101,7 +143,47 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Element", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.DrawCommand", b =>
+                {
+                    b.Property<int>("DrawCommandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrawCommandDrawBoxId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DrawCommandName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("DrawCommandId");
+
+                    b.HasIndex("DrawCommandDrawBoxId");
+
+                    b.ToTable("Commands");
+
+                    b.HasData(
+                        new
+                        {
+                            DrawCommandId = 1,
+                            DrawCommandDrawBoxId = 1,
+                            DrawCommandName = "dc1"
+                        },
+                        new
+                        {
+                            DrawCommandId = 2,
+                            DrawCommandDrawBoxId = 1,
+                            DrawCommandName = "dc2"
+                        },
+                        new
+                        {
+                            DrawCommandId = 3,
+                            DrawCommandDrawBoxId = 1,
+                            DrawCommandName = "dc3"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
                 {
                     b.Property<int>("ElementId")
                         .ValueGeneratedOnAdd()
@@ -164,7 +246,195 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Point", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.ElementType", b =>
+                {
+                    b.Property<int>("ElementTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ElementTypeName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ElementTypeId");
+
+                    b.ToTable("ElementTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            ElementTypeId = 1,
+                            ElementTypeName = "line"
+                        },
+                        new
+                        {
+                            ElementTypeId = 2,
+                            ElementTypeName = "circle"
+                        },
+                        new
+                        {
+                            ElementTypeId = 3,
+                            ElementTypeName = "rectangle"
+                        },
+                        new
+                        {
+                            ElementTypeId = 4,
+                            ElementTypeName = "arc"
+                        },
+                        new
+                        {
+                            ElementTypeId = 5,
+                            ElementTypeName = "ellips"
+                        },
+                        new
+                        {
+                            ElementTypeId = 6,
+                            ElementTypeName = "spline"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Layer", b =>
+                {
+                    b.Property<int>("LayerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrawBoxId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("LayerLock")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("LayerName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<float>("LayerThickness")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("LayerVisibility")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("PenId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LayerId");
+
+                    b.HasIndex("DrawBoxId");
+
+                    b.HasIndex("LayerName")
+                        .IsUnique();
+
+                    b.HasIndex("PenId");
+
+                    b.ToTable("Layers");
+
+                    b.HasData(
+                        new
+                        {
+                            LayerId = 1,
+                            DrawBoxId = 1,
+                            LayerLock = false,
+                            LayerName = "0",
+                            LayerThickness = 1f,
+                            LayerVisibility = false,
+                            PenId = 1
+                        },
+                        new
+                        {
+                            LayerId = 2,
+                            DrawBoxId = 1,
+                            LayerLock = false,
+                            LayerName = "a",
+                            LayerThickness = 1f,
+                            LayerVisibility = false,
+                            PenId = 2
+                        },
+                        new
+                        {
+                            LayerId = 3,
+                            DrawBoxId = 1,
+                            LayerLock = false,
+                            LayerName = "b",
+                            LayerThickness = 1f,
+                            LayerVisibility = false,
+                            PenId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
+                {
+                    b.Property<int>("PenId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PenColorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PenName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("PenStyleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PenUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("PenId");
+
+                    b.HasIndex("PenUserId");
+
+                    b.ToTable("Pens");
+
+                    b.HasData(
+                        new
+                        {
+                            PenId = 1,
+                            PenColorId = 1,
+                            PenName = "pen1",
+                            PenStyleId = 1,
+                            PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
+                        },
+                        new
+                        {
+                            PenId = 2,
+                            PenColorId = 2,
+                            PenName = "pen2",
+                            PenStyleId = 2,
+                            PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.PenStyle", b =>
+                {
+                    b.Property<int>("PenStyleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("PenStyleName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("PenStyleId");
+
+                    b.ToTable("PenStyles");
+
+                    b.HasData(
+                        new
+                        {
+                            PenStyleId = 1,
+                            PenStyleName = "solid"
+                        },
+                        new
+                        {
+                            PenStyleId = 2,
+                            PenStyleName = "dot"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Point", b =>
                 {
                     b.Property<int>("PointId")
                         .ValueGeneratedOnAdd()
@@ -249,7 +519,39 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Radius", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.PointType", b =>
+                {
+                    b.Property<int>("PointTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("PointTypeName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("PointTypeId");
+
+                    b.ToTable("PointTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            PointTypeId = 1,
+                            PointTypeName = "end"
+                        },
+                        new
+                        {
+                            PointTypeId = 2,
+                            PointTypeName = "center"
+                        },
+                        new
+                        {
+                            PointTypeId = 3,
+                            PointTypeName = "middle"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Radius", b =>
                 {
                     b.Property<int>("RadiusId")
                         .ValueGeneratedOnAdd()
@@ -282,7 +584,7 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.SSAngle", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.SSAngle", b =>
                 {
                     b.Property<int>("SSAngleId")
                         .ValueGeneratedOnAdd()
@@ -321,301 +623,7 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Color", b =>
-                {
-                    b.Property<int>("ColorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorBlue")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorGreen")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ColorName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("ColorRed")
-                        .HasColumnType("int");
-
-                    b.HasKey("ColorId");
-
-                    b.ToTable("Colors");
-
-                    b.HasData(
-                        new
-                        {
-                            ColorId = 1,
-                            ColorBlue = 255,
-                            ColorGreen = 255,
-                            ColorName = "white",
-                            ColorRed = 255
-                        },
-                        new
-                        {
-                            ColorId = 2,
-                            ColorBlue = 0,
-                            ColorGreen = 0,
-                            ColorName = "red",
-                            ColorRed = 211
-                        },
-                        new
-                        {
-                            ColorId = 3,
-                            ColorBlue = 127,
-                            ColorGreen = 0,
-                            ColorName = "orange",
-                            ColorRed = 255
-                        },
-                        new
-                        {
-                            ColorId = 4,
-                            ColorBlue = 184,
-                            ColorGreen = 255,
-                            ColorName = "blue",
-                            ColorRed = 99
-                        },
-                        new
-                        {
-                            ColorId = 5,
-                            ColorBlue = 0,
-                            ColorGreen = 0,
-                            ColorName = "black",
-                            ColorRed = 0
-                        },
-                        new
-                        {
-                            ColorId = 6,
-                            ColorBlue = 153,
-                            ColorGreen = 153,
-                            ColorName = "gray",
-                            ColorRed = 153
-                        },
-                        new
-                        {
-                            ColorId = 7,
-                            ColorBlue = 128,
-                            ColorGreen = 77,
-                            ColorName = "green",
-                            ColorRed = 74
-                        });
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.ElementType", b =>
-                {
-                    b.Property<int>("ElementTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ElementTypeName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("ElementTypeId");
-
-                    b.ToTable("ElementTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            ElementTypeId = 1,
-                            ElementTypeName = "line"
-                        },
-                        new
-                        {
-                            ElementTypeId = 2,
-                            ElementTypeName = "circle"
-                        },
-                        new
-                        {
-                            ElementTypeId = 3,
-                            ElementTypeName = "rectangle"
-                        },
-                        new
-                        {
-                            ElementTypeId = 4,
-                            ElementTypeName = "arc"
-                        },
-                        new
-                        {
-                            ElementTypeId = 5,
-                            ElementTypeName = "ellips"
-                        },
-                        new
-                        {
-                            ElementTypeId = 6,
-                            ElementTypeName = "spline"
-                        });
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Layer", b =>
-                {
-                    b.Property<int>("LayerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("DrawBoxId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("LayerLock")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LayerName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<float>("LayerThickness")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("LayerVisibility")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("PenId")
-                        .HasColumnType("int");
-
-                    b.HasKey("LayerId");
-
-                    b.HasIndex("DrawBoxId");
-
-                    b.HasIndex("LayerName")
-                        .IsUnique();
-
-                    b.HasIndex("PenId");
-
-                    b.ToTable("Layers");
-
-                    b.HasData(
-                        new
-                        {
-                            LayerId = 1,
-                            DrawBoxId = 1,
-                            LayerLock = false,
-                            LayerName = "0",
-                            LayerThickness = 1f,
-                            LayerVisibility = false,
-                            PenId = 1
-                        },
-                        new
-                        {
-                            LayerId = 2,
-                            DrawBoxId = 1,
-                            LayerLock = false,
-                            LayerName = "a",
-                            LayerThickness = 1f,
-                            LayerVisibility = false,
-                            PenId = 2
-                        },
-                        new
-                        {
-                            LayerId = 3,
-                            DrawBoxId = 1,
-                            LayerLock = false,
-                            LayerName = "b",
-                            LayerThickness = 1f,
-                            LayerVisibility = false,
-                            PenId = 1
-                        });
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Pen", b =>
-                {
-                    b.Property<int>("PenId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PenColorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PenName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("PenStyleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PenId");
-
-                    b.ToTable("Pens");
-
-                    b.HasData(
-                        new
-                        {
-                            PenId = 1,
-                            PenColorId = 1,
-                            PenName = "pen1",
-                            PenStyleId = 1
-                        },
-                        new
-                        {
-                            PenId = 2,
-                            PenColorId = 2,
-                            PenName = "pen2",
-                            PenStyleId = 2
-                        });
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.PenStyle", b =>
-                {
-                    b.Property<int>("PenStyleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("PenStyleName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("PenStyleId");
-
-                    b.ToTable("PenStyles");
-
-                    b.HasData(
-                        new
-                        {
-                            PenStyleId = 1,
-                            PenStyleName = "solid"
-                        },
-                        new
-                        {
-                            PenStyleId = 2,
-                            PenStyleName = "dot"
-                        });
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.PointType", b =>
-                {
-                    b.Property<int>("PointTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("PointTypeName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("PointTypeId");
-
-                    b.ToTable("PointTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            PointTypeId = 1,
-                            PointTypeName = "end"
-                        },
-                        new
-                        {
-                            PointTypeId = 2,
-                            PointTypeName = "center"
-                        },
-                        new
-                        {
-                            PointTypeId = 3,
-                            PointTypeName = "middle"
-                        });
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Users.User", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -683,12 +691,12 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "5f224274-319f-403e-b440-036848f36ffc",
+                            ConcurrencyStamp = "a6c0f15c-7891-46be-8175-6bd292c4d03a",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "513",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "af2c18e0-17c3-4de8-828c-eeff4f0e2e7a",
+                            SecurityStamp = "3fd5de85-033f-47b6-b659-d31bb4a78bfb",
                             TwoFactorEnabled = false,
                             UserName = "zahid"
                         },
@@ -696,12 +704,12 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "164c56a8-64d1-43c0-b196-62190d931839",
+                            ConcurrencyStamp = "e6a926c3-b851-4c42-b6e8-01c7b5b813db",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "513",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "63919bf6-6ee9-4016-84b3-c8bf9ee1a497",
+                            SecurityStamp = "bea719ff-9afa-4a6c-a066-680808ad607c",
                             TwoFactorEnabled = false,
                             UserName = "ali"
                         },
@@ -709,18 +717,18 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "dac9f1cd-0445-46ca-aba6-4f39ec1f65b6",
+                            ConcurrencyStamp = "279af533-9d22-4be5-b2cd-81d496905a7c",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "513",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "af1e497a-953e-4ebf-80e8-afe23437c152",
+                            SecurityStamp = "6e7730a9-8f00-4f8f-acf5-5687a463bcec",
                             TwoFactorEnabled = false,
                             UserName = "zeynep"
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Users.UserRefreshToken", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.UserRefreshToken", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -738,7 +746,7 @@ namespace Draw.DataAccess.Migrations
                     b.ToTable("UserRefreshTokens");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Users.UserRole", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.UserRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -766,22 +774,22 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6881c656-d38d-42ba-be2c-f51b65fe8fec",
-                            ConcurrencyStamp = "c4aa477b-50b6-40ac-bcfa-06c0b34b70b8",
+                            Id = "1e231979-ce48-4302-9135-4ed4f58b8e5b",
+                            ConcurrencyStamp = "5ca76dab-f4e5-4609-a1a3-744859fde081",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "4bf83e9d-0954-4de5-a2f0-4c72d1960d1b",
-                            ConcurrencyStamp = "8de2157f-635c-493d-8468-be40ef6795e0",
+                            Id = "36eb07d4-994c-478f-9a7f-e3e1433b8614",
+                            ConcurrencyStamp = "fdb75b50-a7b6-42d9-8f7b-524e56e5461d",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "15936a03-f075-429c-9e6c-107710ea500e",
-                            ConcurrencyStamp = "e671a9ba-15d0-4937-bf04-ff5c4b7fc131",
+                            Id = "a6bd876a-e101-49b9-bdd6-1756891f40fc",
+                            ConcurrencyStamp = "19399d6e-7b88-44f0-84b4-3af989754cee",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -889,20 +897,9 @@ namespace Draw.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Commands.DrawCommand", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Draw.DrawBox", "DrawCommandDrawBox")
-                        .WithMany("DrawCommands")
-                        .HasForeignKey("DrawCommandDrawBoxId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DrawCommandDrawBox");
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawBox", b =>
-                {
-                    b.HasOne("Draw.Entities.Concrete.Users.User", "User")
+                    b.HasOne("Draw.Entities.Concrete.User", "User")
                         .WithMany("DrawBoxs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -911,21 +908,32 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Element", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.DrawCommand", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Helpers.ElementType", "ElementType")
+                    b.HasOne("Draw.Entities.Concrete.DrawBox", "DrawCommandDrawBox")
+                        .WithMany("DrawCommands")
+                        .HasForeignKey("DrawCommandDrawBoxId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DrawCommandDrawBox");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
+                {
+                    b.HasOne("Draw.Entities.Concrete.ElementType", "ElementType")
                         .WithMany("Elements")
                         .HasForeignKey("ElementTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Helpers.Layer", "Layer")
+                    b.HasOne("Draw.Entities.Concrete.Layer", "Layer")
                         .WithMany("Elements")
                         .HasForeignKey("LayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Helpers.Pen", "Pen")
+                    b.HasOne("Draw.Entities.Concrete.Pen", "Pen")
                         .WithMany("Elements")
                         .HasForeignKey("PenId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -938,56 +946,15 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("Pen");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Point", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Layer", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Elements.Element", "Element")
-                        .WithMany("Points")
-                        .HasForeignKey("ElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Draw.Entities.Concrete.Helpers.PointType", "PointType")
-                        .WithMany("PointTypePoints")
-                        .HasForeignKey("PointTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Element");
-
-                    b.Navigation("PointType");
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Radius", b =>
-                {
-                    b.HasOne("Draw.Entities.Concrete.Elements.Element", "RadiusElement")
-                        .WithMany("Radiuses")
-                        .HasForeignKey("RadiusElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RadiusElement");
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.SSAngle", b =>
-                {
-                    b.HasOne("Draw.Entities.Concrete.Elements.Element", "SSAngleElement")
-                        .WithMany("SSAngles")
-                        .HasForeignKey("SSAngleElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SSAngleElement");
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Layer", b =>
-                {
-                    b.HasOne("Draw.Entities.Concrete.Draw.DrawBox", "DrawBox")
+                    b.HasOne("Draw.Entities.Concrete.DrawBox", "DrawBox")
                         .WithMany("Layers")
                         .HasForeignKey("DrawBoxId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Helpers.Pen", "Pen")
+                    b.HasOne("Draw.Entities.Concrete.Pen", "Pen")
                         .WithMany("Layers")
                         .HasForeignKey("PenId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -998,28 +965,77 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("Pen");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Pen", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Helpers.Color", "PenColor")
+                    b.HasOne("Draw.Entities.Concrete.Color", "PenColor")
                         .WithMany("Pens")
                         .HasForeignKey("PenId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Helpers.PenStyle", "PenStyle")
+                    b.HasOne("Draw.Entities.Concrete.PenStyle", "PenStyle")
                         .WithMany("Pens")
                         .HasForeignKey("PenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Draw.Entities.Concrete.User", "PenUser")
+                        .WithMany("Pens")
+                        .HasForeignKey("PenUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PenColor");
 
                     b.Navigation("PenStyle");
+
+                    b.Navigation("PenUser");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Point", b =>
+                {
+                    b.HasOne("Draw.Entities.Concrete.Element", "Element")
+                        .WithMany("Points")
+                        .HasForeignKey("ElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Draw.Entities.Concrete.PointType", "PointType")
+                        .WithMany("PointTypePoints")
+                        .HasForeignKey("PointTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Element");
+
+                    b.Navigation("PointType");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Radius", b =>
+                {
+                    b.HasOne("Draw.Entities.Concrete.Element", "RadiusElement")
+                        .WithMany("Radiuses")
+                        .HasForeignKey("RadiusElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RadiusElement");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.SSAngle", b =>
+                {
+                    b.HasOne("Draw.Entities.Concrete.Element", "SSAngleElement")
+                        .WithMany("SSAngles")
+                        .HasForeignKey("SSAngleElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SSAngleElement");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Users.UserRole", null)
+                    b.HasOne("Draw.Entities.Concrete.UserRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1028,7 +1044,7 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Users.User", null)
+                    b.HasOne("Draw.Entities.Concrete.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1037,7 +1053,7 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Users.User", null)
+                    b.HasOne("Draw.Entities.Concrete.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1046,13 +1062,13 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Users.UserRole", null)
+                    b.HasOne("Draw.Entities.Concrete.UserRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Users.User", null)
+                    b.HasOne("Draw.Entities.Concrete.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1061,21 +1077,26 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Users.User", null)
+                    b.HasOne("Draw.Entities.Concrete.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawBox", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Color", b =>
+                {
+                    b.Navigation("Pens");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
                 {
                     b.Navigation("DrawCommands");
 
                     b.Navigation("Layers");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Elements.Element", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
                 {
                     b.Navigation("Points");
 
@@ -1084,41 +1105,38 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("SSAngles");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Color", b =>
-                {
-                    b.Navigation("Pens");
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.ElementType", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.ElementType", b =>
                 {
                     b.Navigation("Elements");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Layer", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Layer", b =>
                 {
                     b.Navigation("Elements");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.Pen", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
                 {
                     b.Navigation("Elements");
 
                     b.Navigation("Layers");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.PenStyle", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.PenStyle", b =>
                 {
                     b.Navigation("Pens");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Helpers.PointType", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.PointType", b =>
                 {
                     b.Navigation("PointTypePoints");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Users.User", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.User", b =>
                 {
                     b.Navigation("DrawBoxs");
+
+                    b.Navigation("Pens");
                 });
 #pragma warning restore 612, 618
         }
