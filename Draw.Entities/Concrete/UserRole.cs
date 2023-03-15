@@ -4,5 +4,7 @@ namespace Draw.Entities.Concrete
 {
     public class UserRole : IdentityRole
     {
+        
+
     }
 }

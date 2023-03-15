@@ -2,6 +2,7 @@
 
 namespace Draw.Entities.Concrete
 {
+
     public class Element : IEntity
     {
         public Element()

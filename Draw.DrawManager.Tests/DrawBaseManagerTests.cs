@@ -1,8 +1,8 @@
-using Draw.DrawManager.Concrete.BaseCommand;
-using Draw.DrawManager.Concrete.HelperCommands;
+using Draw.DrawLayer.Concrete;
+using Draw.DrawLayer.Concrete.BaseCommand;
+using Draw.DrawLayer.Concrete.DrawElements;
 using Draw.DrawManager.Concrete.Helpers;
 using Draw.Entities.Concrete;
-using Draw.Manager.Concrete.DrawElements;
 
 namespace Draw.DrawManager.Tests
 {
@@ -19,7 +19,7 @@ namespace Draw.DrawManager.Tests
             var mouse = new MouseInformation(10, 10, 1, 0);
             var mouse1 = new MouseInformation(20.5, 10, 1, 0);
             var mouse2 = new MouseInformation(15, 10, 1, 0);
-            Concrete.DrawM drawBoxManager = new Concrete.DrawM("zahid");
+            DrawM drawBoxManager = new DrawM("zahid");
             drawBoxManager.StartCommand(CommandEnums.circleTreePoint,1,2,1);
             var result=drawBoxManager.AddCoordinate(mouse);
             var result2=drawBoxManager.AddCoordinate(mouse1);
@@ -74,7 +74,7 @@ namespace Draw.DrawManager.Tests
         {
             var mouse = new MouseInformation(0, 0, 1, 0);
             var mouse1 = new MouseInformation(10, 10, 1, 0);
-            Concrete.DrawM drawBoxManager = new Concrete.DrawM("zahid");
+            DrawM drawBoxManager = new DrawM("zahid");
             drawBoxManager.StartCommand(CommandEnums.move, 1, 2, 1);
             drawBoxManager.AddEditElementsId(new List<int> { 1,2,3 }) ;
             var result = drawBoxManager.AddCoordinate(mouse);

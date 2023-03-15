@@ -11,7 +11,7 @@
           "AutoMapper": "12.0.1",
           "Draw.Core": "1.0.0",
           "Draw.DataAccess": "1.0.0",
-          "Draw.DrawManager": "1.0.0",
+          "Draw.DrawLayer": "1.0.0",
           "Draw.Entities": "1.0.0",
           "Ninject": "3.3.6",
           "PostSharp": "2023.0.3"
@@ -711,7 +711,7 @@
           "Draw.DataAccess.dll": {}
         }
       },
-      "Draw.DrawManager/1.0.0": {
+      "Draw.DrawLayer/1.0.0": {
         "dependencies": {
           "Draw.Core": "1.0.0",
           "Draw.DataAccess": "1.0.0",
@@ -719,7 +719,7 @@
           "Ninject": "3.3.6"
         },
         "runtime": {
-          "Draw.DrawManager.dll": {}
+          "Draw.DrawLayer.dll": {}
         }
       },
       "Draw.Entities/1.0.0": {
@@ -1231,7 +1231,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Draw.DrawManager/1.0.0": {
+    "Draw.DrawLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

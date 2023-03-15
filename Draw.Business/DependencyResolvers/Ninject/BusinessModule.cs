@@ -8,8 +8,7 @@ namespace Draw.Business.DependencyResolvers.Ninject
     {
         public override void Load()
         {
-            //Bind<IUserService>().To<UserManager>().InSingletonScope();
-            //Bind<IDrawService>().To<DrawBusinessManager>().InSingletonScope();
+            Bind<IDrawService>().To<DrawManager>().InSingletonScope();
             Bind<IColorService>().To<ColorManager>().InSingletonScope();
             Bind<IDrawBoxService>().To<DrawBoxManager>().InSingletonScope();
             Bind<IElementService>().To<ElementManager>().InSingletonScope();

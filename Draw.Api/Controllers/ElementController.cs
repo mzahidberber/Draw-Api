@@ -15,10 +15,9 @@ namespace Draw.Api.Controllers
 
         public ElementController()
         {
-            _elementManager= BusinessInstanceFactory.GetInstance<IElementService>();
+            _elementManager = BusinessInstanceFactory.GetInstance<IElementService>();
         }
 
-        [HttpGet("elements")]
         public async Task<IActionResult> GetElements()
         {
             return ActionResultInstance(await _elementManager.GetAllAsync(GetUserId(User)));
@@ -27,13 +26,13 @@ namespace Draw.Api.Controllers
         [HttpGet("elementsbydraw")]
         public async Task<IActionResult> GetElementsByDraw(int drawId)
         {
-            return ActionResultInstance(await _elementManager.GetAllByDrawAsync(GetUserId(User),drawId));
+            return ActionResultInstance(await _elementManager.GetAllByDrawAsync(GetUserId(User), drawId));
         }
 
         [HttpGet("elementsbylayer")]
         public async Task<IActionResult> GetElementsByLayer(int layerId)
         {
-            return ActionResultInstance(await _elementManager.GetAllByLayerAsync(GetUserId(User),layerId));
+            return ActionResultInstance(await _elementManager.GetAllByLayerAsync(GetUserId(User), layerId));
         }
 
         [HttpPost("elements/add")]

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Draw.DataAccess\Draw.DataAccess.csproj" />
-    <ProjectReference Include="..\Draw.DrawManager\Draw.DrawManager.csproj" />
+    <ProjectReference Include="..\Draw.DrawLayer\Draw.DrawLayer.csproj" />
     <ProjectReference Include="..\Draw.Entities\Draw.Entities.csproj" />
   </ItemGroup>
 

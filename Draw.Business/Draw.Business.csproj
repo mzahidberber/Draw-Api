@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Draw.Core\Draw.Core.csproj" />
     <ProjectReference Include="..\Draw.DataAccess\Draw.DataAccess.csproj" />
-    <ProjectReference Include="..\Draw.DrawManager\Draw.DrawManager.csproj" />
+    <ProjectReference Include="..\Draw.DrawLayer\Draw.DrawLayer.csproj" />
     <ProjectReference Include="..\Draw.Entities\Draw.Entities.csproj" />
   </ItemGroup>
 

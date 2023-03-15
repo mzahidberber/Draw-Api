@@ -447,10 +447,8 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.Core.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.DataAccess.dll
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.DrawManager.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.Entities.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.DataAccess.pdb
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.DrawManager.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.Entities.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.Core.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\obj\Debug\net6.0\Draw.DrawManager.Tests.csproj.AssemblyReference.cache
@@ -474,3 +472,5 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.DrawLayer.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DrawManager.Tests\bin\Debug\net6.0\Draw.DrawLayer.pdb

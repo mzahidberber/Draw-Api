@@ -1245,7 +1245,7 @@
           "bin/placeholder/Draw.DataAccess.dll": {}
         }
       },
-      "Draw.DrawManager/1.0.0": {
+      "Draw.DrawLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -1255,10 +1255,10 @@
           "Ninject": "3.3.6"
         },
         "compile": {
-          "bin/placeholder/Draw.DrawManager.dll": {}
+          "bin/placeholder/Draw.DrawLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Draw.DrawManager.dll": {}
+          "bin/placeholder/Draw.DrawLayer.dll": {}
         }
       },
       "Draw.Entities/1.0.0": {
@@ -3299,10 +3299,10 @@
       "path": "../Draw.DataAccess/Draw.DataAccess.csproj",
       "msbuildProject": "../Draw.DataAccess/Draw.DataAccess.csproj"
     },
-    "Draw.DrawManager/1.0.0": {
+    "Draw.DrawLayer/1.0.0": {
       "type": "project",
-      "path": "../Draw.DrawManager/Draw.DrawManager.csproj",
-      "msbuildProject": "../Draw.DrawManager/Draw.DrawManager.csproj"
+      "path": "../Draw.DrawLayer/Draw.DrawLayer.csproj",
+      "msbuildProject": "../Draw.DrawLayer/Draw.DrawLayer.csproj"
     },
     "Draw.Entities/1.0.0": {
       "type": "project",
@@ -3315,7 +3315,7 @@
       "AutoMapper >= 12.0.1",
       "Draw.Core >= 1.0.0",
       "Draw.DataAccess >= 1.0.0",
-      "Draw.DrawManager >= 1.0.0",
+      "Draw.DrawLayer >= 1.0.0",
       "Draw.Entities >= 1.0.0",
       "Ninject >= 3.3.6",
       "PostSharp >= 2023.0.3"
@@ -3354,8 +3354,8 @@
             "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess\\Draw.DataAccess.csproj": {
               "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess\\Draw.DataAccess.csproj"
             },
-            "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj": {
-              "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawManager\\Draw.DrawManager.csproj"
+            "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawLayer\\Draw.DrawLayer.csproj": {
+              "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DrawLayer\\Draw.DrawLayer.csproj"
             },
             "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj": {
               "projectPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Entities\\Draw.Entities.csproj"

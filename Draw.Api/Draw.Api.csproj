@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Draw.Business\Draw.Business.csproj" />
     <ProjectReference Include="..\Draw.DataAccess\Draw.DataAccess.csproj" />
+    <ProjectReference Include="..\Draw.DrawLayer\Draw.DrawLayer.csproj" />
     <ProjectReference Include="..\Draw.Entities\Draw.Entities.csproj" />
   </ItemGroup>
 
