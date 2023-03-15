@@ -16,7 +16,7 @@ namespace Draw.DrawLayer.Concrete.DrawElements
             this.Y = y;
             this.Button = button;
             this.Delta = delta;
-            this.Location = new PointD(x, y);
+            //this.Location = new PointD(x, y);
         }
 
     }

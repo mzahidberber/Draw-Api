@@ -6,11 +6,11 @@ namespace Draw.Core.DTOs
     public class Response<T>
         where T: class 
     {
-        public T? Data { get; set; }
+        public T Data { get; set; }
         public int StatusCode { get; set; }
         [JsonIgnore]
         public bool IsSuccesful { get; private set; }
-        public ErrorDto? Error { get; set; }
+        public ErrorDto Error { get; set; }
 
         public static Response<T> Success(T data, int statusCode)
         {

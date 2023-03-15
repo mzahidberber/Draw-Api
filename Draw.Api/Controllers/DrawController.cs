@@ -1,6 +1,7 @@
-﻿using Draw.Business.Concrete;
-using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.DrawElements;
+﻿using Draw.Api.Models;
+using Draw.Business.Abstract;
+using Draw.Business.DependencyResolvers.Ninject;
+using Draw.DrawLayer.Concrete.Elements;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,23 +12,29 @@ namespace Draw.Api.Controllers
     [Route("[controller]")]
     public class DrawController : CustomBaseController
     {
+        private readonly IDrawService _drawService;
+
+        public DrawController()
+        {
+            _drawService = BusinessInstanceFactory.GetInstance<IDrawService>();
+        }
 
         [HttpPost("startCommand")]
-        public async Task<IActionResult> startCommand([FromBody] CommandEnums command, string userName, int userDrawBoxId, int userLayerId)
+        public async Task<IActionResult> StartCommand(StartCommandRequest request)
         {
-            //var result = _drawBusinessManager.StartCommand(command, userName, userDrawBoxId, userLayerId);
-            return ActionResultInstance();
+            return ActionResultInstance(await _drawService.StartCommand(GetUserId(User),request.command,request.DrawId,request.LayerId,request.PenId));
         }
 
-        [HttpPost("mousePosition")]
-        public object mousePosition([FromBody] MouseInformation mouseInformation, string userName)
+        [HttpPost("addCoordinate")]
+        public async Task<IActionResult> AddPoint(PointD point)
         {
-            //var result = _drawBusinessManager.AddCoordinates(mouseInformation, userName);
-            Console.WriteLine(result);
-            return result;
+            return ActionResultInstance(await _drawService.AddCoordinate(GetUserId(User),point));
         }
-
-
+        [HttpPost("stopCommand")]
+        public async Task<IActionResult> StopCommad()
+        {
+            return ActionResultInstance(await _drawService.StopCommand(GetUserId(User)));
+        }
 
     }
 

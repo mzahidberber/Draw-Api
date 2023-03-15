@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.BaseCommand;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
 using Draw.Entities.Concrete;
 
@@ -15,15 +14,15 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
-        protected override object ControlCommand()
+        protected override async Task<Element> ControlCommand()
         {
             
             ///////Düzenle
             Console.WriteLine("Ellips Command");
             CommandMemory.SetElementTypeId(5);
-            return CommandMemory.PointsList.Count == 3 ? AddEllips() : ReturnErrorMessage(3);
+            return CommandMemory.PointsList.Count == 3 ? await AddEllips() : await ReturnErrorMessageAsync(3);
         }
-        private object AddEllips()
+        private async Task<Element> AddEllips()
         {
             this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
@@ -32,7 +31,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var points = CreatePoints();
             var radiuses = GetRadius();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points,radiuses);
-            CommandMemory.DrawMemory.AddElement(element);
+            await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
             return element;
         }

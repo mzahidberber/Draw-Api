@@ -1,5 +1,5 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.BaseCommand;
+﻿using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
 using Draw.Entities.Concrete;
 
@@ -11,21 +11,21 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override object ControlCommand()
+        protected override async Task<Element> ControlCommand()
         {
             Console.WriteLine("CircleCenterRadiues Command");
             CommandMemory.SetElementTypeId(2);
-            if (CommandMemory.SelectedRadius == 0) { CommandMemory.ClearPointList(); return "Last Set Radius"; }
-            return CommandMemory.PointsList.Count == 1 && CommandMemory.SelectedRadius != 0 ? AddCircle() : ReturnErrorMessage(1);
+            if (CommandMemory.SelectedRadius == 0) { CommandMemory.ClearPointList(); throw new CustomException("Last Set Radius"); }
+            return CommandMemory.PointsList.Count == 1 && CommandMemory.SelectedRadius != 0 ? await AddCircle() : await ReturnErrorMessageAsync(1);
         }
 
-        private object AddCircle()
+        private async Task<Element> AddCircle()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints(CommandMemory.SelectedRadius);
             var radiuses = new List<Radius> { new Radius { RadiusValue = CommandMemory.SelectedRadius } };
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
-            CommandMemory.DrawMemory.AddElement(element);
+            await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
             return element;
         }

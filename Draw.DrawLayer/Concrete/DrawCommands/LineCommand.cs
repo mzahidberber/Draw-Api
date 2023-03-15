@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.BaseCommand;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
@@ -10,26 +9,26 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override object ControlCommand()
+        protected override async Task<Element> ControlCommand()
         {
             Console.WriteLine("Line Command");
             CommandMemory.SetElementTypeId(1);
-            return CommandMemory.PointsList.Count == 2 ? AddLine() : ReturnErrorMessage(2);
+            return CommandMemory.PointsList.Count == 2 ? await AddLineAsync() :await ReturnErrorMessageAsync(2);
         }
 
         
-        private object AddLine()
+        private async Task<Element> AddLineAsync()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
-            var points = CreatePoints();
+            var points = CreatePointsAsync();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
-            CommandMemory.DrawMemory.AddElement(element);
+            await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
             return element;
         }
 
 
-        private List<Point> CreatePoints()
+        private List<Point> CreatePointsAsync()
         {
             var p1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             var p2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);

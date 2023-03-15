@@ -18,6 +18,7 @@ namespace Draw.Api.Controllers
             _elementManager = BusinessInstanceFactory.GetInstance<IElementService>();
         }
 
+        [HttpGet("elements")]
         public async Task<IActionResult> GetElements()
         {
             return ActionResultInstance(await _elementManager.GetAllAsync(GetUserId(User)));

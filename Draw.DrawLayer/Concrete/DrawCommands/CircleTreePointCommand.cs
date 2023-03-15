@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.BaseCommand;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
 using Draw.Entities.Concrete;
 
@@ -15,14 +14,14 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
-        protected override object ControlCommand()
+        protected override async Task<Element> ControlCommand()
         {
             ///////Düzenle
             CommandMemory.SetElementTypeId(2);
             Console.WriteLine("circleTreePoint Command");
-            return CommandMemory.PointsList.Count == 3 ? AddCircle() : ReturnErrorMessage(3);
+            return CommandMemory.PointsList.Count == 3 ? await AddCircle() : await ReturnErrorMessageAsync(3);
         }
-        private object AddCircle()
+        private async Task<Element> AddCircle()
         {
             this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
@@ -33,7 +32,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var radius = GetRadius();
             var radiuses = new List<Radius> { new Radius { RadiusValue = radius } };
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
-            CommandMemory.DrawMemory.AddElement(element);
+             await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
             return element;
         }

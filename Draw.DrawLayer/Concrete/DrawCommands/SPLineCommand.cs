@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.BaseCommand;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
@@ -10,19 +9,19 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override object ControlCommand()
+        protected override async Task<Element> ControlCommand()
         {
             Console.WriteLine("SPLine Command");
             CommandMemory.SetElementTypeId(6);
-            return CommandMemory.PointsList.Count <= 1 ? AddSPLine() : ReturnErrorMessage(2);
+            return CommandMemory.PointsList.Count <= 1 ? await AddSPLine() : await ReturnErrorMessageAsync(2);
         }
 
-        private object AddSPLine()
+        private async Task<Element> AddSPLine()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
-            CommandMemory.DrawMemory.AddElement(element);
+            await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
             return element;
         }

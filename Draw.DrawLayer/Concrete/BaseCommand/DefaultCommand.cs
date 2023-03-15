@@ -1,5 +1,6 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.DrawElements;
+﻿using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.DrawLayer.Abstract;
+using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.BaseCommand
 {
@@ -9,16 +10,10 @@ namespace Draw.DrawLayer.Concrete.BaseCommand
         {
         }
 
-        public override object AddPoint(MouseInformation mouseInformations)
+        protected override Task<Element> ControlCommand()
         {
-            Console.WriteLine("Default Command");
             FinishCommand();
-            return "Last Start Command";
-        }
-
-        protected override object ControlCommand()
-        {
-            throw new NotImplementedException();
+            throw new CustomException("Last Start Command");
         }
     }
 }

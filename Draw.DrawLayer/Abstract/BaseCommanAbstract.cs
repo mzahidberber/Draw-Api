@@ -1,8 +1,9 @@
-﻿using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.DrawElements;
+﻿using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.DrawLayer.Concrete;
+using Draw.DrawLayer.Concrete.Elements;
 using Draw.Entities.Concrete;
 
-namespace Draw.DrawLayer.Abstract.Commands
+namespace Draw.DrawLayer.Abstract
 {
 
     public abstract class BaseCommanAbstract : IBaseCommand
@@ -12,17 +13,18 @@ namespace Draw.DrawLayer.Abstract.Commands
         {
             CommandMemory = commandMemory;
         }
-
-        public void SetCommandMemory(CommandMemory commandMemory) => CommandMemory = commandMemory;
-        public virtual object AddPoint(MouseInformation mouseInformation)
-        {
-            CommandMemory.PointsList.Add(mouseInformation.Location);
-            return ControlCommand();
+        protected Task<Element> ReturnErrorMessageAsync(int necesaryPoint) 
+        { 
+            throw new CustomException($"Not Enough Points! Should Add Point.{necesaryPoint}/{CommandMemory.PointsList.Count}"); 
         }
 
-        protected string ReturnErrorMessage(int necesaryPoint) { return $"Not Enough Points! Should Add Point.{necesaryPoint}/{CommandMemory.PointsList.Count}"; }
-
-        protected abstract object ControlCommand();
+        protected abstract Task<Element> ControlCommand();
+        public async Task<Element> AddPointAsync(PointD point)
+        {
+            CommandMemory.PointsList.Add(point);
+            return await ControlCommand();
+        }
+        
         protected Element CreateElementManyPoint(
             int elementTypeId,
             List<Point> points,
@@ -43,17 +45,15 @@ namespace Draw.DrawLayer.Abstract.Commands
         }
         protected Point CreatePoint(double pX, double pY, int pointTypeId)
         {
-            return new Point { PointX = pX, PointY = pY, PointTypeId = pointTypeId };
+           return new Point { PointX = pX, PointY = pY, PointTypeId = pointTypeId };
         }
-
-
-
         public void FinishCommand()
         {
             CommandMemory.ClearPointList();
             CommandMemory.SetElementTypeId(0);
             CommandMemory.ClearEditList();
             CommandMemory.SetIsWorkingCommand(false);
+
         }
 
 

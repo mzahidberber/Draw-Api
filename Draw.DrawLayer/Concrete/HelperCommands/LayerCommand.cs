@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.Entities.Concrete;
+﻿using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.HelperCommands
 {

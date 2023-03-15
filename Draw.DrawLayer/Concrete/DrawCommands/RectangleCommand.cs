@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Abstract.Commands;
-using Draw.DrawLayer.Concrete.BaseCommand;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
 using Draw.Entities.Concrete;
 
@@ -11,19 +10,19 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override object ControlCommand()
+        protected override async Task<Element> ControlCommand()
         {
             Console.WriteLine("Rectangle Command");
             CommandMemory.SetElementTypeId(3);
-            return CommandMemory.PointsList.Count == 2 ? AddRect() : ReturnErrorMessage(2);
+            return CommandMemory.PointsList.Count == 2 ? await AddRect() : await ReturnErrorMessageAsync(2);
         }
 
-        private object AddRect()
+        private async Task<Element> AddRect()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
-            CommandMemory.DrawMemory.AddElement(element);
+            await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
             return element;
         }

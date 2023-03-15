@@ -226,7 +226,6 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\runtimes\wi
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Business.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Core.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DataAccess.dll
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DrawManager.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Entities.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\System.Windows.Forms.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Accessibility.dll
@@ -236,7 +235,6 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Busine
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Entities.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Core.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DataAccess.pdb
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DrawManager.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.csproj.AssemblyReference.cache
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.AssemblyInfoInputs.cache
@@ -279,3 +277,5 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Microsoft.E
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DrawLayer.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DrawLayer.pdb
