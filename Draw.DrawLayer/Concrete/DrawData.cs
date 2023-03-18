@@ -14,6 +14,7 @@ namespace Draw.DrawLayer.Concrete
         }
         public async Task AddElementAsync(Element element)
         {
+            _efElementDal = DataInstanceFactory.GetInstance<IElementDal>();
             await _efElementDal.AddAsync(element);
             await _efElementDal.CommitAsync();
         }

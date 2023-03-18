@@ -1,6 +1,4 @@
-﻿using Draw.Core.CrosCuttingConcers.Handling;
-using Draw.DrawLayer.Abstract;
-using Draw.Entities.Concrete;
+﻿using Draw.DrawLayer.Abstract;
 
 namespace Draw.DrawLayer.Concrete.BaseCommand
 {
@@ -10,10 +8,10 @@ namespace Draw.DrawLayer.Concrete.BaseCommand
         {
         }
 
-        protected override Task<Element> ControlCommand()
+        protected override Task<ElementInformation> ControlCommand()
         {
             FinishCommand();
-            throw new CustomException("Last Start Command");
+            return Task.FromResult(new ElementInformation { isTrue=false,message="Last Start Command!"});
         }
     }
 }

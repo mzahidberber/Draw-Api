@@ -54,7 +54,8 @@ namespace Draw.Business.Concrete
             {
                 var idList = entities.Select(x => x.PenId).ToList();
                 var elementsCount = _penDal.GetWhereAsync(x => idList.Contains(x.PenId) && x.PenUserId == userId).Count();
-                if (elementsCount != entities.Count) throw new CustomException("Entity Not Found");
+                if (elementsCount != entities.Count) return false;
+                else return true;
             });
         }
     }

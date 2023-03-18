@@ -11,6 +11,9 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        
+
+
         builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
         var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
         builder.Services.AddAuthentication(options =>
@@ -33,6 +36,8 @@ internal class Program
                 ClockSkew = TimeSpan.Zero
             };
         });
+
+        
 
         // Add services to the container.
 

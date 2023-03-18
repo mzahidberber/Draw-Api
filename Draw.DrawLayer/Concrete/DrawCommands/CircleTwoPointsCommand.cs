@@ -13,14 +13,14 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
-        protected override async Task<Element> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommand()
         {
             Console.WriteLine("CircleTwoPoint Command");
             CommandMemory.SetElementTypeId(2);
             return CommandMemory.PointsList.Count == 2 ?await  AddCircle() : await ReturnErrorMessageAsync(2);
         }
 
-        private async Task<Element> AddCircle()
+        private async Task<ElementInformation> AddCircle()
         {
             this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
@@ -31,7 +31,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
              await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
-            return element;
+            return new ElementInformation { element = element, isTrue = true, message = "success" };
         }
 
         private double GetRadius()

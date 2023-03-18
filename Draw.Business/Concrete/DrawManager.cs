@@ -4,7 +4,7 @@ using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DrawLayer.Concrete;
 using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.Elements;
+using Draw.DrawLayer.Concrete.Model;
 
 namespace Draw.Business.Concrete
 {
@@ -29,8 +29,23 @@ namespace Draw.Business.Concrete
         {
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
             var data= await drawAdminastor.AddCoordinateAdminastorAsync(point);
-            return Response<ElementDTO>.Success(ObjectMapper.Mapper.Map<ElementDTO>(data),200);
+            if(data.isTrue) return Response<ElementDTO>.Success(ObjectMapper.Mapper.Map<ElementDTO>(data.element),200);
+            else return Response<ElementDTO>.Fail(data.message, 200,true);
         }
+        public async Task<Response<NoDataDto>> SetRadius(string userId, double radius)
+        {
+            var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
+            await drawAdminastor.SetRadiusAsync(radius);
+            return Response<NoDataDto>.Success(200);
+        }
+
+        public async Task<Response<NoDataDto>> SetElementsId(string userId, List<int> editElementsId)
+        {
+            var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
+            await drawAdminastor.SetEditElementsIdAsync(editElementsId);
+            return Response<NoDataDto>.Success(200);
+        }
+
     }
 
 

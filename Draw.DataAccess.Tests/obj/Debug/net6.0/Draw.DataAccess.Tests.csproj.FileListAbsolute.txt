@@ -158,3 +158,4 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DataAccess.Tests\bin\Debug\net6.
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DataAccess.Tests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DataAccess.Tests\bin\Debug\net6.0\Draw.Core.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DataAccess.Tests\bin\Debug\net6.0\Draw.Core.pdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.DataAccess.Tests\bin\Debug\net6.0\AutoMapper.dll

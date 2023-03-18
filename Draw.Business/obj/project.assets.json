@@ -1210,10 +1210,12 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "AutoMapper": "12.0.1",
           "Castle.Core": "5.1.1",
           "Draw.Entities": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.0",
           "Newtonsoft.Json": "13.0.2",
+          "Ninject": "3.3.6",
           "PostSharp": "2023.0.3",
           "System.Runtime.Caching": "7.0.0"
         },

@@ -11,7 +11,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<Element> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommand()
         {
             Console.WriteLine("CircleCenterRadiues Command");
             CommandMemory.SetElementTypeId(2);
@@ -19,7 +19,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             return CommandMemory.PointsList.Count == 1 && CommandMemory.SelectedRadius != 0 ? await AddCircle() : await ReturnErrorMessageAsync(1);
         }
 
-        private async Task<Element> AddCircle()
+        private async Task<ElementInformation> AddCircle()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints(CommandMemory.SelectedRadius);
@@ -27,7 +27,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
             await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
-            return element;
+            return new ElementInformation { element = element, isTrue = true, message = "success" };
         }
 
         private List<Point> CreatePoints(double radius)

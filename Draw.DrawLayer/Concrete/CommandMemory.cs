@@ -1,6 +1,6 @@
 ﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.Elements;
+using Draw.DrawLayer.Concrete.Model;
 
 namespace Draw.DrawLayer.Concrete
 {
@@ -16,7 +16,7 @@ namespace Draw.DrawLayer.Concrete
             PointsList = new List<PointD>();
             SetUseTimeNow();
         }
-        internal IBaseCommand SelectedCommand { get; private set; }
+        internal IBaseCommand? SelectedCommand { get; private set; }
         internal DateTime IsUseTime { get; private set; }
         internal DrawData DrawData { get; private set; }
         internal List<PointD> PointsList { get; private set; }

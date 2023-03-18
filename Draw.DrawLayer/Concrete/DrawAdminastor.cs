@@ -1,8 +1,7 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.Elements;
-using Draw.Entities.Concrete;
+using Draw.DrawLayer.Concrete.Model;
 
 namespace Draw.DrawLayer.Concrete
 {
@@ -14,34 +13,48 @@ namespace Draw.DrawLayer.Concrete
             _commandMemory = new CommandMemory(userId);
         }
         public DateTime GetUseTime() => _commandMemory.IsUseTime;
-        public void SetRadius(double radius) => _commandMemory.SetRadius(radius);
-        public void SetEditElementsId(List<int> editElementsId) => _commandMemory.SetEditElementsId(editElementsId);
+        public Task SetRadiusAsync(double radius) 
+        {
+            _commandMemory.SetUseTimeNow();
+            _commandMemory.SetRadius(radius);
+            return Task.CompletedTask;
+        }
+        public Task SetEditElementsIdAsync(List<int> editElementsId) 
+        {
+            _commandMemory.SetUseTimeNow();
+            _commandMemory.SetEditElementsId(editElementsId);
+            return Task.CompletedTask;
+        } 
+        
         public Task StartCommandAsync(CommandEnums commandEnum, int DrawBoxId, int LayerId, int PenId)
         {
             if (!_commandMemory.IsWorkingCommand)
             {
+                _commandMemory.SetUseTimeNow();
                 _commandMemory.SetData(LayerId,DrawBoxId, PenId);
                 _commandMemory.SetSelectedCommand(GetCommandEnums(commandEnum));
                 _commandMemory.SetIsWorkingCommand(true);
                 return Task.CompletedTask;
             }
-            throw new CustomException("Last Command Stop Or Finish!");
+            return Task.FromResult(new ElementInformation { isTrue = false, message = "Last Command Stop Or Finish!" });
         }
 
-        public async Task<Element> AddCoordinateAdminastorAsync(PointD point)
+        public async Task<ElementInformation> AddCoordinateAdminastorAsync(PointD point)
         {
             if (_commandMemory.IsWorkingCommand)
             {
+                _commandMemory.SetUseTimeNow();
                 var command = _commandMemory.GetSelectedCommand();
                 var element = await command.AddPointAsync(point);
                 StopCommandControl();
                 return element;
             }
-            throw new CustomException("Last Start Command!");
+            return new ElementInformation { isTrue = false, message = "Last Start Command" };
 
         }
         public Task StopCommandAsync()
         {
+            _commandMemory.SetUseTimeNow();
             _commandMemory.SetDefaultCommand();
             _commandMemory.GetSelectedCommand().FinishCommand();
             _commandMemory.SetIsWorkingCommand(false);
@@ -52,6 +65,7 @@ namespace Draw.DrawLayer.Concrete
         {
             if (!_commandMemory.IsWorkingCommand)
             {
+                _commandMemory.SetUseTimeNow();
                 Console.WriteLine("Komut Durduruldu Control");
                 _commandMemory.SetDefaultCommand();
                 _commandMemory.SetIsWorkingCommand(false);
@@ -66,6 +80,7 @@ namespace Draw.DrawLayer.Concrete
             return command != null ? command : throw new CustomException("Command Not Found!");
         }
 
+       
     }
 
 }

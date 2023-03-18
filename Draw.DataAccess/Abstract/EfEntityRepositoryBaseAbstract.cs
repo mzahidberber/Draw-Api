@@ -32,7 +32,7 @@ namespace Draw.DataAccess.Abstract
             else
                 transaction.Rollback();
 
-            //Dispose();
+            Dispose();
             return true;
         }
 
@@ -44,13 +44,12 @@ namespace Draw.DataAccess.Abstract
             else
                 await transaction.RollbackAsync();
 
-            //Dispose();
+            Dispose();
             return true;
         }
-
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
 
         public void Delete(TEntity entity)

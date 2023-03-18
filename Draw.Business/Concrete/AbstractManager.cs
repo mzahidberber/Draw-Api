@@ -64,14 +64,15 @@ namespace Draw.Business.Concrete
             return Response<TDTO>.Success(ObjectMapper.Mapper.Map<TDTO>(entity), 200);
         }
 
-        protected async Task<Response<NoDataDto>> BaseUpdateAsync<TDTO, T>(List<TDTO> entitiesDTO, IEntityRepository<T> dal,Action? userControl=null)
+        protected async Task<Response<NoDataDto>> BaseUpdateAsync<TDTO, T>(List<TDTO> entitiesDTO, IEntityRepository<T> dal,Func<bool>? userControl=null)
             where T : class, IEntity, new()
             where TDTO : class, new()
         {
             var entities = entitiesDTO.Select(c => ObjectMapper.Mapper.Map<T>(c));
             if (userControl != null)
             {
-                userControl.Invoke();
+                var result= userControl.Invoke();
+                if(result == false) return Response<NoDataDto>.Fail("Entity Not Found",404,true); 
             }
             entities.ToList().ForEach(c =>dal.Update(c));
             await dal.CommitAsync();

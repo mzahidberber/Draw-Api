@@ -95,8 +95,7 @@ namespace Draw.DrawLayer.Concrete.Helpers
         }
         public static double CalculateDeterminant2x2(double[,] m22)
         {
-            var det = (m22[0, 0] * m22[1,1]) - (m22[0, 1] * m22[1,0]);
-            return det;
+            return (m22[0, 0] * m22[1,1]) - (m22[0, 1] * m22[1,0]);
         }
     }
 }

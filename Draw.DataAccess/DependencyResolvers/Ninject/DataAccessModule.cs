@@ -9,16 +9,16 @@ namespace Draw.DataAccess.DependencyResolvers.Ninject
         public override void Load()
         {
             Bind<DrawContext>().ToSelf();
-            Bind<IDrawCommandDal>().To<EfDrawCommandDal>().InSingletonScope();
-            Bind<IDrawBoxDal>().To<EfDrawBoxDal>().InSingletonScope();
+            Bind<IDrawCommandDal>().To<EfDrawCommandDal>();
+            Bind<IDrawBoxDal>().To<EfDrawBoxDal>();
             Bind<IElementDal>().To<EfElementsDal>();
-            Bind<IPointDal>().To<EfPointDal>().InSingletonScope();
-            Bind<IColorDal>().To<EfColorDal>().InSingletonScope();
-            Bind<IElementTypeDal>().To<EfElementTypeDal>().InSingletonScope();
-            Bind<ILayerDal>().To<EfLayerDal>().InSingletonScope();
-            Bind<IPenDal>().To<EfPenDal>().InSingletonScope();
-            Bind<IPenStyleDal>().To<EfPenStyleDal>().InSingletonScope();
-            Bind<IPointTypeDal>().To<EfPointTypeDal>().InSingletonScope();
+            Bind<IPointDal>().To<EfPointDal>();
+            Bind<IColorDal>().To<EfColorDal>();
+            Bind<IElementTypeDal>().To<EfElementTypeDal>();
+            Bind<ILayerDal>().To<EfLayerDal>();
+            Bind<IPenDal>().To<EfPenDal>();
+            Bind<IPenStyleDal>().To<EfPenStyleDal>();
+            Bind<IPointTypeDal>().To<EfPointTypeDal>();
 
         }
     }

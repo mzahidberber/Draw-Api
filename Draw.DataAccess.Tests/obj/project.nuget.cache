@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NL7sicx86dwzldphi6E9h/isOoxFV+6pLOZYxFG/POCHmwAUC4e5mL/sHwa0jWXv3idaUakOVZrOq5DhJ1ZPEA==",
+  "dgSpecHash": "/thoxwlkuJRz0V+COMMD9dAT3IRdf8mHFlJPa5dJgZ4THyWY+1DWMBYgiGWhVE9qpxSP3MJNdAMqKE2vlQzBsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.DataAccess.Tests\\Draw.DataAccess.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.0\\microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
@@ -11,7 +12,7 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.0\\microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",
-    "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.7\\microsoft.data.sqlite.core.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.7\\microsoft.entityframeworkcore.6.0.7.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.7\\microsoft.entityframeworkcore.abstractions.6.0.7.nupkg.sha512",

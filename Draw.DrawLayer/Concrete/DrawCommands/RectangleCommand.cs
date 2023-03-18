@@ -10,21 +10,21 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<Element> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommand()
         {
             Console.WriteLine("Rectangle Command");
             CommandMemory.SetElementTypeId(3);
             return CommandMemory.PointsList.Count == 2 ? await AddRect() : await ReturnErrorMessageAsync(2);
         }
 
-        private async Task<Element> AddRect()
+        private async Task<ElementInformation> AddRect()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
             await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
-            return element;
+            return new ElementInformation { element = element, isTrue = true, message = "success" };
         }
 
         private List<Point> CreatePoints()

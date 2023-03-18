@@ -61,7 +61,8 @@ namespace Draw.Business.Concrete
             {
                 var idList = entities.Select(x => x.LayerId).ToList();
                 var elementsCount = _layerDal.GetWhereAsync(x => idList.Contains(x.LayerId) && x.DrawBox.UserId == userId).Count();
-                if (elementsCount != entities.Count) throw new CustomException("Entity Not Found");
+                if (elementsCount != entities.Count) return false;
+                else return true;
             });
         }
     }

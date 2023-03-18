@@ -9,21 +9,21 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<Element> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommand()
         {
             Console.WriteLine("SPLine Command");
             CommandMemory.SetElementTypeId(6);
             return CommandMemory.PointsList.Count <= 1 ? await AddSPLine() : await ReturnErrorMessageAsync(2);
         }
 
-        private async Task<Element> AddSPLine()
+        private async Task<ElementInformation> AddSPLine()
         {
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
             await CommandMemory.DrawData.AddElementAsync(element);
             FinishCommand();
-            return element;
+            return new ElementInformation { element = element, isTrue = true, message = "success" }; 
         }
 
         private List<Point> CreatePoints()

@@ -2,7 +2,7 @@
 using Draw.Business.Concrete;
 using Draw.Core.Aspects.PostSharp.LoginAspects;
 using Draw.Core.Services;
-
+using Draw.Entities.Concrete;
 
 namespace Draw.Core.Tests
 {
@@ -19,9 +19,11 @@ namespace Draw.Core.Tests
             //var result= GeoService.FindTwoPointsLength(new List<PointGeo> {
             //    new PointGeo { X=0,Y=0,Z=0},
             //    new PointGeo { X=0,Y=10,Z=0}});
-            GeoService.Deneme(new List<PointGeo> {
-                new PointGeo { X=0,Y=0,Z=0},
-                new PointGeo { X=0,Y=10,Z=0}});
+            var resut =new GeoService().FindTwoPointsLength(
+                new Point { PointX = 12, PointY = 0 },
+                new Point { PointX = 1, PointY = 0 });
+
+            System.Console.WriteLine(resut.Result);
             //Console.WriteLine(result.Result);
             Assert.Pass();
         }

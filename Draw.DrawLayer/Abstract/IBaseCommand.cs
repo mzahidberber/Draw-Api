@@ -1,13 +1,12 @@
 ﻿using Draw.DrawLayer.Concrete;
-using Draw.DrawLayer.Concrete.DrawElements;
-using Draw.DrawLayer.Concrete.Elements;
+using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Abstract
 {
     public interface IBaseCommand
     {
-        Task<Element> AddPointAsync(PointD point);
+        Task<ElementInformation> AddPointAsync(PointD point);
         void FinishCommand();
     }
 }
