@@ -7,33 +7,33 @@ namespace Draw.DrawLayer.Concrete
 {
     public class DrawAdminastor : IDrawAdminastor
     {
-        private CommandMemory _commandMemory { get; set; }
+        private CommandData _commandData { get; set; }
         public DrawAdminastor(string userId)
         {
-            _commandMemory = new CommandMemory(userId);
+            _commandData = new CommandData(userId);
         }
-        public DateTime GetUseTime() => _commandMemory.IsUseTime;
+        public DateTime GetUseTime() => _commandData.IsUseTime;
         public Task SetRadiusAsync(double radius) 
         {
-            _commandMemory.SetUseTimeNow();
-            _commandMemory.SetRadius(radius);
+            _commandData.SetUseTimeNow();
+            _commandData.SetRadius(radius);
             return Task.CompletedTask;
         }
         public Task SetEditElementsIdAsync(List<int> editElementsId) 
         {
-            _commandMemory.SetUseTimeNow();
-            _commandMemory.SetEditElementsId(editElementsId);
+            _commandData.SetUseTimeNow();
+            _commandData.SetEditElementsId(editElementsId);
             return Task.CompletedTask;
         } 
         
         public Task StartCommandAsync(CommandEnums commandEnum, int DrawBoxId, int LayerId, int PenId)
         {
-            if (!_commandMemory.IsWorkingCommand)
+            if (!_commandData.IsWorkingCommand)
             {
-                _commandMemory.SetUseTimeNow();
-                _commandMemory.SetData(LayerId,DrawBoxId, PenId);
-                _commandMemory.SetSelectedCommand(GetCommandEnums(commandEnum));
-                _commandMemory.SetIsWorkingCommand(true);
+                _commandData.SetUseTimeNow();
+                _commandData.SetData(LayerId,DrawBoxId, PenId);
+                _commandData.SetSelectedCommand(GetCommandEnums(commandEnum));
+                _commandData.SetIsWorkingCommand(true);
                 return Task.CompletedTask;
             }
             return Task.FromResult(new ElementInformation { isTrue = false, message = "Last Command Stop Or Finish!" });
@@ -41,10 +41,10 @@ namespace Draw.DrawLayer.Concrete
 
         public async Task<ElementInformation> AddCoordinateAdminastorAsync(PointD point)
         {
-            if (_commandMemory.IsWorkingCommand)
+            if (_commandData.IsWorkingCommand)
             {
-                _commandMemory.SetUseTimeNow();
-                var command = _commandMemory.GetSelectedCommand();
+                _commandData.SetUseTimeNow();
+                var command = _commandData.GetSelectedCommand();
                 var element = await command.AddPointAsync(point);
                 StopCommandControl();
                 return element;
@@ -54,21 +54,21 @@ namespace Draw.DrawLayer.Concrete
         }
         public Task StopCommandAsync()
         {
-            _commandMemory.SetUseTimeNow();
-            _commandMemory.SetDefaultCommand();
-            _commandMemory.GetSelectedCommand().FinishCommand();
-            _commandMemory.SetIsWorkingCommand(false);
+            _commandData.SetUseTimeNow();
+            _commandData.SetDefaultCommand();
+            _commandData.GetSelectedCommand().FinishCommand();
+            _commandData.SetIsWorkingCommand(false);
             Console.WriteLine("Komut Durduruldu Stop");
             return Task.CompletedTask;
         }
         private void StopCommandControl()
         {
-            if (!_commandMemory.IsWorkingCommand)
+            if (!_commandData.IsWorkingCommand)
             {
-                _commandMemory.SetUseTimeNow();
+                _commandData.SetUseTimeNow();
                 Console.WriteLine("Komut Durduruldu Control");
-                _commandMemory.SetDefaultCommand();
-                _commandMemory.SetIsWorkingCommand(false);
+                _commandData.SetDefaultCommand();
+                _commandData.SetIsWorkingCommand(false);
             }
 
         }
@@ -76,7 +76,7 @@ namespace Draw.DrawLayer.Concrete
         private IBaseCommand GetCommandEnums(CommandEnums commandEnum)
         {
             var commandType = CommandsMultiton.GetCommand(commandEnum);
-            var command = (BaseCommanAbstract?)Activator.CreateInstance(commandType, _commandMemory);
+            var command = (BaseCommanAbstract?)Activator.CreateInstance(commandType, _commandData);
             return command != null ? command : throw new CustomException("Command Not Found!");
         }
 

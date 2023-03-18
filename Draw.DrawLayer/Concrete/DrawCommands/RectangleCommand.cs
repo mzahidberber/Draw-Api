@@ -1,12 +1,13 @@
 ﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
+using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
     public class RectangleCommand:BaseCommanAbstract
     {
-        public RectangleCommand(CommandMemory commandMemory) : base(commandMemory)
+        public RectangleCommand(CommandData commandMemory) : base(commandMemory)
         {
         }
 
@@ -22,7 +23,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
-            await CommandMemory.DrawData.AddElementAsync(element);
+            await AddElementAsync(element);
             FinishCommand();
             return new ElementInformation { element = element, isTrue = true, message = "success" };
         }

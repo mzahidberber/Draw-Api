@@ -1,14 +1,13 @@
-﻿using Draw.Core.DTOs.Concrete;
-using Draw.Core.DTOs;
-using Draw.DrawLayer.Abstract;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
+using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
     public class EllipsCommand:BaseCommanAbstract
     {
-        public EllipsCommand(CommandMemory commandMemory) : base(commandMemory)
+        public EllipsCommand(CommandData commandMemory) : base(commandMemory)
         {
             
         }
@@ -33,7 +32,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var points = CreatePoints();
             var radiuses = GetRadius();
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points,radiuses);
-            await CommandMemory.DrawData.AddElementAsync(element);
+            await AddElementAsync(element);
             FinishCommand();
             return new ElementInformation { element = element, isTrue = true, message = "success" };
         }

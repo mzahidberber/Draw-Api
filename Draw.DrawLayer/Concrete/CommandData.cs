@@ -4,13 +4,12 @@ using Draw.DrawLayer.Concrete.Model;
 
 namespace Draw.DrawLayer.Concrete
 {
-    public class CommandMemory
+    public class CommandData
     {
         private CommandContext _commandContext { get; set; }
-        public CommandMemory(string userName)
+        public CommandData(string userName)
         {
             _commandContext = new CommandContext(this);
-            DrawData = new DrawData();
             UserId = userName;
             EditElementsId = new List<int>();
             PointsList = new List<PointD>();
@@ -18,7 +17,6 @@ namespace Draw.DrawLayer.Concrete
         }
         internal IBaseCommand? SelectedCommand { get; private set; }
         internal DateTime IsUseTime { get; private set; }
-        internal DrawData DrawData { get; private set; }
         internal List<PointD> PointsList { get; private set; }
         internal List<int> EditElementsId { get; private set; }
         internal double SelectedRadius { get; private set; } = 0;
@@ -28,7 +26,6 @@ namespace Draw.DrawLayer.Concrete
         internal int SelectedUserDrawBoxId { get; private set; }
         internal int SelectedElementTypeId { get; private set; } = 0;
         internal bool IsWorkingCommand { get; private set; } = false;
-
         internal void SetDefaultCommand() => _commandContext.SetContextDefaultCommand();
         internal void SetSelectedCommand(IBaseCommand command) =>  _commandContext.SetCommand(command);
         internal IBaseCommand GetSelectedCommand() => _commandContext.GetCommand();
@@ -40,7 +37,6 @@ namespace Draw.DrawLayer.Concrete
         }
         internal void SetIsWorkingCommand(bool workingCommandValue) => IsWorkingCommand = workingCommandValue;
         internal void SetUseTimeNow() => IsUseTime = DateTime.Now;
-        internal void SetDrawMemory(DrawData drawMemory) => DrawData = drawMemory;
         internal void SetElementTypeId(int elementTypeId) =>  SelectedElementTypeId = elementTypeId; 
         internal void SetRadius(double radius) => SelectedRadius = radius;
         internal void SetDrawBoxId(int drawBoxId) =>  SelectedUserDrawBoxId = drawBoxId; 

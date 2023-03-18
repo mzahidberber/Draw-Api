@@ -1,12 +1,13 @@
 ﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
+using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
     public class CircleTwoPointsCommand : BaseCommanAbstract
     {
-        public CircleTwoPointsCommand(CommandMemory commandMemory) : base(commandMemory)
+        public CircleTwoPointsCommand(CommandData commandMemory) : base(commandMemory)
         {
             
         }
@@ -29,7 +30,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var radius = GetRadius();
             var radiuses = new List<Radius> { new Radius { RadiusValue = radius } };
             var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
-             await CommandMemory.DrawData.AddElementAsync(element);
+            await AddElementAsync(element);
             FinishCommand();
             return new ElementInformation { element = element, isTrue = true, message = "success" };
         }

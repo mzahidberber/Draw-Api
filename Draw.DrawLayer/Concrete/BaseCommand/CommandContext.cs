@@ -8,7 +8,7 @@ namespace Draw.DrawLayer.Concrete.BaseCommand
 
         private DefaultCommand _defaultcommand;
 
-        public CommandContext(CommandMemory commandMemory)
+        public CommandContext(CommandData commandMemory)
         {
             this._defaultcommand= new DefaultCommand(commandMemory);
             _command = this._defaultcommand;

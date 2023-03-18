@@ -1,12 +1,13 @@
 ﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Helpers;
+using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
     public class CircleTreePointCommand:BaseCommanAbstract
     {
-        public CircleTreePointCommand(CommandMemory commandMemory) : base(commandMemory)
+        public CircleTreePointCommand(CommandData commandMemory) : base(commandMemory)
         {
             
         }
@@ -23,17 +24,17 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         }
         private async Task<ElementInformation> AddCircle()
         {
-            this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
-            this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
-            this._point3 = CreatePoint(CommandMemory.PointsList[2].X, CommandMemory.PointsList[2].Y, 1);
+            this._point1 = base.CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
+            this._point2 = base.CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
+            this._point3 = base.CreatePoint(CommandMemory.PointsList[2].X, CommandMemory.PointsList[2].Y, 1);
             
             Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
             var points = CreatePoints();
             var radius = GetRadius();
             
             var radiuses = new List<Radius> { new Radius { RadiusValue = radius } };
-            var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
-             await CommandMemory.DrawData.AddElementAsync(element);
+            var element = base.CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
+            await base.AddElementAsync(element);
             FinishCommand();
             return new ElementInformation { element = element, isTrue = true, message = "success" };
         }

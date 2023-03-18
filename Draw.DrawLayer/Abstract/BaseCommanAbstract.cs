@@ -3,18 +3,28 @@ using Draw.Entities.Concrete;
 using Draw.Core.Services.Abstract;
 using Draw.Core.DependencyResolvers.Ninject;
 using Draw.DrawLayer.Concrete.Model;
+using Draw.DataAccess.Abstract;
+using Draw.DataAccess.DependencyResolvers.Ninject;
 
 namespace Draw.DrawLayer.Abstract
 {
 
     public abstract class BaseCommanAbstract : IBaseCommand
     {
-        protected CommandMemory CommandMemory { get; private set; }
+        protected CommandData CommandMemory { get; private set; }
         protected IGeoService _geoService;
-        public BaseCommanAbstract(CommandMemory commandMemory)
+        protected IElementDal _efElementDal;
+        public BaseCommanAbstract(CommandData commandMemory)
         {
             CommandMemory = commandMemory;
             _geoService=CoreInstanceFactory.GetInstance<IGeoService>();
+            _efElementDal = DataInstanceFactory.GetInstance<IElementDal>();
+        }
+
+        protected async Task AddElementAsync(Element element)
+        {
+            await _efElementDal.AddAsync(element);
+            await _efElementDal.CommitAsync();
         }
         protected Task<ElementInformation> ReturnErrorMessageAsync(int necesaryPoint) 
         {

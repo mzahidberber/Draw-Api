@@ -1,10 +1,11 @@
 ﻿using Draw.DrawLayer.Abstract;
+using Draw.DrawLayer.Concrete.Model;
 
 namespace Draw.DrawLayer.Concrete.BaseCommand
 {
     internal class DefaultCommand : BaseCommanAbstract
     {
-        public DefaultCommand(CommandMemory commandMemory) : base(commandMemory)
+        public DefaultCommand(CommandData commandMemory) : base(commandMemory)
         {
         }
 

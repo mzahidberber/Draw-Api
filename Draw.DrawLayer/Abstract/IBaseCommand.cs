@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Concrete;
-using Draw.DrawLayer.Concrete.Model;
+﻿using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Abstract
