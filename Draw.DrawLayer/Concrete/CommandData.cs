@@ -15,6 +15,7 @@ namespace Draw.DrawLayer.Concrete
             PointsList = new List<PointD>();
             SetUseTimeNow();
         }
+        internal bool IsFinish { get; private set; }=false;
         internal IBaseCommand? SelectedCommand { get; private set; }
         internal DateTime IsUseTime { get; private set; }
         internal List<PointD> PointsList { get; private set; }
@@ -26,6 +27,7 @@ namespace Draw.DrawLayer.Concrete
         internal int SelectedUserDrawBoxId { get; private set; }
         internal int SelectedElementTypeId { get; private set; } = 0;
         internal bool IsWorkingCommand { get; private set; } = false;
+        internal void SetIsFinish(bool finish) => IsFinish = finish;
         internal void SetDefaultCommand() => _commandContext.SetContextDefaultCommand();
         internal void SetSelectedCommand(IBaseCommand command) =>  _commandContext.SetCommand(command);
         internal IBaseCommand GetSelectedCommand() => _commandContext.GetCommand();

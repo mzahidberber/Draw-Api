@@ -68,24 +68,6 @@ namespace Draw.DataAccess.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Colors",
-                columns: table => new
-                {
-                    ColorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ColorName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ColorRed = table.Column<int>(type: "int", nullable: false),
-                    ColorBlue = table.Column<int>(type: "int", nullable: false),
-                    ColorGreen = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Colors", x => x.ColorId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "ElementTypes",
                 columns: table => new
                 {
@@ -300,10 +282,13 @@ namespace Draw.DataAccess.Migrations
                 name: "Pens",
                 columns: table => new
                 {
-                    PenId = table.Column<int>(type: "int", nullable: false),
+                    PenId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PenName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PenColorId = table.Column<int>(type: "int", nullable: false),
+                    PenRed = table.Column<int>(type: "int", nullable: false),
+                    PenBlue = table.Column<int>(type: "int", nullable: false),
+                    PenGreen = table.Column<int>(type: "int", nullable: false),
                     PenUserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PenStyleId = table.Column<int>(type: "int", nullable: false)
@@ -318,14 +303,8 @@ namespace Draw.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pens_Colors_PenId",
-                        column: x => x.PenId,
-                        principalTable: "Colors",
-                        principalColumn: "ColorId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pens_PenStyles_PenId",
-                        column: x => x.PenId,
+                        name: "FK_Pens_PenStyles_PenStyleId",
+                        column: x => x.PenStyleId,
                         principalTable: "PenStyles",
                         principalColumn: "PenStyleId",
                         onDelete: ReferentialAction.Cascade);
@@ -333,7 +312,7 @@ namespace Draw.DataAccess.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Commands",
+                name: "DrawCommand",
                 columns: table => new
                 {
                     DrawCommandId = table.Column<int>(type: "int", nullable: false)
@@ -344,9 +323,9 @@ namespace Draw.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Commands", x => x.DrawCommandId);
+                    table.PrimaryKey("PK_DrawCommand", x => x.DrawCommandId);
                     table.ForeignKey(
-                        name: "FK_Commands_Draws_DrawCommandDrawBoxId",
+                        name: "FK_DrawCommand_Draws_DrawCommandDrawBoxId",
                         column: x => x.DrawCommandDrawBoxId,
                         principalTable: "Draws",
                         principalColumn: "DrawBoxId",
@@ -364,7 +343,7 @@ namespace Draw.DataAccess.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LayerLock = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     LayerVisibility = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    LayerThickness = table.Column<float>(type: "float", nullable: false),
+                    LayerThickness = table.Column<float>(type: "float", precision: 3, scale: 1, nullable: false),
                     DrawBoxId = table.Column<int>(type: "int", nullable: false),
                     PenId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -426,8 +405,8 @@ namespace Draw.DataAccess.Migrations
                 {
                     PointId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PointX = table.Column<double>(type: "double", nullable: false),
-                    PointY = table.Column<double>(type: "double", nullable: false),
+                    PointX = table.Column<double>(type: "double", precision: 10, scale: 5, nullable: false),
+                    PointY = table.Column<double>(type: "double", precision: 10, scale: 5, nullable: false),
                     ElementId = table.Column<int>(type: "int", nullable: false),
                     PointTypeId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -455,7 +434,7 @@ namespace Draw.DataAccess.Migrations
                 {
                     RadiusId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RadiusValue = table.Column<double>(type: "double", nullable: false),
+                    RadiusValue = table.Column<double>(type: "double", precision: 8, scale: 4, nullable: false),
                     RadiusElementId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -478,7 +457,7 @@ namespace Draw.DataAccess.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     SSAngleType = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SSAngleValue = table.Column<double>(type: "double", nullable: false),
+                    SSAngleValue = table.Column<double>(type: "double", precision: 8, scale: 4, nullable: false),
                     SSAngleElementId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -498,9 +477,9 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1e231979-ce48-4302-9135-4ed4f58b8e5b", "5ca76dab-f4e5-4609-a1a3-744859fde081", "admin", "ADMIN" },
-                    { "36eb07d4-994c-478f-9a7f-e3e1433b8614", "fdb75b50-a7b6-42d9-8f7b-524e56e5461d", "manager", "MANAGER" },
-                    { "a6bd876a-e101-49b9-bdd6-1756891f40fc", "19399d6e-7b88-44f0-84b4-3af989754cee", "user", "USER" }
+                    { "80ec254c-d039-48eb-a61a-798b90b1a304", "c9828c72-ad38-4a32-a5b8-bc7504104f87", "admin", "ADMIN" },
+                    { "961e2854-a5b9-4198-968a-60f457a256f3", "add28c77-48f6-47c6-84db-85a17f04ec72", "manager", "MANAGER" },
+                    { "a6718d1b-104d-40a5-ba23-60b2a06a6948", "3ebbb2fd-e5ed-4f66-9969-ab44e2b7b046", "user", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -508,23 +487,9 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7ca", 1, "a6c0f15c-7891-46be-8175-6bd292c4d03a", null, false, false, null, null, null, null, "513", true, "3fd5de85-033f-47b6-b659-d31bb4a78bfb", false, "zahid" },
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7cb", 1, "e6a926c3-b851-4c42-b6e8-01c7b5b813db", null, false, false, null, null, null, null, "513", true, "bea719ff-9afa-4a6c-a066-680808ad607c", false, "ali" },
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7cc", 1, "279af533-9d22-4be5-b2cd-81d496905a7c", null, false, false, null, null, null, null, "513", true, "6e7730a9-8f00-4f8f-acf5-5687a463bcec", false, "zeynep" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Colors",
-                columns: new[] { "ColorId", "ColorBlue", "ColorGreen", "ColorName", "ColorRed" },
-                values: new object[,]
-                {
-                    { 1, 255, 255, "white", 255 },
-                    { 2, 0, 0, "red", 211 },
-                    { 3, 127, 0, "orange", 255 },
-                    { 4, 184, 255, "blue", 99 },
-                    { 5, 0, 0, "black", 0 },
-                    { 6, 153, 153, "gray", 153 },
-                    { 7, 128, 77, "green", 74 }
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7ca", 1, "9b80ad39-f83f-4728-a68a-01049b4fec03", "zahid11@gmail.com", false, false, null, null, null, null, "513", true, "74481298-b788-44fe-969d-7513701361ca", false, "zahid" },
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7cb", 1, "e624472a-cad9-486b-8f6b-6a16009ae15b", "ali@gmail.com", false, false, null, null, null, null, "513", true, "473b8260-f9b3-4d67-9b3b-51c5707cc8c7", false, "ali" },
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7cc", 1, "93a2434d-f259-4704-b24e-c935921b9d98", "zeynep@gmail.com", false, false, null, null, null, null, "513", true, "9efba8a2-31aa-40c1-a9c0-24a05579cfb2", false, "zeynep" }
                 });
 
             migrationBuilder.InsertData(
@@ -571,32 +536,27 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pens",
-                columns: new[] { "PenId", "PenColorId", "PenName", "PenStyleId", "PenUserId" },
+                columns: new[] { "PenId", "PenBlue", "PenGreen", "PenName", "PenRed", "PenStyleId", "PenUserId" },
                 values: new object[,]
                 {
-                    { 1, 1, "pen1", 1, "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                    { 2, 2, "pen2", 2, "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Commands",
-                columns: new[] { "DrawCommandId", "DrawCommandDrawBoxId", "DrawCommandName" },
-                values: new object[,]
-                {
-                    { 1, 1, "dc1" },
-                    { 2, 1, "dc2" },
-                    { 3, 1, "dc3" }
+                    { 1, 10, 10, "pen1", 10, 1, "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                    { 2, 10, 10, "pen2", 10, 2, "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Layers",
                 columns: new[] { "LayerId", "DrawBoxId", "LayerLock", "LayerName", "LayerThickness", "LayerVisibility", "PenId" },
-                values: new object[,]
-                {
-                    { 1, 1, false, "0", 1f, false, 1 },
-                    { 2, 1, false, "a", 1f, false, 2 },
-                    { 3, 1, false, "b", 1f, false, 1 }
-                });
+                values: new object[] { 1, 1, false, "0", 1f, false, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Layers",
+                columns: new[] { "LayerId", "DrawBoxId", "LayerLock", "LayerName", "LayerThickness", "LayerVisibility", "PenId" },
+                values: new object[] { 2, 1, false, "a", 1f, false, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Layers",
+                columns: new[] { "LayerId", "DrawBoxId", "LayerLock", "LayerName", "LayerThickness", "LayerVisibility", "PenId" },
+                values: new object[] { 3, 1, false, "b", 1f, false, 1 });
 
             migrationBuilder.InsertData(
                 table: "Elements",
@@ -680,8 +640,8 @@ namespace Draw.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Commands_DrawCommandDrawBoxId",
-                table: "Commands",
+                name: "IX_DrawCommand_DrawCommandDrawBoxId",
+                table: "DrawCommand",
                 column: "DrawCommandDrawBoxId");
 
             migrationBuilder.CreateIndex(
@@ -719,6 +679,11 @@ namespace Draw.DataAccess.Migrations
                 name: "IX_Layers_PenId",
                 table: "Layers",
                 column: "PenId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pens_PenStyleId",
+                table: "Pens",
+                column: "PenStyleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pens_PenUserId",
@@ -764,7 +729,7 @@ namespace Draw.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Commands");
+                name: "DrawCommand");
 
             migrationBuilder.DropTable(
                 name: "Points");
@@ -801,9 +766,6 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Colors");
 
             migrationBuilder.DropTable(
                 name: "PenStyles");

@@ -9,6 +9,7 @@
         public float LayerThickness { get; set; }
         public int DrawBoxId { get; set; }
         public int PenId { get; set; }
+        public PenDTO Pen { get; set; }
 
     }
 }

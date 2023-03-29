@@ -1,6 +1,7 @@
 ﻿using Draw.Api.Models;
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
+using Draw.Core.DTOs.Concrete;
 using Draw.Core.Services;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
@@ -33,24 +34,36 @@ namespace Draw.Api.Controllers
             return ActionResultInstance(await _drawService.AddCoordinate(GetUserId(User),point));
         }
         
-        [HttpPost("stopCommand")]
+        [HttpPut("stopCommand")]
         public async Task<IActionResult> StopCommad()
         {
             return ActionResultInstance(await _drawService.StopCommand(GetUserId(User)));
         }
 
-        [HttpPost("setRadius")]
+        [HttpPut("setRadius")]
         public async Task<IActionResult> SetRadius([FromBody]double radius)
         {
             return ActionResultInstance(await _drawService.SetRadius(GetUserId(User),radius));
         }
 
 
-        [HttpPost("setElementsId")]
+        [HttpPut("setElementsId")]
         public async Task<IActionResult> SetElementsId([FromBody] List<int> setElementsId)
         {
             return ActionResultInstance(await _drawService.SetElementsId(GetUserId(User), setElementsId));
         }
+
+        [HttpPut("setIsFinish")]
+        public async Task<IActionResult> SetIsFinish(bool finish=true)
+        {
+            return ActionResultInstance(await _drawService.SetIsFinish(GetUserId(User), finish));
+        }
+
+        //[HttpPut("saveElements")]
+        //public async Task<IActionResult> SaveElements(List<ElementDTO> elements)
+        //{
+        //    return ActionResultInstance(await _drawService.SaveElements(GetUserId(User), elements));
+        //}
 
         [HttpPost("test")]
         public async Task<object> deneme(double p1x, double p1y, double p2x, double p2y, double p3x, double p3y)
@@ -64,7 +77,7 @@ namespace Draw.Api.Controllers
                 new Point { PointX = p2x, PointY = p2y },
                 new Point { PointX = p3x, PointY = p3y }
                 );
-            return result1.data.centerPoint;
+            return result1.centerPoint;
         }
 
     }

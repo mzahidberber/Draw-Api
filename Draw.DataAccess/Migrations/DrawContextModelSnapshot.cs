@@ -19,88 +19,6 @@ namespace Draw.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Color", b =>
-                {
-                    b.Property<int>("ColorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorBlue")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorGreen")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ColorName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("ColorRed")
-                        .HasColumnType("int");
-
-                    b.HasKey("ColorId");
-
-                    b.ToTable("Colors");
-
-                    b.HasData(
-                        new
-                        {
-                            ColorId = 1,
-                            ColorBlue = 255,
-                            ColorGreen = 255,
-                            ColorName = "white",
-                            ColorRed = 255
-                        },
-                        new
-                        {
-                            ColorId = 2,
-                            ColorBlue = 0,
-                            ColorGreen = 0,
-                            ColorName = "red",
-                            ColorRed = 211
-                        },
-                        new
-                        {
-                            ColorId = 3,
-                            ColorBlue = 127,
-                            ColorGreen = 0,
-                            ColorName = "orange",
-                            ColorRed = 255
-                        },
-                        new
-                        {
-                            ColorId = 4,
-                            ColorBlue = 184,
-                            ColorGreen = 255,
-                            ColorName = "blue",
-                            ColorRed = 99
-                        },
-                        new
-                        {
-                            ColorId = 5,
-                            ColorBlue = 0,
-                            ColorGreen = 0,
-                            ColorName = "black",
-                            ColorRed = 0
-                        },
-                        new
-                        {
-                            ColorId = 6,
-                            ColorBlue = 153,
-                            ColorGreen = 153,
-                            ColorName = "gray",
-                            ColorRed = 153
-                        },
-                        new
-                        {
-                            ColorId = 7,
-                            ColorBlue = 128,
-                            ColorGreen = 77,
-                            ColorName = "green",
-                            ColorRed = 74
-                        });
-                });
-
             modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
                 {
                     b.Property<int>("DrawBoxId")
@@ -160,27 +78,7 @@ namespace Draw.DataAccess.Migrations
 
                     b.HasIndex("DrawCommandDrawBoxId");
 
-                    b.ToTable("Commands");
-
-                    b.HasData(
-                        new
-                        {
-                            DrawCommandId = 1,
-                            DrawCommandDrawBoxId = 1,
-                            DrawCommandName = "dc1"
-                        },
-                        new
-                        {
-                            DrawCommandId = 2,
-                            DrawCommandDrawBoxId = 1,
-                            DrawCommandName = "dc2"
-                        },
-                        new
-                        {
-                            DrawCommandId = 3,
-                            DrawCommandDrawBoxId = 1,
-                            DrawCommandName = "dc3"
-                        });
+                    b.ToTable("DrawCommand");
                 });
 
             modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
@@ -311,6 +209,7 @@ namespace Draw.DataAccess.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<float>("LayerThickness")
+                        .HasPrecision(3, 1)
                         .HasColumnType("float");
 
                     b.Property<bool>("LayerVisibility")
@@ -366,14 +265,21 @@ namespace Draw.DataAccess.Migrations
             modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
                 {
                     b.Property<int>("PenId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("PenColorId")
+                    b.Property<int>("PenBlue")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PenGreen")
                         .HasColumnType("int");
 
                     b.Property<string>("PenName")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("PenRed")
+                        .HasColumnType("int");
 
                     b.Property<int>("PenStyleId")
                         .HasColumnType("int");
@@ -384,6 +290,8 @@ namespace Draw.DataAccess.Migrations
 
                     b.HasKey("PenId");
 
+                    b.HasIndex("PenStyleId");
+
                     b.HasIndex("PenUserId");
 
                     b.ToTable("Pens");
@@ -392,16 +300,20 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             PenId = 1,
-                            PenColorId = 1,
+                            PenBlue = 10,
+                            PenGreen = 10,
                             PenName = "pen1",
+                            PenRed = 10,
                             PenStyleId = 1,
                             PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
                         },
                         new
                         {
                             PenId = 2,
-                            PenColorId = 2,
+                            PenBlue = 10,
+                            PenGreen = 10,
                             PenName = "pen2",
+                            PenRed = 10,
                             PenStyleId = 2,
                             PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
                         });
@@ -447,9 +359,11 @@ namespace Draw.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("PointX")
+                        .HasPrecision(10, 5)
                         .HasColumnType("double");
 
                     b.Property<double>("PointY")
+                        .HasPrecision(10, 5)
                         .HasColumnType("double");
 
                     b.HasKey("PointId");
@@ -561,6 +475,7 @@ namespace Draw.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("RadiusValue")
+                        .HasPrecision(8, 4)
                         .HasColumnType("double");
 
                     b.HasKey("RadiusId");
@@ -598,6 +513,7 @@ namespace Draw.DataAccess.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<double>("SSAngleValue")
+                        .HasPrecision(8, 4)
                         .HasColumnType("double");
 
                     b.HasKey("SSAngleId");
@@ -691,12 +607,13 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "a6c0f15c-7891-46be-8175-6bd292c4d03a",
+                            ConcurrencyStamp = "9b80ad39-f83f-4728-a68a-01049b4fec03",
+                            Email = "zahid11@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "513",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3fd5de85-033f-47b6-b659-d31bb4a78bfb",
+                            SecurityStamp = "74481298-b788-44fe-969d-7513701361ca",
                             TwoFactorEnabled = false,
                             UserName = "zahid"
                         },
@@ -704,12 +621,13 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "e6a926c3-b851-4c42-b6e8-01c7b5b813db",
+                            ConcurrencyStamp = "e624472a-cad9-486b-8f6b-6a16009ae15b",
+                            Email = "ali@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "513",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "bea719ff-9afa-4a6c-a066-680808ad607c",
+                            SecurityStamp = "473b8260-f9b3-4d67-9b3b-51c5707cc8c7",
                             TwoFactorEnabled = false,
                             UserName = "ali"
                         },
@@ -717,12 +635,13 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc",
                             AccessFailedCount = 1,
-                            ConcurrencyStamp = "279af533-9d22-4be5-b2cd-81d496905a7c",
+                            ConcurrencyStamp = "93a2434d-f259-4704-b24e-c935921b9d98",
+                            Email = "zeynep@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "513",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "6e7730a9-8f00-4f8f-acf5-5687a463bcec",
+                            SecurityStamp = "9efba8a2-31aa-40c1-a9c0-24a05579cfb2",
                             TwoFactorEnabled = false,
                             UserName = "zeynep"
                         });
@@ -774,22 +693,22 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1e231979-ce48-4302-9135-4ed4f58b8e5b",
-                            ConcurrencyStamp = "5ca76dab-f4e5-4609-a1a3-744859fde081",
+                            Id = "80ec254c-d039-48eb-a61a-798b90b1a304",
+                            ConcurrencyStamp = "c9828c72-ad38-4a32-a5b8-bc7504104f87",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "36eb07d4-994c-478f-9a7f-e3e1433b8614",
-                            ConcurrencyStamp = "fdb75b50-a7b6-42d9-8f7b-524e56e5461d",
+                            Id = "961e2854-a5b9-4198-968a-60f457a256f3",
+                            ConcurrencyStamp = "add28c77-48f6-47c6-84db-85a17f04ec72",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "a6bd876a-e101-49b9-bdd6-1756891f40fc",
-                            ConcurrencyStamp = "19399d6e-7b88-44f0-84b4-3af989754cee",
+                            Id = "a6718d1b-104d-40a5-ba23-60b2a06a6948",
+                            ConcurrencyStamp = "3ebbb2fd-e5ed-4f66-9969-ab44e2b7b046",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -967,15 +886,9 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Color", "PenColor")
-                        .WithMany("Pens")
-                        .HasForeignKey("PenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Draw.Entities.Concrete.PenStyle", "PenStyle")
                         .WithMany("Pens")
-                        .HasForeignKey("PenId")
+                        .HasForeignKey("PenStyleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -984,8 +897,6 @@ namespace Draw.DataAccess.Migrations
                         .HasForeignKey("PenUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("PenColor");
 
                     b.Navigation("PenStyle");
 
@@ -1082,11 +993,6 @@ namespace Draw.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Draw.Entities.Concrete.Color", b =>
-                {
-                    b.Navigation("Pens");
                 });
 
             modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>

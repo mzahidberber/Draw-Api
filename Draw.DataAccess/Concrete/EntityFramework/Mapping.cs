@@ -31,9 +31,9 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         {
 
             builder.HasData(
-                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca", UserName = "zahid", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
-                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb", UserName = "ali", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
-                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc", UserName = "zeynep", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 }
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca", UserName = "zahid",Email="zahid11@gmail.com", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb", UserName = "ali", Email = "ali@gmail.com", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 },
+                new User { Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc", UserName = "zeynep", Email = "zeynep@gmail.com", EmailConfirmed = false, PhoneNumber = "513", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 1 }
 
                 );
 
@@ -97,7 +97,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
             builder.Property(u => u.LayerVisibility).IsRequired();
 
-            builder.Property(l => l.LayerThickness).IsRequired();
+            builder.Property(l => l.LayerThickness).IsRequired().HasPrecision(3, 1);
 
             builder.HasData(
                 new Layer { LayerId = 1, LayerName = "0", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 1 },
@@ -157,9 +157,9 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
             builder.Property(u => u.PointTypeId).IsRequired();
 
-            builder.Property(u => u.PointX).IsRequired();
+            builder.Property(u => u.PointX).IsRequired().HasPrecision(10,5);
 
-            builder.Property(u => u.PointY).IsRequired();
+            builder.Property(u => u.PointY).IsRequired().HasPrecision(10, 5);
 
             builder.HasData(
                 new Point { PointId = 1, PointTypeId = 1, PointX = 10, PointY = 8, ElementId = 1 },
@@ -276,15 +276,18 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             builder.HasKey(u => u.PenId);
 
             builder.Property(u => u.PenName).IsRequired();
+            builder.Property(u => u.PenBlue).IsRequired();
+            builder.Property(u => u.PenRed).IsRequired();
+            builder.Property(u => u.PenGreen).IsRequired();
 
             builder.HasData(
-                new Pen { PenId = 1, PenName = "pen1", PenColorId = 1, PenStyleId = 1 ,PenUserId= "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                new Pen { PenId = 2, PenName = "pen2", PenColorId = 2, PenStyleId = 2, PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
+                new Pen { PenId = 1, PenName = "pen1", PenStyleId = 1 ,PenRed=10,PenGreen=10,PenBlue=10,PenUserId= "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new Pen { PenId = 2, PenName = "pen2", PenStyleId = 2, PenRed = 10, PenGreen = 10, PenBlue = 10, PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
                 );
 
-            builder.HasOne(c => c.PenColor).WithMany(p => p.Pens).HasForeignKey(c => c.PenId);
+            //builder.HasOne(c => c.PenColor).WithMany(p => p.Pens).HasForeignKey(c => c.PenColorId);
 
-            builder.HasOne(c => c.PenStyle).WithMany(p => p.Pens).HasForeignKey(c => c.PenId);
+            builder.HasOne(c => c.PenStyle).WithMany(p => p.Pens).HasForeignKey(c => c.PenStyleId);
 
             builder.HasOne(d => d.PenUser)
                 .WithMany(u => u.Pens)
@@ -298,7 +301,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public void Configure(EntityTypeBuilder<Radius> builder)
         {
             builder.HasKey(u => u.RadiusId);
-
+            builder.Property(u => u.RadiusValue).IsRequired().HasPrecision(8, 4);
 
             builder.HasData(
                 new Radius { RadiusId = 1, RadiusValue = 10, RadiusElementId = 4 },
@@ -318,6 +321,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             builder.HasKey(u => u.SSAngleId);
 
             builder.Property(u => u.SSAngleType).IsRequired();
+            builder.Property(u => u.SSAngleValue).IsRequired().HasPrecision(8, 4);
 
             builder.HasData(
                 new SSAngle { SSAngleId = 1, SSAngleType = "start", SSAngleValue = 0, SSAngleElementId = 1 },

@@ -23,7 +23,13 @@ namespace Draw.Api.Controllers
         {
             return ActionResultInstance(await _layerManager.GetAllAsync(GetUserId(User)));
         }
-        
+
+        [HttpPost("layerswithpen")]
+        public async Task<IActionResult> GetLayersWithPen(int drawId)
+        {
+            return ActionResultInstance(await _layerManager.GetAllByDrawWithPenAsync(GetUserId(User),drawId));
+        }
+
         [HttpPost("layers")]
         public async Task<IActionResult> GetLayersAtDraw(int drawId)
         {

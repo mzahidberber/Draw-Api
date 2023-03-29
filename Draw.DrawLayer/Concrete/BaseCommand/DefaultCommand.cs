@@ -9,7 +9,7 @@ namespace Draw.DrawLayer.Concrete.BaseCommand
         {
         }
 
-        protected override Task<ElementInformation> ControlCommand()
+        protected override Task<ElementInformation> ControlCommandAsync()
         {
             FinishCommand();
             return Task.FromResult(new ElementInformation { isTrue=false,message="Last Start Command!"});

@@ -5,6 +5,7 @@ using Draw.Core.DTOs.Concrete;
 using Draw.DrawLayer.Concrete;
 using Draw.DrawLayer.Concrete.BaseCommand;
 using Draw.DrawLayer.Concrete.Model;
+using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
@@ -46,6 +47,20 @@ namespace Draw.Business.Concrete
             return Response<NoDataDto>.Success(200);
         }
 
+        public async Task<Response<NoDataDto>> SetIsFinish(string userId, bool finish = true)
+        {
+            var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
+            await drawAdminastor.SetIsFinishAsync(finish);
+            return Response<NoDataDto>.Success(200);
+        }
+
+        public async Task<Response<NoDataDto>> SaveElements(string userId, List<ElementDTO> saveElements)
+        {
+            var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
+            var elements = ObjectMapper.Mapper.Map<List<Element>>(saveElements);
+            await drawAdminastor.SaveElements(elements);
+            return Response<NoDataDto>.Success(200);
+        }
     }
 
 

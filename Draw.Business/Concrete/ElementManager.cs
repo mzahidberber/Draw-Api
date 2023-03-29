@@ -32,15 +32,33 @@ namespace Draw.Business.Concrete
             return await base.BaseGetAllAsync<ElementDTO, Element>(_elementDal, e => e.Layer.DrawBox.UserId == userId);
         }
 
+        public async Task<Response<IEnumerable<ElementDTO>>> GetAllWithAttAsync(string userId)
+        {
+            var elemnts = await _elementDal.GetAllWithAttAsync(userId);
+            return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
+        }
+
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByDrawAsync(string userId, int drawId)
         {
             return await base.BaseGetAllAsync<ElementDTO, Element>(_elementDal, e => e.Layer.DrawBox.UserId == userId && e.Layer.DrawBoxId == drawId);
+        }
+
+        public async Task<Response<IEnumerable<ElementDTO>>> GetAllByDrawWithAttAsync(string userId, int drawId)
+        {
+            var elemnts = await _elementDal.GetAllByDrawWithAttAsync(userId,drawId);
+            return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
         }
 
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerAsync(string userId, int layerId)
         {
             return await base.BaseGetAllAsync<ElementDTO, Element>(_elementDal, e => e.Layer.DrawBox.UserId == userId && e.Layer.LayerId == layerId);
         }
+        public async Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerWithAttAsync(string userId, int layerId)
+        {
+            var elemnts = await _elementDal.GetAllByLayerWithAttAsync(userId, layerId);
+            return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
+        }
+
 
         public async Task<Response<ElementDTO>> GetAsync(string userId, int entityId)
         {
@@ -96,5 +114,9 @@ namespace Draw.Business.Concrete
                 else return true;
             });
         }
+
+        
+
+        
     }
 }

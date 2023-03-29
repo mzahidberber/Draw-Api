@@ -14,12 +14,11 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         //}
 
         public DbSet<DrawBox>? Draws { get; set; }
-        public DbSet<DrawCommand>? Commands { get; set; }
         public DbSet<Layer>? Layers { get; set; }
         public DbSet<Element>? Elements { get; set; }
         public DbSet<Point>? Points { get; set; }
         public DbSet<PenStyle>? PenStyles { get; set; }
-        public DbSet<Color>? Colors { get; set; }
+        //public DbSet<Color>? Colors { get; set; }
         public DbSet<PointType>? PointTypes { get; set; }
         public DbSet<ElementType>? ElementTypes { get; set; }
         public DbSet<SSAngle>? SSAngles { get; set; }
@@ -35,12 +34,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new UserRefreshTokenConfiguration());
             modelBuilder.ApplyConfiguration(new DrawMapping());
-            modelBuilder.ApplyConfiguration(new DrawCommandMapping());
+            //modelBuilder.ApplyConfiguration(new DrawCommandMapping());
             modelBuilder.ApplyConfiguration(new LayerMapping());
             modelBuilder.ApplyConfiguration(new ElementMapping());
             modelBuilder.ApplyConfiguration(new PointMapping());
             modelBuilder.ApplyConfiguration(new PenStyleMapping());
-            modelBuilder.ApplyConfiguration(new ColorMapping());
+            //modelBuilder.ApplyConfiguration(new ColorMapping());
             modelBuilder.ApplyConfiguration(new PointTypeMapping());
             modelBuilder.ApplyConfiguration(new ElementTypeMapping());
             modelBuilder.ApplyConfiguration(new PenMapping());
@@ -51,7 +50,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var cnn2 = $"server=localhost;port=3306;database=drawdb2;user=root;password=mysql123.;";
+            var cnn2 = $"server=localhost;port=3306;database=drawdb3;user=root;password=mysql123.;";
             optionsBuilder.LogTo(Console.WriteLine,LogLevel.Information).UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
             //if (!optionsBuilder.IsConfigured)
             //{

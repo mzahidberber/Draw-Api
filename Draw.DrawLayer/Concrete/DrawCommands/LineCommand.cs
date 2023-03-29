@@ -10,30 +10,27 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<ElementInformation> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommandAsync()
         {
-            Console.WriteLine("Line Command");
             CommandMemory.SetElementTypeId(1);
             return CommandMemory.PointsList.Count == 2 ? await AddLineAsync() :await ReturnErrorMessageAsync(2);
         }
 
         
-        private async Task<ElementInformation> AddLineAsync()
+        private Task<ElementInformation> AddLineAsync()
         {
-            Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
-            var points = CreatePoints();
-            var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
-            await AddElementAsync(element);
-            FinishCommand();
-            return new ElementInformation { element=element,isTrue=true,message="success"};
+            var element = CreateElement();
+            //await AddElementAsync(CreateElement());
+            base.FinishCommand();
+            return Task.FromResult(new ElementInformation { element = element, isTrue = true, message = "success" });
         }
 
 
-        private List<Point> CreatePoints()
+        private Element CreateElement()
         {
             var p1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             var p2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
-            return new List<Point> { p1, p2 };
+            return CreateElementManyPoint(CommandMemory.SelectedElementTypeId, new List<Point> { p1,p2});
         }
 
 

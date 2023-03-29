@@ -12,6 +12,9 @@ namespace Draw.Core.Mapper
                 .ForMember(dest => dest.X, opt => opt.MapFrom(x => x.PointX))
                 .ForMember(dest => dest.Y, opt => opt.MapFrom(x => x.PointY))
                 .ReverseMap();
+
+            //CreateMap<GeoRequest<RadiusAndPCenter>,GeoRequest<RadiusAndPGeoCenter>>()
+            //    .ForMember(dest=>dest.data.centerPoint,opt=>opt.MapFrom(x=>x.))
             
         }
     }

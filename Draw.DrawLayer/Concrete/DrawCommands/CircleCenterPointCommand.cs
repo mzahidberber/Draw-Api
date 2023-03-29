@@ -13,40 +13,43 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
             
         }
-        protected override async Task<ElementInformation> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommandAsync()
         {
             Console.WriteLine("CircleCenterPoint Command");
             CommandMemory.SetElementTypeId(2);
-            return CommandMemory.PointsList.Count == 2 ? await AddCircle() : await ReturnErrorMessageAsync(2);
+            return CommandMemory.PointsList.Count == 2 ? 
+                await AddCircle() : 
+                await ReturnErrorMessageAsync(2);
         }
 
-        private async Task<ElementInformation> AddCircle()
+        private Task<ElementInformation> AddCircle()
         {
             this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             this._point2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
-            Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
-            var points = CreatePoints();
-            var radius = GetRadius();
-            var radiuses = new List<Radius> { new Radius { RadiusValue = radius } };
-            var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points,radiuses);
-            await AddElementAsync(element);
-            FinishCommand();
-            return new ElementInformation { element = element, isTrue = true, message = "success" };
+
+            var element = CreateElement();
+            //await AddElementAsync(element);
+            base.FinishCommand();
+            return Task.FromResult(new ElementInformation { element = element, isTrue = true, message = "success" });
         }
 
-        private double GetRadius()
+        private Element CreateElement()
         {
-            var radius = DrawMath.DifferanceTwoPoints(_point1, _point2);
-            return radius;
+            var points = CreatePoints();
+            var radiuses = new List<Radius> { new Radius { RadiusValue = GetRadius() } };
+            return CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
         }
+
+        private double GetRadius() => DrawMath.DifferanceTwoPoints(_point1, _point2);
 
         private List<Point> CreatePoints()
         {
-            var p1 = DrawMath.AdditionPointPlusX(this._point1, GetRadius());
-            var p2 = DrawMath.AdditionPointPlusY(this._point1, GetRadius());
-            var p3 = DrawMath.AdditionPointPlusX(this._point1, - GetRadius());
-            var p4 = DrawMath.AdditionPointPlusY(this._point1, - GetRadius());
-            return new List<Point> { this._point1, p1, p2, p3, p4 };
+            // 4 noktayi sildim gerekirse ekle
+            //var p1 = DrawMath.AdditionPointPlusX(this._point1, GetRadius());
+            //var p2 = DrawMath.AdditionPointPlusY(this._point1, GetRadius());
+            //var p3 = DrawMath.AdditionPointPlusX(this._point1, - GetRadius());
+            //var p4 = DrawMath.AdditionPointPlusY(this._point1, - GetRadius());
+            return new List<Point> { this._point1 };
         }
     }
 }

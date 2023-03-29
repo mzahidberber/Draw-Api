@@ -42,7 +42,7 @@ namespace Draw.Core.Services
             
         }
 
-        public async Task<GeoRequest<RadiusAndCenter>> FindCenterAndRadius(Point p1, Point p2, Point p3)
+        public async Task<RadiusAndPCenter> FindCenterAndRadius(Point p1, Point p2, Point p3)
         {
             var points = CoreObjectMapper.Mapper.Map<List<PointGeo>>(new List<Point> { p1, p2,p3 });
 
@@ -52,9 +52,9 @@ namespace Draw.Core.Services
             {
                 //response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadAsStringAsync();
-                GeoRequest<RadiusAndCenter>? data = JsonSerializer.Deserialize<GeoRequest<RadiusAndCenter>>(result);
+                GeoRequest<RadiusAndPGeoCenter>? data = JsonSerializer.Deserialize<GeoRequest<RadiusAndPGeoCenter>>(result);
                 //Point dönmek gerekiyor pointGeo dönüyor
-                return data ?? throw new CustomException("GeoService Not Used");
+                return new RadiusAndPCenter { centerPoint = CoreObjectMapper.Mapper.Map<Point>(data.data.centerPoint), radius = data.data.radius };
             }
 
         }

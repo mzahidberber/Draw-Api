@@ -10,24 +10,24 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<ElementInformation> ControlCommand()
+        protected override async Task<ElementInformation> ControlCommandAsync()
         {
             Console.WriteLine("SPLine Command");
             CommandMemory.SetElementTypeId(6);
-            return CommandMemory.PointsList.Count <= 1 ? await AddSPLine() : await ReturnErrorMessageAsync(2);
+            return CommandMemory.PointsList.Count <= 1 && CommandMemory.IsFinish==true ? 
+                await AddSPLine() : 
+                await ReturnErrorMessageAsync(message:"Should Add Point Or Run SetIsFinish");
         }
 
-        private async Task<ElementInformation> AddSPLine()
+        private Task<ElementInformation> AddSPLine()
         {
-            Console.WriteLine($"{CommandMemory.SelectedElementTypeId} Add Element");
-            var points = CreatePoints();
-            var element = CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points);
-            await AddElementAsync(element);
-            FinishCommand();
-            return new ElementInformation { element = element, isTrue = true, message = "success" }; 
+            var element = CreateElement();
+            //await AddElementAsync(element);
+            base.FinishCommand();
+            return Task.FromResult(new ElementInformation { element = element, isTrue = true, message = "success" });
         }
 
-        private List<Point> CreatePoints()
+        private Element CreateElement()
         {
             var list=new List<Point>();
             foreach (var point in CommandMemory.PointsList)
@@ -35,8 +35,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
                 var p = CreatePoint(point.X, point.Y, 1);
                 list.Add(p);
             }
-           
-            return list;
+            return CreateElementManyPoint(CommandMemory.SelectedElementTypeId, list); ;
         }
 
         

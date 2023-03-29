@@ -24,16 +24,34 @@ namespace Draw.Api.Controllers
             return ActionResultInstance(await _elementManager.GetAllAsync(GetUserId(User)));
         }
 
+        [HttpGet("elementswithatt")]
+        public async Task<IActionResult> GetElementsWithAtt()
+        {
+            return ActionResultInstance(await _elementManager.GetAllWithAttAsync(GetUserId(User)));
+        }
+
         [HttpGet("elementsbydraw")]
         public async Task<IActionResult> GetElementsByDraw(int drawId)
         {
             return ActionResultInstance(await _elementManager.GetAllByDrawAsync(GetUserId(User), drawId));
         }
 
+        [HttpGet("elementsbydrawwithatt")]
+        public async Task<IActionResult> GetAllByDrawWithAttAsync(int drawId)
+        {
+            return ActionResultInstance(await _elementManager.GetAllByDrawWithAttAsync(GetUserId(User), drawId));
+        }
+
         [HttpGet("elementsbylayer")]
         public async Task<IActionResult> GetElementsByLayer(int layerId)
         {
             return ActionResultInstance(await _elementManager.GetAllByLayerAsync(GetUserId(User), layerId));
+        }
+
+        [HttpGet("elementsbylayerwithatt")]
+        public async Task<IActionResult> GetAllByLayerWithAttAsync(int layerId)
+        {
+            return ActionResultInstance(await _elementManager.GetAllByLayerWithAttAsync(GetUserId(User), layerId));
         }
 
         [HttpPost("elements/add")]

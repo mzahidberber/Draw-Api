@@ -1,7 +1,9 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.BaseCommand;
+using Draw.DrawLayer.Concrete.FileCommands;
 using Draw.DrawLayer.Concrete.Model;
+using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete
 {
@@ -13,6 +15,17 @@ namespace Draw.DrawLayer.Concrete
             _commandData = new CommandData(userId);
         }
         public DateTime GetUseTime() => _commandData.IsUseTime;
+
+        public async Task SaveElements(List<Element> elements)
+        {
+            await SaveCommand.SaveElementsAsync(elements);
+        }
+
+        public Task SetIsFinishAsync(bool finish=true)
+        {
+            _commandData.SetIsFinish(finish);
+            return Task.CompletedTask;
+        }
         public Task SetRadiusAsync(double radius) 
         {
             _commandData.SetUseTimeNow();

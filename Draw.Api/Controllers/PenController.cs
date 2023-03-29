@@ -24,17 +24,23 @@ namespace Draw.Api.Controllers
             return ActionResultInstance(await _penManager.GetAllAsync(GetUserId(User)));
         }
 
+        [HttpGet("penswithatt")]
+        public async Task<IActionResult> GetPensWithAtt()
+        {
+            return ActionResultInstance(await _penManager.GetAllWithAttAsync(GetUserId(User)));
+        }
+
         [HttpGet("pens/{id}")]
         public async Task<IActionResult> GetPen(int id)
         {
             return ActionResultInstance(await _penManager.GetAsync(GetUserId(User), id));
         }
 
-        [HttpGet("pens/{id}/color")]
-        public async Task<IActionResult> GetPenAtColor(int id)
-        {
-            return ActionResultInstance(await _penManager.GetColorAsync(GetUserId(User), id));
-        }
+        //[HttpGet("pens/{id}/color")]
+        //public async Task<IActionResult> GetPenAtColor(int id)
+        //{
+        //    return ActionResultInstance(await _penManager.GetColorAsync(GetUserId(User), id));
+        //}
 
         [HttpGet("pens/{id}/penstyle")]
         public async Task<IActionResult> GetPenAtPenStyle(int id)

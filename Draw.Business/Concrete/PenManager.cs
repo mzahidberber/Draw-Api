@@ -31,16 +31,22 @@ namespace Draw.Business.Concrete
             return await base.BaseGetAllAsync<PenDTO, Pen>(_penDal, e => e.PenUserId == userId);
         }
 
+        public async Task<Response<IEnumerable<PenDTO>>> GetAllWithAttAsync(string userId)
+        {
+            var pens = await _penDal.GetAllWithAttAsync(userId);
+            return Response<IEnumerable<PenDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<PenDTO>>(pens), 200);
+        }
+
         public async Task<Response<PenDTO>> GetAsync(string userId, int entityId)
         {
             return await base.BaseGetWhereAsync<PenDTO, Pen>(_penDal, x => x.PenId == entityId && x.PenUserId == userId);
         }
 
-        public async Task<Response<ColorDTO>> GetColorAsync(string userId, int penId)
-        {
-            var pen = await _penDal.GetPenWithColorAsync(userId, penId);
-            return Response<ColorDTO>.Success(ObjectMapper.Mapper.Map<ColorDTO>(pen.PenColor), 200);
-        }
+        //public async Task<Response<ColorDTO>> GetColorAsync(string userId, int penId)
+        //{
+        //    var pen = await _penDal.GetPenWithColorAsync(userId, penId);
+        //    return Response<ColorDTO>.Success(ObjectMapper.Mapper.Map<ColorDTO>(pen.PenColor), 200);
+        //}
 
         public async Task<Response<PenStyleDTO>> GetPenStyleAsync(string userId, int penId)
         {

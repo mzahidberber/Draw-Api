@@ -25,18 +25,21 @@ namespace Draw.DrawLayer.Abstract
         {
             await _efElementDal.AddAsync(element);
             await _efElementDal.CommitAsync();
+            FinishCommand();
         }
-        protected Task<ElementInformation> ReturnErrorMessageAsync(int necesaryPoint) 
+        protected Task<ElementInformation> ReturnErrorMessageAsync(int necesaryPoint=0,string? message=null) 
         {
-            var msg = $"Not Enough Points! Should Add Point.{necesaryPoint}/{CommandMemory.PointsList.Count}";
+            var msg = "";
+            if(message!=null) msg = message;
+            else msg = $"Not Enough Points! Should Add Point.{necesaryPoint}/{CommandMemory.PointsList.Count}";
             return Task.FromResult(new ElementInformation { isTrue = false, message = msg });
         }
 
-        protected abstract Task<ElementInformation> ControlCommand();
+        protected abstract Task<ElementInformation> ControlCommandAsync();
         public async Task<ElementInformation> AddPointAsync(PointD point)
         {
             CommandMemory.PointsList.Add(point);
-            return await ControlCommand();
+            return await ControlCommandAsync();
         }
         
         protected Element CreateElementManyPoint(
@@ -67,6 +70,7 @@ namespace Draw.DrawLayer.Abstract
             CommandMemory.SetElementTypeId(0);
             CommandMemory.ClearEditList();
             CommandMemory.SetIsWorkingCommand(false);
+            CommandMemory.SetIsFinish(false);
 
         }
 

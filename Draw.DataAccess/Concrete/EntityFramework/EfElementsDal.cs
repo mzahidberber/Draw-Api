@@ -1,7 +1,10 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.DataAccess.Abstract;
+using Draw.Entities.Abstract;
 using Draw.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System.Linq;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
@@ -60,5 +63,35 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
 
+        public async Task<List<Element>> GetAllWithAttAsync(string userId)
+        {
+            return await _dbSet
+               .Where(x=> x.Layer.DrawBox.UserId==userId)
+               .Include(x => x.Points)
+               .Include(x=>x.SSAngles)
+               .Include(x=>x.Radiuses)
+               .ToListAsync() ?? throw new CustomException("Entity Not Found");
+        }
+
+        public async Task<List<Element>> GetAllByDrawWithAttAsync(string userId, int drawId)
+        {
+            await Console.Out.WriteLineAsync("asdasd");
+            return await _dbSet
+               .Where(x => x.Layer.DrawBox.UserId == userId && x.Layer.DrawBoxId==drawId)
+               .Include(x => x.Points)
+               .Include(x => x.SSAngles)
+               .Include(x => x.Radiuses)
+               .ToListAsync() ?? throw new CustomException("Entity Not Found");
+        }
+
+        public async Task<List<Element>> GetAllByLayerWithAttAsync(string userId, int layerId)
+        {
+            return await _dbSet
+              .Where(x => x.Layer.DrawBox.UserId == userId && x.Layer.LayerId == layerId)
+              .Include(x => x.Points)
+              .Include(x => x.SSAngles)
+              .Include(x => x.Radiuses)
+              .ToListAsync() ?? throw new CustomException("Entity Not Found");
+        }
     }
 }

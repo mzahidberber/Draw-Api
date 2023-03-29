@@ -12,8 +12,12 @@ namespace Draw.Entities.Concrete
         }
         public int PenId { get; set; }
         public string PenName { get; set; }
-        public int PenColorId { get; set; }
-        public Color PenColor { get; set; }
+        //public int PenColorId { get; set; }
+        //public Color PenColor { get; set; }
+
+        public int PenRed { get; set; }
+        public int PenBlue { get; set; }
+        public int PenGreen { get; set; }
 
         public string PenUserId { get; set; }
         public User PenUser { get; set; }

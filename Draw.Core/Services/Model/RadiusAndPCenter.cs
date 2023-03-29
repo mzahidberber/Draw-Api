@@ -2,9 +2,9 @@
 
 namespace Draw.Core.Services.Model
 {
-    public class RadiusAndCenter
+    public class RadiusAndPCenter
     {
         public double radius { get; set; }
-        public PointGeo centerPoint { get; set; }
+        public Point centerPoint { get; set; }
     }
 }

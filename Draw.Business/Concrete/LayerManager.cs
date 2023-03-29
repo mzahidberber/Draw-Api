@@ -37,6 +37,12 @@ namespace Draw.Business.Concrete
             return await base.BaseGetAllAsync<LayerDTO, Layer>(_layerDal, e => e.DrawBox.UserId == userId && e.DrawBoxId==drawId);
         }
 
+        public async Task<Response<IEnumerable<LayerDTO>>> GetAllByDrawWithPenAsync(string userId, int drawId)
+        {
+            var layers = await _layerDal.GetAllByDrawWithPenAsync(userId, drawId);
+            return Response<IEnumerable<LayerDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<LayerDTO>>(layers), 200);
+        }
+
         public async Task<Response<LayerDTO>> GetAsync(string userId, int entityId)
         {
             return await base.BaseGetWhereAsync<LayerDTO, Layer>(_layerDal, x => x.LayerId == entityId && x.DrawBox.UserId == userId);
