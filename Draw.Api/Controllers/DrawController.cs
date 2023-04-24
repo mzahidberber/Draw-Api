@@ -73,9 +73,9 @@ namespace Draw.Api.Controllers
             //    new Point { PointX=p2x,PointY=p2y}
             //    );
             var result1 = await new GeoService().FindCenterAndRadius(
-                new Point { PointX = p1x, PointY = p1y },
-                new Point { PointX = p2x, PointY = p2y },
-                new Point { PointX = p3x, PointY = p3y }
+                new Point { X = p1x, Y = p1y },
+                new Point { X = p2x, Y = p2y },
+                new Point { X = p3x, Y = p3y }
                 );
             return result1.centerPoint;
         }

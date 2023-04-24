@@ -37,7 +37,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Element CreateElement()
         {
             var points = CreatePoints(CommandMemory.SelectedRadius);
-            var radiuses = new List<Radius> { new Radius { RadiusValue = CommandMemory.SelectedRadius } };
+            var radiuses = new List<Radius> { new Radius { Value = CommandMemory.SelectedRadius } };
             return CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
         }
 

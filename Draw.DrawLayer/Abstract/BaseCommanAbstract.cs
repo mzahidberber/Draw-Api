@@ -38,6 +38,7 @@ namespace Draw.DrawLayer.Abstract
         protected abstract Task<ElementInformation> ControlCommandAsync();
         public async Task<ElementInformation> AddPointAsync(PointD point)
         {
+            Console.WriteLine($"Add Point {point.X}--{point.Y}");
             CommandMemory.PointsList.Add(point);
             return await ControlCommandAsync();
         }
@@ -50,7 +51,7 @@ namespace Draw.DrawLayer.Abstract
         {
             return new Element
             {
-                ElementTypeId = elementTypeId,
+                TypeId = elementTypeId,
                 LayerId = CommandMemory.SelectedLayerId,
                 PenId = CommandMemory.SelectedPenId,
                 Points = points,
@@ -62,7 +63,7 @@ namespace Draw.DrawLayer.Abstract
         }
         protected Point CreatePoint(double pX, double pY, int pointTypeId)
         {
-           return new Point { PointX = pX, PointY = pY, PointTypeId = pointTypeId };
+           return new Point { X = pX, Y = pY, PointTypeId = pointTypeId };
         }
         public void FinishCommand()
         {

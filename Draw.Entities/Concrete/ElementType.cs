@@ -9,8 +9,8 @@ namespace Draw.Entities.Concrete
         {
             Elements = new List<Element>();
         }
-        public int ElementTypeId { get; set; }
-        public string ElementTypeName { get; set; } = null!;
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
 
         public List<Element> Elements { get; set; }
     }

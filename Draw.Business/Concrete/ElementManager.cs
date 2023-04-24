@@ -24,7 +24,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
-            return await base.BaseDeleteAllAsync<Element>(_elementDal,x=>entities.Contains(x.ElementId) && x.Layer.DrawBox.UserId==userId);
+            return await base.BaseDeleteAllAsync<Element>(_elementDal,x=>entities.Contains(x.Id) && x.Layer.DrawBox.UserId==userId);
         }
 
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllAsync(string userId)
@@ -51,7 +51,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerAsync(string userId, int layerId)
         {
-            return await base.BaseGetAllAsync<ElementDTO, Element>(_elementDal, e => e.Layer.DrawBox.UserId == userId && e.Layer.LayerId == layerId);
+            return await base.BaseGetAllAsync<ElementDTO, Element>(_elementDal, e => e.Layer.DrawBox.UserId == userId && e.Layer.Id == layerId);
         }
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerWithAttAsync(string userId, int layerId)
         {
@@ -62,13 +62,13 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<ElementDTO>> GetAsync(string userId, int entityId)
         {
-            return await base.BaseGetWhereAsync<ElementDTO,Element>(_elementDal,x=>x.ElementId==entityId && x.Layer.DrawBox.UserId==userId);
+            return await base.BaseGetWhereAsync<ElementDTO,Element>(_elementDal,x=>x.Id==entityId && x.Layer.DrawBox.UserId==userId);
         }
 
         public async Task<Response<ElementTypeDTO>> GetElementTypeAsync(string userId, int entityId)
         {
             var elemnt=await _elementDal.GetElementWithElementTypeAsync(userId,entityId);
-            return Response<ElementTypeDTO>.Success(ObjectMapper.Mapper.Map<ElementTypeDTO>(elemnt.ElementType), 200);
+            return Response<ElementTypeDTO>.Success(ObjectMapper.Mapper.Map<ElementTypeDTO>(elemnt.Type), 200);
         }
 
         public async Task<Response<LayerDTO>> GetLayerAsync(string userId, int entityId)
@@ -108,8 +108,8 @@ namespace Draw.Business.Concrete
         {
             return await base.BaseUpdateAsync<ElementDTO, Element>(entities, _elementDal,() =>
             {
-                var idList=entities.Select(x=>x.ElementId).ToList();
-                var elementsCount = _elementDal.GetWhereAsync(x => idList.Contains(x.ElementId) && x.Layer.DrawBox.UserId == userId).Count();
+                var idList=entities.Select(x=>x.Id).ToList();
+                var elementsCount = _elementDal.GetWhereAsync(x => idList.Contains(x.Id) && x.Layer.DrawBox.UserId == userId).Count();
                 if (elementsCount != entities.Count) return false;
                 else return true;
             });

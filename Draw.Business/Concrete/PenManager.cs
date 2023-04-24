@@ -23,12 +23,12 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
-            return await base.BaseDeleteAllAsync<Pen>(_penDal, x => entities.Contains(x.PenId) && x.PenUserId == userId);
+            return await base.BaseDeleteAllAsync<Pen>(_penDal, x => entities.Contains(x.Id) && x.UserId == userId);
         }
 
         public async Task<Response<IEnumerable<PenDTO>>> GetAllAsync(string userId)
         {
-            return await base.BaseGetAllAsync<PenDTO, Pen>(_penDal, e => e.PenUserId == userId);
+            return await base.BaseGetAllAsync<PenDTO, Pen>(_penDal, e => e.UserId == userId);
         }
 
         public async Task<Response<IEnumerable<PenDTO>>> GetAllWithAttAsync(string userId)
@@ -39,7 +39,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<PenDTO>> GetAsync(string userId, int entityId)
         {
-            return await base.BaseGetWhereAsync<PenDTO, Pen>(_penDal, x => x.PenId == entityId && x.PenUserId == userId);
+            return await base.BaseGetWhereAsync<PenDTO, Pen>(_penDal, x => x.Id == entityId && x.UserId == userId);
         }
 
         //public async Task<Response<ColorDTO>> GetColorAsync(string userId, int penId)
@@ -58,8 +58,8 @@ namespace Draw.Business.Concrete
         {
             return await base.BaseUpdateAsync<PenDTO, Pen>(entities, _penDal, () =>
             {
-                var idList = entities.Select(x => x.PenId).ToList();
-                var elementsCount = _penDal.GetWhereAsync(x => idList.Contains(x.PenId) && x.PenUserId == userId).Count();
+                var idList = entities.Select(x => x.Id).ToList();
+                var elementsCount = _penDal.GetWhereAsync(x => idList.Contains(x.Id) && x.UserId == userId).Count();
                 if (elementsCount != entities.Count) return false;
                 else return true;
             });

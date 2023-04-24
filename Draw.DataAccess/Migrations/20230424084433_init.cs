@@ -71,14 +71,14 @@ namespace Draw.DataAccess.Migrations
                 name: "ElementTypes",
                 columns: table => new
                 {
-                    ElementTypeId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ElementTypeName = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ElementTypes", x => x.ElementTypeId);
+                    table.PrimaryKey("PK_ElementTypes", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -86,14 +86,14 @@ namespace Draw.DataAccess.Migrations
                 name: "PenStyles",
                 columns: table => new
                 {
-                    PenStyleId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PenStyleName = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PenStyles", x => x.PenStyleId);
+                    table.PrimaryKey("PK_PenStyles", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -101,14 +101,14 @@ namespace Draw.DataAccess.Migrations
                 name: "PointTypes",
                 columns: table => new
                 {
-                    PointTypeId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PointTypeName = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PointTypes", x => x.PointTypeId);
+                    table.PrimaryKey("PK_PointTypes", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -259,16 +259,16 @@ namespace Draw.DataAccess.Migrations
                 name: "Draws",
                 columns: table => new
                 {
-                    DrawBoxId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DrawName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Draws", x => x.DrawBoxId);
+                    table.PrimaryKey("PK_Draws", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Draws_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -282,23 +282,23 @@ namespace Draw.DataAccess.Migrations
                 name: "Pens",
                 columns: table => new
                 {
-                    PenId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PenName = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PenRed = table.Column<int>(type: "int", nullable: false),
-                    PenBlue = table.Column<int>(type: "int", nullable: false),
-                    PenGreen = table.Column<int>(type: "int", nullable: false),
-                    PenUserId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Red = table.Column<int>(type: "int", nullable: false),
+                    Blue = table.Column<int>(type: "int", nullable: false),
+                    Green = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PenStyleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pens", x => x.PenId);
+                    table.PrimaryKey("PK_Pens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Pens_AspNetUsers_PenUserId",
-                        column: x => x.PenUserId,
+                        name: "FK_Pens_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -306,7 +306,7 @@ namespace Draw.DataAccess.Migrations
                         name: "FK_Pens_PenStyles_PenStyleId",
                         column: x => x.PenStyleId,
                         principalTable: "PenStyles",
-                        principalColumn: "PenStyleId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -315,20 +315,20 @@ namespace Draw.DataAccess.Migrations
                 name: "DrawCommand",
                 columns: table => new
                 {
-                    DrawCommandId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DrawCommandName = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DrawCommandDrawBoxId = table.Column<int>(type: "int", nullable: false)
+                    DrawBoxId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DrawCommand", x => x.DrawCommandId);
+                    table.PrimaryKey("PK_DrawCommand", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DrawCommand_Draws_DrawCommandDrawBoxId",
-                        column: x => x.DrawCommandDrawBoxId,
+                        name: "FK_DrawCommand_Draws_DrawBoxId",
+                        column: x => x.DrawBoxId,
                         principalTable: "Draws",
-                        principalColumn: "DrawBoxId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -337,30 +337,30 @@ namespace Draw.DataAccess.Migrations
                 name: "Layers",
                 columns: table => new
                 {
-                    LayerId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    LayerName = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LayerLock = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    LayerVisibility = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    LayerThickness = table.Column<float>(type: "float", precision: 3, scale: 1, nullable: false),
+                    Lock = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Visibility = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Thickness = table.Column<float>(type: "float", precision: 3, scale: 1, nullable: false),
                     DrawBoxId = table.Column<int>(type: "int", nullable: false),
                     PenId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Layers", x => x.LayerId);
+                    table.PrimaryKey("PK_Layers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Layers_Draws_DrawBoxId",
                         column: x => x.DrawBoxId,
                         principalTable: "Draws",
-                        principalColumn: "DrawBoxId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Layers_Pens_PenId",
                         column: x => x.PenId,
                         principalTable: "Pens",
-                        principalColumn: "PenId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -369,32 +369,32 @@ namespace Draw.DataAccess.Migrations
                 name: "Elements",
                 columns: table => new
                 {
-                    ElementId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PenId = table.Column<int>(type: "int", nullable: false),
-                    ElementTypeId = table.Column<int>(type: "int", nullable: false),
+                    TypeId = table.Column<int>(type: "int", nullable: false),
                     LayerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Elements", x => x.ElementId);
+                    table.PrimaryKey("PK_Elements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Elements_ElementTypes_ElementTypeId",
-                        column: x => x.ElementTypeId,
+                        name: "FK_Elements_ElementTypes_TypeId",
+                        column: x => x.TypeId,
                         principalTable: "ElementTypes",
-                        principalColumn: "ElementTypeId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Elements_Layers_LayerId",
                         column: x => x.LayerId,
                         principalTable: "Layers",
-                        principalColumn: "LayerId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Elements_Pens_PenId",
                         column: x => x.PenId,
                         principalTable: "Pens",
-                        principalColumn: "PenId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -403,27 +403,27 @@ namespace Draw.DataAccess.Migrations
                 name: "Points",
                 columns: table => new
                 {
-                    PointId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PointX = table.Column<double>(type: "double", precision: 10, scale: 5, nullable: false),
-                    PointY = table.Column<double>(type: "double", precision: 10, scale: 5, nullable: false),
+                    X = table.Column<double>(type: "double", precision: 10, scale: 5, nullable: false),
+                    Y = table.Column<double>(type: "double", precision: 10, scale: 5, nullable: false),
                     ElementId = table.Column<int>(type: "int", nullable: false),
                     PointTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Points", x => x.PointId);
+                    table.PrimaryKey("PK_Points", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Points_Elements_ElementId",
                         column: x => x.ElementId,
                         principalTable: "Elements",
-                        principalColumn: "ElementId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Points_PointTypes_PointTypeId",
                         column: x => x.PointTypeId,
                         principalTable: "PointTypes",
-                        principalColumn: "PointTypeId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -432,19 +432,19 @@ namespace Draw.DataAccess.Migrations
                 name: "Radiuses",
                 columns: table => new
                 {
-                    RadiusId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RadiusValue = table.Column<double>(type: "double", precision: 8, scale: 4, nullable: false),
-                    RadiusElementId = table.Column<int>(type: "int", nullable: false)
+                    Value = table.Column<double>(type: "double", precision: 8, scale: 4, nullable: false),
+                    ElementId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Radiuses", x => x.RadiusId);
+                    table.PrimaryKey("PK_Radiuses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Radiuses_Elements_RadiusElementId",
-                        column: x => x.RadiusElementId,
+                        name: "FK_Radiuses_Elements_ElementId",
+                        column: x => x.ElementId,
                         principalTable: "Elements",
-                        principalColumn: "ElementId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -453,21 +453,21 @@ namespace Draw.DataAccess.Migrations
                 name: "SSAngles",
                 columns: table => new
                 {
-                    SSAngleId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    SSAngleType = table.Column<string>(type: "longtext", nullable: false)
+                    Type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SSAngleValue = table.Column<double>(type: "double", precision: 8, scale: 4, nullable: false),
-                    SSAngleElementId = table.Column<int>(type: "int", nullable: false)
+                    Value = table.Column<double>(type: "double", precision: 8, scale: 4, nullable: false),
+                    ElementId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SSAngles", x => x.SSAngleId);
+                    table.PrimaryKey("PK_SSAngles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SSAngles_Elements_SSAngleElementId",
-                        column: x => x.SSAngleElementId,
+                        name: "FK_SSAngles_Elements_ElementId",
+                        column: x => x.ElementId,
                         principalTable: "Elements",
-                        principalColumn: "ElementId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -477,9 +477,9 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "80ec254c-d039-48eb-a61a-798b90b1a304", "c9828c72-ad38-4a32-a5b8-bc7504104f87", "admin", "ADMIN" },
-                    { "961e2854-a5b9-4198-968a-60f457a256f3", "add28c77-48f6-47c6-84db-85a17f04ec72", "manager", "MANAGER" },
-                    { "a6718d1b-104d-40a5-ba23-60b2a06a6948", "3ebbb2fd-e5ed-4f66-9969-ab44e2b7b046", "user", "USER" }
+                    { "40bf6022-ed61-4c00-8b91-4123315cec3d", "db256b4b-b628-43ae-964e-ef1069799023", "manager", "MANAGER" },
+                    { "e342925b-6860-4c6b-80c0-9c4d23b3e838", "4af84c8d-d9ae-482b-9c30-49d962991bc8", "user", "USER" },
+                    { "fe108175-059b-4e1d-918f-87fc6917c08b", "e3451ba0-72c5-48e3-8e9e-f73a2cb7e587", "admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -487,14 +487,14 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7ca", 1, "9b80ad39-f83f-4728-a68a-01049b4fec03", "zahid11@gmail.com", false, false, null, null, null, null, "513", true, "74481298-b788-44fe-969d-7513701361ca", false, "zahid" },
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7cb", 1, "e624472a-cad9-486b-8f6b-6a16009ae15b", "ali@gmail.com", false, false, null, null, null, null, "513", true, "473b8260-f9b3-4d67-9b3b-51c5707cc8c7", false, "ali" },
-                    { "b21972e1-742f-4fa7-be46-1189d9cab7cc", 1, "93a2434d-f259-4704-b24e-c935921b9d98", "zeynep@gmail.com", false, false, null, null, null, null, "513", true, "9efba8a2-31aa-40c1-a9c0-24a05579cfb2", false, "zeynep" }
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7ca", 1, "ceeb780b-f3a5-4c76-9d2b-402b13eb4899", "zahid11@gmail.com", false, false, null, null, null, null, "513", true, "db4bc67f-528a-4520-a81e-cb35044e76ca", false, "zahid" },
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7cb", 1, "9ed1353f-a4ee-44c4-ad8f-6d6edd7404d3", "ali@gmail.com", false, false, null, null, null, null, "513", true, "7ef43a44-63e4-49c5-b6a5-f163c9f09ea5", false, "ali" },
+                    { "b21972e1-742f-4fa7-be46-1189d9cab7cc", 1, "d2a9ae78-7530-49cc-b2a9-32b94e1cb5ba", "zeynep@gmail.com", false, false, null, null, null, null, "513", true, "387b2563-f6c5-4621-8a7e-42c95174e056", false, "zeynep" }
                 });
 
             migrationBuilder.InsertData(
                 table: "ElementTypes",
-                columns: new[] { "ElementTypeId", "ElementTypeName" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     { 1, "line" },
@@ -507,7 +507,7 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "PenStyles",
-                columns: new[] { "PenStyleId", "PenStyleName" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     { 1, "solid" },
@@ -516,7 +516,7 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "PointTypes",
-                columns: new[] { "PointTypeId", "PointTypeName" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     { 1, "end" },
@@ -526,7 +526,7 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Draws",
-                columns: new[] { "DrawBoxId", "DrawName", "UserId" },
+                columns: new[] { "Id", "Name", "UserId" },
                 values: new object[,]
                 {
                     { 1, "c1", "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
@@ -536,43 +536,43 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pens",
-                columns: new[] { "PenId", "PenBlue", "PenGreen", "PenName", "PenRed", "PenStyleId", "PenUserId" },
+                columns: new[] { "Id", "Blue", "Green", "Name", "PenStyleId", "Red", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 10, 10, "pen1", 10, 1, "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                    { 2, 10, 10, "pen2", 10, 2, "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
+                    { 1, 10, 10, "pen1", 1, 10, "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                    { 2, 10, 10, "pen2", 2, 10, "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Layers",
-                columns: new[] { "LayerId", "DrawBoxId", "LayerLock", "LayerName", "LayerThickness", "LayerVisibility", "PenId" },
-                values: new object[] { 1, 1, false, "0", 1f, false, 1 });
+                columns: new[] { "Id", "DrawBoxId", "Lock", "Name", "PenId", "Thickness", "Visibility" },
+                values: new object[] { 1, 1, false, "0", 1, 1f, false });
 
             migrationBuilder.InsertData(
                 table: "Layers",
-                columns: new[] { "LayerId", "DrawBoxId", "LayerLock", "LayerName", "LayerThickness", "LayerVisibility", "PenId" },
-                values: new object[] { 2, 1, false, "a", 1f, false, 2 });
+                columns: new[] { "Id", "DrawBoxId", "Lock", "Name", "PenId", "Thickness", "Visibility" },
+                values: new object[] { 2, 1, false, "a", 2, 1f, false });
 
             migrationBuilder.InsertData(
                 table: "Layers",
-                columns: new[] { "LayerId", "DrawBoxId", "LayerLock", "LayerName", "LayerThickness", "LayerVisibility", "PenId" },
-                values: new object[] { 3, 1, false, "b", 1f, false, 1 });
+                columns: new[] { "Id", "DrawBoxId", "Lock", "Name", "PenId", "Thickness", "Visibility" },
+                values: new object[] { 3, 1, false, "b", 1, 1f, false });
 
             migrationBuilder.InsertData(
                 table: "Elements",
-                columns: new[] { "ElementId", "ElementTypeId", "LayerId", "PenId" },
+                columns: new[] { "Id", "LayerId", "PenId", "TypeId" },
                 values: new object[,]
                 {
                     { 1, 1, 1, 1 },
                     { 2, 1, 1, 1 },
                     { 3, 1, 1, 1 },
-                    { 4, 5, 1, 1 },
-                    { 5, 4, 1, 1 }
+                    { 4, 1, 1, 5 },
+                    { 5, 1, 1, 4 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Points",
-                columns: new[] { "PointId", "ElementId", "PointTypeId", "PointX", "PointY" },
+                columns: new[] { "Id", "ElementId", "PointTypeId", "X", "Y" },
                 values: new object[,]
                 {
                     { 1, 1, 1, 10.0, 8.0 },
@@ -586,7 +586,7 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Radiuses",
-                columns: new[] { "RadiusId", "RadiusElementId", "RadiusValue" },
+                columns: new[] { "Id", "ElementId", "Value" },
                 values: new object[,]
                 {
                     { 1, 4, 10.0 },
@@ -595,7 +595,7 @@ namespace Draw.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "SSAngles",
-                columns: new[] { "SSAngleId", "SSAngleElementId", "SSAngleType", "SSAngleValue" },
+                columns: new[] { "Id", "ElementId", "Type", "Value" },
                 values: new object[,]
                 {
                     { 1, 1, "start", 0.0 },
@@ -640,19 +640,14 @@ namespace Draw.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_DrawCommand_DrawCommandDrawBoxId",
+                name: "IX_DrawCommand_DrawBoxId",
                 table: "DrawCommand",
-                column: "DrawCommandDrawBoxId");
+                column: "DrawBoxId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Draws_UserId",
                 table: "Draws",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Elements_ElementTypeId",
-                table: "Elements",
-                column: "ElementTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Elements_LayerId",
@@ -665,14 +660,19 @@ namespace Draw.DataAccess.Migrations
                 column: "PenId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Elements_TypeId",
+                table: "Elements",
+                column: "TypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Layers_DrawBoxId",
                 table: "Layers",
                 column: "DrawBoxId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Layers_LayerName",
+                name: "IX_Layers_Name",
                 table: "Layers",
-                column: "LayerName",
+                column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -686,9 +686,9 @@ namespace Draw.DataAccess.Migrations
                 column: "PenStyleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pens_PenUserId",
+                name: "IX_Pens_UserId",
                 table: "Pens",
-                column: "PenUserId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Points_ElementId",
@@ -701,14 +701,14 @@ namespace Draw.DataAccess.Migrations
                 column: "PointTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Radiuses_RadiusElementId",
+                name: "IX_Radiuses_ElementId",
                 table: "Radiuses",
-                column: "RadiusElementId");
+                column: "ElementId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SSAngles_SSAngleElementId",
+                name: "IX_SSAngles_ElementId",
                 table: "SSAngles",
-                column: "SSAngleElementId");
+                column: "ElementId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

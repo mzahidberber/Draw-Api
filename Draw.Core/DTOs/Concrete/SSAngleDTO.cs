@@ -2,9 +2,9 @@
 {
     public class SSAngleDTO
     {
-        public int SSAngleId { get; set; }
-        public string SSAngleType { get; set; } = null!;
-        public double SSAngleValue { get; set; }
-        public int SSAngleElementId { get; set; }
+        public int Id { get; set; }
+        public string Type { get; set; } = null!;
+        public double Value { get; set; }
+        public int ElementId { get; set; }
     }
 }

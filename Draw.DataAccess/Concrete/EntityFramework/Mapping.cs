@@ -44,16 +44,16 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<DrawBox> builder)
         {
-            builder.HasKey(u => u.DrawBoxId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.DrawBoxId);
+            builder.Property(u => u.Id);
 
-            builder.Property(u => u.DrawName).IsRequired().HasMaxLength(200);
+            builder.Property(u => u.Name).IsRequired().HasMaxLength(200);
 
             builder.HasData(
-                new DrawBox { DrawBoxId = 1, DrawName = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                new DrawBox { DrawBoxId = 2, DrawName = "c2", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                new DrawBox { DrawBoxId = 3, DrawName = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7cb" }
+                new DrawBox { Id = 1, Name = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new DrawBox { Id = 2, Name = "c2", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new DrawBox { Id = 3, Name = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7cb" }
             );
 
             builder.HasOne(d => d.User)
@@ -67,19 +67,19 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<DrawCommand> builder)
         {
-            builder.HasKey(u => u.DrawCommandId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.DrawCommandName);
+            builder.Property(u => u.Name);
 
             builder.HasData(
-                new DrawCommand { DrawCommandId = 1, DrawCommandName = "dc1", DrawCommandDrawBoxId = 1 },
-                new DrawCommand { DrawCommandId = 2, DrawCommandName = "dc2", DrawCommandDrawBoxId = 1 },
-                new DrawCommand { DrawCommandId = 3, DrawCommandName = "dc3", DrawCommandDrawBoxId = 1 }
+                new DrawCommand { Id = 1, Name = "dc1", DrawBoxId = 1 },
+                new DrawCommand { Id = 2, Name = "dc2", DrawBoxId = 1 },
+                new DrawCommand { Id = 3, Name = "dc3", DrawBoxId = 1 }
             );
 
-            builder.HasOne(d => d.DrawCommandDrawBox)
+            builder.HasOne(d => d.DrawBox)
                 .WithMany(u => u.DrawCommands)
-                .HasForeignKey(d => d.DrawCommandDrawBoxId);
+                .HasForeignKey(d => d.DrawBoxId);
 
         }
     }
@@ -88,21 +88,21 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<Layer> builder)
         {
-            builder.HasKey(u => u.LayerId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.LayerName).IsRequired().HasMaxLength(200);
-            builder.HasIndex(u => u.LayerName).IsUnique();
+            builder.Property(u => u.Name).IsRequired().HasMaxLength(200);
+            builder.HasIndex(u => u.Name).IsUnique();
 
-            builder.Property(u => u.LayerLock).IsRequired();
+            builder.Property(u => u.Lock).IsRequired();
 
-            builder.Property(u => u.LayerVisibility).IsRequired();
+            builder.Property(u => u.Visibility).IsRequired();
 
-            builder.Property(l => l.LayerThickness).IsRequired().HasPrecision(3, 1);
+            builder.Property(l => l.Thickness).IsRequired().HasPrecision(3, 1);
 
             builder.HasData(
-                new Layer { LayerId = 1, LayerName = "0", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 1 },
-                new Layer { LayerId = 2, LayerName = "a", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 2 },
-                new Layer { LayerId = 3, LayerName = "b", LayerLock = false, LayerVisibility = false, LayerThickness = 1, DrawBoxId = 1, PenId = 1 }
+                new Layer { Id = 1, Name = "0", Lock = false, Visibility = false, Thickness = 1, DrawBoxId = 1, PenId = 1 },
+                new Layer { Id = 2, Name = "a", Lock = false, Visibility = false, Thickness = 1, DrawBoxId = 1, PenId = 2 },
+                new Layer { Id = 3, Name = "b", Lock = false, Visibility = false, Thickness = 1, DrawBoxId = 1, PenId = 1 }
 
             );
             builder.HasOne(l => l.Pen)
@@ -120,16 +120,16 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<Element> builder)
         {
-            builder.HasKey(u => u.ElementId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.ElementTypeId).IsRequired();
+            builder.Property(u => u.TypeId).IsRequired();
 
             builder.HasData(
-                new Element { ElementId = 1, ElementTypeId = 1, PenId = 1, LayerId = 1 },
-                new Element { ElementId = 2, ElementTypeId = 1, PenId = 1, LayerId = 1 },
-                new Element { ElementId = 3, ElementTypeId = 1, PenId = 1, LayerId = 1 },
-                new Element { ElementId = 4, ElementTypeId = 5, PenId = 1, LayerId = 1 },
-                new Element { ElementId = 5, ElementTypeId = 4, PenId = 1, LayerId = 1 }
+                new Element { Id = 1, TypeId = 1, PenId = 1, LayerId = 1 },
+                new Element { Id = 2, TypeId = 1, PenId = 1, LayerId = 1 },
+                new Element { Id = 3, TypeId = 1, PenId = 1, LayerId = 1 },
+                new Element { Id = 4, TypeId = 5, PenId = 1, LayerId = 1 },
+                new Element { Id = 5, TypeId = 4, PenId = 1, LayerId = 1 }
 
 
             );
@@ -142,9 +142,9 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 .WithMany(p => p.Elements)
                 .HasForeignKey(e => e.PenId);
 
-            builder.HasOne(e => e.ElementType)
+            builder.HasOne(e => e.Type)
                 .WithMany(p => p.Elements)
-                .HasForeignKey(e => e.ElementTypeId);
+                .HasForeignKey(e => e.TypeId);
 
         }
     }
@@ -153,28 +153,28 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<Point> builder)
         {
-            builder.HasKey(u => u.PointId);
+            builder.HasKey(u => u.Id);
 
             builder.Property(u => u.PointTypeId).IsRequired();
 
-            builder.Property(u => u.PointX).IsRequired().HasPrecision(10,5);
+            builder.Property(u => u.X).IsRequired().HasPrecision(10,5);
 
-            builder.Property(u => u.PointY).IsRequired().HasPrecision(10, 5);
+            builder.Property(u => u.Y).IsRequired().HasPrecision(10, 5);
 
             builder.HasData(
-                new Point { PointId = 1, PointTypeId = 1, PointX = 10, PointY = 8, ElementId = 1 },
-                new Point { PointId = 2, PointTypeId = 1, PointX = 15, PointY = 20, ElementId = 1 },
-                new Point { PointId = 3, PointTypeId = 1, PointX = 5, PointY = 10, ElementId = 2 },
-                new Point { PointId = 4, PointTypeId = 1, PointX = 9, PointY = 20, ElementId = 2 },
-                new Point { PointId = 5, PointTypeId = 1, PointX = 7, PointY = 3, ElementId = 3 },
-                new Point { PointId = 6, PointTypeId = 1, PointX = 2, PointY = 1, ElementId = 3 },
-                new Point { PointId = 7, PointTypeId = 2, PointX = 0, PointY = 0, ElementId = 4 }
+                new Point { Id = 1, PointTypeId = 1, X = 10, Y = 8, ElementId = 1 },
+                new Point { Id = 2, PointTypeId = 1, X = 15, Y = 20, ElementId = 1 },
+                new Point { Id = 3, PointTypeId = 1, X = 5, Y = 10, ElementId = 2 },
+                new Point { Id = 4, PointTypeId = 1, X = 9, Y = 20, ElementId = 2 },
+                new Point { Id = 5, PointTypeId = 1, X = 7, Y = 3, ElementId = 3 },
+                new Point { Id = 6, PointTypeId = 1, X = 2, Y = 1, ElementId = 3 },
+                new Point { Id = 7, PointTypeId = 2, X = 0, Y = 0, ElementId = 4 }
 
 
             );
 
             builder.HasOne(p => p.PointType)
-                .WithMany(pt => pt.PointTypePoints)
+                .WithMany(pt => pt.Points)
                 .HasForeignKey(p => p.PointTypeId);
 
             builder.HasOne(d => d.Element)
@@ -188,13 +188,13 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<PenStyle> builder)
         {
-            builder.HasKey(u => u.PenStyleId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.PenStyleName).IsRequired();
+            builder.Property(u => u.Name).IsRequired();
 
             builder.HasData(
-                new PenStyle { PenStyleId = 1, PenStyleName = "solid" },
-                new PenStyle { PenStyleId = 2, PenStyleName = "dot" }
+                new PenStyle { Id = 1, Name = "solid" },
+                new PenStyle { Id = 2, Name = "dot" }
 
 
             );
@@ -207,21 +207,21 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<Color> builder)
         {
-            builder.HasKey(u => u.ColorId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.ColorName).IsRequired();
-            builder.Property(u => u.ColorRed).IsRequired();
-            builder.Property(u => u.ColorBlue).IsRequired();
-            builder.Property(u => u.ColorGreen).IsRequired();
+            builder.Property(u => u.Name).IsRequired();
+            builder.Property(u => u.Red).IsRequired();
+            builder.Property(u => u.Blue).IsRequired();
+            builder.Property(u => u.Green).IsRequired();
 
             builder.HasData(
-                new Color { ColorId = 1, ColorName = "white", ColorRed = 255, ColorBlue = 255, ColorGreen = 255 },
-                new Color { ColorId = 2, ColorName = "red", ColorRed = 211, ColorBlue = 0, ColorGreen = 0 },
-                new Color { ColorId = 3, ColorName = "orange", ColorRed = 255, ColorBlue = 127, ColorGreen = 0 },
-                new Color { ColorId = 4, ColorName = "blue", ColorRed = 99, ColorBlue = 184, ColorGreen = 255 },
-                new Color { ColorId = 5, ColorName = "black", ColorRed = 0, ColorBlue = 0, ColorGreen = 0 },
-                new Color { ColorId = 6, ColorName = "gray", ColorRed = 153, ColorBlue = 153, ColorGreen = 153 },
-                new Color { ColorId = 7, ColorName = "green", ColorRed = 74, ColorBlue = 128, ColorGreen = 77 }
+                new Color { Id = 1, Name = "white", Red = 255, Blue = 255, Green = 255 },
+                new Color { Id = 2, Name = "red", Red = 211, Blue = 0, Green = 0 },
+                new Color { Id = 3, Name = "orange", Red = 255, Blue = 127, Green = 0 },
+                new Color { Id = 4, Name = "blue", Red = 99, Blue = 184, Green = 255 },
+                new Color { Id = 5, Name = "black", Red = 0, Blue = 0, Green = 0 },
+                new Color { Id = 6, Name = "gray", Red = 153, Blue = 153, Green = 153 },
+                new Color { Id = 7, Name = "green", Red = 74, Blue = 128, Green = 77 }
 
 
 
@@ -235,14 +235,14 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<PointType> builder)
         {
-            builder.HasKey(u => u.PointTypeId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.PointTypeName).IsRequired();
+            builder.Property(u => u.Name).IsRequired();
 
             builder.HasData(
-                new PointType { PointTypeId = 1, PointTypeName = "end" },
-                new PointType { PointTypeId = 2, PointTypeName = "center" },
-                new PointType { PointTypeId = 3, PointTypeName = "middle" }
+                new PointType { Id = 1, Name = "end" },
+                new PointType { Id = 2, Name = "center" },
+                new PointType { Id = 3, Name = "middle" }
                 );
 
 
@@ -253,17 +253,17 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<ElementType> builder)
         {
-            builder.HasKey(u => u.ElementTypeId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.ElementTypeName).IsRequired();
+            builder.Property(u => u.Name).IsRequired();
 
             builder.HasData(
-                new ElementType { ElementTypeId = 1, ElementTypeName = "line" },
-                new ElementType { ElementTypeId = 2, ElementTypeName = "circle" },
-                new ElementType { ElementTypeId = 3, ElementTypeName = "rectangle" },
-                new ElementType { ElementTypeId = 4, ElementTypeName = "arc" },
-                new ElementType { ElementTypeId = 5, ElementTypeName = "ellips" },
-                new ElementType { ElementTypeId = 6, ElementTypeName = "spline" }
+                new ElementType { Id = 1, Name = "line" },
+                new ElementType { Id = 2, Name = "circle" },
+                new ElementType { Id = 3, Name = "rectangle" },
+                new ElementType { Id = 4, Name = "arc" },
+                new ElementType { Id = 5, Name = "ellips" },
+                new ElementType { Id = 6, Name = "spline" }
                 );
 
 
@@ -273,25 +273,25 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<Pen> builder)
         {
-            builder.HasKey(u => u.PenId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.PenName).IsRequired();
-            builder.Property(u => u.PenBlue).IsRequired();
-            builder.Property(u => u.PenRed).IsRequired();
-            builder.Property(u => u.PenGreen).IsRequired();
+            builder.Property(u => u.Name).IsRequired();
+            builder.Property(u => u.Blue).IsRequired();
+            builder.Property(u => u.Red).IsRequired();
+            builder.Property(u => u.Green).IsRequired();
 
             builder.HasData(
-                new Pen { PenId = 1, PenName = "pen1", PenStyleId = 1 ,PenRed=10,PenGreen=10,PenBlue=10,PenUserId= "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                new Pen { PenId = 2, PenName = "pen2", PenStyleId = 2, PenRed = 10, PenGreen = 10, PenBlue = 10, PenUserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
+                new Pen { Id = 1, Name = "pen1", PenStyleId = 1 ,Red=10,Green=10,Blue=10,UserId= "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new Pen { Id = 2, Name = "pen2", PenStyleId = 2, Red = 10, Green = 10, Blue = 10, UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" }
                 );
 
             //builder.HasOne(c => c.PenColor).WithMany(p => p.Pens).HasForeignKey(c => c.PenColorId);
 
             builder.HasOne(c => c.PenStyle).WithMany(p => p.Pens).HasForeignKey(c => c.PenStyleId);
 
-            builder.HasOne(d => d.PenUser)
+            builder.HasOne(d => d.User)
                 .WithMany(u => u.Pens)
-                .HasForeignKey(d => d.PenUserId);
+                .HasForeignKey(d => d.UserId);
 
         }
     }
@@ -300,17 +300,17 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<Radius> builder)
         {
-            builder.HasKey(u => u.RadiusId);
-            builder.Property(u => u.RadiusValue).IsRequired().HasPrecision(8, 4);
+            builder.HasKey(u => u.Id);
+            builder.Property(u => u.Value).IsRequired().HasPrecision(8, 4);
 
             builder.HasData(
-                new Radius { RadiusId = 1, RadiusValue = 10, RadiusElementId = 4 },
-                new Radius { RadiusId = 2, RadiusValue = 15, RadiusElementId = 4 }
+                new Radius { Id = 1, Value = 10, ElementId = 4 },
+                new Radius { Id = 2, Value = 15, ElementId = 4 }
                 );
 
-            builder.HasOne(d => d.RadiusElement)
+            builder.HasOne(d => d.Element)
                 .WithMany(u => u.Radiuses)
-                .HasForeignKey(d => d.RadiusElementId);
+                .HasForeignKey(d => d.ElementId);
         }
     }
 
@@ -318,19 +318,19 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<SSAngle> builder)
         {
-            builder.HasKey(u => u.SSAngleId);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.SSAngleType).IsRequired();
-            builder.Property(u => u.SSAngleValue).IsRequired().HasPrecision(8, 4);
+            builder.Property(u => u.Type).IsRequired();
+            builder.Property(u => u.Value).IsRequired().HasPrecision(8, 4);
 
             builder.HasData(
-                new SSAngle { SSAngleId = 1, SSAngleType = "start", SSAngleValue = 0, SSAngleElementId = 1 },
-                new SSAngle { SSAngleId = 2, SSAngleType = "stop", SSAngleValue = 30, SSAngleElementId = 1 }
+                new SSAngle { Id = 1, Type = "start", Value = 0, ElementId = 1 },
+                new SSAngle { Id = 2, Type = "stop", Value = 30, ElementId = 1 }
                 );
 
-            builder.HasOne(d => d.SSAngleElement)
+            builder.HasOne(d => d.Element)
                 .WithMany(u => u.SSAngles)
-                .HasForeignKey(d => d.SSAngleElementId);
+                .HasForeignKey(d => d.ElementId);
         }
     }
 }

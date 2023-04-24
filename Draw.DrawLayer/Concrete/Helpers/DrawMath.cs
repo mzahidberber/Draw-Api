@@ -6,25 +6,25 @@ namespace Draw.DrawLayer.Concrete.Helpers
     {
         public static Point AdditionPointPlusXY(Point point,double distanceX, double distanceY)
         {
-            return new Point { PointX = point.PointX + distanceX, PointY = point.PointY+distanceY, PointTypeId = point.PointTypeId };
+            return new Point { X = point.X + distanceX, Y = point.Y+distanceY, PointTypeId = point.PointTypeId };
         }
         public static Point AdditionPointPlusX(Point point, double distanceX)
         {
-            return new Point { PointX = point.PointX+distanceX, PointY = point.PointY, PointTypeId = point.PointTypeId };
+            return new Point { X = point.X+distanceX, Y = point.Y, PointTypeId = point.PointTypeId };
         }
         public static Point AdditionPointPlusY(Point point, double distanceY)
         {
-            return new Point { PointX=point.PointX,PointY=point.PointY+distanceY,PointTypeId=point.PointTypeId};
+            return new Point { X=point.X,Y=point.Y+distanceY,PointTypeId=point.PointTypeId};
         }
 
         public static double DifferancePointsX(Point point1, Point point2)
         {
-            return Math.Abs(point1.PointX-point2.PointX);
+            return Math.Abs(point1.X-point2.X);
         }
 
         public static double DifferancePointsY(Point point1, Point point2)
         {
-            return Math.Abs(point1.PointY - point2.PointY);
+            return Math.Abs(point1.Y - point2.Y);
         }
 
         public static double DifferanceTwoPoints(Point point1, Point point2)
@@ -37,28 +37,28 @@ namespace Draw.DrawLayer.Concrete.Helpers
 
         public static Point FindBetweenPointToTwoPoint(Point p1,Point p2,int pointTypeId)
         {
-            var x = (p1.PointX + p2.PointX) / 2;
-            var y = (p1.PointY + p2.PointY) / 2;
-            return new Point { PointX=x,PointY=y,PointTypeId=pointTypeId};
+            var x = (p1.X + p2.X) / 2;
+            var y = (p1.Y + p2.Y) / 2;
+            return new Point { X=x,Y=y,PointTypeId=pointTypeId};
         }
 
         public static (Point,double) FindCenterAndRadiusToTreePoint(Point p1, Point p2, Point p3)
         {
             double x1, y1, z1;
-            x1 = p1.PointX;
-            y1 = p1.PointY;
+            x1 = p1.X;
+            y1 = p1.Y;
             z1 = 1;
             double x2, y2, z2;
-            x2 = p2.PointX;
-            y2 = p2.PointY;
+            x2 = p2.X;
+            y2 = p2.Y;
             z2 = 1;
             double x3, y3, z3;
-            x3 = p3.PointX;
-            y3 = p3.PointY;
+            x3 = p3.X;
+            y3 = p3.Y;
             z3 = 1;
-            var a1 = -(p1.PointX * p1.PointX) - (p1.PointY * p1.PointY);
-            var a2 = -(p2.PointX * p2.PointX) - (p2.PointY * p2.PointY);
-            var a3 = -(p3.PointX * p3.PointX) - (p3.PointY * p3.PointY);
+            var a1 = -(p1.X * p1.X) - (p1.Y * p1.Y);
+            var a2 = -(p2.X * p2.X) - (p2.Y * p2.Y);
+            var a3 = -(p3.X * p3.X) - (p3.Y * p3.Y);
 
             var m1 = new double[,] { { x1, y1, z1 }, { x2, y2, z2 },{ x3,y3,z3} };
             var m2 = new double[,] { { a1, y1, z1 }, { a2, y2, z2 },{ a3,y3,z3} };
@@ -74,7 +74,7 @@ namespace Draw.DrawLayer.Concrete.Helpers
             var E = d3 / d1;
             var F = d4 / d1;
 
-            var Merkez = new Point { PointX = -D / 2, PointY = -E / 2 };
+            var Merkez = new Point { X = -D / 2, Y = -E / 2 };
             var Yaricap = (Math.Sqrt((double)(D*D) + (double)(E*E) - (double)(4 * F))) * 0.5;
             return (Merkez, Yaricap);
         }

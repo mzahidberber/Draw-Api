@@ -9,8 +9,8 @@ namespace Draw.Core.Mapper
         public DTOMapper()
         {
             CreateMap<Point, PointGeo>()
-                .ForMember(dest => dest.X, opt => opt.MapFrom(x => x.PointX))
-                .ForMember(dest => dest.Y, opt => opt.MapFrom(x => x.PointY))
+                .ForMember(dest => dest.X, opt => opt.MapFrom(x => x.X))
+                .ForMember(dest => dest.Y, opt => opt.MapFrom(x => x.Y))
                 .ReverseMap();
 
             //CreateMap<GeoRequest<RadiusAndPCenter>,GeoRequest<RadiusAndPGeoCenter>>()

@@ -9,8 +9,8 @@ namespace Draw.Entities.Concrete
             Layers = new List<Layer>();
             DrawCommands = new List<DrawCommand>();
         }
-        public int DrawBoxId { get; set; }
-        public string DrawName { get; set; } = null!;
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
 
         public string UserId { get; set; } = null!;
 

@@ -2,7 +2,7 @@
 {
     public class ElementTypeDTO
     {
-        public int ElementTypeId { get; set; }
-        public string ElementTypeName { get; set; } = null!;
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
     }
 }

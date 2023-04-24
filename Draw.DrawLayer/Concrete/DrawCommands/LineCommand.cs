@@ -19,6 +19,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         
         private Task<ElementInformation> AddLineAsync()
         {
+            Console.WriteLine("Line Add");
             var element = CreateElement();
             //await AddElementAsync(CreateElement());
             base.FinishCommand();

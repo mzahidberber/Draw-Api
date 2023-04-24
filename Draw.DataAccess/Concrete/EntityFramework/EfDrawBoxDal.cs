@@ -14,7 +14,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<DrawBox> GetDrawWithLayersAsync(string userId, int drawId)
         {
             return await _dbSet
-                .Where(x => x.DrawBoxId == drawId && x.UserId == userId)
+                .Where(x => x.Id == drawId && x.UserId == userId)
                 .Include(x => x.Layers)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }

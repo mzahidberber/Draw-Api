@@ -20,8 +20,8 @@ namespace Draw.Core.Tests
             //    new PointGeo { X=0,Y=0,Z=0},
             //    new PointGeo { X=0,Y=10,Z=0}});
             var resut =new GeoService().FindTwoPointsLength(
-                new Point { PointX = 12, PointY = 0 },
-                new Point { PointX = 1, PointY = 0 });
+                new Point { X = 12, Y = 0 },
+                new Point { X = 1, Y = 0 });
 
             System.Console.WriteLine(resut.Result);
             //Console.WriteLine(result.Result);

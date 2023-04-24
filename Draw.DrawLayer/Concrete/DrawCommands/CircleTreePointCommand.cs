@@ -38,7 +38,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private async Task<Element> CreateElementAsync()
         {
             var points = await CreatePointsAsync();
-            var radiuses = new List<Radius> { new Radius { RadiusValue = await GetRadiusAsync() } };
+            var radiuses = new List<Radius> { new Radius { Value = await GetRadiusAsync() } };
             return base.CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses);
         }
 

@@ -12,5 +12,6 @@ namespace Draw.Entities.Concrete
         }
         public ICollection<DrawBox> DrawBoxs { get; set; }
         public ICollection<Pen> Pens { get; set; }
+        int IEntity.Id { get; set; }
     }
 }

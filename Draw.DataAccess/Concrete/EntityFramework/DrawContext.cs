@@ -50,7 +50,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var cnn2 = $"server=localhost;port=3306;database=drawdb3;user=root;password=mysql123.;";
+            var cnn2 = $"server=localhost;port=3306;database=drawdb4;user=root;password=mysql123.;";
             optionsBuilder.LogTo(Console.WriteLine,LogLevel.Information).UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
             //if (!optionsBuilder.IsConfigured)
             //{

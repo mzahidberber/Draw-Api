@@ -2,11 +2,11 @@
 {
     public class LayerDTO
     {
-        public int LayerId { get; set; }
-        public string LayerName { get; set; } = null!;
-        public bool LayerLock { get; set; }
-        public bool LayerVisibility { get; set; }
-        public float LayerThickness { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public bool Lock { get; set; }
+        public bool Visibility { get; set; }
+        public float Thickness { get; set; }
         public int DrawBoxId { get; set; }
         public int PenId { get; set; }
         public PenDTO Pen { get; set; }

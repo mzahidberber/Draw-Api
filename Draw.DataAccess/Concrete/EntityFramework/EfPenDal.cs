@@ -14,7 +14,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<List<Pen>> GetAllWithAttAsync(string userId)
         {
             return await _dbSet
-                .Where(x => x.PenUserId == userId)
+                .Where(x => x.UserId == userId)
                 //.Include(x => x.PenColor)
                 .Include(x=>x.PenStyle)
                 .ToListAsync() ?? throw new CustomException("Entity Not Found");
@@ -23,7 +23,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Pen> GetPenWithColorAsync(string userId, int penId)
         {
             return await _dbSet
-                .Where(x => x.PenId == penId && x.PenUserId == userId)
+                .Where(x => x.Id == penId && x.UserId == userId)
                 //.Include(x => x.PenColor)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -31,7 +31,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Pen> GetPenWithPenStyleAsync(string userId, int penId)
         {
             return await _dbSet
-                .Where(x => x.PenId == penId && x.PenUserId == userId)
+                .Where(x => x.Id == penId && x.UserId == userId)
                 .Include(x => x.PenStyle)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }

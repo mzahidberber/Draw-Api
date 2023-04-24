@@ -20,6 +20,10 @@ namespace Draw.Business.Concrete
                 await dal.AddAsync(entity);
             }
             await dal.CommitAsync();
+            //foreach (var item in entitiesList)
+            //{
+            //    Console.WriteLine(item.Id);
+            //}
             var data = entitiesList.Select(e => ObjectMapper.Mapper.Map<TDTO>(e));
             return Response<IEnumerable<TDTO>>.Success(data, 200);
         }

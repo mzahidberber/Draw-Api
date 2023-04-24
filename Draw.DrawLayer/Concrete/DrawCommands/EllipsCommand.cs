@@ -47,8 +47,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
             var radius = DrawMath.DifferanceTwoPoints(_point1, _point2);
             var radius2 = DrawMath.DifferanceTwoPoints(_point1, _point3);
-            var r1 = new Radius { RadiusValue=radius};
-            var r2 = new Radius { RadiusValue=radius2};
+            var r1 = new Radius { Value=radius};
+            var r2 = new Radius { Value=radius2};
             return new List<Radius> { r1,r2};
         }
 

@@ -1,5 +1,4 @@
 ﻿using Draw.Entities.Abstract;
-using System.Collections.Generic;
 
 namespace Draw.Entities.Concrete
 {
@@ -7,11 +6,11 @@ namespace Draw.Entities.Concrete
     {
         public PointType()
         {
-            PointTypePoints = new List<Point>();
+            Points = new List<Point>();
         }
-        public int PointTypeId { get; set; }
-        public string PointTypeName { get; set; } = null!;
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
 
-        public List<Point> PointTypePoints { get; set; }
+        public List<Point> Points { get; set; }
     }
 }

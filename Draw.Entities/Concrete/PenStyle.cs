@@ -9,8 +9,8 @@ namespace Draw.Entities.Concrete
         {
             Pens = new List<Pen>();
         }
-        public int PenStyleId { get; set; }
-        public string PenStyleName { get; set; } = null!;
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
 
         public List<Pen> Pens { get; set; }
 

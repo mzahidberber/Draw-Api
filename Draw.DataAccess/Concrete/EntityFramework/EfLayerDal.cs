@@ -26,7 +26,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Layer> GetLayerWithElementsAsync(string userId, int layerId)
         {
             return await _dbSet
-                .Where(x => x.LayerId == layerId && x.DrawBox.UserId == userId)
+                .Where(x => x.Id == layerId && x.DrawBox.UserId == userId)
                 .Include(x=>x.Elements)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -34,7 +34,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Layer> GetLayerWithPenAsync(string userId, int layerId)
         {
             return await _dbSet
-                .Where(x => x.LayerId == layerId && x.DrawBox.UserId == userId)
+                .Where(x => x.Id == layerId && x.DrawBox.UserId == userId)
                 .Include(x => x.Pen)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }

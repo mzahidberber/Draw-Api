@@ -38,7 +38,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private async Task<Element> CreateElementAsync()
         {
             var points = await CreatePointsAsync();
-            var radiuses = new List<Radius> { new Radius { RadiusValue = await GetRadiusAsync() } };
+            var radiuses = new List<Radius> { new Radius { Value = await GetRadiusAsync() } };
             var ssangles =await GetSSangles();
             return base.CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses,ssangles);
         }
@@ -47,8 +47,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
             //var data = await _geoService.FindSSAngles();
             return new List<SSAngle> {
-                new SSAngle { SSAngleValue = 10, SSAngleType = "start" },
-                new SSAngle { SSAngleValue = 10, SSAngleType = "stop" }};
+                new SSAngle { Value = 10, Type = "start" },
+                new SSAngle { Value = 10, Type = "stop" }};
         }
 
         private async Task<double> GetRadiusAsync()

@@ -18,15 +18,15 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Element> GetElementWithElementTypeAsync(string userId, int entityId)
         {
             return await _dbSet
-                .Where(x => x.ElementId == entityId && x.Layer.DrawBox.UserId==userId)
-                .Include(x => x.ElementType)
+                .Where(x => x.Id == entityId && x.Layer.DrawBox.UserId==userId)
+                .Include(x => x.Type)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
 
         public async Task<Element> GetElementWithLayerAsync(string userId, int entityId)
         {
             return await _dbSet
-                .Where(x => x.ElementId == entityId && x.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == entityId && x.Layer.DrawBox.UserId == userId)
                 .Include(x => x.Layer)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -34,7 +34,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Element> GetElementWithPenAsync(string userId, int entityId)
         {
             return await _dbSet
-                .Where(x => x.ElementId == entityId && x.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == entityId && x.Layer.DrawBox.UserId == userId)
                 .Include(x => x.Pen)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -42,7 +42,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Element> GetElementWithPointsAsync(string userId, int entityId)
         {
             return await _dbSet
-                .Where(x => x.ElementId == entityId && x.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == entityId && x.Layer.DrawBox.UserId == userId)
                 .Include(x => x.Points)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -50,7 +50,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Element> GetElementWithSSAnglesAsync(string userId, int entityId)
         {
             return await _dbSet
-                .Where(x => x.ElementId == entityId && x.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == entityId && x.Layer.DrawBox.UserId == userId)
                 .Include(x => x.SSAngles)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -58,7 +58,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Element> GetElementWithRadiusAsync(string userId, int entityId)
         {
             return await _dbSet
-                .Where(x => x.ElementId == entityId && x.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == entityId && x.Layer.DrawBox.UserId == userId)
                 .Include(x => x.Radiuses)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -87,7 +87,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<List<Element>> GetAllByLayerWithAttAsync(string userId, int layerId)
         {
             return await _dbSet
-              .Where(x => x.Layer.DrawBox.UserId == userId && x.Layer.LayerId == layerId)
+              .Where(x => x.Layer.DrawBox.UserId == userId && x.Layer.Id == layerId)
               .Include(x => x.Points)
               .Include(x => x.SSAngles)
               .Include(x => x.Radiuses)

@@ -25,13 +25,13 @@ namespace Draw.DataAccess.Tests
             string userId = "b21972e1-742f-4fa7-be46-1189d9cab7cc";
             using (DrawContext context = new DrawContext())
             {
-                var point = context.Points.Where(p => p.PointId == pointId).SingleOrDefault();
-                var element = context.Elements.Where(e => e.ElementId == point.ElementId).SingleOrDefault();
-                var layer = context.Layers.Where(l => l.LayerId == element.LayerId).SingleOrDefault();
-                var draw = context.Draws.Where(d => d.DrawBoxId == layer.LayerId).SingleOrDefault();
+                var point = context.Points.Where(p => p.Id == pointId).SingleOrDefault();
+                var element = context.Elements.Where(e => e.Id == point.ElementId).SingleOrDefault();
+                var layer = context.Layers.Where(l => l.Id == element.LayerId).SingleOrDefault();
+                var draw = context.Draws.Where(d => d.Id == layer.Id).SingleOrDefault();
                 if (draw.UserId == userId)
                 {
-                    Console.WriteLine(point.PointX);
+                    Console.WriteLine(point.X);
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace Draw.DataAccess.Tests
         [Test]
         public void Test2()
         {
-            var element = new Element { PenId = 1, LayerId = 2, ElementTypeId = 1 };
+            var element = new Element { PenId = 1, LayerId = 2, TypeId = 1 };
 
             var elementDAl = DataInstanceFactory.GetInstance<IElementDal>();
             //var unitwork = DataInstanceFactory.GetInstance<IUnitOfWork>();
@@ -81,7 +81,7 @@ namespace Draw.DataAccess.Tests
                 var element1 = context.Elements.Where(e => e.Layer.DrawBox.UserId == "b21972e1-742f-4fa7-be46-1189d9cab7ca").ToList();
                 element1.ForEach(e =>
                 {
-                    Console.WriteLine(e.ElementId);
+                    Console.WriteLine(e.Id);
                 });
             }
         }
@@ -92,7 +92,7 @@ namespace Draw.DataAccess.Tests
             DrawContext context = new DrawContext();
             var efelementDal = new EfElementsDal(context);
             var elements= efelementDal.GetAllAsync(e => e.Layer.DrawBox.UserId == "b21972e1-742f-4fa7-be46-1189d9cab7cb").ToList();
-            elements.ForEach(e => Console.WriteLine(e.ElementId));
+            elements.ForEach(e => Console.WriteLine(e.Id));
         }
 
 
@@ -102,10 +102,10 @@ namespace Draw.DataAccess.Tests
             using (DrawContext context = new DrawContext())
             {
                 var list= new List<int> { 1,2,3,6};
-                var elements = context.Elements.Where(e => list.Contains(e.ElementId)).ToList();
+                var elements = context.Elements.Where(e => list.Contains(e.Id)).ToList();
                 elements.ForEach((e) =>
                 {
-                    Console.WriteLine(e.ElementId);
+                    Console.WriteLine(e.Id);
                 });
 ;            }
         }
@@ -115,8 +115,8 @@ namespace Draw.DataAccess.Tests
         public void Test6()
         {
             DrawContext context = new DrawContext();
-            var element = new Element {ElementId=4, PenId = 1, LayerId = 2, ElementTypeId = 3 };
-            var element1 = new Element {ElementId=3, PenId = 1, LayerId = 2, ElementTypeId = 3 };
+            var element = new Element {Id=4, PenId = 1, LayerId = 2, TypeId = 3 };
+            var element1 = new Element {Id=3, PenId = 1, LayerId = 2, TypeId = 3 };
             var efelementDal = new EfElementsDal(context);
             try
             {
@@ -144,8 +144,8 @@ namespace Draw.DataAccess.Tests
         public void Test7()
         {
             DrawContext context = new DrawContext();
-            var element = new Element { ElementId = 4, PenId = 1, LayerId = 2, ElementTypeId = 3 };
-            var element1 = new Element { ElementId = 3, PenId = 1, LayerId = 2, ElementTypeId = 3 };
+            var element = new Element { Id = 4, PenId = 1, LayerId = 2, TypeId = 3 };
+            var element1 = new Element { Id = 3, PenId = 1, LayerId = 2, TypeId = 3 };
             var efelementDal = new EfElementsDal(context);
             
 

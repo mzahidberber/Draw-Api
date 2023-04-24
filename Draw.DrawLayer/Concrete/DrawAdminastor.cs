@@ -43,6 +43,7 @@ namespace Draw.DrawLayer.Concrete
         {
             if (!_commandData.IsWorkingCommand)
             {
+                Console.WriteLine($"Start Command {commandEnum}");
                 _commandData.SetUseTimeNow();
                 _commandData.SetData(LayerId,DrawBoxId, PenId);
                 _commandData.SetSelectedCommand(GetCommandEnums(commandEnum));

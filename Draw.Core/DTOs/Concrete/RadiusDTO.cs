@@ -2,8 +2,8 @@
 {
     public class RadiusDTO
     {
-        public int RadiusId { get; set; }
-        public double RadiusValue { get; set; }
-        public int RadiusElementId { get; set; }
+        public int Id { get; set; }
+        public double Value { get; set; }
+        public int ElementId { get; set; }
     }
 }

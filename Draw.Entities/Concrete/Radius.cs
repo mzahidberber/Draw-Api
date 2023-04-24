@@ -4,9 +4,9 @@ namespace Draw.Entities.Concrete
 {
     public class Radius : IEntity
     {
-        public int RadiusId { get; set; }
-        public double RadiusValue { get; set; }
-        public int RadiusElementId { get; set; }
-        public Element RadiusElement { get; set; } = null!;
+        public int Id { get; set; }
+        public double Value { get; set; }
+        public int ElementId { get; set; }
+        public Element Element { get; set; } = null!;
     }
 }

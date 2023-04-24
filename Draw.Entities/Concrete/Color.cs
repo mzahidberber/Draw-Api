@@ -9,11 +9,11 @@ namespace Draw.Entities.Concrete
         //{
         //    Pens = new List<Pen>();
         //}
-        public int ColorId { get; set; }
-        public string ColorName { get; set; } = null!;
-        public int ColorRed { get; set; }
-        public int ColorBlue { get; set; }
-        public int ColorGreen { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public int Red { get; set; }
+        public int Blue { get; set; }
+        public int Green { get; set; }
 
         //public List<Pen> Pens { get; set; }
     }

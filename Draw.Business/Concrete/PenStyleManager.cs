@@ -21,7 +21,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(List<int> entities)
         {
-            return await base.BaseDeleteAllAsync<PenStyle>(_penStyleDal,x=>entities.Contains(x.PenStyleId));
+            return await base.BaseDeleteAllAsync<PenStyle>(_penStyleDal,x=>entities.Contains(x.Id));
         }
 
         public async Task<Response<IEnumerable<PenStyleDTO>>> GetAllAsync()

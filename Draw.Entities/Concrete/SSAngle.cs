@@ -4,10 +4,10 @@ namespace Draw.Entities.Concrete
 {
     public class SSAngle : IEntity
     {
-        public int SSAngleId { get; set; }
-        public string SSAngleType { get; set; } = null!;
-        public double SSAngleValue { get; set; }
-        public int SSAngleElementId { get; set; }
-        public Element SSAngleElement { get; set; } = null!;
+        public int Id { get; set; }
+        public string Type { get; set; } = null!;
+        public double Value { get; set; }
+        public int ElementId { get; set; }
+        public Element Element { get; set; } = null!;
     }
 }

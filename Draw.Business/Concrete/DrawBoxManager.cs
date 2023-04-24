@@ -23,7 +23,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
         {
-            return await base.BaseDeleteAllAsync<DrawBox>(_drawBoxDal, x => entities.Contains(x.DrawBoxId) && x.UserId == userId);
+            return await base.BaseDeleteAllAsync<DrawBox>(_drawBoxDal, x => entities.Contains(x.Id) && x.UserId == userId);
         }
 
         public async Task<Response<IEnumerable<DrawBoxDTO>>> GetAllAsync(string userId)
@@ -47,8 +47,8 @@ namespace Draw.Business.Concrete
         {
             return await base.BaseUpdateAsync<DrawBoxDTO, DrawBox>(entities, _drawBoxDal, () =>
             {
-                var idList = entities.Select(x => x.DrawBoxId).ToList();
-                var elementsCount = _drawBoxDal.GetWhereAsync(x => idList.Contains(x.DrawBoxId) && x.UserId == userId).Count();
+                var idList = entities.Select(x => x.Id).ToList();
+                var elementsCount = _drawBoxDal.GetWhereAsync(x => idList.Contains(x.Id) && x.UserId == userId).Count();
                 if (elementsCount != entities.Count) return false;
                 else return true;
             });

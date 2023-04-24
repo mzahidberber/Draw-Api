@@ -15,7 +15,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Point> GetPointWithElementAsync(string userId, int pointId)
         {
             return await _dbSet
-                .Where(x => x.PointId == pointId && x.Element.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == pointId && x.Element.Layer.DrawBox.UserId == userId)
                 .Include(x => x.Element)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
@@ -23,7 +23,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public async Task<Point> GetPointWithPointTypeAsync(string userId, int pointId)
         {
             return await _dbSet
-                .Where(x => x.PointId == pointId && x.Element.Layer.DrawBox.UserId == userId)
+                .Where(x => x.Id == pointId && x.Element.Layer.DrawBox.UserId == userId)
                 .Include(x => x.PointType)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
