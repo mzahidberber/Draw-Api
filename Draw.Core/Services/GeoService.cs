@@ -77,6 +77,24 @@ namespace Draw.Core.Services
         }
 
 
+        public async Task<GeoRequest<StartAndStopRequest>> FindStartAndStopAngle(Point centerPoint,Point p1,Point p2,Point p3)
+        {
+            var points = CoreObjectMapper.Mapper.Map<List<PointGeo>>(new List<Point> { centerPoint, p1, p2,p3 });
+
+            using (HttpResponseMessage response = await client.PostAsync(
+                GetUrl(GeoRequestUrls.findStartAndStopAngle),
+                GetContent<List<PointGeo>>(points)))
+            {
+                //response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
+                GeoRequest<StartAndStopRequest>? data = JsonSerializer.Deserialize<GeoRequest<StartAndStopRequest>>(result);
+
+                return data ?? throw new CustomException("GeoService Not Used");
+            }
+        }
+
+
 
 
 

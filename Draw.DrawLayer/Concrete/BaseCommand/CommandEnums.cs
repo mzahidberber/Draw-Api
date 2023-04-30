@@ -2,7 +2,7 @@
 {
     public enum CommandEnums
     {
-        line, circleTwoPoint, circleCenterPoint, circleCenterRadius, circleTreePoint, rectangle, arc, spline,move,copy
+        line, circleTwoPoint, circleCenterPoint, circleCenterRadius, circleTreePoint, rectangle, arcThreePoint, spline,move,copy,ellipse
     }
 
     

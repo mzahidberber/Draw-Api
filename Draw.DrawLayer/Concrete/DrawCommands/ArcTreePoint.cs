@@ -1,6 +1,7 @@
 ﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
+using Ninject.Planning.Bindings.Resolvers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,13 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
 
+        private Point _centerPoint { get; set; } = null!;
+
         protected async override Task<ElementInformation> ControlCommandAsync()
         {
             ///////Düzenle
             CommandMemory.SetElementTypeId(4);
-            Console.WriteLine("arcCenterTwoPoint Command");
+            Console.WriteLine("arcthreepoint Command");
             return CommandMemory.PointsList.Count == 3 ? await AddArcAsync() : await ReturnErrorMessageAsync(3);
         }
 
@@ -50,10 +53,10 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private async Task<List<SSAngle>> GetSSangles()
         {
-            //var data = await _geoService.FindSSAngles();
+            var startAndStopAngle = await _geoService.FindStartAndStopAngle(_centerPoint, _point1, _point2, _point3);
             return new List<SSAngle> {
-                new SSAngle { Value = 10, Type = "start" },
-                new SSAngle { Value = 10, Type = "stop" } };
+                new SSAngle { Value = startAndStopAngle.data.startAngle, Type = "start" },
+                new SSAngle { Value = startAndStopAngle.data.stopAngle, Type = "stop" } };
         }
 
         private async Task<double> GetRadiusAsync()
@@ -66,12 +69,12 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
             //var pcenter = _geoService.FindCenterAndRadius(_point1, _point2, _point3).Result.data.centerPoint;
             var data = await _geoService.FindCenterAndRadius(_point1, _point2, _point3);
-            var pcenter = data.centerPoint;
+            this._centerPoint = data.centerPoint;
             //var p1 = DrawMath.AdditionPointPlusX(pcenter, GetRadiusAsync());
             //var p2 = DrawMath.AdditionPointPlusY(pcenter, GetRadiusAsync());
             //var p3 = DrawMath.AdditionPointPlusX(pcenter, -GetRadiusAsync());
             //var p4 = DrawMath.AdditionPointPlusY(pcenter, -GetRadiusAsync());
-            return new List<Point> { pcenter };
+            return new List<Point> { this._point1, this._centerPoint };
         }
     }
 }

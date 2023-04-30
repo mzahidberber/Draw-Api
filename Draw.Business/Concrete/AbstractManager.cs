@@ -20,6 +20,7 @@ namespace Draw.Business.Concrete
                 await dal.AddAsync(entity);
             }
             await dal.CommitAsync();
+            // Kaydedilen elemanların idli bir şekilde geri dönülmesi gerekiyor
             //foreach (var item in entitiesList)
             //{
             //    Console.WriteLine(item.Id);
