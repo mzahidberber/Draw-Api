@@ -17,7 +17,8 @@ namespace Draw.DrawLayer.Concrete.BaseCommand
             { CommandEnums.move,typeof(MoveCommands) },
             { CommandEnums.copy,typeof(CopyCommand) },
             { CommandEnums.ellipse,typeof(EllipsCommand) },
-            { CommandEnums.arcThreePoint,typeof(ArcTreePoint) }
+            { CommandEnums.arcThreePoint,typeof(ArcTreePoint) },
+            { CommandEnums.arcCenterTwoPoint,typeof(ArcCenterTwoPoint) },
         };
         private CommandsMultiton() { }
 

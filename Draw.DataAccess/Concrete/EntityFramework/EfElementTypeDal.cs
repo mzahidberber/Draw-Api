@@ -1,6 +1,5 @@
 ﻿using Draw.DataAccess.Abstract;
 using Draw.Entities.Concrete;
-using System.Linq.Expressions;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {

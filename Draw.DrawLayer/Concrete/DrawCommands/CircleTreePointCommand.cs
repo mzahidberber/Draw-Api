@@ -1,5 +1,4 @@
 ﻿using Draw.DrawLayer.Abstract;
-using Draw.DrawLayer.Concrete.Helpers;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 
@@ -15,13 +14,12 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            ///////Düzenle
             CommandMemory.SetElementTypeId(2);
-            Console.WriteLine("circleTreePoint Command");
             return CommandMemory.PointsList.Count == 3 ? await AddCircle() : await ReturnErrorMessageAsync(3);
         }
+
         private async Task<ElementInformation> AddCircle()
         {
             this._point1 = base.CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);

@@ -1,13 +1,12 @@
 ﻿using Draw.Api.Models;
 using Draw.Business.Abstract;
-using Draw.Business.Concrete;
 using Draw.Business.DependencyResolvers.Ninject;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Api.Controllers
 {
-    
+
     [ApiController]
     [Route("[controller]")]
     public class ElementTypeController : CustomBaseController

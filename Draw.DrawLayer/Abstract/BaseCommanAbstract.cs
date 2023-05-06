@@ -1,10 +1,11 @@
-﻿using Draw.DrawLayer.Concrete;
-using Draw.Entities.Concrete;
-using Draw.Core.Services.Abstract;
+﻿using Draw.Core.Aspects.PostSharp.LoggingAspects;
 using Draw.Core.DependencyResolvers.Ninject;
-using Draw.DrawLayer.Concrete.Model;
+using Draw.Core.Services.Abstract;
 using Draw.DataAccess.Abstract;
 using Draw.DataAccess.DependencyResolvers.Ninject;
+using Draw.DrawLayer.Concrete;
+using Draw.DrawLayer.Concrete.Model;
+using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Abstract
 {
@@ -35,10 +36,11 @@ namespace Draw.DrawLayer.Abstract
             return Task.FromResult(new ElementInformation { isTrue = false, message = msg });
         }
 
-        protected abstract Task<ElementInformation> ControlCommandAsync();
+        public abstract Task<ElementInformation> ControlCommandAsync();
+
+        [LogAspect]
         public async Task<ElementInformation> AddPointAsync(PointD point)
         {
-            Console.WriteLine($"Add Point {point.X}--{point.Y}");
             CommandMemory.PointsList.Add(point);
             return await ControlCommandAsync();
         }

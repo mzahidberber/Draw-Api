@@ -1,14 +1,10 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.DataAccess.Abstract;
-using Draw.Entities.Abstract;
 using Draw.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using System.Linq;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
-
     public class EfElementsDal : EfEntityRepositoryBaseAbstract<Element>, IElementDal
     {
         public EfElementsDal(DrawContext context) : base(context)

@@ -12,6 +12,8 @@
           "Castle.Core": "5.1.1",
           "Draw.Entities": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.0",
+          "NLog": "5.1.4",
+          "NLog.Web.AspNetCore": "5.2.3",
           "Newtonsoft.Json": "13.0.2",
           "Ninject": "3.3.6",
           "PostSharp": "2023.0.3",
@@ -263,6 +265,38 @@
           "lib/netstandard2.0/Ninject.dll": {
             "assemblyVersion": "3.3.6.0",
             "fileVersion": "3.3.6.0"
+          }
+        }
+      },
+      "NLog/5.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.4.1703"
+          }
+        }
+      },
+      "NLog.Extensions.Logging/5.2.3": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging": "6.0.0",
+          "NLog": "5.1.4"
+        },
+        "runtime": {
+          "lib/net6.0/NLog.Extensions.Logging.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.2.3.325"
+          }
+        }
+      },
+      "NLog.Web.AspNetCore/5.2.3": {
+        "dependencies": {
+          "NLog.Extensions.Logging": "5.2.3"
+        },
+        "runtime": {
+          "lib/net6.0/NLog.Web.AspNetCore.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.2.3.830"
           }
         }
       },
@@ -699,6 +733,27 @@
       "sha512": "sha512-93avazUpbRL3IdwvTQF0DKSQB26TeqwMGhZsQNxi/RLSYewhxBkdGDhwWe9DAIRF1+zKDVMv3XkBk8HobKU6wA==",
       "path": "ninject/3.3.6",
       "hashPath": "ninject.3.3.6.nupkg.sha512"
+    },
+    "NLog/5.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ki0XThITEd//RrQ21yi1HB/Uid4pzTRE5YLvEpk91d0vDXp3OPtVCvWgrYsqqcpTwiipFSOLSsU1RblaexrFiA==",
+      "path": "nlog/5.1.4",
+      "hashPath": "nlog.5.1.4.nupkg.sha512"
+    },
+    "NLog.Extensions.Logging/5.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TB8zPGV2nVpvWq5C8zIVHPSmnzOHMrXppjsAwHcuJq1Ehs8sC0llnAv5Ysf5Lf/vew9amV/+01MohtRFSDzKdQ==",
+      "path": "nlog.extensions.logging/5.2.3",
+      "hashPath": "nlog.extensions.logging.5.2.3.nupkg.sha512"
+    },
+    "NLog.Web.AspNetCore/5.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uP0KekbkswuMjo1dbaqu20TxH2Dc3ox2qJDIi837ob2Fq/BliZHuQY9nJdM3UArVrLrsl+xxsx0D6h8m3fOufg==",
+      "path": "nlog.web.aspnetcore/5.2.3",
+      "hashPath": "nlog.web.aspnetcore.5.2.3.nupkg.sha512"
     },
     "PostSharp/2023.0.3": {
       "type": "package",

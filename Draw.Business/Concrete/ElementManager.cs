@@ -1,6 +1,5 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Business.Mapper;
-using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
@@ -9,7 +8,6 @@ using Draw.Entities.Concrete;
 
 namespace Draw.Business.Concrete
 {
-
     public class ElementManager : AbstractManager, IElementService
     {
         private IElementDal _elementDal;
@@ -17,6 +15,7 @@ namespace Draw.Business.Concrete
         {
             _elementDal = DataInstanceFactory.GetInstance<IElementDal>();
         }
+
         public async Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(List<ElementDTO> entities)
         {
             return await base.BaseAddAllAsync<ElementDTO, Element>(entities, _elementDal);
@@ -53,12 +52,12 @@ namespace Draw.Business.Concrete
         {
             return await base.BaseGetAllAsync<ElementDTO, Element>(_elementDal, e => e.Layer.DrawBox.UserId == userId && e.Layer.Id == layerId);
         }
+
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerWithAttAsync(string userId, int layerId)
         {
             var elemnts = await _elementDal.GetAllByLayerWithAttAsync(userId, layerId);
             return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
         }
-
 
         public async Task<Response<ElementDTO>> GetAsync(string userId, int entityId)
         {

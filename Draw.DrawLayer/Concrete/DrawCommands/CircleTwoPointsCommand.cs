@@ -14,13 +14,11 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            Console.WriteLine("CircleTwoPoint Command");
             CommandMemory.SetElementTypeId(2);
             return CommandMemory.PointsList.Count == 2 ?await  AddCircle() : await ReturnErrorMessageAsync(2);
         }
-
         private Task<ElementInformation> AddCircle()
         {
             this._point1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);

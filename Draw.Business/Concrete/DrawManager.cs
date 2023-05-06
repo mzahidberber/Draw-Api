@@ -18,14 +18,12 @@ namespace Draw.Business.Concrete
             await drawAdminastor.StartCommandAsync(command,DrawBoxId,LayerId,penId);
             return Response<NoDataDto>.Success(200);
         }
-
         public async Task<Response<NoDataDto>> StopCommand(string userId)
         {
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
             await drawAdminastor.StopCommandAsync();
             return Response<NoDataDto>.Success(200);
         }
-
         public async Task<Response<ElementDTO>> AddCoordinate(string userId, PointD point)
         {
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
@@ -39,21 +37,19 @@ namespace Draw.Business.Concrete
             await drawAdminastor.SetRadiusAsync(radius);
             return Response<NoDataDto>.Success(200);
         }
-
         public async Task<Response<NoDataDto>> SetElementsId(string userId, List<int> editElementsId)
         {
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
             await drawAdminastor.SetEditElementsIdAsync(editElementsId);
             return Response<NoDataDto>.Success(200);
         }
-
-        public async Task<Response<NoDataDto>> SetIsFinish(string userId, bool finish = true)
+        public async Task<Response<ElementDTO>> SetIsFinish(string userId, bool finish = true)
         {
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);
-            await drawAdminastor.SetIsFinishAsync(finish);
-            return Response<NoDataDto>.Success(200);
+            var data=await drawAdminastor.SetIsFinishAsync(finish);
+            if (data.isTrue) return Response<ElementDTO>.Success(ObjectMapper.Mapper.Map<ElementDTO>(data.element), 200);
+            else return Response<ElementDTO>.Fail(data.message, 200, true);
         }
-
         public async Task<Response<NoDataDto>> SaveElements(string userId, List<ElementDTO> saveElements)
         {
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);

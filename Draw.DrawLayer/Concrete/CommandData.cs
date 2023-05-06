@@ -7,10 +7,10 @@ namespace Draw.DrawLayer.Concrete
     public class CommandData
     {
         private CommandContext _commandContext { get; set; }
-        public CommandData(string userName)
+        public CommandData(string userId)
         {
             _commandContext = new CommandContext(this);
-            UserId = userName;
+            UserId = userId;
             EditElementsId = new List<int>();
             PointsList = new List<PointD>();
             SetUseTimeNow();

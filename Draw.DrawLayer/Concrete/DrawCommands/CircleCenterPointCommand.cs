@@ -13,9 +13,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
             
         }
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            Console.WriteLine("CircleCenterPoint Command");
             CommandMemory.SetElementTypeId(2);
             return CommandMemory.PointsList.Count == 2 ? 
                 await AddCircle() : 

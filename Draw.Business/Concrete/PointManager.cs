@@ -1,6 +1,5 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Business.Mapper;
-using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;

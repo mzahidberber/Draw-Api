@@ -1,9 +1,6 @@
-﻿using Draw.Core.CrosCuttingConcers.Handling;
-using Draw.DrawLayer.Abstract;
-using Draw.DrawLayer.Concrete.Helpers;
+﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
-using System.Xml.Linq;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
@@ -13,9 +10,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            Console.WriteLine("CircleCenterRadiues Command");
             CommandMemory.SetElementTypeId(2);
             if (CommandMemory.SelectedRadius == 0) { 
                 CommandMemory.ClearPointList(); 

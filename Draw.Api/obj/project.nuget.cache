@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QiK0OuxnqG6NK/oLHaFIyDAUOeVdHLcgVOCdi3yZOOqQBTOmymbWit6GFL6w3vUhEWDDHj7dkatUjXqtrNRrlw==",
+  "dgSpecHash": "4i1l6g1rPpCYIi3FXfd0RauBaOvo36dtCAC54QLxnqrmCIsThU2+L+vzfnLhlB1hicbSminUxqaMkZjRnYwgGA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Api\\Draw.Api.csproj",
   "expectedPackageFiles": [
@@ -49,6 +49,9 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\mysqlconnector\\2.1.2\\mysqlconnector.2.1.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\ninject\\3.3.6\\ninject.3.3.6.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog\\5.1.4\\nlog.5.1.4.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog.extensions.logging\\5.2.3\\nlog.extensions.logging.5.2.3.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog.web.aspnetcore\\5.2.3\\nlog.web.aspnetcore.5.2.3.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.2\\pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\postsharp\\2023.0.3\\postsharp.2023.0.3.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\postsharp.redist\\2023.0.3\\postsharp.redist.2023.0.3.nupkg.sha512",

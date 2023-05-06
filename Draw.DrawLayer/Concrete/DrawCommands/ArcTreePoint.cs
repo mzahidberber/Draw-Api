@@ -1,12 +1,6 @@
 ﻿using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
-using Ninject.Planning.Bindings.Resolvers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
@@ -22,13 +16,12 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private Point _centerPoint { get; set; } = null!;
 
-        protected async override Task<ElementInformation> ControlCommandAsync()
+        public async override Task<ElementInformation> ControlCommandAsync()
         {
-            ///////Düzenle
             CommandMemory.SetElementTypeId(4);
-            Console.WriteLine("arcthreepoint Command");
             return CommandMemory.PointsList.Count == 3 ? await AddArcAsync() : await ReturnErrorMessageAsync(3);
         }
+
 
         private async Task<ElementInformation> AddArcAsync()
         {

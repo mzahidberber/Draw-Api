@@ -24,6 +24,7 @@
         internal static string wherePointZone { get => "wherePointZone/"; }
         internal static string findNearetPoint { get => "findNearetPoint/"; }
         internal static string findStartAndStopAngle { get => "findStartAndStopAngle/"; }
+        internal static string findStartAndStopAngleTwoPoint { get => "findStartAndStopAngleTwoPoint/"; }
 
         
     }

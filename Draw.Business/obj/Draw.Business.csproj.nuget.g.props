@@ -13,7 +13,6 @@
     <SourceRoot Include="C:\Users\mzahidberber\.nuget\packages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)postsharp\2023.0.3\build\PostSharp.props" Condition="Exists('$(NuGetPackageRoot)postsharp\2023.0.3\build\PostSharp.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\6.0.7\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\6.0.7\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props')" />
   </ImportGroup>
 </Project>

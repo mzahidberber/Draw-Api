@@ -1,4 +1,6 @@
-﻿using Draw.Core.CrosCuttingConcers.Handling;
+﻿using Draw.Core.Aspects.PostSharp.LoggingAspects;
+using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.Core.CrosCuttingConcers.Logging.Nlog;
 using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.BaseCommand;
 using Draw.DrawLayer.Concrete.FileCommands;
@@ -7,43 +9,53 @@ using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Concrete
 {
-    public class DrawAdminastor : IDrawAdminastor
+
+    public class DrawAdminastor : IDrawAdminastor,ILog
     {
-        private CommandData _commandData { get; set; }
+        public CommandData _commandData { get; set; }
         public DrawAdminastor(string userId)
         {
             _commandData = new CommandData(userId);
         }
+
+        public string GetUserId() => _commandData.UserId;
+        public string GetUserName() => "";
         public DateTime GetUseTime() => _commandData.IsUseTime;
 
         public async Task SaveElements(List<Element> elements)
         {
             await SaveCommand.SaveElementsAsync(elements);
         }
-
-        public Task SetIsFinishAsync(bool finish=true)
+        [LogAspect]
+        public async Task<ElementInformation> SetIsFinishAsync(bool finish=true)
         {
             _commandData.SetIsFinish(finish);
-            return Task.CompletedTask;
+            var command = _commandData.GetSelectedCommand();
+            var data= await command.ControlCommandAsync();
+            await this.StopCommandAsync();
+            _commandData.SetIsFinish(false);
+            return data;
         }
+        [LogAspect]
         public Task SetRadiusAsync(double radius) 
         {
+            //logger.Info($"User:{_commandData.UserId} Set Radius {radius}");
             _commandData.SetUseTimeNow();
             _commandData.SetRadius(radius);
             return Task.CompletedTask;
         }
+        [LogAspect]
         public Task SetEditElementsIdAsync(List<int> editElementsId) 
         {
             _commandData.SetUseTimeNow();
             _commandData.SetEditElementsId(editElementsId);
             return Task.CompletedTask;
-        } 
-        
+        }
+        [LogAspect]
         public Task StartCommandAsync(CommandEnums commandEnum, int DrawBoxId, int LayerId, int PenId)
         {
             if (!_commandData.IsWorkingCommand)
             {
-                Console.WriteLine($"Start Command {commandEnum}");
                 _commandData.SetUseTimeNow();
                 _commandData.SetData(LayerId,DrawBoxId, PenId);
                 _commandData.SetSelectedCommand(GetCommandEnums(commandEnum));
@@ -52,7 +64,7 @@ namespace Draw.DrawLayer.Concrete
             }
             return Task.FromResult(new ElementInformation { isTrue = false, message = "Last Command Stop Or Finish!" });
         }
-
+        [LogAspect]
         public async Task<ElementInformation> AddCoordinateAdminastorAsync(PointD point)
         {
             if (_commandData.IsWorkingCommand)
@@ -66,21 +78,21 @@ namespace Draw.DrawLayer.Concrete
             return new ElementInformation { isTrue = false, message = "Last Start Command" };
 
         }
+        [LogAspect]
         public Task StopCommandAsync()
         {
             _commandData.SetUseTimeNow();
             _commandData.SetDefaultCommand();
             _commandData.GetSelectedCommand().FinishCommand();
             _commandData.SetIsWorkingCommand(false);
-            Console.WriteLine("Komut Durduruldu Stop");
             return Task.CompletedTask;
         }
+        [LogAspect]
         private void StopCommandControl()
         {
             if (!_commandData.IsWorkingCommand)
             {
                 _commandData.SetUseTimeNow();
-                Console.WriteLine("Komut Durduruldu Control");
                 _commandData.SetDefaultCommand();
                 _commandData.SetIsWorkingCommand(false);
             }
@@ -94,7 +106,7 @@ namespace Draw.DrawLayer.Concrete
             return command != null ? command : throw new CustomException("Command Not Found!");
         }
 
-       
+        
     }
 
 }

@@ -11,13 +11,11 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            Console.WriteLine("Rectangle Command");
             CommandMemory.SetElementTypeId(3);
             return CommandMemory.PointsList.Count == 2 ? await AddRect() : await ReturnErrorMessageAsync(2);
         }
-
         private Task<ElementInformation> AddRect()
         {
             var element = CreateElement();

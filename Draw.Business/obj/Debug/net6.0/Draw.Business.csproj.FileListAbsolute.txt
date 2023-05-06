@@ -57,10 +57,7 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\Draw.B
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\Draw.Business.csproj.CopyComplete
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\Draw.Business.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\Draw.Business.pdb
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\bin\Debug\net6.0\Draw.Business.pssym
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\bin\Debug\net6.0\Draw.Business.pspdb
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\PostSharp\touch
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\PostSharp\AdditionalBuildDependencies.txt
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\PostSharp\postsharp.app.config
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\bin\Debug\net6.0\Draw.DrawLayer.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\bin\Debug\net6.0\Draw.DrawLayer.pdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\refint\Draw.Business.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Business\obj\Debug\net6.0\ref\Draw.Business.dll

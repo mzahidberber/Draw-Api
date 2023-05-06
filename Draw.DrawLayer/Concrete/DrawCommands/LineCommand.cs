@@ -10,16 +10,14 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
             CommandMemory.SetElementTypeId(1);
             return CommandMemory.PointsList.Count == 2 ? await AddLineAsync() :await ReturnErrorMessageAsync(2);
         }
 
-        
         private Task<ElementInformation> AddLineAsync()
         {
-            Console.WriteLine("Line Add");
             var element = CreateElement();
             //await AddElementAsync(CreateElement());
             base.FinishCommand();

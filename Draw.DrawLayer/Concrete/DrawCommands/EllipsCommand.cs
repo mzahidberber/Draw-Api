@@ -15,11 +15,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            
-            ///////Düzenle
-            Console.WriteLine("Ellips Command");
             CommandMemory.SetElementTypeId(5);
             return CommandMemory.PointsList.Count == 3 ? await AddEllips() : await ReturnErrorMessageAsync(3);
         }
@@ -46,7 +43,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private List<Radius> GetRadius()
         {
             var radius = DrawMath.DifferanceTwoPoints(_point1, _point2);
-            var radius2 = DrawMath.DifferanceTwoPoints(_point1, _point3);
+            var radius2 = DrawMath.DifferancePointsY(_point1, _point3);
             var r1 = new Radius { Value=radius};
             var r2 = new Radius { Value=radius2};
             return new List<Radius> { r1,r2};

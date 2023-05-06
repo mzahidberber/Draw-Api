@@ -10,15 +10,13 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         {
         }
 
-        protected override async Task<ElementInformation> ControlCommandAsync()
+        public override async Task<ElementInformation> ControlCommandAsync()
         {
-            Console.WriteLine("SPLine Command");
             CommandMemory.SetElementTypeId(6);
-            return CommandMemory.PointsList.Count <= 1 && CommandMemory.IsFinish==true ? 
+            return CommandMemory.PointsList.Count >= 1 && CommandMemory.IsFinish==true ? 
                 await AddSPLine() : 
                 await ReturnErrorMessageAsync(message:"Should Add Point Or Run SetIsFinish");
         }
-
         private Task<ElementInformation> AddSPLine()
         {
             var element = CreateElement();

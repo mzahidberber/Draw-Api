@@ -12,7 +12,7 @@ namespace Draw.Business.Abstract
         Task<Response<NoDataDto>> StopCommand(string userId);
         Task<Response<NoDataDto>> SetRadius(string userId, double radius);
         Task<Response<NoDataDto>> SetElementsId(string userId, List<int> editElementsId);
-        Task<Response<NoDataDto>> SetIsFinish(string userId,bool finish=true);
+        Task<Response<ElementDTO>> SetIsFinish(string userId,bool finish=true);
         Task<Response<NoDataDto>> SaveElements(string userId, List<ElementDTO> saveElements);
     }
 }

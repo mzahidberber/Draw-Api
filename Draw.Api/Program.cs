@@ -3,6 +3,7 @@ using Draw.Api.Extensions;
 using Draw.Api.Validation;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using NLog.Web;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -11,7 +12,9 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        
+        builder.Logging.ClearProviders();
+        //builder.Logging.AddConsole();
+        builder.Host.UseNLog();
 
 
         builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));

@@ -1,7 +1,7 @@
 ﻿using Draw.Api.Models;
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
-using Draw.Core.DTOs.Concrete;
+using Draw.Core.Aspects.PostSharp.LoggingAspects;
 using Draw.Core.Services;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
@@ -22,41 +22,47 @@ namespace Draw.Api.Controllers
             _drawService = BusinessInstanceFactory.GetInstance<IDrawService>();
         }
 
+
+        [LogAspect]
         [HttpPost("startCommand")]
         public async Task<IActionResult> StartCommand(StartCommandRequest request)
         {
-            return ActionResultInstance(await _drawService.StartCommand(GetUserId(User),request.command,request.DrawId,request.LayerId,request.PenId));
+            return ActionResultInstance(await _drawService.StartCommand(GetUserInfo(User).id,request.command,request.DrawId,request.LayerId,request.PenId));
         }
 
+        [LogAspect]
         [HttpPost("addCoordinate")]
         public async Task<IActionResult> AddPoint(PointD point)
         {
-            return ActionResultInstance(await _drawService.AddCoordinate(GetUserId(User),point));
+            return ActionResultInstance(await _drawService.AddCoordinate(GetUserInfo(User).id, point));
         }
-        
+
+        [LogAspect]
         [HttpPut("stopCommand")]
         public async Task<IActionResult> StopCommad()
         {
-            return ActionResultInstance(await _drawService.StopCommand(GetUserId(User)));
+            return ActionResultInstance(await _drawService.StopCommand(GetUserInfo(User).id));
         }
 
+        [LogAspect]
         [HttpPut("setRadius")]
         public async Task<IActionResult> SetRadius([FromBody]double radius)
         {
-            return ActionResultInstance(await _drawService.SetRadius(GetUserId(User),radius));
+            return ActionResultInstance(await _drawService.SetRadius(GetUserInfo(User).id,radius));
         }
 
-
+        [LogAspect]
         [HttpPut("setElementsId")]
         public async Task<IActionResult> SetElementsId([FromBody] List<int> setElementsId)
         {
-            return ActionResultInstance(await _drawService.SetElementsId(GetUserId(User), setElementsId));
+            return ActionResultInstance(await _drawService.SetElementsId(GetUserInfo(User).id, setElementsId));
         }
 
+        [LogAspect]
         [HttpPut("setIsFinish")]
         public async Task<IActionResult> SetIsFinish(bool finish=true)
         {
-            return ActionResultInstance(await _drawService.SetIsFinish(GetUserId(User), finish));
+            return ActionResultInstance(await _drawService.SetIsFinish(GetUserInfo(User).id, finish));
         }
 
         //[HttpPut("saveElements")]
@@ -81,10 +87,4 @@ namespace Draw.Api.Controllers
         }
 
     }
-
-
-
-
-
-
 }

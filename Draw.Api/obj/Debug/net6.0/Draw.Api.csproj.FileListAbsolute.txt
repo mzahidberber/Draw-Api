@@ -252,10 +252,8 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\staticwebas
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\scopedcss\bundle\Draw.Api.styles.css
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.csproj.CopyComplete
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.dll
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\refint\Draw.Api.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.pdb
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\Draw.Api.genruntimeconfig.cache
-C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\ref\Draw.Api.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\runtimes\linux-x64\native\libsqlite3.so
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\runtimes\osx-x64\native\libsqlite3.dylib
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\runtimes\win7-x64\native\sqlite3.dll
@@ -279,3 +277,12 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\FluentValid
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DrawLayer.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.DrawLayer.pdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\nlog.config
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\NLog.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Api.pssym
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Draw.Api.pspdb
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\PostSharp\touch
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\PostSharp\AdditionalBuildDependencies.txt
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\obj\Debug\net6.0\PostSharp\postsharp.app.config

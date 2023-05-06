@@ -2,7 +2,6 @@
 using Draw.DataAccess.Abstract;
 using Draw.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {

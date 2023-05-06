@@ -14,11 +14,9 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
 
-        protected async override Task<ElementInformation> ControlCommandAsync()
+        public async override Task<ElementInformation> ControlCommandAsync()
         {
-            ///////Düzenle
             CommandMemory.SetElementTypeId(4);
-            Console.WriteLine("arctreepoint Command");
             return CommandMemory.PointsList.Count == 3 ? await AddArcAsync() : await ReturnErrorMessageAsync(3);
         }
 
@@ -45,16 +43,16 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private async Task<List<SSAngle>> GetSSangles()
         {
-            //var data = await _geoService.FindSSAngles();
+            var startAndStopAngle = await _geoService.findStartAndStopAngleTwoPoint(_point1, _point2, _point3);
             return new List<SSAngle> {
-                new SSAngle { Value = 10, Type = "start" },
-                new SSAngle { Value = 10, Type = "stop" }};
+                new SSAngle { Value = startAndStopAngle.data.startAngle, Type = "start" },
+                new SSAngle { Value = startAndStopAngle.data.stopAngle, Type = "stop" }};
         }
 
         private async Task<double> GetRadiusAsync()
         {
-            var data = await _geoService.FindCenterAndRadius(_point1, _point2, _point3);
-            return data.radius;
+            var data = await _geoService.FindTwoPointsLength(_point1, _point2);
+            return data.data;
         }
 
         private async Task<List<Point>> CreatePointsAsync()
@@ -65,7 +63,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             //var p2 = DrawMath.AdditionPointPlusY(pcenter, GetRadiusAsync());
             //var p3 = DrawMath.AdditionPointPlusX(pcenter, -GetRadiusAsync());
             //var p4 = DrawMath.AdditionPointPlusY(pcenter, -GetRadiusAsync());
-            return new List<Point> { _point1 };
+            return new List<Point> { _point1,_point1 };
         }
     }
 }
