@@ -50,9 +50,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
             builder.Property(u => u.Name).IsRequired().HasMaxLength(200);
 
+            builder.Property(u => u.CreateTime).IsRequired();
+            builder.Property(u => u.EditTime).IsRequired();
+
             builder.HasData(
-                new DrawBox { Id = 1, Name = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
-                new DrawBox { Id = 2, Name = "c2", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca" },
+                new DrawBox { Id = 1, Name = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"},
+                new DrawBox { Id = 2, Name = "c2", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"},
                 new DrawBox { Id = 3, Name = "c1", UserId = "b21972e1-742f-4fa7-be46-1189d9cab7cb" }
             );
 

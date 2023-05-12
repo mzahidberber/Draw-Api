@@ -5,6 +5,7 @@ using Draw.DataAccess.Abstract;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Text.Json;
 
 namespace Draw.Business.Concrete
 {
@@ -20,11 +21,6 @@ namespace Draw.Business.Concrete
                 await dal.AddAsync(entity);
             }
             await dal.CommitAsync();
-            // Kaydedilen elemanların idli bir şekilde geri dönülmesi gerekiyor
-            //foreach (var item in entitiesList)
-            //{
-            //    Console.WriteLine(item.Id);
-            //}
             var data = entitiesList.Select(e => ObjectMapper.Mapper.Map<TDTO>(e));
             return Response<IEnumerable<TDTO>>.Success(data, 200);
         }
@@ -36,7 +32,7 @@ namespace Draw.Business.Concrete
             if (entites == null) return Response<NoDataDto>.Fail($"entities not found", 404, true);
             else await entites.ForEachAsync(e => dal.Delete(e));
             await dal.CommitAsync();
-            return Response<NoDataDto>.Success(204);
+            return Response<NoDataDto>.Success(200);
         }
 
         protected async Task<Response<IEnumerable<TDTO>>> BaseGetAllAsync<TDTO, T>(IEntityRepository<T> dal, Expression<Func<T, bool>>? filter=null)
@@ -81,7 +77,7 @@ namespace Draw.Business.Concrete
             }
             entities.ToList().ForEach(c =>dal.Update(c));
             await dal.CommitAsync();
-            return Response<NoDataDto>.Success(204);
+            return Response<NoDataDto>.Success(200);
         }
 
     }

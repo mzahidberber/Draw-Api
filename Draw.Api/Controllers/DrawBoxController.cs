@@ -30,6 +30,7 @@ namespace Draw.Api.Controllers
         [HttpPost("drawBoxes/add")]
         public async Task<IActionResult> AddDrawBoxes(DrawBoxRequest request)
         {
+            request.drawBoxes.ForEach((d) => { d.UserId = GetUserId(); });
             return ActionResultInstance(await _drawBoxManager.AddAllAsync(request.drawBoxes));
         }
 
@@ -44,6 +45,7 @@ namespace Draw.Api.Controllers
         [HttpPut("drawBoxes/update")]
         public async Task<IActionResult> UpdateDrawBoxes(DrawBoxRequest request)
         {
+            request.drawBoxes.ForEach((d) => { d.UserId = GetUserId(); });
             return ActionResultInstance(await _drawBoxManager.UpdateAllAsync(GetUserInfo(User).id, request.drawBoxes));
         }
 

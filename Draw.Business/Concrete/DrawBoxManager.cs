@@ -5,6 +5,7 @@ using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
@@ -17,7 +18,10 @@ namespace Draw.Business.Concrete
         }
         public async Task<Response<IEnumerable<DrawBoxDTO>>> AddAllAsync(List<DrawBoxDTO> entities)
         {
-            return await base.BaseAddAllAsync<DrawBoxDTO, DrawBox>(entities, _drawBoxDal);
+            await base.BaseAddAllAsync<DrawBoxDTO, DrawBox>(entities, _drawBoxDal);
+            _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
+            var newList = await _drawBoxDal.GetAllAsync().OrderByDescending(x=>x.Id).Take(entities.Count()).ToListAsync();
+            return Response<IEnumerable<DrawBoxDTO>>.Success(newList.Select(d => ObjectMapper.Mapper.Map<DrawBoxDTO>(d)), 200);
         }
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)

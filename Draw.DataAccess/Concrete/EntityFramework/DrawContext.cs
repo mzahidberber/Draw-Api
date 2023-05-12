@@ -1,4 +1,5 @@
-﻿using Draw.Entities.Concrete;
+﻿using Draw.Entities.Abstract;
+using Draw.Entities.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -51,7 +52,10 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var cnn2 = $"server=localhost;port=3306;database=drawdb4;user=root;password=mysql123.;";
-            optionsBuilder.LogTo(Console.WriteLine,LogLevel.Information).UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
+            optionsBuilder.UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
+
+            //.LogTo(Console.WriteLine,LogLevel.Information)
+
             //if (!optionsBuilder.IsConfigured)
             //{
             //    var dbHost=Environment.GetEnvironmentVariable("dbHost");
@@ -66,5 +70,61 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
             //}
         }
+
+        public override int SaveChanges()
+        {
+            var now = DateTime.Now;
+
+            foreach (var changedEntity in ChangeTracker.Entries())
+            {
+                if (changedEntity.Entity is DrawBox entity)
+                {
+                    switch (changedEntity.State)
+                    {
+                        case EntityState.Modified:
+                            Entry(entity).Property(x => x.EditTime).IsModified = false;
+                            Entry(entity).Property(x => x.CreateTime).IsModified = false;
+                            entity.EditTime = now;
+                            break;
+                        case EntityState.Added:
+                            entity.EditTime = now;
+                            entity.CreateTime = now;
+                            break;
+                    }
+                }
+            }
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            var now = DateTime.Now;
+
+            foreach (var changedEntity in ChangeTracker.Entries())
+            {
+                if (changedEntity.Entity is DrawBox entity)
+                {
+                    switch (changedEntity.State)
+                    {
+                        case EntityState.Modified:
+                            Entry(entity).Property(x => x.EditTime).IsModified = false;
+                            Entry(entity).Property(x => x.CreateTime).IsModified = false;
+                            entity.EditTime = now;
+                            break;
+                        case EntityState.Added:
+                            entity.EditTime = now;
+                            entity.CreateTime = now;
+                            break;
+                    }
+                }
+            }
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        //{
+            
+        //    return base.SaveChangesAsync(cancellationToken);
+        //}
     }
 }

@@ -23,10 +23,14 @@ namespace Draw.Core.Aspects.PostSharp.LoggingAspects
 
                     if (argument.GetType().GetProperties().Length > 0 && argument.GetType().Name!="String")
                     {
-                        foreach (var prop in argument.GetType().GetProperties())
+                        if(argument.GetType()!=typeof(List<int>))
                         {
-                            parametres += $"{prop.Name}:{prop.GetValue(argument)} ";
-                        };
+                            foreach (var prop in argument.GetType().GetProperties())
+                            {
+                                parametres += $"{prop.Name}:{prop.GetValue(argument)} ";
+                            };
+                        }
+                        
                     }
                 }
                 else
@@ -60,7 +64,7 @@ namespace Draw.Core.Aspects.PostSharp.LoggingAspects
             GetParams(args)
             );
             
-            _logger.Info(message);
+            _logger.Info("\n" + message);
             base.OnEntry(args);
         }
 
@@ -77,7 +81,7 @@ namespace Draw.Core.Aspects.PostSharp.LoggingAspects
                     "RETURN",
                     result
                     );
-                _logger.Info(message);
+                _logger.Info("\n"+message);
             }
             
             

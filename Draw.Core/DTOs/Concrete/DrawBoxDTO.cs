@@ -2,8 +2,12 @@
 {
     public class DrawBoxDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; } = null!;
-        public string UserId { get; set; } = null!;
+        public string? UserId { get; set; }
+
+        public DateTime? CreateTime { get; set; }
+
+        public DateTime? EditTime { get; set; }
     }
 }

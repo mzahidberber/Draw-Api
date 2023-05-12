@@ -71,7 +71,6 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
         public async Task<List<Element>> GetAllByDrawWithAttAsync(string userId, int drawId)
         {
-            await Console.Out.WriteLineAsync("asdasd");
             return await _dbSet
                .Where(x => x.Layer.DrawBox.UserId == userId && x.Layer.DrawBoxId==drawId)
                .Include(x => x.Points)

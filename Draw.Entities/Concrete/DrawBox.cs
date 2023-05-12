@@ -16,6 +16,10 @@ namespace Draw.Entities.Concrete
 
         public User User { get; set; } = null!;
 
+        public DateTime CreateTime { get; set; } = DateTime.Now;
+
+        public DateTime EditTime { get; set; }=DateTime.Now;
+
         public ICollection<DrawCommand> DrawCommands { get; set; }
 
         public ICollection<Layer> Layers { get; set; }

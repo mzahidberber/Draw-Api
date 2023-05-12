@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         //public int PenColorId { get; set; }
+
+        public string UserId { get; set; }
         public int PenStyleId { get; set; }
         public int Red { get; set; }
         public int Blue { get; set; }
