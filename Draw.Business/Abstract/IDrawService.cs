@@ -8,7 +8,7 @@ namespace Draw.Business.Abstract
     public interface IDrawService
     {
         Task<Response<ElementDTO>> AddCoordinate(string userId,PointD point);
-        Task<Response<NoDataDto>> StartCommand(string userId,CommandEnums command, int DrawBoxId, int LayerId, int penId);
+        Task<Response<NoDataDto>> StartCommand(string userId,CommandEnums command, int? DrawBoxId, int? LayerId, int? penId);
         Task<Response<NoDataDto>> StopCommand(string userId);
         Task<Response<NoDataDto>> SetRadius(string userId, double radius);
         Task<Response<NoDataDto>> SetElementsId(string userId, List<int> editElementsId);

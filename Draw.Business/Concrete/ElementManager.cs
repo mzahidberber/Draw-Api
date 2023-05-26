@@ -3,6 +3,7 @@ using Draw.Business.Mapper;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
 
@@ -34,6 +35,7 @@ namespace Draw.Business.Concrete
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllWithAttAsync(string userId)
         {
             var elemnts = await _elementDal.GetAllWithAttAsync(userId);
+            await _elementDal.CommitAsync();
             return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
         }
 
@@ -45,6 +47,7 @@ namespace Draw.Business.Concrete
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByDrawWithAttAsync(string userId, int drawId)
         {
             var elemnts = await _elementDal.GetAllByDrawWithAttAsync(userId,drawId);
+            await _elementDal.CommitAsync();
             return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
         }
 
@@ -56,6 +59,7 @@ namespace Draw.Business.Concrete
         public async Task<Response<IEnumerable<ElementDTO>>> GetAllByLayerWithAttAsync(string userId, int layerId)
         {
             var elemnts = await _elementDal.GetAllByLayerWithAttAsync(userId, layerId);
+            await _elementDal.CommitAsync();
             return Response<IEnumerable<ElementDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<ElementDTO>>(elemnts), 200);
         }
 
@@ -67,18 +71,21 @@ namespace Draw.Business.Concrete
         public async Task<Response<ElementTypeDTO>> GetElementTypeAsync(string userId, int entityId)
         {
             var elemnt=await _elementDal.GetElementWithElementTypeAsync(userId,entityId);
+            await _elementDal.CommitAsync();
             return Response<ElementTypeDTO>.Success(ObjectMapper.Mapper.Map<ElementTypeDTO>(elemnt.Type), 200);
         }
 
         public async Task<Response<LayerDTO>> GetLayerAsync(string userId, int entityId)
         {
             var elemnt = await _elementDal.GetElementWithLayerAsync(userId, entityId);
+            await _elementDal.CommitAsync();
             return Response<LayerDTO>.Success(ObjectMapper.Mapper.Map<LayerDTO>(elemnt.Layer), 200);
         }
 
         public async Task<Response<PenDTO>> GetPenAsync(string userId, int entityId)
         {
             var elemnt = await _elementDal.GetElementWithPenAsync(userId, entityId);
+            await _elementDal.CommitAsync();
             return Response<PenDTO>.Success(ObjectMapper.Mapper.Map<PenDTO>(elemnt.Pen), 200);
         }
 
@@ -86,6 +93,7 @@ namespace Draw.Business.Concrete
         {
             var elemnt = await _elementDal.GetElementWithPointsAsync(userId, entityId);
             var points = elemnt.Points.Select(e => ObjectMapper.Mapper.Map<PointDTO>(e));
+            await _elementDal.CommitAsync();
             return Response<IEnumerable<PointDTO>>.Success(points, 200);
         }
 
@@ -93,6 +101,7 @@ namespace Draw.Business.Concrete
         {
             var elemnt = await _elementDal.GetElementWithRadiusAsync(userId, entityId);
             var radiuses = elemnt.Radiuses.Select(e => ObjectMapper.Mapper.Map<RadiusDTO>(e));
+            await _elementDal.CommitAsync();
             return Response<IEnumerable<RadiusDTO>>.Success(radiuses, 200);
         }
 
@@ -100,6 +109,7 @@ namespace Draw.Business.Concrete
         {
             var elemnt = await _elementDal.GetElementWithSSAnglesAsync(userId, entityId);
             var ssangles = elemnt.SSAngles.Select(e => ObjectMapper.Mapper.Map<SSAngleDTO>(e));
+            await _elementDal.CommitAsync();
             return Response<IEnumerable<SSAngleDTO>>.Success(ssangles, 200);
         }
 

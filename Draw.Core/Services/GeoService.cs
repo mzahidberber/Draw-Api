@@ -1,8 +1,10 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.Core.DTOs.Concrete;
 using Draw.Core.Mapper;
 using Draw.Core.Services.Abstract;
 using Draw.Core.Services.Model;
 using Draw.Entities.Concrete;
+using NLog;
 using System.Text;
 using System.Text.Json;
 
@@ -13,12 +15,12 @@ namespace Draw.Core.Services
     {
         public string url { get;private set; }
         static HttpClient client = new HttpClient();
-
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
         public GeoService()
         {
             var urlE= Environment.GetEnvironmentVariable("geoUrl");
             if (urlE != null)
-                this.url = urlE;
+                this.url = urlE + "geo/";
             else throw new Exception();
         }
 
@@ -53,7 +55,7 @@ namespace Draw.Core.Services
                 //response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadAsStringAsync();
                 GeoRequest<RadiusAndPGeoCenter>? data = JsonSerializer.Deserialize<GeoRequest<RadiusAndPGeoCenter>>(result);
-                //Point dönmek gerekiyor pointGeo dönüyor
+                
                 return new RadiusAndPCenter { centerPoint = CoreObjectMapper.Mapper.Map<Point>(data.data.centerPoint), radius = data.data.radius };
             }
 

@@ -3,6 +3,7 @@ using Draw.Business.Mapper;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
 
@@ -53,12 +54,14 @@ namespace Draw.Business.Concrete
         public async Task<Response<ElementDTO>> GetElementAsync(string userId, int entityId)
         {
             var point = await _pointDal.GetPointWithElementAsync(userId, entityId);
+            await _pointDal.CommitAsync();
             return Response<ElementDTO>.Success(ObjectMapper.Mapper.Map<ElementDTO>(point.Element), 200);
         }
 
         public async Task<Response<PointTypeDTO>> GetPointTypeAsync(string userId, int entityId)
         {
             var point = await _pointDal.GetPointWithElementAsync(userId, entityId);
+            await _pointDal.CommitAsync();
             return Response<PointTypeDTO>.Success(ObjectMapper.Mapper.Map<PointTypeDTO>(point.PointType), 200);
         }
 

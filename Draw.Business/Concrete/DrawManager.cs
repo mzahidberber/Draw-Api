@@ -11,7 +11,7 @@ namespace Draw.Business.Concrete
 {
     public class DrawManager : IDrawService
     {
-        public async Task<Response<NoDataDto>> StartCommand(string userId, CommandEnums command, int DrawBoxId, int LayerId, int penId)
+        public async Task<Response<NoDataDto>> StartCommand(string userId, CommandEnums command, int? DrawBoxId, int? LayerId, int? penId)
         {
             //id leri kontrol et
             var drawAdminastor = DrawAdminastorMultiton.GetDrawAdminastor(userId);

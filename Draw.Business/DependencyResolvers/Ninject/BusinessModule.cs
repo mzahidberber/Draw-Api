@@ -1,5 +1,6 @@
 ﻿using Draw.Business.Abstract;
 using Draw.Business.Concrete;
+using Ninject;
 using Ninject.Modules;
 
 namespace Draw.Business.DependencyResolvers.Ninject

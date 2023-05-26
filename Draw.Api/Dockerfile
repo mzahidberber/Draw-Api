@@ -11,8 +11,8 @@ WORKDIR /src
 COPY ["Draw.Api/Draw.Api.csproj", "Draw.Api/"]
 COPY ["Draw.Business/Draw.Business.csproj", "Draw.Business/"]
 COPY ["Draw.Core/Draw.Core.csproj", "Draw.Core/"]
-COPY ["Draw.DataAccess2/Draw.DataAccess.csproj", "Draw.DataAccess2/"]
-COPY ["Draw.DrawManager/Draw.DrawManager.csproj", "Draw.DrawManager/"]
+COPY ["Draw.DataAccess/Draw.DataAccess.csproj", "Draw.DataAccess/"]
+COPY ["Draw.DrawLayer/Draw.DrawLayer.csproj", "Draw.DrawLayer/"]
 COPY ["Draw.Entities/Draw.Entities.csproj", "Draw.Entities/"]
 RUN dotnet restore "Draw.Api/Draw.Api.csproj"
 COPY . .

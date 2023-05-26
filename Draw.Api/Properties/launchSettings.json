@@ -7,13 +7,28 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "drawdb",
+        "dbName": "drawdb4",
         "dbPassword": "mysql123.",
         "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/geo/"
+        "geoUrl": "http://127.0.0.1:5001/"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
+    },
+    "Draw.Api2000": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "dbHost": "localhost",
+        "dbName": "drawdb4",
+        "dbPassword": "mysql123.",
+        "dbPort": "3306",
+        "geoUrl": "http://127.0.0.1:5001/"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:2000"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -22,9 +37,10 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "drawdb",
+        "dbName": "drawdb4",
         "dbPassword": "mysql123.",
-        "dbPort": "3306"
+        "dbPort": "3306",
+        "geoUrl": "http://127.0.0.1:5001/"
       }
     },
     "Docker": {

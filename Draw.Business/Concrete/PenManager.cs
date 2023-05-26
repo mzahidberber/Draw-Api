@@ -3,6 +3,7 @@ using Draw.Business.Mapper;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
 
@@ -33,6 +34,7 @@ namespace Draw.Business.Concrete
         public async Task<Response<IEnumerable<PenDTO>>> GetAllWithAttAsync(string userId)
         {
             var pens = await _penDal.GetAllWithAttAsync(userId);
+            await _penDal.CommitAsync();
             return Response<IEnumerable<PenDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<PenDTO>>(pens), 200);
         }
 
@@ -50,6 +52,7 @@ namespace Draw.Business.Concrete
         public async Task<Response<PenStyleDTO>> GetPenStyleAsync(string userId, int penId)
         {
             var pen = await _penDal.GetPenWithPenStyleAsync(userId, penId);
+            await _penDal.CommitAsync();
             return Response<PenStyleDTO>.Success(ObjectMapper.Mapper.Map<PenStyleDTO>(pen.PenStyle), 200);
         }
 

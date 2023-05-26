@@ -9,10 +9,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
     public class DrawContext : IdentityDbContext<User, UserRole, string>
     {
-        //public DrawContext(DbContextOptions<DrawContext> opt):base(opt)
-        //{
+        public DrawContext(DbContextOptions<DrawContext> opt):base(opt){}
 
-        //}
+        public DrawContext()
+        {
+            
+        }
 
         public DbSet<DrawBox>? Draws { get; set; }
         public DbSet<Layer>? Layers { get; set; }
@@ -26,7 +28,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public DbSet<Radius>? Radiuses { get; set; }
         public DbSet<Pen>? Pens { get; set; }
 
-        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+        public DbSet<UserRefreshToken>? UserRefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,24 +53,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var cnn2 = $"server=localhost;port=3306;database=drawdb4;user=root;password=mysql123.;";
-            optionsBuilder.UseMySql(cnn2, ServerVersion.AutoDetect(cnn2));
-
-            //.LogTo(Console.WriteLine,LogLevel.Information)
-
-            //if (!optionsBuilder.IsConfigured)
-            //{
-            //    var dbHost=Environment.GetEnvironmentVariable("dbHost");
-            //    var dbName=Environment.GetEnvironmentVariable("dbName");
-            //    var dbPassword=Environment.GetEnvironmentVariable("dbPassword");
-            //    var dbPort=Environment.GetEnvironmentVariable("dbPort");
-            //    //var cnn=$"server={dbHost};port={dbPort};database={dbName};user=root;password={dbPassword};";
-            //    //optionsBuilder.UseMySql(cnn,ServerVersion.AutoDetect(cnn));
-            //    var cnn2= $"server=localhost;port=3306;database=drawdb1;user=root;password=mysql123.;";
-            //    optionsBuilder.UseMySql(cnn2,ServerVersion.AutoDetect(cnn2));
-
-
-            //}
+            var dbHost = Environment.GetEnvironmentVariable("dbHost");
+            var dbName = Environment.GetEnvironmentVariable("dbName");
+            var dbPassword = Environment.GetEnvironmentVariable("dbPassword");
+            var dbPort = Environment.GetEnvironmentVariable("dbPort");
+            var cnstr = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
+            optionsBuilder.UseMySql(cnstr, ServerVersion.AutoDetect(cnstr));
         }
 
         public override int SaveChanges()

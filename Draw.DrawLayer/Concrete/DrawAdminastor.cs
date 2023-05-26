@@ -52,7 +52,7 @@ namespace Draw.DrawLayer.Concrete
             return Task.CompletedTask;
         }
         [LogAspect]
-        public Task StartCommandAsync(CommandEnums commandEnum, int DrawBoxId, int LayerId, int PenId)
+        public Task StartCommandAsync(CommandEnums commandEnum, int? DrawBoxId, int? LayerId, int? PenId)
         {
             if (!_commandData.IsWorkingCommand)
             {

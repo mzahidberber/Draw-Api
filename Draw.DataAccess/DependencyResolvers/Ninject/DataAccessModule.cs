@@ -1,6 +1,9 @@
 ﻿using Draw.DataAccess.Abstract;
 using Draw.DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Hosting.Server;
+using Ninject;
 using Ninject.Modules;
+using System.Web;
 
 namespace Draw.DataAccess.DependencyResolvers.Ninject
 {
@@ -8,7 +11,8 @@ namespace Draw.DataAccess.DependencyResolvers.Ninject
     {
         public override void Load()
         {
-            Bind<DrawContext>().ToSelf();
+            
+            //Bind<DrawContext>().ToSelf();
             Bind<IDrawCommandDal>().To<EfDrawCommandDal>();
             Bind<IDrawBoxDal>().To<EfDrawBoxDal>();
             Bind<IElementDal>().To<EfElementsDal>();

@@ -54,8 +54,8 @@ namespace Draw.DrawLayer.Abstract
             return new Element
             {
                 TypeId = elementTypeId,
-                LayerId = CommandMemory.SelectedLayerId,
-                PenId = CommandMemory.SelectedPenId,
+                LayerId = CommandMemory.SelectedLayerId ?? 0,
+                PenId = CommandMemory.SelectedPenId ?? 0,
                 Points = points,
                 Radiuses = radiuses ?? new List<Radius>(),
                 SSAngles = SSAngles ?? new List<SSAngle>()

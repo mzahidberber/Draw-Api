@@ -39,6 +39,7 @@ namespace Draw.Business.Concrete
         public async Task<Response<IEnumerable<LayerDTO>>> GetAllByDrawWithPenAsync(string userId, int drawId)
         {
             var layers = await _layerDal.GetAllByDrawWithPenAsync(userId, drawId);
+            await _layerDal.CommitAsync();
             return Response<IEnumerable<LayerDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<LayerDTO>>(layers), 200);
         }
 
@@ -51,12 +52,14 @@ namespace Draw.Business.Concrete
         {
             var layer = await _layerDal.GetLayerWithElementsAsync(userId, entityId);
             var elements = layer.Elements.Select(x=>ObjectMapper.Mapper.Map<ElementDTO>(x));
+            await _layerDal.CommitAsync();
             return Response<IEnumerable<ElementDTO>>.Success(elements, 200);
         }
 
         public async Task<Response<PenDTO>> GetPenAsync(string userId, int entityId)
         {
             var layer = await _layerDal.GetLayerWithPenAsync(userId, entityId);
+            await _layerDal.CommitAsync();
             return Response<PenDTO>.Success(ObjectMapper.Mapper.Map<PenDTO>(layer.Pen), 200);
         }
 

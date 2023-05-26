@@ -42,6 +42,7 @@ namespace Draw.Business.Concrete
             List<TDTO> entities;
             if(filter!=null) entities = await dal.GetWhereAsync(filter).Select(c => ObjectMapper.Mapper.Map<TDTO>(c)).ToListAsync();
             else entities = await dal.GetAllAsync().Select(c => ObjectMapper.Mapper.Map<TDTO>(c)).ToListAsync();
+            await dal.CommitAsync();
             if (entities == null) throw new CustomException("Entity Not Found");
             return Response<IEnumerable<TDTO>>.Success(entities, 200);
         }
@@ -53,6 +54,7 @@ namespace Draw.Business.Concrete
         {
             var entity = await dal.GetWhereAsync(filter).FirstOrDefaultAsync();
             if (entity == null) throw new CustomException("Entity Not Found");
+            await dal.CommitAsync();
             return Response<TDTO>.Success(ObjectMapper.Mapper.Map<TDTO>(entity), 200);
         }
 
@@ -62,6 +64,7 @@ namespace Draw.Business.Concrete
         {
             var entity = await dal.GetByIdAsync(entityId);
             if (entity == null) throw new CustomException("Entity Not Found");
+            await dal.CommitAsync();
             return Response<TDTO>.Success(ObjectMapper.Mapper.Map<TDTO>(entity), 200);
         }
 

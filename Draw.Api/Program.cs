@@ -1,9 +1,15 @@
+
+
 using Draw.Api.Configuration;
 using Draw.Api.Extensions;
 using Draw.Api.Validation;
+using Draw.DataAccess.Concrete.EntityFramework;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using NLog.Web;
+using System.Configuration;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -16,6 +22,26 @@ internal class Program
         //builder.Logging.AddConsole();
         builder.Host.UseNLog();
 
+
+        
+
+        //var dbHost = Environment.GetEnvironmentVariable("dbHost");
+        //var dbName = Environment.GetEnvironmentVariable("dbName");
+        //var dbPassword = Environment.GetEnvironmentVariable("dbPassword");
+        //var dbPort = Environment.GetEnvironmentVariable("dbPort");
+
+        //builder.Services.AddDbContext<DrawContext>(options =>
+        //{
+        //    var connectionString = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
+        //    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        //    //    , sqlOptions =>
+        //    //{
+        //    //    sqlOptions.MigrationsAssembly("AuthServer.DataAccess");
+        //    //});
+        //});
+
+
+        
 
         builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
         var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
@@ -39,8 +65,6 @@ internal class Program
                 ClockSkew = TimeSpan.Zero
             };
         });
-
-        
 
         // Add services to the container.
 

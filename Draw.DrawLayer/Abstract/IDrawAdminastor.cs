@@ -7,7 +7,7 @@ namespace Draw.DrawLayer.Abstract
     public interface IDrawAdminastor
     {
         CommandData _commandData { get; set; }
-        Task StartCommandAsync(CommandEnums commandEnum, int DrawBoxId, int LayerId, int PenId);
+        Task StartCommandAsync(CommandEnums commandEnum, int? DrawBoxId, int? LayerId, int? PenId);
         Task<ElementInformation> AddCoordinateAdminastorAsync(PointD point);
         Task SetRadiusAsync(double radius);
         Task SetEditElementsIdAsync(List<int> editElementsId);

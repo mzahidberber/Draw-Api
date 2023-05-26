@@ -21,6 +21,7 @@ namespace Draw.Business.Concrete
             await base.BaseAddAllAsync<DrawBoxDTO, DrawBox>(entities, _drawBoxDal);
             _drawBoxDal = DataInstanceFactory.GetInstance<IDrawBoxDal>();
             var newList = await _drawBoxDal.GetAllAsync().OrderByDescending(x=>x.Id).Take(entities.Count()).ToListAsync();
+            await _drawBoxDal.CommitAsync();
             return Response<IEnumerable<DrawBoxDTO>>.Success(newList.Select(d => ObjectMapper.Mapper.Map<DrawBoxDTO>(d)), 200);
         }
 
@@ -43,6 +44,7 @@ namespace Draw.Business.Concrete
         {
             var draw = await _drawBoxDal.GetDrawWithLayersAsync(userId, drawId);
             var layers = draw.Layers.Select(e => ObjectMapper.Mapper.Map<LayerDTO>(e));
+            await _drawBoxDal.CommitAsync();
             return Response<IEnumerable<LayerDTO>>.Success(layers, 200);
         }
 
