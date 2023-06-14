@@ -64,7 +64,7 @@ namespace Draw.Core.Aspects.PostSharp.LoggingAspects
             GetParams(args)
             );
             
-            _logger.Info("\n" + message);
+            _logger.Info(message);
             base.OnEntry(args);
         }
 
@@ -81,7 +81,7 @@ namespace Draw.Core.Aspects.PostSharp.LoggingAspects
                     "RETURN",
                     result
                     );
-                _logger.Info("\n"+message);
+                _logger.Info(message);
             }
             
             

@@ -10,5 +10,9 @@ namespace Draw.Core.Services.Abstract
         Task<GeoRequest<double>> FindToSlopeLine(Point p1, Point p2);
         Task<GeoRequest<StartAndStopRequest>> FindStartAndStopAngle(Point centerPoint, Point p1, Point p2, Point p3);
         Task<GeoRequest<StartAndStopRequest>> findStartAndStopAngleTwoPoint(Point centerPoint, Point p1, Point p2);
+
+        Task<GeoRequest<PointGeo>> findPointOnCircle(Point centerPoint, double radius, double angle);
+
+
     }
 }

@@ -53,7 +53,7 @@ namespace Draw.Api.Controllers
         [HttpPost("pens/add")]
         public async Task<IActionResult> AddPens(PenRequest request)
         {
-            return ActionResultInstance(await _penManager.AddAllAsync(request.pens));
+            return ActionResultInstance(await _penManager.AddAllAttAsync(GetUserInfo(User).id, request.pens));
         }
         [LogAspect]
         [HttpDelete("pens/delete")]

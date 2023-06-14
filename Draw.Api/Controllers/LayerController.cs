@@ -40,7 +40,8 @@ namespace Draw.Api.Controllers
         [HttpPost("layers/add")]
         public async Task<IActionResult> AddLayers(LayerRequest layers)
         {
-            return ActionResultInstance(await _layerManager.AddAllAsync(layers.layers));
+            Console.WriteLine(GetUserInfo(User).id);
+            return ActionResultInstance(await _layerManager.AddAllAttAsync(GetUserInfo(User).id,layers.drawBoxId,layers.layers));
         }
         [LogAspect]
         [HttpDelete("layers/delete")]

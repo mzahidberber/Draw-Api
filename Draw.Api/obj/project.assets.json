@@ -1039,6 +1039,19 @@
           }
         }
       },
+      "NLog.GelfLayout/1.4.0": {
+        "type": "package",
+        "dependencies": {
+          "NLog": "4.7.15",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/NLog.Layouts.GelfLayout.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.Layouts.GelfLayout.dll": {}
+        }
+      },
       "NLog.Web.AspNetCore/5.2.3": {
         "type": "package",
         "dependencies": {
@@ -1057,6 +1070,20 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "NLog.Web.AspNetCore.Targets.Gelf/1.3.0": {
+        "type": "package",
+        "dependencies": {
+          "NLog.Extensions.Logging": "1.6.4",
+          "Newtonsoft.Json": "12.0.3",
+          "System.ComponentModel.Annotations": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/NLog.Web.AspNetCore.Targets.Gelf.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/NLog.Web.AspNetCore.Targets.Gelf.dll": {}
+        }
       },
       "NuGet.Frameworks/5.11.0": {
         "type": "package",
@@ -1343,6 +1370,19 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.ComponentModel.Annotations/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Configuration.ConfigurationManager/7.0.0": {
@@ -3481,6 +3521,20 @@
         "nlog.extensions.logging.nuspec"
       ]
     },
+    "NLog.GelfLayout/1.4.0": {
+      "sha512": "FH67fm37YlwkAOclTqArYxpXIJc9W0BseIodTZpKgSiRvcf2w64Ctmt/4jOmTRmPaLoHXRzPHODEkes1Nudn+w==",
+      "type": "package",
+      "path": "nlog.gelflayout/1.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net471/NLog.Layouts.GelfLayout.dll",
+        "lib/netstandard1.3/NLog.Layouts.GelfLayout.dll",
+        "lib/netstandard2.0/NLog.Layouts.GelfLayout.dll",
+        "nlog.gelflayout.1.4.0.nupkg.sha512",
+        "nlog.gelflayout.nuspec"
+      ]
+    },
     "NLog.Web.AspNetCore/5.2.3": {
       "sha512": "uP0KekbkswuMjo1dbaqu20TxH2Dc3ox2qJDIi837ob2Fq/BliZHuQY9nJdM3UArVrLrsl+xxsx0D6h8m3fOufg==",
       "type": "package",
@@ -3502,6 +3556,18 @@
         "lib/netstandard2.0/NLog.Web.AspNetCore.xml",
         "nlog.web.aspnetcore.5.2.3.nupkg.sha512",
         "nlog.web.aspnetcore.nuspec"
+      ]
+    },
+    "NLog.Web.AspNetCore.Targets.Gelf/1.3.0": {
+      "sha512": "u0ls5zyLSDcRXZlIdNBdw2u99j29E5mHqvEqqbyaFZAqDpH29IOUE49UxOkDms3alDnkAPYmyAn3akm5A8JNQg==",
+      "type": "package",
+      "path": "nlog.web.aspnetcore.targets.gelf/1.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/NLog.Web.AspNetCore.Targets.Gelf.dll",
+        "nlog.web.aspnetcore.targets.gelf.1.3.0.nupkg.sha512",
+        "nlog.web.aspnetcore.targets.gelf.nuspec"
       ]
     },
     "NuGet.Frameworks/5.11.0": {
@@ -3835,6 +3901,95 @@
         "system.collections.immutable.6.0.0.nupkg.sha512",
         "system.collections.immutable.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.ComponentModel.Annotations/4.7.0": {
+      "sha512": "0YFqjhp/mYkDGpU0Ye1GjE53HMp9UVfGN7seGpAMttAC0C40v5gw598jCgpbBLMmCo0E5YRLBv5Z2doypO49ZQ==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/4.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.4.7.0.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Configuration.ConfigurationManager/7.0.0": {
@@ -4889,7 +5044,9 @@
       "Microsoft.NET.Test.Sdk >= 17.3.2",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
       "NLog >= 5.1.4",
+      "NLog.GelfLayout >= 1.4.0",
       "NLog.Web.AspNetCore >= 5.2.3",
+      "NLog.Web.AspNetCore.Targets.Gelf >= 1.3.0",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.2",
       "PostSharp >= 2023.0.3",
       "Swashbuckle.AspNetCore >= 6.2.3",
@@ -4992,9 +5149,17 @@
             "target": "Package",
             "version": "[5.1.4, )"
           },
+          "NLog.GelfLayout": {
+            "target": "Package",
+            "version": "[1.4.0, )"
+          },
           "NLog.Web.AspNetCore": {
             "target": "Package",
             "version": "[5.2.3, )"
+          },
+          "NLog.Web.AspNetCore.Targets.Gelf": {
+            "target": "Package",
+            "version": "[1.3.0, )"
           },
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",

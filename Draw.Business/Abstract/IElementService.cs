@@ -16,6 +16,8 @@ namespace Draw.Business.Abstract
         Task<Response<IEnumerable<RadiusDTO>>> GetRadiusesAsync(string userId, int entityId);
         Task<Response<IEnumerable<SSAngleDTO>>> GetSSAnglesAsync(string userId, int entityId);
         Task<Response<IEnumerable<PointDTO>>> GetPointsAsync(string userId, int entityId);
-        
+        Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(int drawBoxId, List<ElementDTO> entities);
+
+
     }
 }

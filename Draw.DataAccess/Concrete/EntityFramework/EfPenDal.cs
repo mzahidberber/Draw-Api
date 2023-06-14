@@ -1,5 +1,6 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.DataAccess.Abstract;
+using Draw.Entities.Abstract;
 using Draw.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,13 +12,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         {
         }
 
-        public async Task<List<Pen>> GetAllWithAttAsync(string userId)
+        public IQueryable<Pen> GetAllWithAttAsync(string userId)
         {
-            return await _dbSet
+            return _dbSet
                 .Where(x => x.UserId == userId)
                 //.Include(x => x.PenColor)
-                .Include(x=>x.PenStyle)
-                .ToListAsync() ?? throw new CustomException("Entity Not Found");
+                .Include(x=>x.PenStyle).AsQueryable();
         }
 
         public async Task<Pen> GetPenWithColorAsync(string userId, int penId)
@@ -34,6 +34,12 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 .Where(x => x.Id == penId && x.UserId == userId)
                 .Include(x => x.PenStyle)
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
+        }
+
+        public async Task AddAsyncOnlyPen(Pen entity)
+        {
+            _context.Entry(entity.PenStyle).State = EntityState.Detached;
+            await _dbSet.AddAsync(entity);
         }
     }
 }

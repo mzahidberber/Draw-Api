@@ -4,8 +4,9 @@ namespace Draw.DataAccess.Abstract
 {
     public interface IPenDal : IEntityRepository<Pen>
     {
-        Task<List<Pen>> GetAllWithAttAsync(string userId);
+        IQueryable<Pen> GetAllWithAttAsync(string userId);
         Task<Pen> GetPenWithColorAsync(string userId, int penId);
         Task<Pen> GetPenWithPenStyleAsync(string userId, int penId);
+        Task AddAsyncOnlyPen(Pen entity);
     }
 }

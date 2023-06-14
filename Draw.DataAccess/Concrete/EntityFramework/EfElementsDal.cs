@@ -27,6 +27,15 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 .SingleOrDefaultAsync() ?? throw new CustomException("Entity Not Found");
         }
 
+        public IQueryable<Element> GetElementsWithDrawAsync(int drawId)
+        {
+            return _dbSet
+                .Where(x => x.Layer.DrawBoxId == drawId)
+                .Include(x => x.Points)
+                .Include(x => x.SSAngles)
+                .Include(x => x.Radiuses).AsQueryable(); 
+        }
+
         public async Task<Element> GetElementWithPenAsync(string userId, int entityId)
         {
             return await _dbSet

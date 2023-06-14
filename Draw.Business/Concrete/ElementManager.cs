@@ -6,6 +6,7 @@ using Draw.DataAccess.Abstract;
 using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
@@ -19,7 +20,20 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(List<ElementDTO> entities)
         {
-            return await base.BaseAddAllAsync<ElementDTO, Element>(entities, _elementDal);
+            await base.BaseAddAllAsync<ElementDTO, Element>(entities, _elementDal);
+            _elementDal = DataInstanceFactory.GetInstance<IElementDal>();
+            var newList = await _elementDal.GetAllAsync().OrderByDescending(x => x.Id).Take(entities.Count()).ToListAsync();
+            await _elementDal.CommitAsync();
+            return Response<IEnumerable<ElementDTO>>.Success(newList.Select(d => ObjectMapper.Mapper.Map<ElementDTO>(d)), 200);
+        }
+
+        public async Task<Response<IEnumerable<ElementDTO>>> AddAllAsync(int drawBoxId,List<ElementDTO> entities)
+        {
+            await base.BaseAddAllAsync<ElementDTO, Element>(entities, _elementDal);
+            _elementDal = DataInstanceFactory.GetInstance<IElementDal>();
+            var newList = await _elementDal.GetElementsWithDrawAsync(drawBoxId).OrderByDescending(x => x.Id).Take(entities.Count()).ToListAsync();
+            await _elementDal.CommitAsync();
+            return Response<IEnumerable<ElementDTO>>.Success(newList.Select(d => ObjectMapper.Mapper.Map<ElementDTO>(d)), 200);
         }
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
@@ -123,8 +137,6 @@ namespace Draw.Business.Concrete
                 else return true;
             });
         }
-
-        
 
         
     }

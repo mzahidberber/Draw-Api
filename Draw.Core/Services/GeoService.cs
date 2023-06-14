@@ -18,7 +18,8 @@ namespace Draw.Core.Services
         private static Logger _logger = LogManager.GetCurrentClassLogger();
         public GeoService()
         {
-            var urlE= Environment.GetEnvironmentVariable("geoUrl");
+            var urlE = Environment.GetEnvironmentVariable("geoUrl");
+            //var urlE = "http://127.0.0.1:5001/";
             if (urlE != null)
                 this.url = urlE + "geo/";
             else throw new Exception();
@@ -109,6 +110,31 @@ namespace Draw.Core.Services
                 var result = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(result);
                 GeoRequest<StartAndStopRequest>? data = JsonSerializer.Deserialize<GeoRequest<StartAndStopRequest>>(result);
+
+                return data ?? throw new CustomException("GeoService Not Used");
+            }
+        }
+
+        public async Task<GeoRequest<PointGeo>> findPointOnCircle(Point centerPoint, double radius, double angle)
+        {
+            Console.WriteLine(centerPoint.X);
+            Console.WriteLine(centerPoint.Y);
+            Console.WriteLine(radius);
+            Console.WriteLine(angle);
+            var r= Convert.ToString(radius).Replace(",",".");
+            var a= Convert.ToString(angle).Replace(",",".");
+            var points = CoreObjectMapper.Mapper.Map<List<PointGeo>>(new List<Point> { centerPoint });
+            var url = GetUrl(GeoRequestUrls.findPointOnCircle) + $"?radius={r}&angle={a}";
+            Console.WriteLine(url);
+            using (HttpResponseMessage response = await client.PostAsync(
+                url,
+                GetContent(points)))
+            { 
+            
+                //response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
+                GeoRequest<PointGeo>? data = JsonSerializer.Deserialize<GeoRequest<PointGeo>>(result);
 
                 return data ?? throw new CustomException("GeoService Not Used");
             }

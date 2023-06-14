@@ -1,9 +1,6 @@
 ﻿using Draw.DataAccess.Abstract;
 using Draw.DataAccess.Concrete.EntityFramework;
-using Microsoft.AspNetCore.Hosting.Server;
-using Ninject;
 using Ninject.Modules;
-using System.Web;
 
 namespace Draw.DataAccess.DependencyResolvers.Ninject
 {
@@ -23,6 +20,8 @@ namespace Draw.DataAccess.DependencyResolvers.Ninject
             Bind<IPenDal>().To<EfPenDal>();
             Bind<IPenStyleDal>().To<EfPenStyleDal>();
             Bind<IPointTypeDal>().To<EfPointTypeDal>();
+            Bind<IRadiusDal>().To<EfRadiusDal>();
+            Bind<ISSAngleDal>().To<EfSSAngleDal>();
 
         }
     }

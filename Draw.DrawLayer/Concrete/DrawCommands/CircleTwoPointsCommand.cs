@@ -39,7 +39,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private List<Point> CreatePoints()
         {
-            var pcenter = DrawMath.FindBetweenPointToTwoPoint(_point1, _point2, 2);
+            var pcenter = DrawMath.FindBetweenPointToTwoPoint(_point1, _point2, 1);
             //var p1 = DrawMath.AdditionPointPlusX(pcenter, GetRadius());
             //var p2 = DrawMath.AdditionPointPlusY(pcenter, GetRadius());
             //var p3 = DrawMath.AdditionPointPlusX(pcenter, -GetRadius());

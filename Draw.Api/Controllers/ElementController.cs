@@ -58,7 +58,7 @@ namespace Draw.Api.Controllers
         [HttpPost("elements/add")]
         public async Task<IActionResult> AddElements(ElementRequest request)
         {
-            return ActionResultInstance(await _elementManager.AddAllAsync(request.elements));
+            return ActionResultInstance(await _elementManager.AddAllAsync(request.drawBoxId,request.elements));
         }
         [LogAspect]
         [HttpDelete("elements/delete")]

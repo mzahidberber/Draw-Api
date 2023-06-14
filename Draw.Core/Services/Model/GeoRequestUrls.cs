@@ -25,6 +25,7 @@
         internal static string findNearetPoint { get => "findNearetPoint/"; }
         internal static string findStartAndStopAngle { get => "findStartAndStopAngle/"; }
         internal static string findStartAndStopAngleTwoPoint { get => "findStartAndStopAngleTwoPoint/"; }
+        internal static string findPointOnCircle { get => "findPointOnCircle/"; }
 
         
     }

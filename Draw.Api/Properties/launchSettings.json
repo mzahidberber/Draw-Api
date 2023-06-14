@@ -7,8 +7,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "drawdb4",
-        "dbPassword": "mysql123.",
+        "dbName": "drawdb",
+        "dbPassword": "123456",
         "dbPort": "3306",
         "geoUrl": "http://127.0.0.1:5001/"
       },

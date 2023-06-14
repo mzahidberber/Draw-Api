@@ -29,8 +29,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var p1 = CreatePoint(CommandMemory.PointsList[0].X, CommandMemory.PointsList[0].Y, 1);
             var p2 = CreatePoint(CommandMemory.PointsList[1].X, CommandMemory.PointsList[1].Y, 1);
             var p3 = DrawMath.AdditionPointPlusX(p1, DrawMath.DifferancePointsX(p1, p2));
-            var p4 = DrawMath.AdditionPointPlusY(p1, DrawMath.DifferancePointsY(p1, p2));
-            return CreateElementManyPoint(CommandMemory.SelectedElementTypeId, new List<Point> { p1, p2, p3, p4 });
+            var p4 = DrawMath.AdditionPointPlusY(p1, -DrawMath.DifferancePointsY(p1, p2));
+            return CreateElementManyPoint(CommandMemory.SelectedElementTypeId, new List<Point> { p1, p3, p2, p4 });
         }
 
        

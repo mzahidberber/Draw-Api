@@ -5,12 +5,13 @@ using Draw.Core.DTOs.Concrete;
 using Draw.DataAccess.Abstract;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
     public class LayerManager :AbstractManager, ILayerService
     {
-        private readonly ILayerDal _layerDal;
+        private ILayerDal _layerDal;
         public LayerManager()
         {
             _layerDal=DataInstanceFactory.GetInstance<ILayerDal>(); 
@@ -19,6 +20,17 @@ namespace Draw.Business.Concrete
         public async Task<Response<IEnumerable<LayerDTO>>> AddAllAsync(List<LayerDTO> entities)
         {
             return await base.BaseAddAllAsync<LayerDTO, Layer>(entities, _layerDal);
+
+        }
+
+        public async Task<Response<IEnumerable<LayerDTO>>> AddAllAttAsync(string userId, int drawBoxId,List<LayerDTO> entities)
+        {
+            await base.BaseAddAllAsync<LayerDTO, Layer>(entities, _layerDal);
+            _layerDal = DataInstanceFactory.GetInstance<ILayerDal>();
+            var newList = await _layerDal.GetAllByDrawWithPenAsync(userId,drawBoxId).OrderByDescending(x => x.Id).Take(entities.Count()).ToListAsync();
+            await _layerDal.CommitAsync();
+            return Response<IEnumerable<LayerDTO>>.Success(newList.Select(d => ObjectMapper.Mapper.Map<LayerDTO>(d)), 200);
+
         }
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
@@ -38,7 +50,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<IEnumerable<LayerDTO>>> GetAllByDrawWithPenAsync(string userId, int drawId)
         {
-            var layers = await _layerDal.GetAllByDrawWithPenAsync(userId, drawId);
+            var layers = await _layerDal.GetAllByDrawWithPenAsync(userId, drawId).ToListAsync();
             await _layerDal.CommitAsync();
             return Response<IEnumerable<LayerDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<LayerDTO>>(layers), 200);
         }

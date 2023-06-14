@@ -19,6 +19,8 @@ namespace Draw.Business.DependencyResolvers.Ninject
             Bind<IPenStyleService>().To<PenStyleManager>().InSingletonScope();
             Bind<IPointService>().To<PointManager>().InSingletonScope();
             Bind<IPointTypeService>().To<PointTypeManager>().InSingletonScope();
+            Bind<ISSAngleService>().To<SSAngleManager>().InSingletonScope();
+            Bind<IRadiusService>().To<RadiusManager>().InSingletonScope();
         }
     }
 }

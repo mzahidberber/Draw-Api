@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oGAoYGlPVeFrt7mUz6NbVAf+clU6kZcvgp+pHOPiuJS3z27TRbbZl4bGt7GKk244NtOpcdcBUWtGkqAKiDbbnw==",
+  "dgSpecHash": "BIOaMq6jEN/Mx8bk0HBfzOxebXuP01hye2UTFV+NeKMhJiZyPRpkjjHiKXJrpj0j794k2YIx5P4x4NcjyJXPwQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Api\\Draw.Api.csproj",
   "expectedPackageFiles": [
@@ -56,7 +56,9 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\ninject\\3.3.6\\ninject.3.3.6.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog\\5.1.4\\nlog.5.1.4.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog.extensions.logging\\5.2.3\\nlog.extensions.logging.5.2.3.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog.gelflayout\\1.4.0\\nlog.gelflayout.1.4.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog.web.aspnetcore\\5.2.3\\nlog.web.aspnetcore.5.2.3.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\nlog.web.aspnetcore.targets.gelf\\1.3.0\\nlog.web.aspnetcore.targets.gelf.1.3.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.2\\pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\postsharp\\2023.0.3\\postsharp.2023.0.3.nupkg.sha512",
@@ -72,6 +74,7 @@
     "C:\\Users\\mzahidberber\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
+    "C:\\Users\\mzahidberber\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.configuration.configurationmanager\\7.0.0\\system.configuration.configurationmanager.7.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",

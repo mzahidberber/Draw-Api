@@ -6,19 +6,34 @@ using Draw.DataAccess.Abstract;
 using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.DataAccess.DependencyResolvers.Ninject;
 using Draw.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete
 {
     public class PenManager : AbstractManager,IPenService
     {
-        private readonly IPenDal _penDal;
+        private IPenDal _penDal;
         public PenManager()
         {
             _penDal=DataInstanceFactory.GetInstance<IPenDal>();
         }
         public async Task<Response<IEnumerable<PenDTO>>> AddAllAsync(List<PenDTO> entities)
         {
-            return await base.BaseAddAllAsync<PenDTO, Pen>(entities, _penDal);
+           return await base.BaseAddAllAsync<PenDTO, Pen>(entities, _penDal);
+        }
+
+        public async Task<Response<IEnumerable<PenDTO>>> AddAllAttAsync(string userId, List<PenDTO> entities)
+        {
+            Console.WriteLine(userId);
+            entities.ForEach((e) => { 
+                e.UserId = userId;
+                Console.WriteLine(e.UserId);
+            });
+            await base.BaseAddAllAsync<PenDTO, Pen>(entities, _penDal);
+            _penDal = DataInstanceFactory.GetInstance<IPenDal>();
+            var newList = await _penDal.GetAllWithAttAsync(userId).OrderByDescending(x => x.Id).Take(entities.Count()).ToListAsync();
+            await _penDal.CommitAsync();
+            return Response<IEnumerable<PenDTO>>.Success(newList.Select(d => ObjectMapper.Mapper.Map<PenDTO>(d)), 200);
         }
 
         public async Task<Response<NoDataDto>> DeleteAllAsync(string userId, List<int> entities)
@@ -33,7 +48,7 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<IEnumerable<PenDTO>>> GetAllWithAttAsync(string userId)
         {
-            var pens = await _penDal.GetAllWithAttAsync(userId);
+            var pens = await _penDal.GetAllWithAttAsync(userId).ToListAsync();
             await _penDal.CommitAsync();
             return Response<IEnumerable<PenDTO>>.Success(ObjectMapper.Mapper.Map<IEnumerable<PenDTO>>(pens), 200);
         }

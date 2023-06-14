@@ -9,5 +9,7 @@ namespace Draw.Business.Abstract
         Task<Response<IEnumerable<LayerDTO>>> GetAllByDrawWithPenAsync(string userId,int drawId);
         Task<Response<IEnumerable<ElementDTO>>> GetElementsAsync(string userId,int entityId);
         Task<Response<PenDTO>> GetPenAsync(string userId, int entityId);
+        Task<Response<IEnumerable<LayerDTO>>> AddAllAttAsync(string userId, int drawBoxId, List<LayerDTO> entities);
+
     }
 }

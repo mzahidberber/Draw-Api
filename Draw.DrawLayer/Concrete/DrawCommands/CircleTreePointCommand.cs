@@ -51,6 +51,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             //var pcenter = _geoService.FindCenterAndRadius(_point1, _point2, _point3).Result.data.centerPoint;
             var data = await _geoService.FindCenterAndRadius(_point1, _point2, _point3);
             var pcenter = data.centerPoint;
+            pcenter.PointTypeId = 1;
             //var p1 = DrawMath.AdditionPointPlusX(pcenter, GetRadiusAsync());
             //var p2 = DrawMath.AdditionPointPlusY(pcenter, GetRadiusAsync());
             //var p3 = DrawMath.AdditionPointPlusX(pcenter, -GetRadiusAsync());

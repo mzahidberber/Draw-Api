@@ -1,6 +1,8 @@
-﻿using Draw.DrawLayer.Abstract;
+﻿using Draw.Core.Services.Model;
+using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
+using NLog;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {
@@ -9,7 +11,8 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
         public ArcCenterTwoPoint(CommandData commandMemory) : base(commandMemory)
         {
         }
-
+        public double radius { get; set; }
+        public StartAndStopRequest? ss { get; set; }
         private Point _point1 { get; set; } = null!;
         private Point _point2 { get; set; } = null!;
         private Point _point3 { get; set; } = null!;
@@ -35,15 +38,17 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private async Task<Element> CreateElementAsync()
         {
-            var points = await CreatePointsAsync();
-            var radiuses = new List<Radius> { new Radius { Value = await GetRadiusAsync() } };
+            radius = await GetRadiusAsync();
+            var radiuses = new List<Radius> { new Radius { Value = radius } };
             var ssangles =await GetSSangles();
+            var points = await CreatePointsAsync();
             return base.CreateElementManyPoint(CommandMemory.SelectedElementTypeId, points, radiuses,ssangles);
         }
 
         private async Task<List<SSAngle>> GetSSangles()
         {
             var startAndStopAngle = await _geoService.findStartAndStopAngleTwoPoint(_point1, _point2, _point3);
+            ss = startAndStopAngle.data;
             return new List<SSAngle> {
                 new SSAngle { Value = startAndStopAngle.data.startAngle, Type = "start" },
                 new SSAngle { Value = startAndStopAngle.data.stopAngle, Type = "stop" }};
@@ -54,16 +59,12 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
             var data = await _geoService.FindTwoPointsLength(_point1, _point2);
             return data.data;
         }
-
         private async Task<List<Point>> CreatePointsAsync()
         {
-            //var pcenter = _geoService.FindCenterAndRadius(_point1, _point2, _point3).Result.data.centerPoint;
-            //var data = await _geoService.FindCenterAndRadius(_point1, _point2, _point3);
-            //var p1 = DrawMath.AdditionPointPlusX(pcenter, GetRadiusAsync());
-            //var p2 = DrawMath.AdditionPointPlusY(pcenter, GetRadiusAsync());
-            //var p3 = DrawMath.AdditionPointPlusX(pcenter, -GetRadiusAsync());
-            //var p4 = DrawMath.AdditionPointPlusY(pcenter, -GetRadiusAsync());
-            return new List<Point> { _point1,_point1 };
+            var angle = (-ss.stopAngle/32)+(-ss.startAngle/16);
+            var p2 = _geoService.findPointOnCircle(_point1, radius, angle).Result.data;
+            var p3 = _geoService.findPointOnCircle(_point1, radius, (-ss.stopAngle/16)+(-ss.startAngle / 16)).Result.data;
+            return new List<Point> { _point1,_point2,CreatePoint(p2.X,p2.Y,1),CreatePoint(p3.X,p3.Y,1)};
         }
     }
 }

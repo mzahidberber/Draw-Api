@@ -40,7 +40,31 @@ namespace Draw.Core.Tests
             Assert.Pass();
         }
 
-        
+        [Test]
+        public void Test3()
+        {
+            //ProxyGenerator generator = new ProxyGenerator();
+            //Deneme d = generator.CreateClassProxy<Deneme>(new LogginAspect());
+            //d.Denemee("b","a");
+
+        //    public int Id { get; set; }
+        //public double X { get; set; }
+        //public double Y { get; set; }
+
+        //public int ElementId { get; set; }
+        //public Element Element { get; set; } = null!;
+
+        //public int PointTypeId { get; set; }
+        //public PointType PointType { get; set; } = null!;
+
+            GeoService geoService = new GeoService();
+            var result=geoService.findPointOnCircle(new Point { X = -87.5023, Y = 27.2857 }, 151.55553168924584, 139.45307062252132).Result.data;
+            Console.WriteLine(result);
+
+            Assert.Pass();
+        }
+
+
     }
     public interface D
     {

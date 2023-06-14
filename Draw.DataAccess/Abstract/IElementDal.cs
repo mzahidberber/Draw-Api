@@ -14,5 +14,6 @@ namespace Draw.DataAccess.Abstract
         Task<Element> GetElementWithRadiusAsync(string userId, int entityId);
         Task<Element> GetElementWithSSAnglesAsync(string userId, int entityId);
         Task<Element> GetElementWithPointsAsync(string userId, int entityId);
+        IQueryable<Element> GetElementsWithDrawAsync(int drawId);
     }
 }

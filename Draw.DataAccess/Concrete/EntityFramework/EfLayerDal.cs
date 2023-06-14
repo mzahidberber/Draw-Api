@@ -12,15 +12,14 @@ namespace Draw.DataAccess.Concrete.EntityFramework
            
         }
 
-        public async Task<List<Layer>> GetAllByDrawWithPenAsync(string userId, int drawId)
+        public IQueryable<Layer> GetAllByDrawWithPenAsync(string userId, int drawId)
         {
-            return await _dbSet
+            return _dbSet
                 .Where(x => x.DrawBoxId == drawId && x.DrawBox.UserId == userId)
                 .Include(x => x.Pen)
                 //.ThenInclude(x=>x.PenColor)
                 //.Include(x => x.Pen)
-                .ThenInclude(x => x.PenStyle)
-                .ToListAsync() ?? throw new CustomException("Entity Not Found");
+                .ThenInclude(x => x.PenStyle).AsQueryable();
         }
 
         public async Task<Layer> GetLayerWithElementsAsync(string userId, int layerId)
