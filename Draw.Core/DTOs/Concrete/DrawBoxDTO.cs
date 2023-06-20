@@ -6,6 +6,8 @@
         public string Name { get; set; } = null!;
         public string? UserId { get; set; }
 
+        public List<LayerDTO>? layers { get; set; }
+
         public DateTime? CreateTime { get; set; }
 
         public DateTime? EditTime { get; set; }

@@ -10,8 +10,8 @@
 
         public int LayerId { get; set; }
 
-        public List<PointDTO> points { get; set; }
-        public List<RadiusDTO> radiuses { get; set; }
-        public List<SSAngleDTO> ssangles { get; set; }
+        public List<PointDTO>? points { get; set; }
+        public List<RadiusDTO>? radiuses { get; set; }
+        public List<SSAngleDTO>? ssangles { get; set; }
     }
 }

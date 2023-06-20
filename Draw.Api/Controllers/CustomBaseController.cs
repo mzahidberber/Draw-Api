@@ -15,7 +15,7 @@ namespace Draw.Api.Controllers
         {
             return new ObjectResult(response)
             {
-                StatusCode = response.StatusCode
+                StatusCode = response.statusCode
             };
         }
         [NonAction]

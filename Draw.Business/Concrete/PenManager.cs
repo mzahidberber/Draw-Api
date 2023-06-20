@@ -73,6 +73,10 @@ namespace Draw.Business.Concrete
 
         public async Task<Response<NoDataDto>> UpdateAllAsync(string userId, List<PenDTO> entities)
         {
+            foreach (var pen in entities)
+            {
+                pen.UserId = userId;
+            }
             return await base.BaseUpdateAsync<PenDTO, Pen>(entities, _penDal, () =>
             {
                 var idList = entities.Select(x => x.Id).ToList();

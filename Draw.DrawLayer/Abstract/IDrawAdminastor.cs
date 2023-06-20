@@ -1,6 +1,7 @@
 ﻿using Draw.DrawLayer.Concrete;
 using Draw.DrawLayer.Concrete.BaseCommand;
 using Draw.DrawLayer.Concrete.Model;
+using Draw.Entities.Concrete;
 
 namespace Draw.DrawLayer.Abstract
 {
@@ -12,5 +13,7 @@ namespace Draw.DrawLayer.Abstract
         Task SetRadiusAsync(double radius);
         Task SetEditElementsIdAsync(List<int> editElementsId);
         Task StopCommandAsync();
+        Task<MemoryStream> SaveDraw(DrawBox drawBox);
+        Task<DrawBox> ReadDraw(Stream drawFile);
     }
 }

@@ -11,5 +11,7 @@
         public int PenId { get; set; }
         public PenDTO? Pen { get; set; }
 
+        public List<ElementDTO>? elements { get; set; }
+
     }
 }

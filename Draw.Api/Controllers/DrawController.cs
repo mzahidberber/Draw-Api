@@ -2,11 +2,16 @@
 using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
 using Draw.Core.Aspects.PostSharp.LoggingAspects;
+using Draw.Core.DTOs.Concrete;
 using Draw.Core.Services;
 using Draw.DrawLayer.Concrete.Model;
 using Draw.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
+using System.IO;
+using System.Net;
+using System.Net.Http.Headers;
 
 namespace Draw.Api.Controllers
 {
@@ -65,26 +70,20 @@ namespace Draw.Api.Controllers
             return ActionResultInstance(await _drawService.SetIsFinish(GetUserInfo(User).id, finish));
         }
 
-        //[HttpPut("saveElements")]
-        //public async Task<IActionResult> SaveElements(List<ElementDTO> elements)
-        //{
-        //    return ActionResultInstance(await _drawService.SaveElements(GetUserId(User), elements));
-        //}
-
-        [HttpPost("test")]
-        public async Task<object> deneme(double p1x, double p1y, double p2x, double p2y, double p3x, double p3y)
+        //[LogAspect]
+        [HttpPost("saveDraw")]
+        public async Task<IActionResult> SaveDraw(DrawBoxDTO drawBox)
         {
-            //var result=await new GeoService().FindTwoPointsLength(
-            //    new Point { PointX=p1x,PointY=p1y},
-            //    new Point { PointX=p2x,PointY=p2y}
-            //    );
-            var result1 = await new GeoService().FindCenterAndRadius(
-                new Point { X = p1x, Y = p1y },
-                new Point { X = p2x, Y = p2y },
-                new Point { X = p3x, Y = p3y }
-                );
-            return result1.centerPoint;
+            return await _drawService.SaveDraw(GetUserInfo(User).id, drawBox);
         }
+
+        [HttpPost("readDraw")]
+        public async Task<IActionResult> ReadDraw([FromForm]IFormFile drawFile)
+        {
+            return ActionResultInstance(await _drawService.ReadDraw(GetUserInfo(User).id, drawFile.OpenReadStream()));
+        }
+
+
 
     }
 }

@@ -22,10 +22,7 @@ namespace Draw.DrawLayer.Concrete
         public string GetUserName() => "";
         public DateTime GetUseTime() => _commandData.IsUseTime;
 
-        public async Task SaveElements(List<Element> elements)
-        {
-            await SaveCommand.SaveElementsAsync(elements);
-        }
+        
         [LogAspect]
         public async Task<ElementInformation> SetIsFinishAsync(bool finish=true)
         {
@@ -99,6 +96,7 @@ namespace Draw.DrawLayer.Concrete
 
         }
 
+        
         private IBaseCommand GetCommandEnums(CommandEnums commandEnum)
         {
             var commandType = CommandsMultiton.GetCommand(commandEnum);
@@ -106,7 +104,17 @@ namespace Draw.DrawLayer.Concrete
             return command != null ? command : throw new CustomException("Command Not Found!");
         }
 
-        
+        public async Task<MemoryStream> SaveDraw(DrawBox drawBox)
+        {
+            _commandData.SetUseTimeNow();
+            return !_commandData.IsWorkingCommand ? await DrawFile.SaveDrawFile(drawBox) : throw new CustomException("Last Finish Command!"); 
+        }
+
+        public async Task<DrawBox?> ReadDraw(Stream drawFile)
+        {
+            _commandData.SetUseTimeNow();
+            return !_commandData.IsWorkingCommand ? await DrawFile.ReadDraw(drawFile) : throw new CustomException("Last Finish Command!");
+        }
     }
 
 }

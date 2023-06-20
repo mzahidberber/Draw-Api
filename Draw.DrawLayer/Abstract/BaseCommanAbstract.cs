@@ -14,20 +14,12 @@ namespace Draw.DrawLayer.Abstract
     {
         protected CommandData CommandMemory { get; private set; }
         protected IGeoService _geoService;
-        protected IElementDal _efElementDal;
         public BaseCommanAbstract(CommandData commandMemory)
         {
             CommandMemory = commandMemory;
             _geoService=CoreInstanceFactory.GetInstance<IGeoService>();
-            _efElementDal = DataInstanceFactory.GetInstance<IElementDal>();
         }
-
-        protected async Task AddElementAsync(Element element)
-        {
-            await _efElementDal.AddAsync(element);
-            await _efElementDal.CommitAsync();
-            FinishCommand();
-        }
+        
         protected Task<ElementInformation> ReturnErrorMessageAsync(int necesaryPoint=0,string? message=null) 
         {
             var msg = "";
