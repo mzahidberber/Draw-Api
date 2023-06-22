@@ -114,13 +114,12 @@ namespace Draw.Core.Services
 
         public async Task<GeoRequest<PointGeo>> findPointOnCircle(Point centerPoint, double radius, double angle)
         {
-            var r= Convert.ToString(radius).Replace(",",".");
-            var a= Convert.ToString(angle).Replace(",",".");
-            var points = CoreObjectMapper.Mapper.Map<List<PointGeo>>(new List<Point> { centerPoint });
-            var url = GetUrl(GeoRequestUrls.findPointOnCircle) + $"?radius={r}&angle={a}";
+            var point = CoreObjectMapper.Mapper.Map<PointGeo>(centerPoint);
+            var url = GetUrl(GeoRequestUrls.findPointOnCircle);
+            var dataa = new List<PointRadiusAngle> { new PointRadiusAngle { point = point, radius = radius, angle = angle } };
             using (HttpResponseMessage response = await client.PostAsync(
                 url,
-                GetContent(points)))
+                GetContent(dataa)))
             { 
             
                 //response.EnsureSuccessStatusCode();
