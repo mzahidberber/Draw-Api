@@ -1,0 +1,17 @@
+{
+  "pens": [
+    {
+      "id": 0,
+      "name": "string",
+      "userId": "string",
+      "penStyleId": 0,
+      "red": 0,
+      "blue": 0,
+      "green": 0,
+      "penStyle": {
+        "id": 0,
+        "name": "string"
+      }
+    }
+  ]
+}

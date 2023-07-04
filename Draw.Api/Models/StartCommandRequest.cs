@@ -1,5 +1,4 @@
-﻿using Draw.DrawLayer.Concrete.BaseCommand;
-using Microsoft.AspNetCore.Mvc;
+﻿using Draw.Core.DrawLayer.Model;
 
 namespace Draw.Api.Models
 {

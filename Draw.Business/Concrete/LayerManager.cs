@@ -1,10 +1,10 @@
-﻿using Draw.Business.Abstract;
-using Draw.Business.Mapper;
+﻿using Draw.Business.Mapper;
+using Draw.Core.Business.Abstract;
+using Draw.Core.DataAccess.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
-using Draw.DataAccess.Abstract;
 using Draw.DataAccess.DependencyResolvers.Ninject;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 using Microsoft.EntityFrameworkCore;
 
 namespace Draw.Business.Concrete

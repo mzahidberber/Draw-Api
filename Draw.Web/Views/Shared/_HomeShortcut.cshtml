@@ -1,0 +1,26 @@
+﻿@model ITitle
+@{
+    var shortcut1 = $"{Model.ShortcutUrl1}.png";
+    var shortcut2 = $"{Model.ShortcutUrl2}.png";
+    var shortcut3 = $"{Model.ShortcutUrl3}.png";
+}
+
+<div class="mt-2 d-flex">
+    @if (Model.ShortcutUrl1 != null)
+    {
+            <img class="shortcut" src="/img/keyboard/@shortcut1" alt="shortcut">
+    }
+    @if (Model.ShortcutUrl2 != null)
+    {
+            <p>+</p>
+        <img class="shortcut" src="/img/keyboard/@shortcut2" alt="shortcut">
+    }
+    @if (Model.ShortcutUrl3 != null)
+    {
+        <p>+</p>
+        <img class="shortcut" src="/img/keyboard/@shortcut3" alt="shortcut">
+    }
+        
+        
+    
+</div>

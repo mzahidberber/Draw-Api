@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Draw.Core.Services.Model;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.Core.Mapper
 {

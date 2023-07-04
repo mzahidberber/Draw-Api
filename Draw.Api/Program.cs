@@ -7,11 +7,8 @@ using Draw.DataAccess.Concrete.EntityFramework;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.OpenApi.Models;
 using NLog.Web;
-using PostSharp.Extensibility;
-using System.Configuration;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -23,27 +20,6 @@ internal class Program
         builder.Logging.ClearProviders();
         //builder.Logging.AddConsole();
         builder.Host.UseNLog();
-
-
-        
-
-        //var dbHost = Environment.GetEnvironmentVariable("dbHost");
-        //var dbName = Environment.GetEnvironmentVariable("dbName");
-        //var dbPassword = Environment.GetEnvironmentVariable("dbPassword");
-        //var dbPort = Environment.GetEnvironmentVariable("dbPort");
-
-        //builder.Services.AddDbContext<DrawContext>(options =>
-        //{
-        //    var connectionString = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
-        //    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-        //    //    , sqlOptions =>
-        //    //{
-        //    //    sqlOptions.MigrationsAssembly("AuthServer.DataAccess");
-        //    //});
-        //});
-
-
-        
 
         builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
         var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
@@ -67,14 +43,15 @@ internal class Program
                 ClockSkew = TimeSpan.Zero
             };
         });
-
-        // Add services to the container.
-
-        // using(DrawContext context=new DrawContext())
-        // {
-        //     context.Database.EnsureCreated();
-        //     context.Database.Migrate();
-        // }
+        
+        
+        using (DrawContext context = new DrawContext())
+        {
+            //context.Database.EnsureCreated();
+            var pendingMigrations = context.Database.GetPendingMigrations();
+            if(pendingMigrations.Any())
+                context.Database.Migrate();
+        }
 
         builder.Services.AddControllersWithViews()
                 .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -87,7 +64,6 @@ internal class Program
 
         builder.Services.UseCustomValidationResponse();
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(option =>
         {
@@ -116,8 +92,6 @@ internal class Program
         var app = builder.Build();
 
         
-
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

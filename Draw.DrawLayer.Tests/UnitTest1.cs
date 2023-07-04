@@ -1,5 +1,6 @@
 using Draw.DrawLayer.Concrete.Helpers;
 using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DrawLayer.Tests
 {

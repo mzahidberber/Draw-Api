@@ -1,9 +1,9 @@
-﻿using Draw.Business.Abstract;
+﻿using Draw.Core.Business.Abstract;
+using Draw.Core.DataAccess.Abstract;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
-using Draw.DataAccess.Abstract;
 using Draw.DataAccess.DependencyResolvers.Ninject;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.Business.Concrete
 {

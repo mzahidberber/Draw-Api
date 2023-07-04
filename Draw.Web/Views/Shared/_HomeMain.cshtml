@@ -1,0 +1,80 @@
+﻿@using Newtonsoft.Json;
+@model TitleListViewModel
+
+<div id="mainData" data-my-variable='@Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented,
+new JsonSerializerSettings
+{
+        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+}))'></div>
+
+<div class="text-light">
+    @foreach (var mainTitle in Model.MainTitles)
+    {
+        <div class="pt-5" id="@mainTitle.Title">
+            @{
+                var mainTitleIndex = @Model.MainTitles.IndexOf(mainTitle)+1;
+            }
+            <h2>
+                @if (mainTitle.LogoUrl != null)
+                {
+                    <img src="~/img/Buttons/@mainTitle.LogoUrl" class="card-img" style="height:25px;width:25px;" alt="">
+                }
+                @mainTitleIndex - @mainTitle.Title</h2>
+            
+            @if (@mainTitle.GifUrl != null)
+            {
+                <p class="homeMainText" itemid="@mainTitle.Title"></p>
+                @await Html.PartialAsync("_HomeGif",@mainTitle)
+            }
+            else
+            {
+                <p class="homeMainText" itemid="@mainTitle.Title" style="font-size:18px;"></p>
+            }
+
+            
+
+            @foreach (var baseTitle in mainTitle.BaseTitles)
+            {
+                <div class="ms-3 pt-5" id="@baseTitle.Title">
+                    @{
+                        var baseTitleIndex = @mainTitle.BaseTitles.IndexOf(baseTitle)+1;
+                    }
+                    <h2>
+                        @if (baseTitle.LogoUrl != null)
+                        {
+                            <img src="~/img/Buttons/@baseTitle.LogoUrl" class="card-img" style="height:25px;width:25px;" alt="">
+                        }
+                        @mainTitleIndex.@baseTitleIndex - @baseTitle.Title</h2>
+                    @await Html.PartialAsync("_HomeShortcut",baseTitle)
+                            <p class="homeMainText" itemid="@baseTitle.Title" style="font-size:18px;"></p>
+                    @await Html.PartialAsync("_HomeGif",baseTitle)
+
+                    
+                    @foreach (var subTitle in @baseTitle.SubTitles)
+                    {
+                        <div class="ms-3 pt-5  " style="font-size:18px;" id="@subTitle.Title">
+                            <div class="row">
+                                @{
+                                    var subTitleIndex = @baseTitle.SubTitles.IndexOf(subTitle)+1;
+                                    
+                                    }
+                                <h3>
+                                @if (subTitle.LogoUrl != null)
+                                {
+                                    <img src="~/img/Buttons/@subTitle.LogoUrl" class="card-img" style="height:25px;width:25px;" alt="">
+                                }
+                                    @mainTitleIndex.@baseTitleIndex.@subTitleIndex - @subTitle.Title
+                                </h3>
+                                @await Html.PartialAsync("_HomeShortcut",@subTitle)
+
+                            </div>
+                            <p class="homeMainText" itemid="@subTitle.Title" style="font-size:18px;"></p>
+                            @await Html.PartialAsync("_HomeGif",@subTitle)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+</div>

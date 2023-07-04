@@ -1,4 +1,5 @@
-﻿using Draw.DrawLayer.Abstract;
+﻿using Draw.Core.DrawLayer.Abstract;
+using Draw.DrawLayer.Abstract;
 
 namespace Draw.DrawLayer.Concrete.BaseCommand
 {
@@ -8,7 +9,7 @@ namespace Draw.DrawLayer.Concrete.BaseCommand
 
         private DefaultCommand _defaultcommand;
 
-        public CommandContext(CommandData commandMemory)
+        public CommandContext(ICommandData commandMemory)
         {
             this._defaultcommand= new DefaultCommand(commandMemory);
             _command = this._defaultcommand;

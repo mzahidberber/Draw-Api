@@ -1,10 +1,6 @@
-using Draw.DataAccess.Abstract;
-using Draw.DataAccess.Concrete;
-using Draw.DataAccess.Concrete.EntityFramework;
+using Draw.Core.DataAccess.Abstract;
 using Draw.DataAccess.DependencyResolvers.Ninject;
-using Draw.Entities.Concrete;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Channels;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DataAccess.Tests
 {

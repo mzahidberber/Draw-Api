@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="CrosCuttingConcers\Handling\" />
-    <Folder Include="DrawLayer\Abstract\" />
     <Folder Include="DTOs\Abstract\" />
     <Folder Include="Models\" />
   </ItemGroup>

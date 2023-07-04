@@ -1,5 +1,5 @@
 ﻿using Draw.Core.Services;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http.Headers;

@@ -1,8 +1,7 @@
-﻿using Draw.Core.Services.Model;
+﻿using Draw.Core.DrawLayer.Model;
+using Draw.Core.Services.Model;
 using Draw.DrawLayer.Abstract;
-using Draw.DrawLayer.Concrete.Model;
-using Draw.Entities.Concrete;
-using NLog;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {

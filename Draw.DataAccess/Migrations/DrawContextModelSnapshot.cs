@@ -19,7 +19,7 @@ namespace Draw.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawBox", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,35 +45,9 @@ namespace Draw.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Draws");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreateTime = new DateTime(2023, 5, 9, 8, 41, 48, 35, DateTimeKind.Utc).AddTicks(3318),
-                            EditTime = new DateTime(2023, 5, 9, 8, 41, 48, 35, DateTimeKind.Utc).AddTicks(3323),
-                            Name = "c1",
-                            UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreateTime = new DateTime(2023, 5, 9, 8, 41, 48, 35, DateTimeKind.Utc).AddTicks(3330),
-                            EditTime = new DateTime(2023, 5, 9, 8, 41, 48, 35, DateTimeKind.Utc).AddTicks(3330),
-                            Name = "c2",
-                            UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreateTime = new DateTime(2023, 5, 9, 8, 41, 48, 35, DateTimeKind.Utc).AddTicks(3332),
-                            EditTime = new DateTime(2023, 5, 9, 8, 41, 48, 35, DateTimeKind.Utc).AddTicks(3332),
-                            Name = "c1",
-                            UserId = "b21972e1-742f-4fa7-be46-1189d9cab7cb"
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.DrawCommand", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawCommand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,7 +67,7 @@ namespace Draw.DataAccess.Migrations
                     b.ToTable("DrawCommand");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Element", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,46 +91,9 @@ namespace Draw.DataAccess.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("Elements");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LayerId = 1,
-                            PenId = 1,
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LayerId = 1,
-                            PenId = 1,
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            LayerId = 1,
-                            PenId = 1,
-                            TypeId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            LayerId = 1,
-                            PenId = 1,
-                            TypeId = 5
-                        },
-                        new
-                        {
-                            Id = 5,
-                            LayerId = 1,
-                            PenId = 1,
-                            TypeId = 4
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.ElementType", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.ElementType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +140,7 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Layer", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Layer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -234,47 +171,12 @@ namespace Draw.DataAccess.Migrations
 
                     b.HasIndex("DrawBoxId");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.HasIndex("PenId");
 
                     b.ToTable("Layers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DrawBoxId = 1,
-                            Lock = false,
-                            Name = "0",
-                            PenId = 1,
-                            Thickness = 1f,
-                            Visibility = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DrawBoxId = 1,
-                            Lock = false,
-                            Name = "a",
-                            PenId = 2,
-                            Thickness = 1f,
-                            Visibility = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DrawBoxId = 1,
-                            Lock = false,
-                            Name = "b",
-                            PenId = 1,
-                            Thickness = 1f,
-                            Visibility = false
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Pen", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -307,31 +209,9 @@ namespace Draw.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Pens");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Blue = 10,
-                            Green = 10,
-                            Name = "pen1",
-                            PenStyleId = 1,
-                            Red = 10,
-                            UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Blue = 10,
-                            Green = 10,
-                            Name = "pen2",
-                            PenStyleId = 2,
-                            Red = 10,
-                            UserId = "b21972e1-742f-4fa7-be46-1189d9cab7ca"
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.PenStyle", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.PenStyle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -358,7 +238,7 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Point", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Point", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -385,67 +265,9 @@ namespace Draw.DataAccess.Migrations
                     b.HasIndex("PointTypeId");
 
                     b.ToTable("Points");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ElementId = 1,
-                            PointTypeId = 1,
-                            X = 10.0,
-                            Y = 8.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ElementId = 1,
-                            PointTypeId = 1,
-                            X = 15.0,
-                            Y = 20.0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ElementId = 2,
-                            PointTypeId = 1,
-                            X = 5.0,
-                            Y = 10.0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ElementId = 2,
-                            PointTypeId = 1,
-                            X = 9.0,
-                            Y = 20.0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ElementId = 3,
-                            PointTypeId = 1,
-                            X = 7.0,
-                            Y = 3.0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ElementId = 3,
-                            PointTypeId = 1,
-                            X = 2.0,
-                            Y = 1.0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ElementId = 4,
-                            PointTypeId = 2,
-                            X = 0.0,
-                            Y = 0.0
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.PointType", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.PointType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -477,7 +299,7 @@ namespace Draw.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Radius", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Radius", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -495,23 +317,9 @@ namespace Draw.DataAccess.Migrations
                     b.HasIndex("ElementId");
 
                     b.ToTable("Radiuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ElementId = 4,
-                            Value = 10.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ElementId = 4,
-                            Value = 15.0
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.SSAngle", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.SSAngle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -533,25 +341,9 @@ namespace Draw.DataAccess.Migrations
                     b.HasIndex("ElementId");
 
                     b.ToTable("SSAngles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ElementId = 1,
-                            Type = "start",
-                            Value = 0.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ElementId = 1,
-                            Type = "stop",
-                            Value = 30.0
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.User", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -613,53 +405,9 @@ namespace Draw.DataAccess.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "b21972e1-742f-4fa7-be46-1189d9cab7ca",
-                            AccessFailedCount = 1,
-                            ConcurrencyStamp = "6db82ef6-404c-4a85-a0db-e1f8fa1e4799",
-                            Email = "zahid11@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumber = "513",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "874e8d4d-7bed-409e-84ce-2044304b810f",
-                            TwoFactorEnabled = false,
-                            UserName = "zahid"
-                        },
-                        new
-                        {
-                            Id = "b21972e1-742f-4fa7-be46-1189d9cab7cb",
-                            AccessFailedCount = 1,
-                            ConcurrencyStamp = "839a799a-c186-4a2e-89c6-93b37f82fc16",
-                            Email = "ali@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumber = "513",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "88a24320-0f83-429c-aff4-1bb1900efb5c",
-                            TwoFactorEnabled = false,
-                            UserName = "ali"
-                        },
-                        new
-                        {
-                            Id = "b21972e1-742f-4fa7-be46-1189d9cab7cc",
-                            AccessFailedCount = 1,
-                            ConcurrencyStamp = "8601be2d-15a4-4046-89d7-716d7950fe3f",
-                            Email = "zeynep@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumber = "513",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "99a311f6-ae36-46b2-9f6f-730363c9f626",
-                            TwoFactorEnabled = false,
-                            UserName = "zeynep"
-                        });
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.UserRefreshToken", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.UserRefreshToken", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
@@ -677,7 +425,7 @@ namespace Draw.DataAccess.Migrations
                     b.ToTable("UserRefreshTokens");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.UserRole", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.UserRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -705,24 +453,1881 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "82ae8948-baae-455f-9553-d8c69783fda8",
-                            ConcurrencyStamp = "d6a98947-5031-458e-b30c-d701df77a93b",
+                            Id = "3c0329ec-619a-414b-88c8-1c7301428cfc",
+                            ConcurrencyStamp = "b4103668-cf75-4335-9d8d-52c531d2c57d",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ef399049-a6e9-447f-89da-4102cb87dd41",
-                            ConcurrencyStamp = "d5f26847-d66e-4a3d-858f-509b1f1ee339",
+                            Id = "115d708d-6c9f-449b-876b-6166d17f7109",
+                            ConcurrencyStamp = "56bc7f8f-3ae7-4d57-9ccd-e159a20a2566",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "8dfe1972-6fa1-47b7-bca8-4b74d4fdee6c",
-                            ConcurrencyStamp = "10130d8f-05d4-487d-8e05-02d2731772b1",
+                            Id = "30744922-3bb8-412c-a9c3-18284376d610",
+                            ConcurrencyStamp = "7febc1c4-023b-4956-a453-fac0038f6e37",
                             Name = "user",
                             NormalizedName = "USER"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.BaseTitle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Explanation")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("GifUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Header")
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("IndexId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LogoUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<int>("MainTitleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResponeseType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Return")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainTitleId");
+
+                    b.ToTable("Titles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IndexId = 0,
+                            MainTitleId = 3,
+                            Title = "Draw Commands"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IndexId = 0,
+                            MainTitleId = 3,
+                            Title = "Edit Commands"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GifUrl = "endsnap.gif",
+                            IndexId = 0,
+                            LogoUrl = "closeendpoint.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f6",
+                            TextUrl1 = "End Snap.html",
+                            Title = "End Snap"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GifUrl = "middlesnap.gif",
+                            IndexId = 0,
+                            LogoUrl = "CloseMidPoint.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f7",
+                            TextUrl1 = "Middle Snap.html",
+                            Title = "Middle Snap"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GifUrl = "centersnap.gif",
+                            IndexId = 0,
+                            LogoUrl = "CloseCenter.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f8",
+                            TextUrl1 = "Center Snap.html",
+                            Title = "Center Snap"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GifUrl = "nearestsnap.gif",
+                            IndexId = 0,
+                            LogoUrl = "CloseNearest.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f9",
+                            TextUrl1 = "Nearest Snap.html",
+                            Title = "Nearest Snap"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            GifUrl = "intersectionsnap.gif",
+                            IndexId = 0,
+                            LogoUrl = "CloseIntersection.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f10",
+                            TextUrl1 = "Intersection Snap.html",
+                            Title = "Intersection Snap"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            GifUrl = "polarmod.gif",
+                            IndexId = 0,
+                            LogoUrl = "ClosePain.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f4",
+                            TextUrl1 = "Polar Mode.html",
+                            Title = "Polar Mode"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            GifUrl = "orthomod.gif",
+                            IndexId = 0,
+                            LogoUrl = "CloseOrtho.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f3",
+                            TextUrl1 = "Ortho Mode.html",
+                            Title = "Ortho Mode"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            GifUrl = "gridsnap.gif",
+                            IndexId = 0,
+                            LogoUrl = "CloseGrid.png",
+                            MainTitleId = 5,
+                            ShortcutUrl1 = "f5",
+                            TextUrl1 = "Grid Snap.html",
+                            Title = "Grid Snap"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IndexId = 0,
+                            LogoUrl = "linewidthBtnClose.png",
+                            MainTitleId = 8,
+                            TextUrl1 = "Line Width.html",
+                            Title = "Line Width"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            GifUrl = "add.gif",
+                            IndexId = 0,
+                            LogoUrl = "addBtn.png",
+                            MainTitleId = 2,
+                            TextUrl1 = "Add.html",
+                            Title = "Add"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            GifUrl = "open.gif",
+                            IndexId = 0,
+                            LogoUrl = "openfile.png",
+                            MainTitleId = 2,
+                            TextUrl1 = "Open.html",
+                            Title = "Open"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            GifUrl = "push.gif",
+                            IndexId = 0,
+                            LogoUrl = "saveCloud.png",
+                            MainTitleId = 2,
+                            TextUrl1 = "Push.html",
+                            Title = "Push"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            GifUrl = "pull.gif",
+                            IndexId = 0,
+                            LogoUrl = "getCloud.png",
+                            MainTitleId = 2,
+                            TextUrl1 = "Pull.html",
+                            Title = "Pull"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IndexId = 0,
+                            MainTitleId = 2,
+                            TextUrl1 = "Save.html",
+                            Title = "Save"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IndexId = 0,
+                            MainTitleId = 2,
+                            TextUrl1 = "Save Cloud.html",
+                            Title = "Save Cloud"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Body = "StartCommand.json",
+                            Header = "/Draw/startCommand",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "POST",
+                            TextUrl1 = "StartCommand.html",
+                            Title = "Start Command"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Body = "AddCoordinate.json",
+                            Header = "/Draw/addCoordinate",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "POST",
+                            TextUrl1 = "AddCoordinate.html",
+                            Title = "Add Coordinate"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Header = "/Draw/stopCommand",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "StopCommand.html",
+                            Title = "Stop Command"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Body = "SetRadius.json",
+                            Header = "/Draw/setRadius",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "SetRadius.html",
+                            Title = "Set Radius"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Body = "SetElementsId.json",
+                            Header = "/Draw/setElementsId",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "SetElementsId.html",
+                            Title = "Set Elements Id"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Header = "/Draw/setIsFinish?finish=true",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "SetIsFinish.html",
+                            Title = "Set Is Finish"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Body = "SaveDraw.json",
+                            Header = "/Draw/saveDraw",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "POST",
+                            TextUrl1 = "SaveDraw.html",
+                            Title = "Save Draw"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Body = "ReadDraw.json",
+                            Header = "/Draw/readDraw",
+                            IndexId = 2,
+                            MainTitleId = 10,
+                            ResponeseType = "POST",
+                            TextUrl1 = "ReadDraw.html",
+                            Title = "Read Draw"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Header = "/DrawBox/drawBoxes",
+                            IndexId = 2,
+                            MainTitleId = 11,
+                            ResponeseType = "GET",
+                            TextUrl1 = "DrawBoxes.html",
+                            Title = "Draw Boxes"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Body = "DrawBoxesAdd.json",
+                            Header = "/DrawBox/drawBoxes/add",
+                            IndexId = 2,
+                            MainTitleId = 11,
+                            ResponeseType = "GET",
+                            TextUrl1 = "DrawBoxesAdd.html",
+                            Title = "Draw Boxes Add"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Body = "DrawBoxesDelete.json",
+                            Header = "/DrawBox/drawBoxes/delete",
+                            IndexId = 2,
+                            MainTitleId = 11,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "DrawBoxesDelete.html",
+                            Title = "Draw Boxes Delete"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Body = "DrawBoxesUpdate.json",
+                            Header = "/DrawBox/drawBoxes/update",
+                            IndexId = 2,
+                            MainTitleId = 11,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "DrawBoxesUpdate.html",
+                            Title = "Draw Boxes Update"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Header = "/DrawBox/drawBoxes/{id}",
+                            IndexId = 2,
+                            MainTitleId = 11,
+                            ResponeseType = "GET",
+                            TextUrl1 = "DrawBoxId.html",
+                            Title = "Draw Box"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Header = "/DrawBox/drawBoxes/{id}/layers",
+                            IndexId = 2,
+                            MainTitleId = 11,
+                            ResponeseType = "GET",
+                            TextUrl1 = "DrawBoxIdLayers.html",
+                            Title = "Draw Box With Layers"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Header = "/Element/elements",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Elements.html",
+                            Title = "Elements"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Header = "/Element/elementswithatt",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsWithAtt.html",
+                            Title = "Elements With Attributes"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Header = "/Element/elementsbydraw?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByDraw.html",
+                            Title = "Elements By Draw"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Header = "/Element/elementsbydrawwithatt?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByDrawWithAtt.html",
+                            Title = "Elements By Draw With Attributes"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Header = "/Element/elementsbylayer?layerId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByLayer.html",
+                            Title = "Elements By Layer"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Header = "/Element/elementsbylayerwithatt?layerId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByLayerWithAtt.html",
+                            Title = "Elements By Layer With Attributes"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Body = "ElementsAdd.json",
+                            Header = "/Element/elements/add",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "POST",
+                            TextUrl1 = "ElementsAdd.html",
+                            Title = "Elements Add"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Body = "ElementsDelete.json",
+                            Header = "/Element/elements/delete",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "ElementsDelete.html",
+                            Title = "Elements Delete"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Body = "ElementsUpdate.json",
+                            Header = "/Element/elements/update",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "ElementsUpdate.html",
+                            Title = "Elements Update"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Header = "/Element/elements/{id}",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementId.html",
+                            Title = "Element"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Header = "/Element/elements/{id}/elementType",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdElementType.html",
+                            Title = "Element Element Type"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Header = "/Element/elements/{id}/pen",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdPen.html",
+                            Title = "Element Pen"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Header = "/Element/elements/{id}/layer",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdLayer.html",
+                            Title = "Element Layer"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Header = "/Element/elements/{id}/radiuses",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdRadiuses.html",
+                            Title = "Element Radiuses"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Header = "/Element/elements/{id}/ssangles",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdSSAngles.html",
+                            Title = "Element SSAngles"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Header = "/Element/elements/{id}/points",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdPoints.html",
+                            Title = "Element Points"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Header = "/ElementType/elementTypes",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementTypes.html",
+                            Title = "Element Types"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Header = "/ElementType/elementTypes/{id}",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementType.html",
+                            Title = "Element Type"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Body = "ElementTypeAdd.json",
+                            Header = "/ElementType/elementTypes/add",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "POST",
+                            TextUrl1 = "ElementTypeAdd.html",
+                            Title = "Element Types Add"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Body = "ElementTypeDelete.json",
+                            Header = "/ElementType/elementTypes/delete",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "ElementTypeDelete.html",
+                            Title = "Element Types Delete"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Body = "ElementTypeUpdate.json",
+                            Header = "/ElementType/elementTypes/update",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "ElementTypeUpdate.html",
+                            Title = "Element Types Update"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Header = "/Layer/layers",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layers.html",
+                            Title = "Layers"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Header = "/Layer/layers?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "POST",
+                            TextUrl1 = "LayersDrawId.html",
+                            Title = "Draw Layers"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Header = "/Layer/layerswithpen?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "POST",
+                            TextUrl1 = "LayersDrawIdWithPen.html",
+                            Title = "Draw Layers With Pen"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Body = "LayersAdd.json",
+                            Header = "/Layer/layers/add",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "POST",
+                            TextUrl1 = "LayersAdd.html",
+                            Title = "Layers Add"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Body = "LayersDelete.json",
+                            Header = "/Layer/layers/delete",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "LayersDelete.html",
+                            Title = "Layers Delete"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Body = "LayersUpdate.json",
+                            Header = "/Layer/layers/update",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "LayersUpdate.html",
+                            Title = "Layers Update"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Header = "/Layer/layers/{id}",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layer.html",
+                            Title = "Layer"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Header = "/Layer/layers/{id}/elements",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layerelements.html",
+                            Title = "Layer Elements"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Header = "/Layer/layers/{id}/pen",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layerpen.html",
+                            Title = "Layer Pen"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Header = "/Pen/pens",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pens.html",
+                            Title = "Pens"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Header = "/Pen/penswithatt",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penswithatt.html",
+                            Title = "Pens With Attributes"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Header = "/Pen/pens/{id}",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pen.html",
+                            Title = "Pen"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Header = "/Pen/pens/{id}/penstyle",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penpenstyle.html",
+                            Title = "Pen PenStyle"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Body = "Pensadd.json",
+                            Header = "/Pen/pens/add",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "POST",
+                            TextUrl1 = "Penadd.html",
+                            Title = "Pen Add"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Body = "Pensdelete.json",
+                            Header = "/Pen/pens/delete",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Pendelete.html",
+                            Title = "Pen Delete"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Body = "Pensupdate.json",
+                            Header = "/Pen/pens/update",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Penupdate.html",
+                            Title = "Pen Update"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Header = "/PenStyles/penstyles",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penstyles.html",
+                            Title = "PenStyles"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Header = "/PenStyles/penstyles/{id}",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penstyle.html",
+                            Title = "PenStyle"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Body = "Penstyleadd.json",
+                            Header = "/PenStyles/penstyles/add",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "POST",
+                            TextUrl1 = "Penstylesadd.html",
+                            Title = "PenStyles Add"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Body = "Penstyledelete.json",
+                            Header = "/PenStyles/penstyles/delete",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Penstylesdelete.html",
+                            Title = "PenStyles Delete"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Body = "Penstyleupdate.json",
+                            Header = "/PenStyles/penstyles/update",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Penstylesupdate.html",
+                            Title = "PenStyles Update"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Header = "/Point/points",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Points.html",
+                            Title = "Points"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Header = "/Point/pointsbyelement?elementId=0",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsbyelement.html",
+                            Title = "Points By Element"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Header = "/Point/pointsbylayer?layerId=0",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsbylayer.html",
+                            Title = "Points By Layer"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Header = "/Point/pointsbydraw?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsbydraw.html",
+                            Title = "Points By Draw"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Body = "Pointsadd.json",
+                            Header = "/Point/points/add",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsadd.html",
+                            Title = "Points Add"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Body = "Pointsdelete.json",
+                            Header = "/Point/points/delete",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Pointsdelete.html",
+                            Title = "Points Delete"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Body = "Pointsupdate.json",
+                            Header = "/Point/points/update",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Pointsupdate.html",
+                            Title = "Points Update"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Header = "/Point/points/{id}",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Point.html",
+                            Title = "Point"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Header = "/Point/points/{id}/element",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointelement.html",
+                            Title = "Point Element"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Header = "/Point/points/{id}/pointtype",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointpointtype.html",
+                            Title = "Point PointType"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Header = "/PointType/pointtypes",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "GET",
+                            TextUrl1 = "PointTypes.html",
+                            Title = "PointTypes"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Header = "/PointType/pointtypes/{id}",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "GET",
+                            TextUrl1 = "PointType.html",
+                            Title = "PointType"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Body = "pointtypeadd",
+                            Header = "/PointType/pointtypes/add",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "POST",
+                            TextUrl1 = "PointTypeadd.html",
+                            Title = "PointType Add"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Body = "pointtypedelete.json",
+                            Header = "/PointType/pointtypes/delete",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "PointTypedelete.html",
+                            Title = "PointType Delete"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Body = "pointtypeupdate.json",
+                            Header = "/PointType/pointtypes/update",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "PointTypeupdate.html",
+                            Title = "PointType Update"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Header = "/Radius/radiuses",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Radiuses.html",
+                            Title = "Radiuses"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Body = "radiusesadd",
+                            Header = "/Radius/radiuses/add",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "POST",
+                            TextUrl1 = "Radiusesadd.html",
+                            Title = "Radiuses Add"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Body = "radiusesdelete.json",
+                            Header = "/Radius/radiuses/delete",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Radiusesdelete.html",
+                            Title = "Radiuses Delete"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Body = "radiusesupdate.json",
+                            Header = "/Radius/radiuses/update",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Radiusesupdate.html",
+                            Title = "Radiuses Update"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Header = "/Radius/radiuses/{id}",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Radiuse.html",
+                            Title = "Radiuse"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Header = "/SSAngle/ssangles/{id}",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "GET",
+                            TextUrl1 = "SSAngle.html",
+                            Title = "SSAngle"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Header = "/SSAngle/ssangles",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "GET",
+                            TextUrl1 = "SSAngles.html",
+                            Title = "SSAngles"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Body = "SSAnglesadd.json",
+                            Header = "/SSAngle/ssangles/add",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "POST",
+                            TextUrl1 = "SSAnglesadd.html",
+                            Title = "SSAngles Add"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Body = "SSAnglesdelete.json",
+                            Header = "/SSAngle/ssangles/delete",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "SSAnglesdelete.html",
+                            Title = "SSAngles Delete"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Body = "SSAnglesupdate.json",
+                            Header = "/SSAngle/ssangles/update",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "SSAnglesupdate.html",
+                            Title = "SSAngles Update"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Body = "findTwoPointsLength.json",
+                            Header = "/findTwoPointsLength/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findTwoPointsLength.html",
+                            Title = "Find Two Point Length"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Body = "findCenterAndRadius.json",
+                            Header = "/findCenterAndRadius/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findCenterAndRadius.html",
+                            Title = "Find Center And Radius"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Body = "findToSlopeLine.json",
+                            Header = "/findToSlopeLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findToSlopeLine.html",
+                            Title = "Find To Slope Line"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Body = "findDegreeLineSlope.json",
+                            Header = "/findDegreeLineSlope/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeLineSlope.html",
+                            Title = "Find Degree Line Slope"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Body = "findDegreeLineTwoPoints.json",
+                            Header = "/findDegreeLineTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeLineTwoPoints.html",
+                            Title = "Find Degree Line Two Points"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Body = "convertDegreeToSlope.json",
+                            Header = "/convertDegreeToSlope/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertDegreeToSlope.html",
+                            Title = "Convert Degree To Slope"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Body = "convertRadianToDegree.json",
+                            Header = "/convertRadianToDegree/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertRadianToDegree.html",
+                            Title = "Convert Radian To Degree"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Body = "convertDegreeToRadians.json",
+                            Header = "/convertDegreeToRadians/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertDegreeToRadians.html",
+                            Title = "Convert Degree To Radians"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Body = "findCenterPointToLine.json",
+                            Header = "/findCenterPointToLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findCenterPointToLine.html",
+                            Title = "Find Center Point To Line"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Body = "findDegreeToBetweenTwoLines.json",
+                            Header = "/findDegreeToBetweenTwoLines/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeToBetweenTwoLines.html",
+                            Title = "Find Degree To Between Two Lines"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Body = "findDotProductToTwoPoints.json",
+                            Header = "/findDotProductToTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDotProductToTwoPoints.html",
+                            Title = "Find Dot Product To Two Points"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Body = "findDifferenceTwoPoints.json",
+                            Header = "/findDifferenceTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDifferenceTwoPoints.html",
+                            Title = "Find Difference Two Points"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Body = "wherePointOnLine.json",
+                            Header = "/wherePointOnLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "wherePointOnLine.html",
+                            Title = "Where Point On Line"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Body = "findInsectionPointToTwoLines.json",
+                            Header = "/findInsectionPointToTwoLines/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findInsectionPointToTwoLines.html",
+                            Title = "Find Insection Point To Two Lines"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Body = "findPointLength.json",
+                            Header = "/findPointLength/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findPointLength.html",
+                            Title = "Find Point Length"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Body = "wherePointZone.json",
+                            Header = "/wherePointZone/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "wherePointZone.html",
+                            Title = "Where Point Zone"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Body = "findNearetPoint.json",
+                            Header = "/findNearetPoint/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findNearetPoint.html",
+                            Title = "Find Nearest Point"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Body = "findStartAndStopAngle.json",
+                            Header = "/findStartAndStopAngle/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findStartAndStopAngle.html",
+                            Title = "Find Start And Stop Angle"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Body = "findStartAndStopAngleTwoPoint.json",
+                            Header = "/findStartAndStopAngleTwoPoint/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findStartAndStopAngleTwoPoint.html",
+                            Title = "Find Start And Stop Angle Two Point"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Body = "findPointOnCircle.json",
+                            Header = "/findPointOnCircle/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findPointOnCircle.html",
+                            Title = "Find Point On Circle"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Body = "createuser.json",
+                            Header = "/User/createuser",
+                            IndexId = 4,
+                            MainTitleId = 24,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createuser.html",
+                            Title = "Create User"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Header = "/User/getuser",
+                            IndexId = 4,
+                            MainTitleId = 24,
+                            ResponeseType = "GET",
+                            TextUrl1 = "getuser.html",
+                            Title = "Get User"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Body = "createtoken.json",
+                            Header = "/Auth/createtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtoken.html",
+                            Title = "Create Token"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Body = "createtokenbyclient.json",
+                            Header = "/Auth/createtokenbyclient",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtokenbyclient.html",
+                            Title = "Create Token By Client"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Body = "createtokenbyrefreshtoken.json",
+                            Header = "/Auth/createtokenbyrefreshtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtokenbyrefreshtoken.html",
+                            Title = "Create Token By Refresh Token"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Body = "revokerefreshtoken.json",
+                            Header = "/Auth/revokerefreshtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "revokerefreshtoken.html",
+                            Title = "Revoke Refresh Token"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.MainTitle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Explanation")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("GifUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Header")
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("IndexId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LogoUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("ResponeseType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Return")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MainTitles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IndexId = 0,
+                            TextUrl1 = "DrawCAD.html",
+                            Title = "DrawCAD"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IndexId = 0,
+                            TextUrl1 = "File.html",
+                            Title = "File"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IndexId = 0,
+                            TextUrl1 = "Commands.html",
+                            Title = "Commands"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IndexId = 0,
+                            LogoUrl = "Layer.png",
+                            TextUrl1 = "Layer.html",
+                            Title = "Layer"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IndexId = 0,
+                            TextUrl1 = "Snaps.html",
+                            Title = "Snaps"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IndexId = 0,
+                            TextUrl1 = "Handles.html",
+                            Title = "Handles"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IndexId = 0,
+                            LogoUrl = "elementInfo.png",
+                            TextUrl1 = "Element Information.html",
+                            Title = "Element Information"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IndexId = 0,
+                            TextUrl1 = "Other.html",
+                            Title = "Other"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IndexId = 2,
+                            TextUrl1 = "DrawApi.html",
+                            Title = "DrawApi"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IndexId = 2,
+                            TextUrl1 = "Draw.html",
+                            Title = "Draw"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IndexId = 2,
+                            TextUrl1 = "DrawBox.html",
+                            Title = "DrawBox"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IndexId = 2,
+                            TextUrl1 = "Element.html",
+                            Title = "Element"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IndexId = 2,
+                            TextUrl1 = "ElementType.html",
+                            Title = "ElementType"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IndexId = 2,
+                            TextUrl1 = "Layer.html",
+                            Title = "Layer"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IndexId = 2,
+                            TextUrl1 = "Pen.html",
+                            Title = "Pen"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IndexId = 2,
+                            TextUrl1 = "PenStyles.html",
+                            Title = "PenStyles"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IndexId = 2,
+                            TextUrl1 = "Point.html",
+                            Title = "Point"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            IndexId = 2,
+                            TextUrl1 = "PointType.html",
+                            Title = "PointType"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            IndexId = 2,
+                            TextUrl1 = "Radius.html",
+                            Title = "Radius"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            IndexId = 2,
+                            TextUrl1 = "SSAngle.html",
+                            Title = "SSAngle"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            IndexId = 3,
+                            TextUrl1 = "DrawGeo.html",
+                            Title = "DrawGeo"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            IndexId = 3,
+                            TextUrl1 = "Geo.html",
+                            Title = "Geo"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            IndexId = 4,
+                            TextUrl1 = "DrawAuth.html",
+                            Title = "DrawAuth"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            IndexId = 4,
+                            TextUrl1 = "User.html",
+                            Title = "User"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            IndexId = 4,
+                            TextUrl1 = "Auth.html",
+                            Title = "Auth"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            IndexId = 1,
+                            TextUrl1 = "DrawCAD.html",
+                            Title = "DrawCAD"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.SubTitle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("BaseTitleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Explanation")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("GifUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Header")
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("IndexId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LogoUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("ResponeseType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Return")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortcutUrl3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TextUrl3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BaseTitleId");
+
+                    b.ToTable("SubTitles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BaseTitleId = 1,
+                            GifUrl = "line.gif",
+                            IndexId = 0,
+                            LogoUrl = "Line.png",
+                            ShortcutUrl1 = "l",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Line.html",
+                            Title = "Line"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BaseTitleId = 1,
+                            GifUrl = "polyline.gif",
+                            IndexId = 0,
+                            LogoUrl = "polyline.png",
+                            ShortcutUrl1 = "p",
+                            ShortcutUrl2 = "o",
+                            ShortcutUrl3 = "enter",
+                            TextUrl1 = "Polyline.html",
+                            Title = "Polyline"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BaseTitleId = 1,
+                            GifUrl = "rectangle.gif",
+                            IndexId = 0,
+                            LogoUrl = "Rectangle.png",
+                            ShortcutUrl1 = "r",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Rectangle.html",
+                            Title = "Rectangle"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BaseTitleId = 1,
+                            GifUrl = "centerpointcircle.gif",
+                            IndexId = 0,
+                            LogoUrl = "CenterPointCircle.png",
+                            ShortcutUrl1 = "c",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Circle Center Point.html",
+                            Title = "Circle Center Point"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BaseTitleId = 1,
+                            GifUrl = "treepointcircle.gif",
+                            IndexId = 0,
+                            LogoUrl = "treepointcircle.png",
+                            TextUrl1 = "Circle Tree Point.html",
+                            Title = "Circle Tree Point"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BaseTitleId = 1,
+                            GifUrl = "twopointcircle.gif",
+                            IndexId = 0,
+                            LogoUrl = "TwoPointCircle.png",
+                            TextUrl1 = "Circle Two Point.html",
+                            Title = "Circle Two Point"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BaseTitleId = 1,
+                            GifUrl = "centerradiuscircle.gif",
+                            IndexId = 0,
+                            LogoUrl = "Circle.png",
+                            TextUrl1 = "Circle Center Radius.html",
+                            Title = "Circle Center Radius"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BaseTitleId = 1,
+                            GifUrl = "treepointarc.gif",
+                            IndexId = 0,
+                            LogoUrl = "treepointarc.png",
+                            ShortcutUrl1 = "a",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Arc Tree Point.html",
+                            Title = "Arc Tree Point"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BaseTitleId = 1,
+                            GifUrl = "twopointarc.gif",
+                            IndexId = 0,
+                            LogoUrl = "TwoPointCenterArc.png",
+                            TextUrl1 = "Arc Two Point.html",
+                            Title = "Arc Two Point"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BaseTitleId = 1,
+                            GifUrl = "ellipse.gif",
+                            IndexId = 0,
+                            LogoUrl = "Ellips.png",
+                            ShortcutUrl1 = "e",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Ellipse.html",
+                            Title = "Ellipse"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            BaseTitleId = 2,
+                            GifUrl = "move.gif",
+                            IndexId = 0,
+                            LogoUrl = "move.png",
+                            ShortcutUrl1 = "m",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Move.html",
+                            Title = "Move"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            BaseTitleId = 2,
+                            GifUrl = "copy.gif",
+                            IndexId = 0,
+                            LogoUrl = "Copy.png",
+                            ShortcutUrl1 = "c",
+                            ShortcutUrl2 = "o",
+                            ShortcutUrl3 = "enter",
+                            TextUrl1 = "Copy.html",
+                            Title = "Copy"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            BaseTitleId = 2,
+                            GifUrl = "rotate.gif",
+                            IndexId = 0,
+                            LogoUrl = "Rotate.png",
+                            ShortcutUrl1 = "r",
+                            ShortcutUrl2 = "o",
+                            ShortcutUrl3 = "enter",
+                            TextUrl1 = "Rotate.html",
+                            Title = "Rotate"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BaseTitleId = 2,
+                            GifUrl = "scale.gif",
+                            IndexId = 0,
+                            LogoUrl = "Scale.png",
+                            ShortcutUrl1 = "s",
+                            ShortcutUrl2 = "enter",
+                            TextUrl1 = "Scale.html",
+                            Title = "Scale"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BaseTitleId = 2,
+                            GifUrl = "mirror.gif",
+                            IndexId = 0,
+                            LogoUrl = "Mirror.png",
+                            ShortcutUrl1 = "m",
+                            ShortcutUrl2 = "i",
+                            ShortcutUrl3 = "enter",
+                            TextUrl1 = "Mirror.html",
+                            Title = "Mirror"
                         });
                 });
 
@@ -828,9 +2433,9 @@ namespace Draw.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawBox", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.User", "User")
+                    b.HasOne("Draw.Entities.Concrete.Draw.User", "User")
                         .WithMany("DrawBoxs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -839,9 +2444,9 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.DrawCommand", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawCommand", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.DrawBox", "DrawBox")
+                    b.HasOne("Draw.Entities.Concrete.Draw.DrawBox", "DrawBox")
                         .WithMany("DrawCommands")
                         .HasForeignKey("DrawBoxId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -850,21 +2455,21 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("DrawBox");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Element", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Layer", "Layer")
+                    b.HasOne("Draw.Entities.Concrete.Draw.Layer", "Layer")
                         .WithMany("Elements")
                         .HasForeignKey("LayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Pen", "Pen")
+                    b.HasOne("Draw.Entities.Concrete.Draw.Pen", "Pen")
                         .WithMany("Elements")
                         .HasForeignKey("PenId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.ElementType", "Type")
+                    b.HasOne("Draw.Entities.Concrete.Draw.ElementType", "Type")
                         .WithMany("Elements")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -877,15 +2482,15 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Layer", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Layer", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.DrawBox", "DrawBox")
+                    b.HasOne("Draw.Entities.Concrete.Draw.DrawBox", "DrawBox")
                         .WithMany("Layers")
                         .HasForeignKey("DrawBoxId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.Pen", "Pen")
+                    b.HasOne("Draw.Entities.Concrete.Draw.Pen", "Pen")
                         .WithMany("Layers")
                         .HasForeignKey("PenId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -896,15 +2501,15 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("Pen");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Pen", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.PenStyle", "PenStyle")
+                    b.HasOne("Draw.Entities.Concrete.Draw.PenStyle", "PenStyle")
                         .WithMany("Pens")
                         .HasForeignKey("PenStyleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.User", "User")
+                    b.HasOne("Draw.Entities.Concrete.Draw.User", "User")
                         .WithMany("Pens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -915,15 +2520,15 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Point", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Point", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Element", "Element")
+                    b.HasOne("Draw.Entities.Concrete.Draw.Element", "Element")
                         .WithMany("Points")
                         .HasForeignKey("ElementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.PointType", "PointType")
+                    b.HasOne("Draw.Entities.Concrete.Draw.PointType", "PointType")
                         .WithMany("Points")
                         .HasForeignKey("PointTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -934,9 +2539,9 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("PointType");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Radius", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Radius", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Element", "Element")
+                    b.HasOne("Draw.Entities.Concrete.Draw.Element", "Element")
                         .WithMany("Radiuses")
                         .HasForeignKey("ElementId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -945,9 +2550,9 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("Element");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.SSAngle", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.SSAngle", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.Element", "Element")
+                    b.HasOne("Draw.Entities.Concrete.Draw.Element", "Element")
                         .WithMany("SSAngles")
                         .HasForeignKey("ElementId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -956,9 +2561,31 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("Element");
                 });
 
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.BaseTitle", b =>
+                {
+                    b.HasOne("Draw.Entities.Concrete.Web.MainTitle", "MainTitle")
+                        .WithMany("BaseTitles")
+                        .HasForeignKey("MainTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MainTitle");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.SubTitle", b =>
+                {
+                    b.HasOne("Draw.Entities.Concrete.Web.BaseTitle", "BaseTitle")
+                        .WithMany("SubTitles")
+                        .HasForeignKey("BaseTitleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BaseTitle");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.UserRole", null)
+                    b.HasOne("Draw.Entities.Concrete.Draw.UserRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -967,7 +2594,7 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.User", null)
+                    b.HasOne("Draw.Entities.Concrete.Draw.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -976,7 +2603,7 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.User", null)
+                    b.HasOne("Draw.Entities.Concrete.Draw.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -985,13 +2612,13 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.UserRole", null)
+                    b.HasOne("Draw.Entities.Concrete.Draw.UserRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Draw.Entities.Concrete.User", null)
+                    b.HasOne("Draw.Entities.Concrete.Draw.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1000,21 +2627,21 @@ namespace Draw.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Draw.Entities.Concrete.User", null)
+                    b.HasOne("Draw.Entities.Concrete.Draw.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.DrawBox", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.DrawBox", b =>
                 {
                     b.Navigation("DrawCommands");
 
                     b.Navigation("Layers");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Element", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Element", b =>
                 {
                     b.Navigation("Points");
 
@@ -1023,38 +2650,48 @@ namespace Draw.DataAccess.Migrations
                     b.Navigation("SSAngles");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.ElementType", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.ElementType", b =>
                 {
                     b.Navigation("Elements");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Layer", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Layer", b =>
                 {
                     b.Navigation("Elements");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.Pen", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.Pen", b =>
                 {
                     b.Navigation("Elements");
 
                     b.Navigation("Layers");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.PenStyle", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.PenStyle", b =>
                 {
                     b.Navigation("Pens");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.PointType", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.PointType", b =>
                 {
                     b.Navigation("Points");
                 });
 
-            modelBuilder.Entity("Draw.Entities.Concrete.User", b =>
+            modelBuilder.Entity("Draw.Entities.Concrete.Draw.User", b =>
                 {
                     b.Navigation("DrawBoxs");
 
                     b.Navigation("Pens");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.BaseTitle", b =>
+                {
+                    b.Navigation("SubTitles");
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.MainTitle", b =>
+                {
+                    b.Navigation("BaseTitles");
                 });
 #pragma warning restore 612, 618
         }

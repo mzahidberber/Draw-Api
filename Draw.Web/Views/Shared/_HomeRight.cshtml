@@ -1,0 +1,30 @@
+﻿@model TitleListViewModel
+
+
+<div id="nav-right" class="text-light"></div>
+
+@*<div id="nav-right" class="list-group list-group-light pt-5 dropdown-menu leftNav sticky-top">
+    @foreach (var mainTitle in Model.MainTitles)
+    {
+        <div class="m-0 p-0">
+            <a href="#@mainTitle.Title" style="font-size:15px;font-weight: bold;" class="leftNavListItem list-group-item list-group-item-dark p-1 border-0 ripple">@mainTitle.Title</a>
+        </div>
+        @foreach (var baseTitle in mainTitle.BaseTitles)
+        {
+            <div class="m-0 p-0">
+                <a href="#@baseTitle.Title" style="font-size:14px;" class="leftNavListItem leftNavBaseTitle list-group-item list-group-item-dark p-1 ps-2 border-0 ripple">@baseTitle.Title</a>
+            </div>
+            @foreach (var subTitle in baseTitle.SubTitles)
+            {
+                <div class="m-0 p-0">
+                    <a href="#@subTitle.Title" style="font-size:13px;" class="leftNavListItem leftNavSubTitle list-group-item list-group-item-dark p-1 ps-3 border-0 ripple">@subTitle.Title</a>
+
+                </div>
+
+
+
+
+            }
+        }
+    }
+</div>*@

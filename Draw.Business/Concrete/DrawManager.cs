@@ -1,11 +1,10 @@
-﻿using Draw.Business.Abstract;
-using Draw.Business.Mapper;
+﻿using Draw.Business.Mapper;
+using Draw.Core.Business.Abstract;
+using Draw.Core.DrawLayer.Model;
 using Draw.Core.DTOs;
 using Draw.Core.DTOs.Concrete;
 using Draw.DrawLayer.Concrete;
-using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.Model;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Draw.Business.Concrete

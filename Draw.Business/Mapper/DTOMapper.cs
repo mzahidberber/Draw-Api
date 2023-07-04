@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Draw.Core.DTOs.Concrete;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
+using Draw.Entities.Concrete.Web;
 
 namespace Draw.Business.Mapper
 {
@@ -20,6 +21,9 @@ namespace Draw.Business.Mapper
             CreateMap<PointTypeDTO, PointType>().ReverseMap();
             CreateMap<SSAngleDTO, SSAngle>().ReverseMap();
             CreateMap<RadiusDTO, Radius>().ReverseMap();
+            CreateMap<MainTitleDTO, MainTitle>().ReverseMap();
+            CreateMap<SubTitleDTO, SubTitle>().ReverseMap();
+            CreateMap<BaseTitleDTO, BaseTitle>().ReverseMap();
         }
     }
 }

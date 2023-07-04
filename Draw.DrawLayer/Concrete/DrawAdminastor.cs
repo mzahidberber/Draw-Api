@@ -1,18 +1,19 @@
 ﻿using Draw.Core.Aspects.PostSharp.LoggingAspects;
 using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.Core.CrosCuttingConcers.Logging.Nlog;
+using Draw.Core.DrawLayer.Abstract;
+using Draw.Core.DrawLayer.Model;
 using Draw.DrawLayer.Abstract;
 using Draw.DrawLayer.Concrete.BaseCommand;
 using Draw.DrawLayer.Concrete.FileCommands;
-using Draw.DrawLayer.Concrete.Model;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DrawLayer.Concrete
 {
 
     public class DrawAdminastor : IDrawAdminastor,ILog
     {
-        public CommandData _commandData { get; set; }
+        public ICommandData _commandData { get; set; }
         public DrawAdminastor(string userId)
         {
             _commandData = new CommandData(userId);

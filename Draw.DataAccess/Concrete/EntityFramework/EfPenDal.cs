@@ -1,9 +1,9 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
 using Draw.DataAccess.Abstract;
 using Draw.Entities.Abstract;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 using Microsoft.EntityFrameworkCore;
-
+using Draw.Core.DataAccess.Abstract;
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
     public class EfPenDal : EfEntityRepositoryBaseAbstract<Pen>, IPenDal

@@ -1,6 +1,6 @@
 ﻿using Draw.DataAccess.Abstract;
-using Draw.Entities.Concrete;
-
+using Draw.Entities.Concrete.Draw;
+using Draw.Core.DataAccess.Abstract;
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
     public class EfPointTypeDal : EfEntityRepositoryBaseAbstract<PointType>, IPointTypeDal

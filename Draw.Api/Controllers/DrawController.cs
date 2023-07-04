@@ -1,17 +1,11 @@
 ﻿using Draw.Api.Models;
-using Draw.Business.Abstract;
 using Draw.Business.DependencyResolvers.Ninject;
 using Draw.Core.Aspects.PostSharp.LoggingAspects;
+using Draw.Core.Business.Abstract;
+using Draw.Core.DrawLayer.Model;
 using Draw.Core.DTOs.Concrete;
-using Draw.Core.Services;
-using Draw.DrawLayer.Concrete.Model;
-using Draw.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
-using System.IO;
-using System.Net;
-using System.Net.Http.Headers;
 
 namespace Draw.Api.Controllers
 {

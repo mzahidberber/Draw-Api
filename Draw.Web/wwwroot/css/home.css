@@ -1,0 +1,91 @@
+﻿.gif{
+    width:70%;
+}
+
+.shortcut {
+    width: 25px;
+    height: 25px;
+}
+
+.df {
+    color: #E7B10A !important
+}
+
+.homeMainText{
+    width:95%;
+}
+
+.leftNav {
+    background-color: #212529;
+    color: #ffffff;
+}
+
+.leftNavListItem {
+    background-color: #212529;
+    color: #ffffff;
+}
+
+    .leftNavListItem:hover {
+        background-color: #212529;
+        color: #E7B10A !important;
+    }
+
+.activeATag {
+    background-color: #212529 !important;
+    color: #E7B10A !important;
+}
+
+.leftNavBaseTitle {
+    color: #dddddd;
+}
+
+.leftNavSubTitle {
+    color: #bebebe;
+}
+
+.jumbotron {
+    background-image: url(/img/homebg.png);
+    background-size: cover;
+    background-position: 50% 30%;
+}
+
+
+
+.vl {
+    border-left: 1px solid #bebebe;
+}
+
+.dropdown-menu {
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+
+.jsonLine {
+    color: aqua;
+}
+
+    .jsonLine .jsonPlain {
+        color: black;
+    }
+
+    .jsonLine .parantez {
+        color: orange;
+    }
+
+    .jsonLine .bosluk {
+        color: gray;
+    }
+
+    .jsonLine .jsonOperator {
+        color: red;
+    }
+
+    .jsonLine .value {
+        color: blue;
+    }
+
+    .jsonLine .key {
+        color: gray;
+    }

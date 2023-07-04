@@ -3,7 +3,7 @@ using Draw.Core.DTOs.Concrete;
 using Draw.Core.Mapper;
 using Draw.Core.Services.Abstract;
 using Draw.Core.Services.Model;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 using NLog;
 using System.Text;
 using System.Text.Json;

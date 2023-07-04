@@ -1,4 +1,5 @@
-﻿using Draw.DataAccess.Concrete.EntityFramework;
+﻿using Draw.Core.DataAccess.Abstract;
+using Draw.DataAccess.Concrete.EntityFramework;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;

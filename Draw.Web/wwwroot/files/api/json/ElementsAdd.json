@@ -1,0 +1,35 @@
+{
+  "drawBoxId": 0,
+  "elements": [
+    {
+      "id": 0,
+      "penId": 0,
+      "typeId": 0,
+      "layerId": 0,
+      "points": [
+        {
+          "id": 0,
+          "x": 0,
+          "y": 0,
+          "elementId": 0,
+          "pointTypeId": 0
+        }
+      ],
+      "radiuses": [
+        {
+          "id": 0,
+          "value": 0,
+          "elementId": 0
+        }
+      ],
+      "ssangles": [
+        {
+          "id": 0,
+          "type": "string",
+          "value": 0,
+          "elementId": 0
+        }
+      ]
+    }
+  ]
+}

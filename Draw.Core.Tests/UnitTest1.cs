@@ -2,6 +2,7 @@
 using Draw.Business.Concrete;
 using Draw.Core.Services;
 using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.Core.Tests
 {

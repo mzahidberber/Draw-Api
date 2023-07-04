@@ -1,0 +1,58 @@
+﻿@using Newtonsoft.Json;
+@model TitleListViewModel
+
+
+
+<div id="mainData" data-my-variable='@Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented,
+new JsonSerializerSettings
+{
+        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+}))'></div>
+
+<div class="text-light">
+    @foreach (var mainTitle in Model.MainTitles)
+    {
+        <div class="pt-5" id="@mainTitle.Title">
+            @{
+                var mainTitleIndex = @Model.MainTitles.IndexOf(mainTitle) + 1;
+            }
+            <h2>@mainTitleIndex - @mainTitle.Title</h2>
+
+            <p class="homeMainText" itemid="@mainTitle.Title" style="font-size:18px;"></p>
+
+
+            @foreach (var baseTitle in mainTitle.BaseTitles)
+            {
+                <div class="ms-3 me-3 pt-5" id="@baseTitle.Title">
+                    @{
+                        var baseTitleIndex = @mainTitle.BaseTitles.IndexOf(baseTitle) + 1;
+                        var api = new Api { title = baseTitle, url = Model.url };
+                    }
+                    <h2>
+                        @mainTitleIndex.@baseTitleIndex - @baseTitle.Title
+                    </h2>
+                    <p class="homeMainText" itemid="@baseTitle.Title" style="font-size:18px;"></p>
+                    @await Html.PartialAsync("_CodeHeader",@api)
+
+                    @foreach (var subTitle in @baseTitle.SubTitles)
+                    {
+                        <div class="ms-3 me-3 pt-5  " style="font-size:18px;" id="@subTitle.Title">
+                           @{
+                               var subTitleIndex = @baseTitle.SubTitles.IndexOf(subTitle) + 1;
+
+                           }
+                           <h3>@mainTitleIndex.@baseTitleIndex.@subTitleIndex - @subTitle.Title</h3>
+
+                            <p class="homeMainText" itemid="@subTitle.Title" style="font-size:18px;"></p>
+                            
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+
+

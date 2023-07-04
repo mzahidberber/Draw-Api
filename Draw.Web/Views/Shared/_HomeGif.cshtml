@@ -1,0 +1,9 @@
+﻿@model ITitle
+
+<div class="container-sm">
+
+    @if (@Model.GifUrl != null)
+    {
+        <img class="gif me-0 pe-5" src="/gif/@Model.GifUrl" alt="@Model.Title">
+    }
+</div>

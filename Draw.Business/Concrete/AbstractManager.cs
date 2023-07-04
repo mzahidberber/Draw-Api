@@ -1,11 +1,10 @@
 ﻿using Draw.Business.Mapper;
 using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.Core.DataAccess.Abstract;
 using Draw.Core.DTOs;
-using Draw.DataAccess.Abstract;
 using Draw.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Text.Json;
 
 namespace Draw.Business.Concrete
 {

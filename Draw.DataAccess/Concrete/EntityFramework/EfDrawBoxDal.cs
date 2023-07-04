@@ -1,6 +1,7 @@
 ﻿using Draw.Core.CrosCuttingConcers.Handling;
+using Draw.Core.DataAccess.Abstract;
 using Draw.DataAccess.Abstract;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 using Microsoft.EntityFrameworkCore;
 
 namespace Draw.DataAccess.Concrete.EntityFramework

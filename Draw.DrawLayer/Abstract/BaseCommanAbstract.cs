@@ -1,20 +1,18 @@
 ﻿using Draw.Core.Aspects.PostSharp.LoggingAspects;
 using Draw.Core.DependencyResolvers.Ninject;
+using Draw.Core.DrawLayer.Abstract;
+using Draw.Core.DrawLayer.Model;
 using Draw.Core.Services.Abstract;
-using Draw.DataAccess.Abstract;
-using Draw.DataAccess.DependencyResolvers.Ninject;
-using Draw.DrawLayer.Concrete;
-using Draw.DrawLayer.Concrete.Model;
-using Draw.Entities.Concrete;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DrawLayer.Abstract
 {
 
     public abstract class BaseCommanAbstract : IBaseCommand
     {
-        protected CommandData CommandMemory { get; private set; }
+        protected ICommandData CommandMemory { get; private set; }
         protected IGeoService _geoService;
-        public BaseCommanAbstract(CommandData commandMemory)
+        public BaseCommanAbstract(ICommandData commandMemory)
         {
             CommandMemory = commandMemory;
             _geoService=CoreInstanceFactory.GetInstance<IGeoService>();

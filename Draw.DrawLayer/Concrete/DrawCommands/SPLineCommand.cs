@@ -1,6 +1,6 @@
-﻿using Draw.DrawLayer.Abstract;
-using Draw.DrawLayer.Concrete.Model;
-using Draw.Entities.Concrete;
+﻿using Draw.Core.DrawLayer.Model;
+using Draw.DrawLayer.Abstract;
+using Draw.Entities.Concrete.Draw;
 
 namespace Draw.DrawLayer.Concrete.DrawCommands
 {

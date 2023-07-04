@@ -1,0 +1,97 @@
+﻿
+@model Api
+
+<div class="mt-5 text-dark">
+    <div class="card m-0 p-0">
+        <div class="card-body p-1 jsonCard">
+            <div class="row">
+                <div class="col-2 text-center">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div>
+                                @if (Model.title.ResponeseType=="POST")
+                                {
+                                    <p class="p-0 m-0 headerPost"><span>@Model.title.ResponeseType</span></p>
+                                }
+                                @if (Model.title.ResponeseType == "PUT")
+                                {
+                                    <p class="p-0 m-0 headerPut"><span>@Model.title.ResponeseType</span></p>
+                                }
+                                @if (Model.title.ResponeseType == "DELETE")
+                                {
+                                    <p class="p-0 m-0 headerDelete"><span>@Model.title.ResponeseType</span></p>
+                                }
+                                @if (Model.title.ResponeseType == "GET")
+                                {
+                                    <p class="p-0 m-0 headerGet"><span>@Model.title.ResponeseType</span></p>
+                                }
+                                
+                            </div>
+                        </div>
+                        <div class="col-1 p-0 m-0">
+                            <div class="headerSeperator"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-8 p-0">
+                    @{
+                        string baseUrl = "http://drawprogram.org/";
+                        var apiurl = Model.url;
+                        string modelValue = @Model.title.Header;
+                        string url = baseUrl+apiurl+ modelValue;
+                    }
+                    <div>
+                        <p class="p-0 m-0 ms-3 headerUrl"><span>@url</span></p>
+                    </div>
+                </div>
+
+                <div class="col-2 p-0">
+                    <div class="d-flex justify-content-end pe-3">
+                        <button id="copyBtnBoxHeader" class="btn btn-light copyBtnBox  p-0">
+                            <div>
+                                <img src="~/img/copyopen.png" class="card-img p-0 m-1 copyBtn"alt="">
+
+                            </div>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@if (Model.title.Body != null)
+{
+    <div class="">
+        <code id="json" class="d-flex flex-column">
+        </code>
+    </div>
+    <div class="card text-black mt-3 position-relative">
+        <div class="card-body jsonCard">
+            <div class="overflow-auto jsonCardHeight">
+                <code id="@Model.title.Body" class="d-flex flex-column">
+                </code>
+            </div>
+
+            <div class="position-absolute top-0 end-0 me-2 mt-2">
+                <button id="copyBtnBoxBody" class="btn btn-light copyBtnBox p-0">
+                    <div>
+                        <img src="~/img/copyopen.png" class="p-0 m-1 copyBtn"alt="">
+
+                    </div>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
+

@@ -1,10 +1,10 @@
-﻿using Draw.DrawLayer.Abstract;
+﻿using Draw.Core.DrawLayer.Abstract;
+using Draw.Core.DrawLayer.Model;
 using Draw.DrawLayer.Concrete.BaseCommand;
-using Draw.DrawLayer.Concrete.Model;
 
 namespace Draw.DrawLayer.Concrete
 {
-    public class CommandData
+    public class CommandData:ICommandData
     {
         private CommandContext _commandContext { get; set; }
         public CommandData(string userId)
@@ -15,38 +15,38 @@ namespace Draw.DrawLayer.Concrete
             PointsList = new List<PointD>();
             SetUseTimeNow();
         }
-        internal bool IsFinish { get; private set; }=false;
-        internal IBaseCommand? SelectedCommand { get; private set; }
-        internal DateTime IsUseTime { get; private set; }
-        internal List<PointD> PointsList { get; private set; }
-        internal List<int> EditElementsId { get; private set; }
-        internal double SelectedRadius { get; private set; } = 0;
-        internal int? SelectedPenId { get; private set; }
-        internal int? SelectedLayerId { get; private set; }
-        internal string UserId { get; private set; }
-        internal int? SelectedDrawBoxId { get; private set; }
-        internal int SelectedElementTypeId { get; private set; } = 0;
-        internal bool IsWorkingCommand { get; private set; } = false;
-        internal void SetIsFinish(bool finish) => IsFinish = finish;
-        internal void SetDefaultCommand() => _commandContext.SetContextDefaultCommand();
-        internal void SetSelectedCommand(IBaseCommand command) =>  _commandContext.SetCommand(command);
-        internal IBaseCommand GetSelectedCommand() => _commandContext.GetCommand();
-        internal void SetData(int? layerId, int? drawId, int? penId)
+        public bool IsFinish { get; set; }=false;
+        public IBaseCommand? SelectedCommand { get; set; }
+        public DateTime IsUseTime { get; set; }
+        public List<PointD> PointsList { get; set; }
+        public List<int> EditElementsId { get; set; }
+        public double SelectedRadius { get; set; } = 0;
+        public int? SelectedPenId { get; set; }
+        public int? SelectedLayerId { get; set; }
+        public string UserId { get; set; }
+        public int? SelectedDrawBoxId { get; set; }
+        public int SelectedElementTypeId { get; set; } = 0;
+        public bool IsWorkingCommand { get; set; } = false;
+        public void SetIsFinish(bool finish) => IsFinish = finish;
+        public void SetDefaultCommand() => _commandContext.SetContextDefaultCommand();
+        public void SetSelectedCommand(IBaseCommand command) =>  _commandContext.SetCommand(command);
+        public IBaseCommand GetSelectedCommand() => _commandContext.GetCommand();
+        public void SetData(int? layerId, int? drawId, int? penId)
         {
                 SetDrawBoxId(drawId);
                 SetPen(penId);
                 SetLayerId(layerId);
         }
-        internal void SetIsWorkingCommand(bool workingCommandValue) => IsWorkingCommand = workingCommandValue;
-        internal void SetUseTimeNow() => IsUseTime = DateTime.Now;
-        internal void SetElementTypeId(int elementTypeId) =>  SelectedElementTypeId = elementTypeId; 
-        internal void SetRadius(double radius) => SelectedRadius = radius;
-        internal void SetDrawBoxId(int? drawBoxId) =>  SelectedDrawBoxId = drawBoxId; 
-        internal void SetPen(int? penId) =>  SelectedPenId = penId; 
-        internal void SetEditElementsId(List<int> editElementsId) =>  EditElementsId = editElementsId; 
-        internal void SetLayerId(int? layerId) => SelectedLayerId = layerId;
-        internal void SetUserId(string userId) =>  UserId = userId; 
-        internal void ClearPointList() => PointsList.Clear(); 
-        internal void ClearEditList() =>  EditElementsId.Clear(); 
+        public void SetIsWorkingCommand(bool workingCommandValue) => IsWorkingCommand = workingCommandValue;
+        public void SetUseTimeNow() => IsUseTime = DateTime.Now;
+        public void SetElementTypeId(int elementTypeId) =>  SelectedElementTypeId = elementTypeId;
+        public void SetRadius(double radius) => SelectedRadius = radius;
+        public void SetDrawBoxId(int? drawBoxId) =>  SelectedDrawBoxId = drawBoxId;
+        public void SetPen(int? penId) =>  SelectedPenId = penId;
+        public void SetEditElementsId(List<int> editElementsId) =>  EditElementsId = editElementsId;
+        public void SetLayerId(int? layerId) => SelectedLayerId = layerId;
+        public void SetUserId(string userId) =>  UserId = userId;
+        public void ClearPointList() => PointsList.Clear();
+        public void ClearEditList() =>  EditElementsId.Clear(); 
     }
 }
