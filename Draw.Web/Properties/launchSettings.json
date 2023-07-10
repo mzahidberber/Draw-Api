@@ -1,12 +1,4 @@
-﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:26991",
-      "sslPort": 0
-    }
-  },
+{
   "profiles": {
     "Watch": {
       "commandName": "Executable",
@@ -27,9 +19,7 @@
     },
     "DrawWeb": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5092",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
@@ -37,7 +27,9 @@
         "dbPassword": "123456",
         "dbPort": "3306",
         "rarPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\DrawCAD.rar"
-      }
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5092"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -45,6 +37,20 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:26991",
+      "sslPort": 0
     }
   }
 }
