@@ -34,5 +34,12 @@ namespace Draw.Business.Test
             };
             em.UpdateAllAsync("b21972e1-742f-4fa7-be46-1189d9cab7ca", list).Wait();
         }
+
+        [Test]
+        public void Test3()
+        {
+            var em = new ExeManager();
+            em.VersionControl("1.0.0");
+        }
     }
 }

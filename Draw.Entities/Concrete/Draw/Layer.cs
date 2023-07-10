@@ -15,6 +15,7 @@ namespace Draw.Entities.Concrete.Draw
         public bool Lock { get; set; }
         public bool Visibility { get; set; }
         public float Thickness { get; set; }
+        public int NumberOfElements { get; set; }
 
         public int DrawBoxId { get; set; }
         public DrawBox? DrawBox { get; set; }
@@ -23,5 +24,7 @@ namespace Draw.Entities.Concrete.Draw
         public Pen? Pen { get; set; }
 
         public List<Element> Elements { get; set; }
+
+        public void CalculateElements() => NumberOfElements = Elements.Count();
     }
 }

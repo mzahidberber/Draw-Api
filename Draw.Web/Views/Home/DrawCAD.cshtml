@@ -5,7 +5,9 @@
 <body>
     <div class="row ms-2 me-2">
 
-        <div class="col-2">
+        
+
+        <div class="col-lg-12 col-xl-2 col-hide leftToggleNav">
             <div class="sticky-top">
                 @await Html.PartialAsync("_HomeTitle",Model)
 
@@ -14,14 +16,14 @@
 
         </div>
 
-        <div class="col-md-8">
+        <div class="col-lg-12 col-xl-8">
             <div>
                 @await Html.PartialAsync("_HomeMain",Model)
             </div>
         </div>
-        <div class="col-2">
+        <div class="col-lg-12 col-xl-2 col-hide">
             <div class="sticky-top">
-            @await Html.PartialAsync("_HomeRight",Model)
+                @await Html.PartialAsync("_HomeRight",Model)
 
             </div>
         </div>
@@ -30,6 +32,9 @@
 
     </div>
 
+    <button type="button" id="toogleBtn" class="btn btn-light toogleBtn"><img src="~/img/menu.png" style="height:1.5rem;width:1.5rem;" alt="" /></button>
+    <div id="toogleNav" class="toogleNav dropdown-menu">
+    </div>
 </body>
 
 <script type="module" src="~/js/cad.js" asp-append-version="true"></script>

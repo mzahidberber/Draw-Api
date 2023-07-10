@@ -1,0 +1,22 @@
+<p>Api veya web katmanında yapılan kontroller sonucunda bir hata ile karşılaşılmazsa işlem business katmanına
+    yönlendirilir.Bu katmanda 14 adet manager bulunmaktadır.Bu managerların interfaceları core katmanındadır.
+    IOC container teknoloji ile interfaceler üzerinden singleton olarak api ve web katmanlarına manager instanceleri
+    gönderilir.
+    
+    
+    
+    </p>
+<p>
+    Business katmanındaki 13 adet managerda api ve web katmanlarından gelen istekler üzerine
+    dataaccess katmanına erişip verileri kaydetme ,düzenleme ve silme gibi işlemler yönlendirilir.Yönlendirme
+    yapılamadan önce api ve web katmanından gelen veriler DTO sınıflarında gelir bu sınıflar automapper teknolojisi
+    ile back-end'te kullanılan entity katmanında bulunan sınıflara map edilir.Data transfer object (DTO) nesneleri
+    core katmanında bulunmaktadır.Bu işlem ile back-end te kullanılan sınıflardaki bazı properyleri
+    clientta göndermeyebiliyoruz.Mapleme işlemi bittikten sonra dataaccess katmanından ioc container ile çağırdığımız
+    data access layer objesi ile gelen isteğe göre gerekli işlemler yapıldıktan sonra dataacces katmanından gelen veriler
+    yeniden DTO objelerine map edilip api katmanına özel response formatında gönderilmektedir
+    .1 adet managerda drawlayer katmanını kullanmak içindir.Bu managerdada yine aynı map işlemleri yapıldıktan sonra
+    istek drawlayer katmanına gönderilir.Gelen sonucu yine map işlemleri bittikten sonra api katmanına geri gönderilir.
+
+
+</p>

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Draw.DataAccess.Migrations
 {
     [DbContext(typeof(DrawContext))]
-    [Migration("20230703163302_init")]
-    partial class init
+    [Migration("20230708205641_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,9 @@ namespace Draw.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("NumberOfLayerElements")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -158,6 +161,9 @@ namespace Draw.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("NumberOfElements")
+                        .HasColumnType("int");
 
                     b.Property<int>("PenId")
                         .HasColumnType("int");
@@ -357,6 +363,21 @@ namespace Draw.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("DrawElements")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("DrawLimit")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(3);
+
+                    b.Property<int>("DrawRemainder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(3);
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -377,6 +398,11 @@ namespace Draw.DataAccess.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
+
+                    b.Property<int>("NumberDraw")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
@@ -455,22 +481,22 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a6ce1cd0-d663-4d0e-8241-9790272c5a82",
-                            ConcurrencyStamp = "5232b3a8-183a-43b3-a4ba-a27fcd6d66da",
+                            Id = "0d9d48a0-978f-417f-ab16-2f98f3bc4274",
+                            ConcurrencyStamp = "70c64296-a1ea-4a51-b494-4631b1a8c2a3",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e8962142-15f1-4ebb-b55e-f84e7b79b0cb",
-                            ConcurrencyStamp = "0a7e26e8-fa44-451f-b38b-809c4fb17ea7",
+                            Id = "79bedb41-6c58-4f04-bc05-bae2930110b7",
+                            ConcurrencyStamp = "b4c7105d-67e5-40d9-be02-3bb156f5ec54",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "b1be118a-dcae-499c-aede-e586b0b4aac0",
-                            ConcurrencyStamp = "b63a8cbd-a446-4b1e-ba15-94bf6313d483",
+                            Id = "8384df53-228f-4d07-9ac4-9003c30f017e",
+                            ConcurrencyStamp = "4a90296f-8ed7-4780-858e-cb844284e423",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -766,7 +792,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 23,
-                            Header = "/Draw/setIsFinish",
+                            Header = "/Draw/setIsFinish?finish=true",
                             IndexId = 2,
                             MainTitleId = 10,
                             ResponeseType = "PUT",
@@ -841,7 +867,6 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 30,
-                            Body = "DrawBoxId.json",
                             Header = "/DrawBox/drawBoxes/{id}",
                             IndexId = 2,
                             MainTitleId = 11,
@@ -852,13 +877,1023 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 31,
-                            Body = "DrawBoxIdLayers.json",
                             Header = "/DrawBox/drawBoxes/{id}/layers",
                             IndexId = 2,
                             MainTitleId = 11,
                             ResponeseType = "GET",
                             TextUrl1 = "DrawBoxIdLayers.html",
                             Title = "Draw Box With Layers"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Header = "/Element/elements",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Elementst.html",
+                            Title = "Elements"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Header = "/Element/elementswithatt",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsWithAtt.html",
+                            Title = "Elements With Attributes"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Header = "/Element/elementsbydraw?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByDraw.html",
+                            Title = "Elements By Draw"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Header = "/Element/elementsbydrawwithatt?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByDrawWithAtt.html",
+                            Title = "Elements By Draw With Attributes"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Header = "/Element/elementsbylayer?layerId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByLayer.html",
+                            Title = "Elements By Layer"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Header = "/Element/elementsbylayerwithatt?layerId=0",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementsByLayerWithAtt.html",
+                            Title = "Elements By Layer With Attributes"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Body = "ElementsAdd.json",
+                            Header = "/Element/elements/add",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "POST",
+                            TextUrl1 = "ElementsAdd.html",
+                            Title = "Elements Add"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Body = "ElementsDelete.json",
+                            Header = "/Element/elements/delete",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "ElementsDelete.html",
+                            Title = "Elements Delete"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Body = "ElementsUpdate.json",
+                            Header = "/Element/elements/update",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "ElementsUpdate.html",
+                            Title = "Elements Update"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Header = "/Element/elements/{id}",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementId.html",
+                            Title = "Element"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Header = "/Element/elements/{id}/elementType",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdElementType.html",
+                            Title = "Element Element Type"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Header = "/Element/elements/{id}/pen",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdPen.html",
+                            Title = "Element Pen"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Header = "/Element/elements/{id}/layer",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdLayer.html",
+                            Title = "Element Layer"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Header = "/Element/elements/{id}/radiuses",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdRadiuses.html",
+                            Title = "Element Radiuses"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Header = "/Element/elements/{id}/ssangles",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdSSAngles.html",
+                            Title = "Element SSAngles"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Header = "/Element/elements/{id}/points",
+                            IndexId = 2,
+                            MainTitleId = 12,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementIdPoints.html",
+                            Title = "Element Points"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Header = "/ElementType/elementTypes",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementTypes.html",
+                            Title = "Element Types"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Header = "/ElementType/elementTypes/{id}",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "GET",
+                            TextUrl1 = "ElementType.html",
+                            Title = "Element Type"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Body = "ElementTypeAdd.json",
+                            Header = "/ElementType/elementTypes/add",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "POST",
+                            TextUrl1 = "ElementTypeAdd.html",
+                            Title = "Element Types Add"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Body = "ElementTypeDelete.json",
+                            Header = "/ElementType/elementTypes/delete",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "ElementTypeDelete.html",
+                            Title = "Element Types Delete"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Body = "ElementTypeUpdate.json",
+                            Header = "/ElementType/elementTypes/update",
+                            IndexId = 2,
+                            MainTitleId = 13,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "ElementTypeUpdate.html",
+                            Title = "Element Types Update"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Header = "/Layer/layers",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layers.html",
+                            Title = "Layers"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Header = "/Layer/layers?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "POST",
+                            TextUrl1 = "LayersDrawId.html",
+                            Title = "Draw Layers"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Header = "/Layer/layerswithpen?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "POST",
+                            TextUrl1 = "LayersDrawIdWithPen.html",
+                            Title = "Draw Layers With Pen"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Body = "LayersAdd.json",
+                            Header = "/Layer/layers/add",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "POST",
+                            TextUrl1 = "LayersAdd.html",
+                            Title = "Layers Add"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Body = "LayersDelete.json",
+                            Header = "/Layer/layers/delete",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "LayersDelete.html",
+                            Title = "Layers Delete"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Body = "LayersUpdate.json",
+                            Header = "/Layer/layers/update",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "LayersUpdate.html",
+                            Title = "Layers Update"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Header = "/Layer/layers/{id}",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layert.html",
+                            Title = "Layer"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Header = "/Layer/layers/{id}/elements",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layerelements.html",
+                            Title = "Layer Elements"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Header = "/Layer/layers/{id}/pen",
+                            IndexId = 2,
+                            MainTitleId = 14,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Layerpen.html",
+                            Title = "Layer Pen"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Header = "/Pen/pens",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pens.html",
+                            Title = "Pens"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Header = "/Pen/penswithatt",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penswithatt.html",
+                            Title = "Pens With Attributes"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Header = "/Pen/pens/{id}",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pent.html",
+                            Title = "Pen"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Header = "/Pen/pens/{id}/penstyle",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penpenstyle.html",
+                            Title = "Pen PenStyle"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Body = "Pensadd.json",
+                            Header = "/Pen/pens/add",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "POST",
+                            TextUrl1 = "Penadd.html",
+                            Title = "Pen Add"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Body = "Pensdelete.json",
+                            Header = "/Pen/pens/delete",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Pendelete.html",
+                            Title = "Pen Delete"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Body = "Pensupdate.json",
+                            Header = "/Pen/pens/update",
+                            IndexId = 2,
+                            MainTitleId = 15,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Penupdate.html",
+                            Title = "Pen Update"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Header = "/PenStyles/penstyles",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penstyles.html",
+                            Title = "PenStyles"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Header = "/PenStyles/penstyles/{id}",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Penstylet.html",
+                            Title = "PenStyle"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Body = "Penstyleadd.json",
+                            Header = "/PenStyles/penstyles/add",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "POST",
+                            TextUrl1 = "Penstylesadd.html",
+                            Title = "PenStyles Add"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Body = "Penstyledelete.json",
+                            Header = "/PenStyles/penstyles/delete",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Penstylesdelete.html",
+                            Title = "PenStyles Delete"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Body = "Penstyleupdate.json",
+                            Header = "/PenStyles/penstyles/update",
+                            IndexId = 2,
+                            MainTitleId = 16,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Penstylesupdate.html",
+                            Title = "PenStyles Update"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Header = "/Point/points",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Points.html",
+                            Title = "Points"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Header = "/Point/pointsbyelement?elementId=0",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsbyelement.html",
+                            Title = "Points By Element"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Header = "/Point/pointsbylayer?layerId=0",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsbylayer.html",
+                            Title = "Points By Layer"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Header = "/Point/pointsbydraw?drawId=0",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsbydraw.html",
+                            Title = "Points By Draw"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Body = "Pointsadd.json",
+                            Header = "/Point/points/add",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointsadd.html",
+                            Title = "Points Add"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Body = "Pointsdelete.json",
+                            Header = "/Point/points/delete",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Pointsdelete.html",
+                            Title = "Points Delete"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Body = "Pointsupdate.json",
+                            Header = "/Point/points/update",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Pointsupdate.html",
+                            Title = "Points Update"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Header = "/Point/points/{id}",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointt.html",
+                            Title = "Point"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Header = "/Point/points/{id}/element",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointelement.html",
+                            Title = "Point Element"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Header = "/Point/points/{id}/pointtype",
+                            IndexId = 2,
+                            MainTitleId = 17,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Pointpointtype.html",
+                            Title = "Point PointType"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Header = "/PointType/pointtypes",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "GET",
+                            TextUrl1 = "PointTypes.html",
+                            Title = "PointTypes"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Header = "/PointType/pointtypes/{id}",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "GET",
+                            TextUrl1 = "PointType.html",
+                            Title = "PointType"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Body = "pointtypeadd.json",
+                            Header = "/PointType/pointtypes/add",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "POST",
+                            TextUrl1 = "PointTypeadd.html",
+                            Title = "PointType Add"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Body = "pointtypedelete.json",
+                            Header = "/PointType/pointtypes/delete",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "PointTypedelete.html",
+                            Title = "PointType Delete"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Body = "pointtypeupdate.json",
+                            Header = "/PointType/pointtypes/update",
+                            IndexId = 2,
+                            MainTitleId = 18,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "PointTypeupdate.html",
+                            Title = "PointType Update"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Header = "/Radius/radiuses",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Radiuses.html",
+                            Title = "Radiuses"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Body = "radiusesadd.json",
+                            Header = "/Radius/radiuses/add",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "POST",
+                            TextUrl1 = "Radiusesadd.html",
+                            Title = "Radiuses Add"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Body = "radiusesdelete.json",
+                            Header = "/Radius/radiuses/delete",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "Radiusesdelete.html",
+                            Title = "Radiuses Delete"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Body = "radiusesupdate.json",
+                            Header = "/Radius/radiuses/update",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "Radiusesupdate.html",
+                            Title = "Radiuses Update"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Header = "/Radius/radiuses/{id}",
+                            IndexId = 2,
+                            MainTitleId = 19,
+                            ResponeseType = "GET",
+                            TextUrl1 = "Radiuset.html",
+                            Title = "Radiuse"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Header = "/SSAngle/ssangles/{id}",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "GET",
+                            TextUrl1 = "SSAnglet.html",
+                            Title = "SSAngle"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Header = "/SSAngle/ssangles",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "GET",
+                            TextUrl1 = "SSAngles.html",
+                            Title = "SSAngles"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Body = "SSAnglesadd.json",
+                            Header = "/SSAngle/ssangles/add",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "POST",
+                            TextUrl1 = "SSAnglesadd.html",
+                            Title = "SSAngles Add"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Body = "SSAnglesdelete.json",
+                            Header = "/SSAngle/ssangles/delete",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "DELETE",
+                            TextUrl1 = "SSAnglesdelete.html",
+                            Title = "SSAngles Delete"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Body = "SSAnglesupdate.json",
+                            Header = "/SSAngle/ssangles/update",
+                            IndexId = 2,
+                            MainTitleId = 20,
+                            ResponeseType = "PUT",
+                            TextUrl1 = "SSAnglesupdate.html",
+                            Title = "SSAngles Update"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Body = "findTwoPointsLength.json",
+                            Header = "/findTwoPointsLength/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findTwoPointsLength.html",
+                            Title = "Find Two Point Length"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Body = "findCenterAndRadius.json",
+                            Header = "/findCenterAndRadius/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findCenterAndRadius.html",
+                            Title = "Find Center And Radius"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Body = "findToSlopeLine.json",
+                            Header = "/findToSlopeLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findToSlopeLine.html",
+                            Title = "Find To Slope Line"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Body = "findDegreeLineSlope.json",
+                            Header = "/findDegreeLineSlope/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeLineSlope.html",
+                            Title = "Find Degree Line Slope"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Body = "findDegreeLineTwoPoints.json",
+                            Header = "/findDegreeLineTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeLineTwoPoints.html",
+                            Title = "Find Degree Line Two Points"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Body = "convertDegreeToSlope.json",
+                            Header = "/convertDegreeToSlope/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertDegreeToSlope.html",
+                            Title = "Convert Degree To Slope"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Body = "convertRadianToDegree.json",
+                            Header = "/convertRadianToDegree/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertRadianToDegree.html",
+                            Title = "Convert Radian To Degree"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Body = "convertDegreeToRadians.json",
+                            Header = "/convertDegreeToRadians/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertDegreeToRadians.html",
+                            Title = "Convert Degree To Radians"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Body = "findCenterPointToLine.json",
+                            Header = "/findCenterPointToLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findCenterPointToLine.html",
+                            Title = "Find Center Point To Line"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Body = "findDegreeToBetweenTwoLines.json",
+                            Header = "/findDegreeToBetweenTwoLines/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeToBetweenTwoLines.html",
+                            Title = "Find Degree To Between Two Lines"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Body = "findDotProductToTwoPoints.json",
+                            Header = "/findDotProductToTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDotProductToTwoPoints.html",
+                            Title = "Find Dot Product To Two Points"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Body = "findDifferenceTwoPoints.json",
+                            Header = "/findDifferenceTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDifferenceTwoPoints.html",
+                            Title = "Find Difference Two Points"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Body = "wherePointOnLine.json",
+                            Header = "/wherePointOnLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "wherePointOnLine.html",
+                            Title = "Where Point On Line"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Body = "findInsectionPointToTwoLines.json",
+                            Header = "/findInsectionPointToTwoLines/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findInsectionPointToTwoLines.html",
+                            Title = "Find Insection Point To Two Lines"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Body = "findPointLength.json",
+                            Header = "/findPointLength/?length=0",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findPointLength.html",
+                            Title = "Find Point Length"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Body = "wherePointZone.json",
+                            Header = "/wherePointZone/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "wherePointZone.html",
+                            Title = "Where Point Zone"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Body = "findNearetPoint.json",
+                            Header = "/findNearetPoint/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findNearetPoint.html",
+                            Title = "Find Nearest Point"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Body = "findStartAndStopAngle.json",
+                            Header = "/findStartAndStopAngle/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findStartAndStopAngle.html",
+                            Title = "Find Start And Stop Angle"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Body = "findStartAndStopAngleTwoPoint.json",
+                            Header = "/findStartAndStopAngleTwoPoint/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findStartAndStopAngleTwoPoint.html",
+                            Title = "Find Start And Stop Angle Two Point"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Body = "findPointOnCircle.json",
+                            Header = "/findPointOnCircle/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findPointOnCircle.html",
+                            Title = "Find Point On Circle"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Body = "createuser.json",
+                            Header = "/User/createuser",
+                            IndexId = 4,
+                            MainTitleId = 24,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createuser.html",
+                            Title = "Create User"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Header = "/User/getuser",
+                            IndexId = 4,
+                            MainTitleId = 24,
+                            ResponeseType = "GET",
+                            TextUrl1 = "getuser.html",
+                            Title = "Get User"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Body = "createtoken.json",
+                            Header = "/Auth/createtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtoken.html",
+                            Title = "Create Token"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Body = "createtokenbyrefreshtoken.json",
+                            Header = "/Auth/createtokenbyrefreshtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtokenbyrefreshtoken.html",
+                            Title = "Create Token By Refresh Token"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Body = "revokerefreshtoken.json",
+                            Header = "/Auth/revokerefreshtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "revokerefreshtoken.html",
+                            Title = "Revoke Refresh Token"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "apilayer.html",
+                            Title = "Api"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "businesslayer.html",
+                            Title = "Business"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "dataaccesslayer.html",
+                            Title = "DataAccess"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "drawlayer.html",
+                            Title = "DrawLayer"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "corelayer.html",
+                            Title = "Core"
                         });
                 });
 
@@ -992,78 +2027,166 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = 10,
                             IndexId = 2,
-                            TextUrl1 = "Draw.html",
                             Title = "Draw"
                         },
                         new
                         {
                             Id = 11,
                             IndexId = 2,
-                            TextUrl1 = "DrawBox.html",
                             Title = "DrawBox"
                         },
                         new
                         {
                             Id = 12,
                             IndexId = 2,
-                            TextUrl1 = "Element.html",
-                            Title = "Element"
+                            Title = "Element  "
                         },
                         new
                         {
                             Id = 13,
                             IndexId = 2,
-                            TextUrl1 = "ElementType.html",
-                            Title = "ElementType"
+                            Title = "ElementType  "
                         },
                         new
                         {
                             Id = 14,
                             IndexId = 2,
-                            TextUrl1 = "Layer.html",
-                            Title = "Layer"
+                            Title = "Layer  "
                         },
                         new
                         {
                             Id = 15,
                             IndexId = 2,
-                            TextUrl1 = "Pen.html",
-                            Title = "Pen"
+                            Title = "Pen  "
                         },
                         new
                         {
                             Id = 16,
                             IndexId = 2,
-                            TextUrl1 = "PenStyles.html",
-                            Title = "PenStyles"
+                            Title = "PenStyles  "
                         },
                         new
                         {
                             Id = 17,
                             IndexId = 2,
-                            TextUrl1 = "Point.html",
-                            Title = "Point"
+                            Title = "Point  "
                         },
                         new
                         {
                             Id = 18,
                             IndexId = 2,
-                            TextUrl1 = "PointType.html",
-                            Title = "PointType"
+                            Title = "PointType  "
                         },
                         new
                         {
                             Id = 19,
                             IndexId = 2,
-                            TextUrl1 = "Radius.html",
-                            Title = "Radius"
+                            Title = "Radius  "
                         },
                         new
                         {
                             Id = 20,
                             IndexId = 2,
-                            TextUrl1 = "SSAngle.html",
-                            Title = "SSAngle"
+                            Title = "SSAngle  "
+                        },
+                        new
+                        {
+                            Id = 21,
+                            IndexId = 3,
+                            TextUrl1 = "DrawGeo.html",
+                            Title = "DrawGeo"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            IndexId = 3,
+                            Title = "Geo"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            IndexId = 4,
+                            TextUrl1 = "DrawAuth.html",
+                            Title = "DrawAuth"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            IndexId = 4,
+                            Title = "User"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            IndexId = 4,
+                            Title = "Auth"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            IndexId = 1,
+                            TextUrl1 = "DrawCAD.html",
+                            Title = "DrawCAD"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            IndexId = 1,
+                            TextUrl1 = "api.html",
+                            Title = "Api"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IndexId = 1,
+                            TextUrl1 = "client.html",
+                            Title = "Client"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            IndexId = 1,
+                            TextUrl1 = "geo.html",
+                            Title = "Geo"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            IndexId = 1,
+                            TextUrl1 = "auth.html",
+                            Title = "Auth"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            IndexId = 1,
+                            TextUrl1 = "data.html",
+                            Title = "Data"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.Numbers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClickNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DownloadNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Numbers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClickNumber = 0,
+                            DownloadNumber = 0
                         });
                 });
 

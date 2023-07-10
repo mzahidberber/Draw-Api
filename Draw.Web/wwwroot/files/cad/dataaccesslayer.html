@@ -1,0 +1,29 @@
+<p>
+Bu katman sql serverdan veri çağırmak,eklemek,güncellemek ve silmek için 13 adet data access layer objeleri
+    bulunmaktadır.Objelerin concreteleri bu katmanda tutulurken projenin başka katmanlarındada kullanabilmek için
+    interfacedeleri core katmanında bulunmaktadır.IOC container teknolojisi ile data access layer objelerinin 
+    interfaceleri üzerinden instanceleri gönderilmektedir.Bu işlem interface ile instancelere standartlar getirerek
+    ilerde farklı bir teknolojiye geçildiğinde entegrasyonu kolaylaştırmaktadır.
+    
+    
+    .Bu objeler yapılan isteğe göre sql servera gönderilecek olan sql cümleciklerini oluşturmaktır.
+    Her sql serverdaki tablo için ayrı obje bulunmaktadır.Her obje sorumlu olduğu tablo ile ilgili işlemleri
+    yapsada bazen isteklere göre alt ve üst tablolaradan loading işlemleri ile verilerde çekilebilmektedir.
+    Ayrıca unitofwork tasarım deseni kullanılmıştır bu sayede sql cümlecikleri oluşturulurken yapılacak işlemler
+    tek seferde yapılabilmektedir.Yapılacak işlemlerin birisinde hata meydana geldiğinden diğer işlemlerde iptal
+    olmakta ve tekrar bu işlemleri geri almak zorunda kalmıyoruz.Bu sayede bu işlemler daha performanslı şekilde
+    yapılabilmektedir.
+
+    
+
+
+</p>
+
+<p>
+    Sql servera ulaşabilmek için entity framework core teknoloji kullanılmaktadır.Entity framework teknolojisinden
+    gelene DbContext sınıfından miras alınarak bir drawcontext sınıfı oluşturulmuştur.Bu sınıfta dbset ile 
+    entity katmanındaki modeller kullanılarak tablolar eklenmiştir.Identity kütüphanesi ile de kullanıcı ile 
+    ilgili olan tablolar eklenmiştir.Fluent api yöntemi ile tablo kolonlarının
+    özellikleri düzenlemiş.Database bağlantı bilgilerini environmentten almaktadır.Docker ile 
+    hizmet ayağa kaldırılırken bu bilgiler verilmektedir.
+</p>

@@ -32,8 +32,19 @@ namespace Draw.DataAccess.Concrete.EntityFramework
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.Property(u=>u.DrawLimit).HasDefaultValue(3);
+            builder.Property(u=>u.NumberDraw).HasDefaultValue(0);
+            builder.Property(u=>u.DrawRemainder).HasDefaultValue(3);
+            builder.Property(u=>u.DrawElements).HasDefaultValue(0);
 
+        }
+    }
+    internal class NumbersMapping : IEntityTypeConfiguration<Numbers>
+    {
+        public void Configure(EntityTypeBuilder<Numbers> builder)
+        {
 
+            builder.HasData(new Numbers { Id=1, DownloadNumber=0,ClickNumber=0});
         }
     }
     internal class MainTitleMapping : IEntityTypeConfiguration<MainTitle>
@@ -60,23 +71,28 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 new MainTitle { Id = 7, IndexId = 0, Title = "Element Information", TextUrl1 = "Element Information.html", LogoUrl="elementInfo.png" },
                 new MainTitle { Id = 8, IndexId = 0, Title = "Other", TextUrl1 = "Other.html" },
                 new MainTitle { Id = 9, IndexId = 2, Title = "DrawApi", TextUrl1 = "DrawApi.html" },
-                new MainTitle { Id = 10, IndexId = 2, TextUrl1 = "Draw.html", Title = "Draw" },
-                new MainTitle { Id = 11, IndexId = 2, TextUrl1 = "DrawBox.html", Title = "DrawBox"},
-                new MainTitle { Id = 12, IndexId = 2, TextUrl1 = "Element.html", Title = "Element" },
-                new MainTitle { Id = 13, IndexId = 2, TextUrl1 = "ElementType.html", Title = "ElementType" },
-                new MainTitle { Id = 14, IndexId = 2, TextUrl1 = "Layer.html", Title = "Layer" },
-                new MainTitle { Id = 15, IndexId = 2, TextUrl1 = "Pen.html", Title = "Pen" },
-                new MainTitle { Id = 16, IndexId = 2, TextUrl1 = "PenStyles.html", Title = "PenStyles"},
-                new MainTitle { Id = 17, IndexId = 2, TextUrl1 = "Point.html", Title = "Point" },
-                new MainTitle { Id = 18, IndexId = 2, TextUrl1 = "PointType.html", Title = "PointType"},
-                new MainTitle { Id = 19, IndexId = 2, TextUrl1 = "Radius.html", Title = "Radius" },
-                new MainTitle { Id = 20, IndexId = 2, TextUrl1 = "SSAngle.html", Title = "SSAngle"},
+                new MainTitle { Id = 10, IndexId = 2, Title = "Draw" },
+                new MainTitle { Id = 11, IndexId = 2, Title = "DrawBox"},
+                new MainTitle { Id = 12, IndexId = 2, Title = "Element  " },
+                new MainTitle { Id = 13, IndexId = 2, Title = "ElementType  " },
+                new MainTitle { Id = 14, IndexId = 2, Title = "Layer  " },
+                new MainTitle { Id = 15, IndexId = 2, Title = "Pen  " },
+                new MainTitle { Id = 16, IndexId = 2, Title = "PenStyles  "},
+                new MainTitle { Id = 17, IndexId = 2, Title = "Point  " },
+                new MainTitle { Id = 18, IndexId = 2, Title = "PointType  "},
+                new MainTitle { Id = 19, IndexId = 2, Title = "Radius  " },
+                new MainTitle { Id = 20, IndexId = 2, Title = "SSAngle  "},
                 new MainTitle { Id = 21, IndexId = 3, TextUrl1 = "DrawGeo.html", Title = "DrawGeo"},
-                new MainTitle { Id = 22, IndexId = 3, TextUrl1 = "Geo.html", Title = "Geo"},
+                new MainTitle { Id = 22, IndexId = 3, Title = "Geo"},
                 new MainTitle { Id = 23, IndexId = 4, TextUrl1 = "DrawAuth.html", Title = "DrawAuth" },
-                new MainTitle { Id = 24, IndexId = 4, TextUrl1 = "User.html", Title = "User" },
-                new MainTitle { Id = 25, IndexId = 4, TextUrl1 = "Auth.html", Title = "Auth" },
-                new MainTitle { Id = 26, IndexId = 1, TextUrl1 = "DrawCAD.html", Title = "DrawCAD" }
+                new MainTitle { Id = 24, IndexId = 4, Title = "User" },
+                new MainTitle { Id = 25, IndexId = 4, Title = "Auth" },
+                new MainTitle { Id = 26, IndexId = 1, TextUrl1 = "DrawCAD.html", Title = "DrawCAD" },
+                new MainTitle { Id = 27, IndexId = 1, TextUrl1 = "api.html", Title = "Api" },
+                new MainTitle { Id = 28, IndexId = 1, TextUrl1 = "client.html", Title = "Client" },
+                new MainTitle { Id = 29, IndexId = 1, TextUrl1 = "geo.html", Title = "Geo" },
+                new MainTitle { Id = 30, IndexId = 1, TextUrl1 = "auth.html", Title = "Auth" },
+                new MainTitle { Id = 31, IndexId = 1, TextUrl1 = "data.html", Title = "Data" }
             );
 
         }
@@ -131,7 +147,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 new BaseTitle { Id = 29, IndexId = 2, TextUrl1 = "DrawBoxesUpdate.html", Title = "Draw Boxes Update", ResponeseType = "PUT", Header = "/DrawBox/drawBoxes/update", Body = "DrawBoxesUpdate.json", MainTitleId = 11 },
                 new BaseTitle { Id = 30, IndexId = 2, TextUrl1 = "DrawBoxId.html", Title = "Draw Box", ResponeseType = "GET", Header = "/DrawBox/drawBoxes/{id}", MainTitleId = 11 },
                 new BaseTitle { Id = 31, IndexId = 2, TextUrl1 = "DrawBoxIdLayers.html", Title = "Draw Box With Layers", ResponeseType = "GET", Header = "/DrawBox/drawBoxes/{id}/layers", MainTitleId = 11 },
-                new BaseTitle { Id = 32, IndexId = 2, TextUrl1 = "Elements.html", Title = "Elements", ResponeseType = "GET", Header = "/Element/elements", MainTitleId = 12 },
+                new BaseTitle { Id = 32, IndexId = 2, TextUrl1 = "Elementst.html", Title = "Elements", ResponeseType = "GET", Header = "/Element/elements", MainTitleId = 12 },
                 new BaseTitle { Id = 33, IndexId = 2, TextUrl1 = "ElementsWithAtt.html", Title = "Elements With Attributes", ResponeseType = "GET", Header = "/Element/elementswithatt", MainTitleId = 12 },
                 new BaseTitle { Id = 34, IndexId = 2, TextUrl1 = "ElementsByDraw.html", Title = "Elements By Draw", ResponeseType = "GET", Header = "/Element/elementsbydraw?drawId=0", MainTitleId = 12 },
                 new BaseTitle { Id = 35, IndexId = 2, TextUrl1 = "ElementsByDrawWithAtt.html", Title = "Elements By Draw With Attributes", ResponeseType = "GET", Header = "/Element/elementsbydrawwithatt?drawId=0", MainTitleId = 12 },
@@ -158,18 +174,18 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 new BaseTitle { Id = 56, IndexId = 2, TextUrl1 = "LayersAdd.html", Title = "Layers Add", ResponeseType = "POST", Header = "/Layer/layers/add",Body="LayersAdd.json", MainTitleId = 14 },
                 new BaseTitle { Id = 57, IndexId = 2, TextUrl1 = "LayersDelete.html", Title = "Layers Delete", ResponeseType = "DELETE", Header = "/Layer/layers/delete",Body="LayersDelete.json", MainTitleId = 14 },
                 new BaseTitle { Id = 58, IndexId = 2, TextUrl1 = "LayersUpdate.html", Title = "Layers Update", ResponeseType = "PUT", Header = "/Layer/layers/update",Body="LayersUpdate.json", MainTitleId = 14 },
-                new BaseTitle { Id = 59, IndexId = 2, TextUrl1 = "Layer.html", Title = "Layer", ResponeseType = "GET", Header = "/Layer/layers/{id}", MainTitleId = 14 },
+                new BaseTitle { Id = 59, IndexId = 2, TextUrl1 = "Layert.html", Title = "Layer", ResponeseType = "GET", Header = "/Layer/layers/{id}", MainTitleId = 14 },
                 new BaseTitle { Id = 60, IndexId = 2, TextUrl1 = "Layerelements.html", Title = "Layer Elements", ResponeseType = "GET", Header = "/Layer/layers/{id}/elements", MainTitleId = 14 },
                 new BaseTitle { Id = 61, IndexId = 2, TextUrl1 = "Layerpen.html", Title = "Layer Pen", ResponeseType = "GET", Header = "/Layer/layers/{id}/pen", MainTitleId = 14 },
                 new BaseTitle { Id = 62, IndexId = 2, TextUrl1 = "Pens.html", Title = "Pens", ResponeseType = "GET", Header = "/Pen/pens", MainTitleId = 15 },
                 new BaseTitle { Id = 63, IndexId = 2, TextUrl1 = "Penswithatt.html", Title = "Pens With Attributes", ResponeseType = "GET", Header = "/Pen/penswithatt", MainTitleId = 15 },
-                new BaseTitle { Id = 64, IndexId = 2, TextUrl1 = "Pen.html", Title = "Pen", ResponeseType = "GET", Header = "/Pen/pens/{id}", MainTitleId = 15 },
+                new BaseTitle { Id = 64, IndexId = 2, TextUrl1 = "Pent.html", Title = "Pen", ResponeseType = "GET", Header = "/Pen/pens/{id}", MainTitleId = 15 },
                 new BaseTitle { Id = 65, IndexId = 2, TextUrl1 = "Penpenstyle.html", Title = "Pen PenStyle", ResponeseType = "GET", Header = "/Pen/pens/{id}/penstyle", MainTitleId = 15 },
                 new BaseTitle { Id = 66, IndexId = 2, TextUrl1 = "Penadd.html", Title = "Pen Add", ResponeseType = "POST", Header = "/Pen/pens/add",Body="Pensadd.json", MainTitleId = 15 },
                 new BaseTitle { Id = 67, IndexId = 2, TextUrl1 = "Pendelete.html", Title = "Pen Delete", ResponeseType = "DELETE", Header = "/Pen/pens/delete",Body="Pensdelete.json", MainTitleId = 15 },
                 new BaseTitle { Id = 68, IndexId = 2, TextUrl1 = "Penupdate.html", Title = "Pen Update", ResponeseType = "PUT", Header = "/Pen/pens/update",Body="Pensupdate.json", MainTitleId = 15 },
                 new BaseTitle { Id = 69, IndexId = 2, TextUrl1 = "Penstyles.html", Title = "PenStyles", ResponeseType = "GET", Header = "/PenStyles/penstyles", MainTitleId = 16 },
-                new BaseTitle { Id = 70, IndexId = 2, TextUrl1 = "Penstyle.html", Title = "PenStyle", ResponeseType = "GET", Header = "/PenStyles/penstyles/{id}", MainTitleId = 16 },
+                new BaseTitle { Id = 70, IndexId = 2, TextUrl1 = "Penstylet.html", Title = "PenStyle", ResponeseType = "GET", Header = "/PenStyles/penstyles/{id}", MainTitleId = 16 },
                 new BaseTitle { Id = 71, IndexId = 2, TextUrl1 = "Penstylesadd.html", Title = "PenStyles Add", ResponeseType = "POST", Header = "/PenStyles/penstyles/add",Body="Penstyleadd.json", MainTitleId = 16 },
                 new BaseTitle { Id = 72, IndexId = 2, TextUrl1 = "Penstylesdelete.html", Title = "PenStyles Delete", ResponeseType = "DELETE", Header = "/PenStyles/penstyles/delete",Body="Penstyledelete.json", MainTitleId = 16 },
                 new BaseTitle { Id = 73, IndexId = 2, TextUrl1 = "Penstylesupdate.html", Title = "PenStyles Update", ResponeseType = "PUT", Header = "/PenStyles/penstyles/update",Body="Penstyleupdate.json", MainTitleId = 16 },
@@ -180,20 +196,20 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 new BaseTitle { Id = 78, IndexId = 2, TextUrl1 = "Pointsadd.html", Title = "Points Add", ResponeseType = "GET", Header = "/Point/points/add",Body="Pointsadd.json", MainTitleId = 17 },
                 new BaseTitle { Id = 79, IndexId = 2, TextUrl1 = "Pointsdelete.html", Title = "Points Delete", ResponeseType = "DELETE", Header = "/Point/points/delete",Body="Pointsdelete.json", MainTitleId = 17 },
                 new BaseTitle { Id = 80, IndexId = 2, TextUrl1 = "Pointsupdate.html", Title = "Points Update", ResponeseType = "PUT", Header = "/Point/points/update",Body="Pointsupdate.json", MainTitleId = 17 },
-                new BaseTitle { Id = 81, IndexId = 2, TextUrl1 = "Point.html", Title = "Point", ResponeseType = "GET", Header = "/Point/points/{id}", MainTitleId = 17 },
+                new BaseTitle { Id = 81, IndexId = 2, TextUrl1 = "Pointt.html", Title = "Point", ResponeseType = "GET", Header = "/Point/points/{id}", MainTitleId = 17 },
                 new BaseTitle { Id = 82, IndexId = 2, TextUrl1 = "Pointelement.html", Title = "Point Element", ResponeseType = "GET", Header = "/Point/points/{id}/element", MainTitleId = 17 },
                 new BaseTitle { Id = 83, IndexId = 2, TextUrl1 = "Pointpointtype.html", Title = "Point PointType", ResponeseType = "GET", Header = "/Point/points/{id}/pointtype", MainTitleId = 17 },
                 new BaseTitle { Id = 84, IndexId = 2, TextUrl1 = "PointTypes.html", Title = "PointTypes", ResponeseType = "GET", Header = "/PointType/pointtypes", MainTitleId = 18 },
                 new BaseTitle { Id = 85, IndexId = 2, TextUrl1 = "PointType.html", Title = "PointType", ResponeseType = "GET", Header = "/PointType/pointtypes/{id}", MainTitleId = 18 },
-                new BaseTitle { Id = 86, IndexId = 2, TextUrl1 = "PointTypeadd.html", Title = "PointType Add", ResponeseType = "POST", Header = "/PointType/pointtypes/add",Body="pointtypeadd", MainTitleId = 18 },
+                new BaseTitle { Id = 86, IndexId = 2, TextUrl1 = "PointTypeadd.html", Title = "PointType Add", ResponeseType = "POST", Header = "/PointType/pointtypes/add",Body="pointtypeadd.json", MainTitleId = 18 },
                 new BaseTitle { Id = 87, IndexId = 2, TextUrl1 = "PointTypedelete.html", Title = "PointType Delete", ResponeseType = "DELETE", Header = "/PointType/pointtypes/delete",Body="pointtypedelete.json", MainTitleId = 18 },
                 new BaseTitle { Id = 88, IndexId = 2, TextUrl1 = "PointTypeupdate.html", Title = "PointType Update", ResponeseType = "PUT", Header = "/PointType/pointtypes/update",Body= "pointtypeupdate.json", MainTitleId = 18 },
                 new BaseTitle { Id = 89, IndexId = 2, TextUrl1 = "Radiuses.html", Title = "Radiuses", ResponeseType = "GET", Header = "/Radius/radiuses", MainTitleId = 19 },
-                new BaseTitle { Id = 90, IndexId = 2, TextUrl1 = "Radiusesadd.html", Title = "Radiuses Add", ResponeseType = "POST", Header = "/Radius/radiuses/add",Body="radiusesadd", MainTitleId = 19 },
+                new BaseTitle { Id = 90, IndexId = 2, TextUrl1 = "Radiusesadd.html", Title = "Radiuses Add", ResponeseType = "POST", Header = "/Radius/radiuses/add",Body="radiusesadd.json", MainTitleId = 19 },
                 new BaseTitle { Id = 91, IndexId = 2, TextUrl1 = "Radiusesdelete.html", Title = "Radiuses Delete", ResponeseType = "DELETE", Header = "/Radius/radiuses/delete",Body= "radiusesdelete.json", MainTitleId = 19 },
                 new BaseTitle { Id = 92, IndexId = 2, TextUrl1 = "Radiusesupdate.html", Title = "Radiuses Update", ResponeseType = "PUT", Header = "/Radius/radiuses/update",Body= "radiusesupdate.json", MainTitleId = 19 },
-                new BaseTitle { Id = 93, IndexId = 2, TextUrl1 = "Radiuse.html", Title = "Radiuse", ResponeseType = "GET", Header = "/Radius/radiuses/{id}", MainTitleId = 19 },
-                new BaseTitle { Id = 94, IndexId = 2, TextUrl1 = "SSAngle.html", Title = "SSAngle", ResponeseType = "GET", Header = "/SSAngle/ssangles/{id}", MainTitleId = 20 },
+                new BaseTitle { Id = 93, IndexId = 2, TextUrl1 = "Radiuset.html", Title = "Radiuse", ResponeseType = "GET", Header = "/Radius/radiuses/{id}", MainTitleId = 19 },
+                new BaseTitle { Id = 94, IndexId = 2, TextUrl1 = "SSAnglet.html", Title = "SSAngle", ResponeseType = "GET", Header = "/SSAngle/ssangles/{id}", MainTitleId = 20 },
                 new BaseTitle { Id = 95, IndexId = 2, TextUrl1 = "SSAngles.html", Title = "SSAngles", ResponeseType = "GET", Header = "/SSAngle/ssangles", MainTitleId = 20 },
                 new BaseTitle { Id = 96, IndexId = 2, TextUrl1 = "SSAnglesadd.html", Title = "SSAngles Add", ResponeseType = "POST", Header = "/SSAngle/ssangles/add",Body= "SSAnglesadd.json", MainTitleId = 20 },
                 new BaseTitle { Id = 97, IndexId = 2, TextUrl1 = "SSAnglesdelete.html", Title = "SSAngles Delete", ResponeseType = "DELETE", Header = "/SSAngle/ssangles/delete",Body= "SSAnglesdelete.json", MainTitleId = 20 },
@@ -221,9 +237,13 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 new BaseTitle { Id = 119, IndexId = 4, TextUrl1 = "createuser.html", Title = "Create User", ResponeseType = "POST", Header = "/User/createuser", Body= "createuser.json", MainTitleId = 24 },
                 new BaseTitle { Id = 120, IndexId = 4, TextUrl1 = "getuser.html", Title = "Get User", ResponeseType = "GET", Header = "/User/getuser", MainTitleId = 24 },
                 new BaseTitle { Id = 121, IndexId = 4, TextUrl1 = "createtoken.html", Title = "Create Token", ResponeseType = "POST", Header = "/Auth/createtoken", Body= "createtoken.json", MainTitleId = 25 },
-                new BaseTitle { Id = 122, IndexId = 4, TextUrl1 = "createtokenbyclient.html", Title = "Create Token By Client", ResponeseType = "POST", Header = "/Auth/createtokenbyclient", Body= "createtokenbyclient.json", MainTitleId = 25 },
-                new BaseTitle { Id = 123, IndexId = 4, TextUrl1 = "createtokenbyrefreshtoken.html", Title = "Create Token By Refresh Token", ResponeseType = "POST", Header = "/Auth/createtokenbyrefreshtoken", Body= "createtokenbyrefreshtoken.json", MainTitleId = 25 },
-                new BaseTitle { Id = 124, IndexId = 4, TextUrl1 = "revokerefreshtoken.html", Title = "Revoke Refresh Token", ResponeseType = "POST", Header = "/Auth/revokerefreshtoken", Body= "revokerefreshtoken.json", MainTitleId = 25 }
+                new BaseTitle { Id = 122, IndexId = 4, TextUrl1 = "createtokenbyrefreshtoken.html", Title = "Create Token By Refresh Token", ResponeseType = "POST", Header = "/Auth/createtokenbyrefreshtoken", Body= "createtokenbyrefreshtoken.json", MainTitleId = 25 },
+                new BaseTitle { Id = 123, IndexId = 4, TextUrl1 = "revokerefreshtoken.html", Title = "Revoke Refresh Token", ResponeseType = "POST", Header = "/Auth/revokerefreshtoken", Body= "revokerefreshtoken.json", MainTitleId = 25 },
+                new BaseTitle { Id = 124, IndexId = 1, TextUrl1 = "apilayer.html", Title = "Api", MainTitleId = 27},
+                new BaseTitle { Id = 125, IndexId = 1, TextUrl1 = "businesslayer.html", Title = "Business", MainTitleId = 27},
+                new BaseTitle { Id = 126, IndexId = 1, TextUrl1 = "dataaccesslayer.html", Title = "DataAccess", MainTitleId = 27},
+                new BaseTitle { Id = 127, IndexId = 1, TextUrl1 = "drawlayer.html", Title = "DrawLayer", MainTitleId = 27},
+                new BaseTitle { Id = 128, IndexId = 1, TextUrl1 = "corelayer.html", Title = "Core", MainTitleId = 27}
 
 
             );

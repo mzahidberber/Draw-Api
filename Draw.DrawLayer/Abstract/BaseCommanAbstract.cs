@@ -11,11 +11,11 @@ namespace Draw.DrawLayer.Abstract
     public abstract class BaseCommanAbstract : IBaseCommand
     {
         protected ICommandData CommandMemory { get; private set; }
-        protected IGeoService _geoService;
+        protected IGeoService GeoService;
         public BaseCommanAbstract(ICommandData commandMemory)
         {
             CommandMemory = commandMemory;
-            _geoService=CoreInstanceFactory.GetInstance<IGeoService>();
+            GeoService=CoreInstanceFactory.GetInstance<IGeoService>();
         }
         
         protected Task<ElementInformation> ReturnErrorMessageAsync(int necesaryPoint=0,string? message=null) 

@@ -1,4 +1,5 @@
 ﻿using Draw.Entities.Abstract;
+using System.Xml.Linq;
 
 namespace Draw.Entities.Concrete.Draw
 {
@@ -23,5 +24,10 @@ namespace Draw.Entities.Concrete.Draw
         public ICollection<DrawCommand> DrawCommands { get; set; }
 
         public ICollection<Layer> Layers { get; set; }
+
+        public int NumberOfLayerElements { get; set; }
+
+        public void CalculateElements() => NumberOfLayerElements = Layers.Sum(x=>x.NumberOfElements);
+
     }
 }

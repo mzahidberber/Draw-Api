@@ -1,6 +1,150 @@
 ﻿.gif{
     width:70%;
 }
+.homeVideo {
+    width: 100%;
+    height: 32rem;
+}
+.toogleBtn {
+    position: fixed;
+    top:3rem;
+    right: 1rem;
+    text-align: center;
+    z-index: 1030;
+}
+.toogleNav {
+    position: fixed;
+    top: 6rem;
+    bottom: 8rem;
+    right: 1rem;
+    text-align: center;
+    z-index: 1030;
+    min-width: 10rem;
+}
+.mainImgHeight{
+    height:35rem;
+}
+.mainImgWidth {
+    height: 80rem;
+}
+@media (max-width:575px) {
+    .homeBack {
+    }
+    .col-hide {
+        display: none;
+    }
+    .toogleBtn {
+        
+    }
+    .mainImgHeight {
+        height: 17rem;
+    }
+    .mainImgWidth {
+        height: 40rem;
+    }
+    .gif {
+        width: 100%;
+    }
+    .homeVideo {
+        height: 15rem;
+    }
+}
+/*lanscape*/
+@media (min-width: 576px) and (max-width:766px) {
+    .homeBack {
+        height: 100vh;
+    }
+    .col-hide {
+        display: none;
+    }
+    .toogleBtn {
+    }
+    .mainImgHeight {
+        height: 28rem;
+    }
+    .mainImgWidth {
+        height: 70rem;
+    }
+    .gif {
+        width: 100%;
+    }
+    .homeVideo {
+        height: 23rem;
+    }
+}
+/*tables*/
+@media (min-width: 768px) and (max-width:991px) {
+    .homeBack {
+        height: 100vh;
+    }
+    .col-hide {
+        display: none;
+    }
+    .toogleBtn {
+    }
+    .mainImgHeight {
+        height: 30rem;
+    }
+    .mainImgWidth {
+        height: 70rem;
+    }
+    .gif {
+        width: 100%;
+    }
+    .homeVideo {
+        height: 23rem;
+    }
+}
+
+/*desktop*/
+@media (min-width: 992px) and (max-width:1199px) {
+    .homeBack {
+        height: 100vh;
+    }
+    .col-hide {
+        display: none;
+    }
+    .toogleBtn {
+    }
+    .mainImgHeight {
+        height: 30rem;
+    }
+    .gif {
+        width: 100%;
+    }
+    .homeVideo {
+        height: 25rem;
+    }
+}
+
+/*large desktop*/
+@media (min-width: 1200px) and (max-width:1399px) {
+    .homeBack {
+        height: 100vh;
+    }
+    .toogleBtn {
+        display: none;
+    }
+    .mainImgHeight {
+        height: 30rem;
+    }
+    .toogleNav {
+        display: none !important;
+    }
+}
+
+/*xlarge desktop*/
+@media (min-width: 1400px) {
+    .homeBack {
+        height: 100vh;
+    }
+    .toogleBtn {
+        display: none;
+    }
+    .toogleNav {
+        display: none !important;
+    }
+}
 
 .shortcut {
     width: 25px;

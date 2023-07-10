@@ -28,6 +28,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         public DbSet<MainTitle> MainTitles { get; set; }
         public DbSet<BaseTitle> Titles { get; set; }
         public DbSet<SubTitle> SubTitles { get; set; }
+        public DbSet<Numbers> Numbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +49,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             modelBuilder.ApplyConfiguration(new MainTitleMapping());
             modelBuilder.ApplyConfiguration(new BaseTitleMapping());
             modelBuilder.ApplyConfiguration(new SubTitleMapping());
+            modelBuilder.ApplyConfiguration(new NumbersMapping());
 
             //foreach (var entity in modelBuilder.Model.GetEntityTypes())
             //{
@@ -77,21 +79,29 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
             foreach (var changedEntity in ChangeTracker.Entries())
             {
-                if (changedEntity.Entity is DrawBox entity)
+                
+                if (changedEntity.Entity is Layer layer)
+                {
+                    layer.CalculateElements();
+                }
+                if (changedEntity.Entity is DrawBox drawBox)
                 {
                     switch (changedEntity.State)
                     {
                         case EntityState.Modified:
-                            Entry(entity).Property(x => x.EditTime).IsModified = false;
-                            Entry(entity).Property(x => x.CreateTime).IsModified = false;
-                            entity.EditTime = now;
+                            Entry(drawBox).Property(x => x.EditTime).IsModified = false;
+                            Entry(drawBox).Property(x => x.CreateTime).IsModified = false;
+                            drawBox.EditTime = now;
                             break;
                         case EntityState.Added:
-                            entity.EditTime = now;
-                            entity.CreateTime = now;
+                            drawBox.EditTime = now;
+                            drawBox.CreateTime = now;
                             break;
                     }
+                    drawBox.CalculateElements();
+
                 }
+                
             }
             return base.SaveChanges();
         }
@@ -102,20 +112,26 @@ namespace Draw.DataAccess.Concrete.EntityFramework
 
             foreach (var changedEntity in ChangeTracker.Entries())
             {
-                if (changedEntity.Entity is DrawBox entity)
+                if (changedEntity.Entity is Layer layer)
+                {
+                    layer.CalculateElements();
+                }
+
+                if (changedEntity.Entity is DrawBox drawBox)
                 {
                     switch (changedEntity.State)
                     {
                         case EntityState.Modified:
-                            Entry(entity).Property(x => x.EditTime).IsModified = false;
-                            Entry(entity).Property(x => x.CreateTime).IsModified = false;
-                            entity.EditTime = now;
+                            Entry(drawBox).Property(x => x.EditTime).IsModified = false;
+                            Entry(drawBox).Property(x => x.CreateTime).IsModified = false;
+                            drawBox.EditTime = now;
                             break;
                         case EntityState.Added:
-                            entity.EditTime = now;
-                            entity.CreateTime = now;
+                            drawBox.EditTime = now;
+                            drawBox.CreateTime = now;
                             break;
                     }
+                    drawBox.CalculateElements();
                 }
             }
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);

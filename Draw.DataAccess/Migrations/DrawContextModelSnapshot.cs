@@ -36,6 +36,9 @@ namespace Draw.DataAccess.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
+                    b.Property<int>("NumberOfLayerElements")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -156,6 +159,9 @@ namespace Draw.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("NumberOfElements")
+                        .HasColumnType("int");
 
                     b.Property<int>("PenId")
                         .HasColumnType("int");
@@ -355,6 +361,21 @@ namespace Draw.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("DrawElements")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("DrawLimit")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(3);
+
+                    b.Property<int>("DrawRemainder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(3);
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -375,6 +396,11 @@ namespace Draw.DataAccess.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
+
+                    b.Property<int>("NumberDraw")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
@@ -453,22 +479,22 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3c0329ec-619a-414b-88c8-1c7301428cfc",
-                            ConcurrencyStamp = "b4103668-cf75-4335-9d8d-52c531d2c57d",
+                            Id = "0d9d48a0-978f-417f-ab16-2f98f3bc4274",
+                            ConcurrencyStamp = "70c64296-a1ea-4a51-b494-4631b1a8c2a3",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "115d708d-6c9f-449b-876b-6166d17f7109",
-                            ConcurrencyStamp = "56bc7f8f-3ae7-4d57-9ccd-e159a20a2566",
+                            Id = "79bedb41-6c58-4f04-bc05-bae2930110b7",
+                            ConcurrencyStamp = "b4c7105d-67e5-40d9-be02-3bb156f5ec54",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "30744922-3bb8-412c-a9c3-18284376d610",
-                            ConcurrencyStamp = "7febc1c4-023b-4956-a453-fac0038f6e37",
+                            Id = "8384df53-228f-4d07-9ac4-9003c30f017e",
+                            ConcurrencyStamp = "4a90296f-8ed7-4780-858e-cb844284e423",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -863,7 +889,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 12,
                             ResponeseType = "GET",
-                            TextUrl1 = "Elements.html",
+                            TextUrl1 = "Elementst.html",
                             Title = "Elements"
                         },
                         new
@@ -1142,7 +1168,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 14,
                             ResponeseType = "GET",
-                            TextUrl1 = "Layer.html",
+                            TextUrl1 = "Layert.html",
                             Title = "Layer"
                         },
                         new
@@ -1192,7 +1218,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 15,
                             ResponeseType = "GET",
-                            TextUrl1 = "Pen.html",
+                            TextUrl1 = "Pent.html",
                             Title = "Pen"
                         },
                         new
@@ -1255,7 +1281,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 16,
                             ResponeseType = "GET",
-                            TextUrl1 = "Penstyle.html",
+                            TextUrl1 = "Penstylet.html",
                             Title = "PenStyle"
                         },
                         new
@@ -1371,7 +1397,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 17,
                             ResponeseType = "GET",
-                            TextUrl1 = "Point.html",
+                            TextUrl1 = "Pointt.html",
                             Title = "Point"
                         },
                         new
@@ -1417,7 +1443,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 86,
-                            Body = "pointtypeadd",
+                            Body = "pointtypeadd.json",
                             Header = "/PointType/pointtypes/add",
                             IndexId = 2,
                             MainTitleId = 18,
@@ -1460,7 +1486,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 90,
-                            Body = "radiusesadd",
+                            Body = "radiusesadd.json",
                             Header = "/Radius/radiuses/add",
                             IndexId = 2,
                             MainTitleId = 19,
@@ -1497,7 +1523,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 19,
                             ResponeseType = "GET",
-                            TextUrl1 = "Radiuse.html",
+                            TextUrl1 = "Radiuset.html",
                             Title = "Radiuse"
                         },
                         new
@@ -1507,7 +1533,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 20,
                             ResponeseType = "GET",
-                            TextUrl1 = "SSAngle.html",
+                            TextUrl1 = "SSAnglet.html",
                             Title = "SSAngle"
                         },
                         new
@@ -1711,7 +1737,7 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = 113,
                             Body = "findPointLength.json",
-                            Header = "/findPointLength/",
+                            Header = "/findPointLength/?length=0",
                             IndexId = 3,
                             MainTitleId = 22,
                             ResponeseType = "POST",
@@ -1808,17 +1834,6 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 122,
-                            Body = "createtokenbyclient.json",
-                            Header = "/Auth/createtokenbyclient",
-                            IndexId = 4,
-                            MainTitleId = 25,
-                            ResponeseType = "POST",
-                            TextUrl1 = "createtokenbyclient.html",
-                            Title = "Create Token By Client"
-                        },
-                        new
-                        {
-                            Id = 123,
                             Body = "createtokenbyrefreshtoken.json",
                             Header = "/Auth/createtokenbyrefreshtoken",
                             IndexId = 4,
@@ -1829,7 +1844,7 @@ namespace Draw.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = 124,
+                            Id = 123,
                             Body = "revokerefreshtoken.json",
                             Header = "/Auth/revokerefreshtoken",
                             IndexId = 4,
@@ -1837,6 +1852,46 @@ namespace Draw.DataAccess.Migrations
                             ResponeseType = "POST",
                             TextUrl1 = "revokerefreshtoken.html",
                             Title = "Revoke Refresh Token"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "apilayer.html",
+                            Title = "Api"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "businesslayer.html",
+                            Title = "Business"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "dataaccesslayer.html",
+                            Title = "DataAccess"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "drawlayer.html",
+                            Title = "DrawLayer"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "corelayer.html",
+                            Title = "Core"
                         });
                 });
 
@@ -1970,78 +2025,67 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = 10,
                             IndexId = 2,
-                            TextUrl1 = "Draw.html",
                             Title = "Draw"
                         },
                         new
                         {
                             Id = 11,
                             IndexId = 2,
-                            TextUrl1 = "DrawBox.html",
                             Title = "DrawBox"
                         },
                         new
                         {
                             Id = 12,
                             IndexId = 2,
-                            TextUrl1 = "Element.html",
-                            Title = "Element"
+                            Title = "Element  "
                         },
                         new
                         {
                             Id = 13,
                             IndexId = 2,
-                            TextUrl1 = "ElementType.html",
-                            Title = "ElementType"
+                            Title = "ElementType  "
                         },
                         new
                         {
                             Id = 14,
                             IndexId = 2,
-                            TextUrl1 = "Layer.html",
-                            Title = "Layer"
+                            Title = "Layer  "
                         },
                         new
                         {
                             Id = 15,
                             IndexId = 2,
-                            TextUrl1 = "Pen.html",
-                            Title = "Pen"
+                            Title = "Pen  "
                         },
                         new
                         {
                             Id = 16,
                             IndexId = 2,
-                            TextUrl1 = "PenStyles.html",
-                            Title = "PenStyles"
+                            Title = "PenStyles  "
                         },
                         new
                         {
                             Id = 17,
                             IndexId = 2,
-                            TextUrl1 = "Point.html",
-                            Title = "Point"
+                            Title = "Point  "
                         },
                         new
                         {
                             Id = 18,
                             IndexId = 2,
-                            TextUrl1 = "PointType.html",
-                            Title = "PointType"
+                            Title = "PointType  "
                         },
                         new
                         {
                             Id = 19,
                             IndexId = 2,
-                            TextUrl1 = "Radius.html",
-                            Title = "Radius"
+                            Title = "Radius  "
                         },
                         new
                         {
                             Id = 20,
                             IndexId = 2,
-                            TextUrl1 = "SSAngle.html",
-                            Title = "SSAngle"
+                            Title = "SSAngle  "
                         },
                         new
                         {
@@ -2054,7 +2098,6 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = 22,
                             IndexId = 3,
-                            TextUrl1 = "Geo.html",
                             Title = "Geo"
                         },
                         new
@@ -2068,14 +2111,12 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = 24,
                             IndexId = 4,
-                            TextUrl1 = "User.html",
                             Title = "User"
                         },
                         new
                         {
                             Id = 25,
                             IndexId = 4,
-                            TextUrl1 = "Auth.html",
                             Title = "Auth"
                         },
                         new
@@ -2084,6 +2125,66 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 1,
                             TextUrl1 = "DrawCAD.html",
                             Title = "DrawCAD"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            IndexId = 1,
+                            TextUrl1 = "api.html",
+                            Title = "Api"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IndexId = 1,
+                            TextUrl1 = "client.html",
+                            Title = "Client"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            IndexId = 1,
+                            TextUrl1 = "geo.html",
+                            Title = "Geo"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            IndexId = 1,
+                            TextUrl1 = "auth.html",
+                            Title = "Auth"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            IndexId = 1,
+                            TextUrl1 = "data.html",
+                            Title = "Data"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.Numbers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClickNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DownloadNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Numbers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClickNumber = 0,
+                            DownloadNumber = 0
                         });
                 });
 

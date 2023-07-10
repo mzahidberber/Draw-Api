@@ -1,0 +1,35 @@
+<p>Drawlayer katmanında çizim elemanları oluşturulabilmekte, <small class="df">drawfile (.df)</small>
+    dosyaları okunup çizim nesnelerine dönüştürülebilmekte ve çizim nesneleri dosya formatın dönüştürülebilmektedir.
+    Oluşturulan çizim elemanları databaseye kaydedilmemektetir.Kaydetmek için kaydedilecek eleman ile ilgili istek
+    gönderilmelidir.
+    
+    
+</p>
+
+<p>
+    Drawlayer katmanında multisingleton tasarım deseni ile
+    işlemler kullanıcıya özel yapılmakta ve bu katmanda her kullanıcıya özel singledon drawadminastor nesnelerinde
+    kullanıcının hangi çizim elemanını çizdiğini bu elemanı çizerken gönderdiği verileri
+    gibi bilgileri data sınıfında tutar ve kullanıcının isteklerine göre çalışacak bünyesinde bulundurduğu
+    methodları yönetmektedir.Drawadminastor nesneleri adminastormultiton sınıfında
+    kullanıcının gönderdiği tokenin payloadındaki
+    kullanıcı idsi ile eşleşmektedir.
+    Kullanıcı ilk işlemi yaptığı anda bu sınıflar oluşturulmakta ve 
+    15 dakika içerisinde herhangi bir işlem yapmazsa silinmektedir.
+</p>
+
+<p>
+    Drawadminastor sınıfı çizim işlemlerini yaparken öncelikle bir komut başlatır.Komut başladıktan sonra
+    çizim elemanı ne kadar ihtiyaç duyuyorsa o kadar nokta gönderir.Yeterince nokta gönderdikten sonra
+    çizim elemanını oluşturur ve geriye döner.Bu işlemler state tasarım deseniyle yapmaktadır.
+    Çizim komutların type bilgileri bir sınıfta tutulmakta gelen isteğe göre bu sınıfların tip bilgilerinden
+    activator ile instancesi oluşturulup state tasarım desenindeki context sınıfına gönderimektedir.
+    Daha sonra başlatılan çizim elemanı üzerinde işlemler yapılırken context sınıfından seçilen 
+    komut çağırılıp gerekli işlemler yapılmaktadır.
+
+
+</p>
+
+<div style="width:100%" class="mt-5 d-flex justify-content-center mainImgWidth">
+    <img src='/img/state.png'alt="">
+</div>

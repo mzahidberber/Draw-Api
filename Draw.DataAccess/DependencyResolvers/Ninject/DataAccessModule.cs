@@ -24,6 +24,7 @@ namespace Draw.DataAccess.DependencyResolvers.Ninject
             Bind<IMainTitleDal>().To<EfMainTitleDal>();
             Bind<IBaseTitleDal>().To<EfBaseTitleDal>();
             Bind<ISubTitleDal>().To<EfSubTitleDal>();
+            Bind<INumbersDal>().To<EfNumbersDal>();
 
         }
     }

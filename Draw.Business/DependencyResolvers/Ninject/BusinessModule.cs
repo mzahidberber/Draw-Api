@@ -22,6 +22,7 @@ namespace Draw.Business.DependencyResolvers.Ninject
             Bind<IMainTitleService>().To<MainTitleManager>().InSingletonScope();
             Bind<IBaseTitleService>().To<BaseTitleManager>().InSingletonScope();
             Bind<ISubTitleService>().To<SubTitleManager>().InSingletonScope();
+            Bind<INumbersService>().To<NumbersManager>().InSingletonScope();
         }
     }
 }

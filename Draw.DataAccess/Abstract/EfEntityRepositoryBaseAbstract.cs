@@ -82,7 +82,8 @@ namespace Draw.DataAccess.Abstract
 
         public void Update(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+           _context.Entry(entity).State = EntityState.Modified;
+            
         }
 
     }

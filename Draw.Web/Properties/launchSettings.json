@@ -16,10 +16,11 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "dbHost": "127.0.0.1",
+        "dbHost": "localhost",
         "dbName": "drawdb",
         "dbPassword": "123456",
-        "dbPort": "3306"
+        "dbPort": "3306",
+        "rarPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\DrawCAD.rar"
       },
       "hotReloadEnabled": true,
       "hotReloadProfile": "aspnetcore"
@@ -31,10 +32,11 @@
       "applicationUrl": "http://localhost:5092",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "dbHost": "127.0.0.1",
+        "dbHost": "localhost",
         "dbName": "drawdb",
         "dbPassword": "123456",
-        "dbPort": "3306"
+        "dbPort": "3306",
+        "rarPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\DrawCAD.rar"
       }
     },
     "IIS Express": {

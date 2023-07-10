@@ -24,6 +24,7 @@ namespace Draw.Business.Mapper
             CreateMap<MainTitleDTO, MainTitle>().ReverseMap();
             CreateMap<SubTitleDTO, SubTitle>().ReverseMap();
             CreateMap<BaseTitleDTO, BaseTitle>().ReverseMap();
+            CreateMap<NumbersDTO, Numbers>().ReverseMap();
         }
     }
 }

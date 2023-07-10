@@ -1,0 +1,23 @@
+<p>
+    Api katmanında 11 adet controller bulunmaktadır.Bu controllerların 10 tanesi databasede oluşturulan tablolar
+    üzerinde yapılabilecek düzenlemeler ve bu tabloların tuttuğu bilgileri istemek için kullanılır.1 adet controller
+    ise drawlayer katmanını kullanarak çizim elemanları oluşturmak için istek alır.İsteklerin formatı modeller sayesinde sınıflar üzerinden
+    belirlenir.İstekler ile gelen bilgilerin kontrolü oluşturulan modeller üzerinden fluent validation teknoloji ile yapılır.
+    Gelen istekler istenen standarta uygunsa controllerdan business katmanına aktarılırlar.
+    Yapılan isteklere verilen yanıtlar özel bir formatta
+    standart şekilde verilmektedir.Bu formatta data,status code ve error propertyleri bulunmaktadır.Yanıtın durumuna göre
+    bu propertylerden gerekli olanlar dolu bir şekilde döner.
+
+</p>
+
+<p>
+    Yapılan isteklerin
+    header kısmında token bilgisi yer almalıdır.İstekler controllerdaki methodlara girmeden önce aspectler ile
+    kontrol edilir herhangi bir sorunda controllerdaki methodlar çalışmadan geriye yanıt hata mesajı ile birlikte
+    döner.Authentication ve authorization entegrasyonu bu katmanda configuration bölümündeki sınıflarla program.cs
+    dosyasında yapılmaktadır.Extensions bölümünde hizmetin herhangi bir yerinde oluşabilecek
+    hataların hata mesajlarını ve validation işlemlerinde oluşabilecek hataların
+    diğer isteklerle aynı formatta gönderebilmek için sınıflar bulunmaktadır.Bu işlemlerin entegrasyonu yine
+    program.cs dosyasında yapılmaktadır.Loglama işlemleri için kullanılan nlog teknolojisinin entegrasyonuda yine
+    program.cs dosyasında yapılmaktadır.Bu işlem için nlog.config dosyasıda bu katmanda bulunmaktadır.
+</p>

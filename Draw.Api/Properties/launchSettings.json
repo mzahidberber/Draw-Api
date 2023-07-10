@@ -10,7 +10,8 @@
         "dbName": "drawdb",
         "dbPassword": "123456",
         "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/"
+        "geoUrl": "http://127.0.0.1:5001/",
+        "exeVersionPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\version.txt"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
@@ -25,7 +26,8 @@
         "dbName": "drawdb4",
         "dbPassword": "mysql123.",
         "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/"
+        "geoUrl": "http://127.0.0.1:5001/",
+        "exeVersionPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\version.txt"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:2000"
@@ -40,7 +42,8 @@
         "dbName": "drawdb4",
         "dbPassword": "mysql123.",
         "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/"
+        "geoUrl": "http://127.0.0.1:5001/",
+        "exeVersionPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\version.txt"
       }
     },
     "Docker": {

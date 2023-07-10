@@ -46,7 +46,7 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private async Task<List<SSAngle>> GetSSangles()
         {
-            var startAndStopAngle = await _geoService.findStartAndStopAngleTwoPoint(_point1, _point2, _point3);
+            var startAndStopAngle = await GeoService.findStartAndStopAngleTwoPoint(_point1, _point2, _point3);
             ss = startAndStopAngle.data;
             return new List<SSAngle> {
                 new SSAngle { Value = startAndStopAngle.data.startAngle, Type = "start" },
@@ -55,14 +55,14 @@ namespace Draw.DrawLayer.Concrete.DrawCommands
 
         private async Task<double> GetRadiusAsync()
         {
-            var data = await _geoService.FindTwoPointsLength(_point1, _point2);
+            var data = await GeoService.FindTwoPointsLength(_point1, _point2);
             return data.data;
         }
         private async Task<List<Point>> CreatePointsAsync()
         {
             var angle = (-ss.stopAngle/32)+(-ss.startAngle/16);
-            var p2 = _geoService.findPointOnCircle(_point1, radius, angle).Result.data;
-            var p3 = _geoService.findPointOnCircle(_point1, radius, (-ss.stopAngle/16)+(-ss.startAngle / 16)).Result.data;
+            var p2 = GeoService.findPointOnCircle(_point1, radius, angle).Result.data;
+            var p3 = GeoService.findPointOnCircle(_point1, radius, (-ss.stopAngle/16)+(-ss.startAngle / 16)).Result.data;
             return new List<Point> { _point1,_point2,CreatePoint(p2.X,p2.Y,1),CreatePoint(p3.X,p3.Y,1)};
         }
     }

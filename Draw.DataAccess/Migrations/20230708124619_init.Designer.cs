@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Draw.DataAccess.Migrations
 {
     [DbContext(typeof(DrawContext))]
-    [Migration("20230703202943_init1")]
-    partial class init1
+    [Migration("20230708124619_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,9 @@ namespace Draw.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("NumberOfLayerElements")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -158,6 +161,9 @@ namespace Draw.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<int>("NumberOfElements")
+                        .HasColumnType("int");
 
                     b.Property<int>("PenId")
                         .HasColumnType("int");
@@ -357,6 +363,21 @@ namespace Draw.DataAccess.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("DrawElements")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("DrawLimit")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(3);
+
+                    b.Property<int>("DrawRemainder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(3);
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -377,6 +398,11 @@ namespace Draw.DataAccess.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
+
+                    b.Property<int>("NumberDraw")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
@@ -455,22 +481,22 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ad5f5093-f21b-4462-b2d3-74aba3affac5",
-                            ConcurrencyStamp = "d3d39669-b9ce-4aeb-a452-02e448a68307",
+                            Id = "3cbce9ec-3ed7-48e6-b902-5da1a7e596d3",
+                            ConcurrencyStamp = "be8483ca-b41a-4ce6-9b65-6ecb3aeaa867",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "954bb0de-c0ba-45ff-91e1-ffbb673a7abd",
-                            ConcurrencyStamp = "1bba09f8-f793-45ce-b36d-cd8e118c417b",
+                            Id = "f8643afa-f925-4127-adf4-e84f55381838",
+                            ConcurrencyStamp = "0ec85bd6-4a46-45ad-b10f-c60c3a9042e5",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "95312bcd-0256-48c4-a6c7-56f2295e4b09",
-                            ConcurrencyStamp = "72861f5f-47b5-4796-9097-99fcf1514e21",
+                            Id = "b17c7a04-9413-4a4a-a905-cf39201eed48",
+                            ConcurrencyStamp = "1ecb62a5-ae5f-4b9c-b1f8-9412daf9db3c",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -865,7 +891,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 12,
                             ResponeseType = "GET",
-                            TextUrl1 = "Elements.html",
+                            TextUrl1 = "Elementst.html",
                             Title = "Elements"
                         },
                         new
@@ -896,7 +922,7 @@ namespace Draw.DataAccess.Migrations
                             MainTitleId = 12,
                             ResponeseType = "GET",
                             TextUrl1 = "ElementsByDrawWithAtt.html",
-                            Title = "Elements By Draw Wih Attributes"
+                            Title = "Elements By Draw With Attributes"
                         },
                         new
                         {
@@ -1430,7 +1456,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 87,
-                            Body = "pointtypedelete",
+                            Body = "pointtypedelete.json",
                             Header = "/PointType/pointtypes/delete",
                             IndexId = 2,
                             MainTitleId = 18,
@@ -1441,7 +1467,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 88,
-                            Body = "pointtypeupdate",
+                            Body = "pointtypeupdate.json",
                             Header = "/PointType/pointtypes/update",
                             IndexId = 2,
                             MainTitleId = 18,
@@ -1473,7 +1499,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 91,
-                            Body = "radiusesdelete",
+                            Body = "radiusesdelete.json",
                             Header = "/Radius/radiuses/delete",
                             IndexId = 2,
                             MainTitleId = 19,
@@ -1484,7 +1510,7 @@ namespace Draw.DataAccess.Migrations
                         new
                         {
                             Id = 92,
-                            Body = "radiusesupdate",
+                            Body = "radiusesupdate.json",
                             Header = "/Radius/radiuses/update",
                             IndexId = 2,
                             MainTitleId = 19,
@@ -1554,6 +1580,320 @@ namespace Draw.DataAccess.Migrations
                             ResponeseType = "PUT",
                             TextUrl1 = "SSAnglesupdate.html",
                             Title = "SSAngles Update"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Body = "findTwoPointsLength.json",
+                            Header = "/findTwoPointsLength/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findTwoPointsLength.html",
+                            Title = "Find Two Point Length"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Body = "findCenterAndRadius.json",
+                            Header = "/findCenterAndRadius/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findCenterAndRadius.html",
+                            Title = "Find Center And Radius"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Body = "findToSlopeLine.json",
+                            Header = "/findToSlopeLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findToSlopeLine.html",
+                            Title = "Find To Slope Line"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Body = "findDegreeLineSlope.json",
+                            Header = "/findDegreeLineSlope/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeLineSlope.html",
+                            Title = "Find Degree Line Slope"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Body = "findDegreeLineTwoPoints.json",
+                            Header = "/findDegreeLineTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeLineTwoPoints.html",
+                            Title = "Find Degree Line Two Points"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Body = "convertDegreeToSlope.json",
+                            Header = "/convertDegreeToSlope/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertDegreeToSlope.html",
+                            Title = "Convert Degree To Slope"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Body = "convertRadianToDegree.json",
+                            Header = "/convertRadianToDegree/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertRadianToDegree.html",
+                            Title = "Convert Radian To Degree"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Body = "convertDegreeToRadians.json",
+                            Header = "/convertDegreeToRadians/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "convertDegreeToRadians.html",
+                            Title = "Convert Degree To Radians"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Body = "findCenterPointToLine.json",
+                            Header = "/findCenterPointToLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findCenterPointToLine.html",
+                            Title = "Find Center Point To Line"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Body = "findDegreeToBetweenTwoLines.json",
+                            Header = "/findDegreeToBetweenTwoLines/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDegreeToBetweenTwoLines.html",
+                            Title = "Find Degree To Between Two Lines"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Body = "findDotProductToTwoPoints.json",
+                            Header = "/findDotProductToTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDotProductToTwoPoints.html",
+                            Title = "Find Dot Product To Two Points"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Body = "findDifferenceTwoPoints.json",
+                            Header = "/findDifferenceTwoPoints/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findDifferenceTwoPoints.html",
+                            Title = "Find Difference Two Points"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Body = "wherePointOnLine.json",
+                            Header = "/wherePointOnLine/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "wherePointOnLine.html",
+                            Title = "Where Point On Line"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Body = "findInsectionPointToTwoLines.json",
+                            Header = "/findInsectionPointToTwoLines/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findInsectionPointToTwoLines.html",
+                            Title = "Find Insection Point To Two Lines"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Body = "findPointLength.json",
+                            Header = "/findPointLength/?length=0",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findPointLength.html",
+                            Title = "Find Point Length"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Body = "wherePointZone.json",
+                            Header = "/wherePointZone/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "wherePointZone.html",
+                            Title = "Where Point Zone"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Body = "findNearetPoint.json",
+                            Header = "/findNearetPoint/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findNearetPoint.html",
+                            Title = "Find Nearest Point"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Body = "findStartAndStopAngle.json",
+                            Header = "/findStartAndStopAngle/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findStartAndStopAngle.html",
+                            Title = "Find Start And Stop Angle"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Body = "findStartAndStopAngleTwoPoint.json",
+                            Header = "/findStartAndStopAngleTwoPoint/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findStartAndStopAngleTwoPoint.html",
+                            Title = "Find Start And Stop Angle Two Point"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Body = "findPointOnCircle.json",
+                            Header = "/findPointOnCircle/",
+                            IndexId = 3,
+                            MainTitleId = 22,
+                            ResponeseType = "POST",
+                            TextUrl1 = "findPointOnCircle.html",
+                            Title = "Find Point On Circle"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Body = "createuser.json",
+                            Header = "/User/createuser",
+                            IndexId = 4,
+                            MainTitleId = 24,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createuser.html",
+                            Title = "Create User"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Header = "/User/getuser",
+                            IndexId = 4,
+                            MainTitleId = 24,
+                            ResponeseType = "GET",
+                            TextUrl1 = "getuser.html",
+                            Title = "Get User"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Body = "createtoken.json",
+                            Header = "/Auth/createtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtoken.html",
+                            Title = "Create Token"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Body = "createtokenbyrefreshtoken.json",
+                            Header = "/Auth/createtokenbyrefreshtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "createtokenbyrefreshtoken.html",
+                            Title = "Create Token By Refresh Token"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Body = "revokerefreshtoken.json",
+                            Header = "/Auth/revokerefreshtoken",
+                            IndexId = 4,
+                            MainTitleId = 25,
+                            ResponeseType = "POST",
+                            TextUrl1 = "revokerefreshtoken.html",
+                            Title = "Revoke Refresh Token"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "apilayer.html",
+                            Title = "Api"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "businesslayer.html",
+                            Title = "Business"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "dataaccesslayer.html",
+                            Title = "DataAccess"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "drawlayer.html",
+                            Title = "DrawLayer"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            IndexId = 1,
+                            MainTitleId = 27,
+                            TextUrl1 = "corelayer.html",
+                            Title = "Core"
                         });
                 });
 
@@ -1687,78 +2027,166 @@ namespace Draw.DataAccess.Migrations
                         {
                             Id = 10,
                             IndexId = 2,
-                            TextUrl1 = "Draw.html",
                             Title = "Draw"
                         },
                         new
                         {
                             Id = 11,
                             IndexId = 2,
-                            TextUrl1 = "DrawBox.html",
                             Title = "DrawBox"
                         },
                         new
                         {
                             Id = 12,
                             IndexId = 2,
-                            TextUrl1 = "Element.html",
-                            Title = "Element"
+                            Title = "Element  "
                         },
                         new
                         {
                             Id = 13,
                             IndexId = 2,
-                            TextUrl1 = "ElementType.html",
-                            Title = "ElementType"
+                            Title = "ElementType  "
                         },
                         new
                         {
                             Id = 14,
                             IndexId = 2,
-                            TextUrl1 = "Layer.html",
-                            Title = "Layer"
+                            Title = "Layer  "
                         },
                         new
                         {
                             Id = 15,
                             IndexId = 2,
-                            TextUrl1 = "Pen.html",
-                            Title = "Pen"
+                            Title = "Pen  "
                         },
                         new
                         {
                             Id = 16,
                             IndexId = 2,
-                            TextUrl1 = "PenStyles.html",
-                            Title = "PenStyles"
+                            Title = "PenStyles  "
                         },
                         new
                         {
                             Id = 17,
                             IndexId = 2,
-                            TextUrl1 = "Point.html",
-                            Title = "Point"
+                            Title = "Point  "
                         },
                         new
                         {
                             Id = 18,
                             IndexId = 2,
-                            TextUrl1 = "PointType.html",
-                            Title = "PointType"
+                            Title = "PointType  "
                         },
                         new
                         {
                             Id = 19,
                             IndexId = 2,
-                            TextUrl1 = "Radius.html",
-                            Title = "Radius"
+                            Title = "Radius  "
                         },
                         new
                         {
                             Id = 20,
                             IndexId = 2,
-                            TextUrl1 = "SSAngle.html",
-                            Title = "SSAngle"
+                            Title = "SSAngle  "
+                        },
+                        new
+                        {
+                            Id = 21,
+                            IndexId = 3,
+                            TextUrl1 = "DrawGeo.html",
+                            Title = "DrawGeo"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            IndexId = 3,
+                            Title = "Geo"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            IndexId = 4,
+                            TextUrl1 = "DrawAuth.html",
+                            Title = "DrawAuth"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            IndexId = 4,
+                            Title = "User"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            IndexId = 4,
+                            Title = "Auth"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            IndexId = 1,
+                            TextUrl1 = "DrawCAD.html",
+                            Title = "DrawCAD"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            IndexId = 1,
+                            TextUrl1 = "api.html",
+                            Title = "Api"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IndexId = 1,
+                            TextUrl1 = "client.html",
+                            Title = "Client"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            IndexId = 1,
+                            TextUrl1 = "geo.html",
+                            Title = "Geo"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            IndexId = 1,
+                            TextUrl1 = "auth.html",
+                            Title = "Auth"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            IndexId = 1,
+                            TextUrl1 = "data.html",
+                            Title = "Data"
+                        });
+                });
+
+            modelBuilder.Entity("Draw.Entities.Concrete.Web.Numbers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClickNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DownloadNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Numbers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClickNumber = 0,
+                            DownloadNumber = 0
                         });
                 });
 

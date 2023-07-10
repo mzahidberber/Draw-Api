@@ -1,9 +1,13 @@
 
-
-<div style="width:100%" class="mt-5 d-flex justify-content-center">
-    <img src='/img/drawcad.png' style="height:500px;" alt="">
+<div style="width:100%" class="mt-5 d-flex justify-content-center mainImgHeight">
+    <img src='/img/drawcad.png' alt="">
 </div>
 
-<p class="mt-5" >DrawCAD yazılımı arka uçta dört adet servis ön uçta bir adet clientten oluşmaktadır.Arka uçtaki servislerin
+<p class="mt-5">
+    DrawCAD yazılımı arka uçta dört adet servis ön uçta bir adet clientten oluşan modüler bir yapıya sahiptir.
+    Arka uçtaki servislerin
     üç tanesi restapi tipinde olup json veri tipiyle birbirleriyle haberleşmekte dördünce serviste mysql servis
-    bu servistede datalar tutulmatadır.</p>
+    bu servistede datalar tutulmaktadır.Api ve auth hizmetleri <small class="df">C#</small> ile geo ve
+    client <small class="df">python</small> diliyle yazılmıştır.Hizmetler serverda
+    <small class="df">docker</small> ile sanallaştırılmış ve birbirleriyle iletişime geçirilmiştir.
+</p>
