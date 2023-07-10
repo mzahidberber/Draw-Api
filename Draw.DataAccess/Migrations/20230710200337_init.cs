@@ -640,9 +640,9 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3cbce9ec-3ed7-48e6-b902-5da1a7e596d3", "be8483ca-b41a-4ce6-9b65-6ecb3aeaa867", "admin", "ADMIN" },
-                    { "b17c7a04-9413-4a4a-a905-cf39201eed48", "1ecb62a5-ae5f-4b9c-b1f8-9412daf9db3c", "user", "USER" },
-                    { "f8643afa-f925-4127-adf4-e84f55381838", "0ec85bd6-4a46-45ad-b10f-c60c3a9042e5", "manager", "MANAGER" }
+                    { "57c8f320-62bb-4d03-ab4e-b4dc8941c89b", "8a1034c6-17aa-4cd3-b144-d0a86e0011f2", "user", "USER" },
+                    { "914d08cb-91bd-43d5-a151-4e1aa8330f2d", "76d6f6b9-1c20-43c4-96a6-2bcadcbf4291", "admin", "ADMIN" },
+                    { "dff3c9c4-7b94-4d39-a517-d519668d8e77", "b65d6f31-7122-4375-be9f-c21b257aa0bd", "manager", "MANAGER" }
                 });
 
             migrationBuilder.InsertData(
@@ -746,11 +746,10 @@ namespace Draw.DataAccess.Migrations
                     { 19, "AddCoordinate.json", null, null, "/Draw/addCoordinate", 2, null, 10, "POST", null, null, null, null, "AddCoordinate.html", null, null, "Add Coordinate" },
                     { 20, null, null, null, "/Draw/stopCommand", 2, null, 10, "PUT", null, null, null, null, "StopCommand.html", null, null, "Stop Command" },
                     { 21, "SetRadius.json", null, null, "/Draw/setRadius", 2, null, 10, "PUT", null, null, null, null, "SetRadius.html", null, null, "Set Radius" },
-                    { 22, "SetElementsId.json", null, null, "/Draw/setElementsId", 2, null, 10, "PUT", null, null, null, null, "SetElementsId.html", null, null, "Set Elements Id" },
                     { 23, null, null, null, "/Draw/setIsFinish?finish=true", 2, null, 10, "PUT", null, null, null, null, "SetIsFinish.html", null, null, "Set Is Finish" },
                     { 24, "SaveDraw.json", null, null, "/Draw/saveDraw", 2, null, 10, "POST", null, null, null, null, "SaveDraw.html", null, null, "Save Draw" },
                     { 25, "ReadDraw.json", null, null, "/Draw/readDraw", 2, null, 10, "POST", null, null, null, null, "ReadDraw.html", null, null, "Read Draw" },
-                    { 26, null, null, null, "/DrawBox/drawBoxes", 2, null, 11, "GET", null, null, null, null, "DrawBoxes.html", null, null, "Draw Boxes" },
+                    { 26, null, null, null, "/DrawBox/drawBoxes", 2, null, 11, "GET", null, null, null, null, "DrawBoxest.html", null, null, "Draw Boxes" },
                     { 27, "DrawBoxesAdd.json", null, null, "/DrawBox/drawBoxes/add", 2, null, 11, "GET", null, null, null, null, "DrawBoxesAdd.html", null, null, "Draw Boxes Add" },
                     { 28, "DrawBoxesDelete.json", null, null, "/DrawBox/drawBoxes/delete", 2, null, 11, "DELETE", null, null, null, null, "DrawBoxesDelete.html", null, null, "Draw Boxes Delete" },
                     { 29, "DrawBoxesUpdate.json", null, null, "/DrawBox/drawBoxes/update", 2, null, 11, "PUT", null, null, null, null, "DrawBoxesUpdate.html", null, null, "Draw Boxes Update" },
@@ -783,18 +782,18 @@ namespace Draw.DataAccess.Migrations
                     { 56, "LayersAdd.json", null, null, "/Layer/layers/add", 2, null, 14, "POST", null, null, null, null, "LayersAdd.html", null, null, "Layers Add" },
                     { 57, "LayersDelete.json", null, null, "/Layer/layers/delete", 2, null, 14, "DELETE", null, null, null, null, "LayersDelete.html", null, null, "Layers Delete" },
                     { 58, "LayersUpdate.json", null, null, "/Layer/layers/update", 2, null, 14, "PUT", null, null, null, null, "LayersUpdate.html", null, null, "Layers Update" },
-                    { 59, null, null, null, "/Layer/layers/{id}", 2, null, 14, "GET", null, null, null, null, "Layer.html", null, null, "Layer" },
+                    { 59, null, null, null, "/Layer/layers/{id}", 2, null, 14, "GET", null, null, null, null, "Layert.html", null, null, "Layer" },
                     { 60, null, null, null, "/Layer/layers/{id}/elements", 2, null, 14, "GET", null, null, null, null, "Layerelements.html", null, null, "Layer Elements" },
                     { 61, null, null, null, "/Layer/layers/{id}/pen", 2, null, 14, "GET", null, null, null, null, "Layerpen.html", null, null, "Layer Pen" },
                     { 62, null, null, null, "/Pen/pens", 2, null, 15, "GET", null, null, null, null, "Pens.html", null, null, "Pens" },
                     { 63, null, null, null, "/Pen/penswithatt", 2, null, 15, "GET", null, null, null, null, "Penswithatt.html", null, null, "Pens With Attributes" },
-                    { 64, null, null, null, "/Pen/pens/{id}", 2, null, 15, "GET", null, null, null, null, "Pen.html", null, null, "Pen" },
+                    { 64, null, null, null, "/Pen/pens/{id}", 2, null, 15, "GET", null, null, null, null, "Pent.html", null, null, "Pen" },
                     { 65, null, null, null, "/Pen/pens/{id}/penstyle", 2, null, 15, "GET", null, null, null, null, "Penpenstyle.html", null, null, "Pen PenStyle" },
                     { 66, "Pensadd.json", null, null, "/Pen/pens/add", 2, null, 15, "POST", null, null, null, null, "Penadd.html", null, null, "Pen Add" },
                     { 67, "Pensdelete.json", null, null, "/Pen/pens/delete", 2, null, 15, "DELETE", null, null, null, null, "Pendelete.html", null, null, "Pen Delete" },
                     { 68, "Pensupdate.json", null, null, "/Pen/pens/update", 2, null, 15, "PUT", null, null, null, null, "Penupdate.html", null, null, "Pen Update" },
                     { 69, null, null, null, "/PenStyles/penstyles", 2, null, 16, "GET", null, null, null, null, "Penstyles.html", null, null, "PenStyles" },
-                    { 70, null, null, null, "/PenStyles/penstyles/{id}", 2, null, 16, "GET", null, null, null, null, "Penstyle.html", null, null, "PenStyle" },
+                    { 70, null, null, null, "/PenStyles/penstyles/{id}", 2, null, 16, "GET", null, null, null, null, "Penstylet.html", null, null, "PenStyle" },
                     { 71, "Penstyleadd.json", null, null, "/PenStyles/penstyles/add", 2, null, 16, "POST", null, null, null, null, "Penstylesadd.html", null, null, "PenStyles Add" },
                     { 72, "Penstyledelete.json", null, null, "/PenStyles/penstyles/delete", 2, null, 16, "DELETE", null, null, null, null, "Penstylesdelete.html", null, null, "PenStyles Delete" },
                     { 73, "Penstyleupdate.json", null, null, "/PenStyles/penstyles/update", 2, null, 16, "PUT", null, null, null, null, "Penstylesupdate.html", null, null, "PenStyles Update" },
@@ -805,20 +804,20 @@ namespace Draw.DataAccess.Migrations
                     { 78, "Pointsadd.json", null, null, "/Point/points/add", 2, null, 17, "GET", null, null, null, null, "Pointsadd.html", null, null, "Points Add" },
                     { 79, "Pointsdelete.json", null, null, "/Point/points/delete", 2, null, 17, "DELETE", null, null, null, null, "Pointsdelete.html", null, null, "Points Delete" },
                     { 80, "Pointsupdate.json", null, null, "/Point/points/update", 2, null, 17, "PUT", null, null, null, null, "Pointsupdate.html", null, null, "Points Update" },
-                    { 81, null, null, null, "/Point/points/{id}", 2, null, 17, "GET", null, null, null, null, "Point.html", null, null, "Point" },
+                    { 81, null, null, null, "/Point/points/{id}", 2, null, 17, "GET", null, null, null, null, "Pointt.html", null, null, "Point" },
                     { 82, null, null, null, "/Point/points/{id}/element", 2, null, 17, "GET", null, null, null, null, "Pointelement.html", null, null, "Point Element" },
                     { 83, null, null, null, "/Point/points/{id}/pointtype", 2, null, 17, "GET", null, null, null, null, "Pointpointtype.html", null, null, "Point PointType" },
                     { 84, null, null, null, "/PointType/pointtypes", 2, null, 18, "GET", null, null, null, null, "PointTypes.html", null, null, "PointTypes" },
                     { 85, null, null, null, "/PointType/pointtypes/{id}", 2, null, 18, "GET", null, null, null, null, "PointType.html", null, null, "PointType" },
-                    { 86, "pointtypeadd", null, null, "/PointType/pointtypes/add", 2, null, 18, "POST", null, null, null, null, "PointTypeadd.html", null, null, "PointType Add" },
+                    { 86, "pointtypeadd.json", null, null, "/PointType/pointtypes/add", 2, null, 18, "POST", null, null, null, null, "PointTypeadd.html", null, null, "PointType Add" },
                     { 87, "pointtypedelete.json", null, null, "/PointType/pointtypes/delete", 2, null, 18, "DELETE", null, null, null, null, "PointTypedelete.html", null, null, "PointType Delete" },
                     { 88, "pointtypeupdate.json", null, null, "/PointType/pointtypes/update", 2, null, 18, "PUT", null, null, null, null, "PointTypeupdate.html", null, null, "PointType Update" },
                     { 89, null, null, null, "/Radius/radiuses", 2, null, 19, "GET", null, null, null, null, "Radiuses.html", null, null, "Radiuses" },
-                    { 90, "radiusesadd", null, null, "/Radius/radiuses/add", 2, null, 19, "POST", null, null, null, null, "Radiusesadd.html", null, null, "Radiuses Add" },
+                    { 90, "radiusesadd.json", null, null, "/Radius/radiuses/add", 2, null, 19, "POST", null, null, null, null, "Radiusesadd.html", null, null, "Radiuses Add" },
                     { 91, "radiusesdelete.json", null, null, "/Radius/radiuses/delete", 2, null, 19, "DELETE", null, null, null, null, "Radiusesdelete.html", null, null, "Radiuses Delete" },
                     { 92, "radiusesupdate.json", null, null, "/Radius/radiuses/update", 2, null, 19, "PUT", null, null, null, null, "Radiusesupdate.html", null, null, "Radiuses Update" },
-                    { 93, null, null, null, "/Radius/radiuses/{id}", 2, null, 19, "GET", null, null, null, null, "Radiuse.html", null, null, "Radiuse" },
-                    { 94, null, null, null, "/SSAngle/ssangles/{id}", 2, null, 20, "GET", null, null, null, null, "SSAngle.html", null, null, "SSAngle" },
+                    { 93, null, null, null, "/Radius/radiuses/{id}", 2, null, 19, "GET", null, null, null, null, "Radiuset.html", null, null, "Radiuse" },
+                    { 94, null, null, null, "/SSAngle/ssangles/{id}", 2, null, 20, "GET", null, null, null, null, "SSAnglet.html", null, null, "SSAngle" },
                     { 95, null, null, null, "/SSAngle/ssangles", 2, null, 20, "GET", null, null, null, null, "SSAngles.html", null, null, "SSAngles" },
                     { 96, "SSAnglesadd.json", null, null, "/SSAngle/ssangles/add", 2, null, 20, "POST", null, null, null, null, "SSAnglesadd.html", null, null, "SSAngles Add" },
                     { 97, "SSAnglesdelete.json", null, null, "/SSAngle/ssangles/delete", 2, null, 20, "DELETE", null, null, null, null, "SSAnglesdelete.html", null, null, "SSAngles Delete" },
@@ -847,7 +846,8 @@ namespace Draw.DataAccess.Migrations
                     { 120, null, null, null, "/User/getuser", 4, null, 24, "GET", null, null, null, null, "getuser.html", null, null, "Get User" },
                     { 121, "createtoken.json", null, null, "/Auth/createtoken", 4, null, 25, "POST", null, null, null, null, "createtoken.html", null, null, "Create Token" },
                     { 122, "createtokenbyrefreshtoken.json", null, null, "/Auth/createtokenbyrefreshtoken", 4, null, 25, "POST", null, null, null, null, "createtokenbyrefreshtoken.html", null, null, "Create Token By Refresh Token" },
-                    { 123, "revokerefreshtoken.json", null, null, "/Auth/revokerefreshtoken", 4, null, 25, "POST", null, null, null, null, "revokerefreshtoken.html", null, null, "Revoke Refresh Token" }
+                    { 123, "revokerefreshtoken.json", null, null, "/Auth/revokerefreshtoken", 4, null, 25, "POST", null, null, null, null, "revokerefreshtoken.html", null, null, "Revoke Refresh Token" },
+                    { 124, null, null, null, null, 1, null, 27, null, null, null, null, null, "apilayer.html", null, null, "Api" }
                 });
 
             migrationBuilder.InsertData(
@@ -855,7 +855,6 @@ namespace Draw.DataAccess.Migrations
                 columns: new[] { "Id", "Body", "Explanation", "GifUrl", "Header", "IndexId", "LogoUrl", "MainTitleId", "ResponeseType", "Return", "ShortcutUrl1", "ShortcutUrl2", "ShortcutUrl3", "TextUrl1", "TextUrl2", "TextUrl3", "Title" },
                 values: new object[,]
                 {
-                    { 124, null, null, null, null, 1, null, 27, null, null, null, null, null, "apilayer.html", null, null, "Api" },
                     { 125, null, null, null, null, 1, null, 27, null, null, null, null, null, "businesslayer.html", null, null, "Business" },
                     { 126, null, null, null, null, 1, null, 27, null, null, null, null, null, "dataaccesslayer.html", null, null, "DataAccess" },
                     { 127, null, null, null, null, 1, null, 27, null, null, null, null, null, "drawlayer.html", null, null, "DrawLayer" },

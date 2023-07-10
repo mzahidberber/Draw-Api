@@ -479,22 +479,22 @@ namespace Draw.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d9d48a0-978f-417f-ab16-2f98f3bc4274",
-                            ConcurrencyStamp = "70c64296-a1ea-4a51-b494-4631b1a8c2a3",
+                            Id = "914d08cb-91bd-43d5-a151-4e1aa8330f2d",
+                            ConcurrencyStamp = "76d6f6b9-1c20-43c4-96a6-2bcadcbf4291",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "79bedb41-6c58-4f04-bc05-bae2930110b7",
-                            ConcurrencyStamp = "b4c7105d-67e5-40d9-be02-3bb156f5ec54",
+                            Id = "dff3c9c4-7b94-4d39-a517-d519668d8e77",
+                            ConcurrencyStamp = "b65d6f31-7122-4375-be9f-c21b257aa0bd",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "8384df53-228f-4d07-9ac4-9003c30f017e",
-                            ConcurrencyStamp = "4a90296f-8ed7-4780-858e-cb844284e423",
+                            Id = "57c8f320-62bb-4d03-ab4e-b4dc8941c89b",
+                            ConcurrencyStamp = "8a1034c6-17aa-4cd3-b144-d0a86e0011f2",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -778,17 +778,6 @@ namespace Draw.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = 22,
-                            Body = "SetElementsId.json",
-                            Header = "/Draw/setElementsId",
-                            IndexId = 2,
-                            MainTitleId = 10,
-                            ResponeseType = "PUT",
-                            TextUrl1 = "SetElementsId.html",
-                            Title = "Set Elements Id"
-                        },
-                        new
-                        {
                             Id = 23,
                             Header = "/Draw/setIsFinish?finish=true",
                             IndexId = 2,
@@ -826,7 +815,7 @@ namespace Draw.DataAccess.Migrations
                             IndexId = 2,
                             MainTitleId = 11,
                             ResponeseType = "GET",
-                            TextUrl1 = "DrawBoxes.html",
+                            TextUrl1 = "DrawBoxest.html",
                             Title = "Draw Boxes"
                         },
                         new

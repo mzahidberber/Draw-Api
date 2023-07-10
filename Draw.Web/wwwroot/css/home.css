@@ -126,7 +126,7 @@
         display: none;
     }
     .mainImgHeight {
-        height: 30rem;
+        height: 28rem;
     }
     .toogleNav {
         display: none !important;
@@ -140,6 +140,9 @@
     }
     .toogleBtn {
         display: none;
+    }
+    .mainImgHeight {
+        height: 28rem;
     }
     .toogleNav {
         display: none !important;
