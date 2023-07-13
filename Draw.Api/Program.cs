@@ -8,7 +8,10 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Ninject.Activation;
 using NLog.Web;
+using PostSharp.Extensibility;
+using System;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -20,6 +23,16 @@ internal class Program
         builder.Logging.ClearProviders();
         //builder.Logging.AddConsole();
         builder.Host.UseNLog();
+
+
+
+        using (DrawContext context = new DrawContext())
+        {
+            //context.Database.EnsureCreated();
+            var pendingMigrations = context.Database.GetPendingMigrations();
+            if (pendingMigrations.Any())
+                context.Database.Migrate();
+        }
 
         builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
         var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
@@ -43,15 +56,9 @@ internal class Program
                 ClockSkew = TimeSpan.Zero
             };
         });
+
+
         
-        
-        using (DrawContext context = new DrawContext())
-        {
-            //context.Database.EnsureCreated();
-            var pendingMigrations = context.Database.GetPendingMigrations();
-            if(pendingMigrations.Any())
-                context.Database.Migrate();
-        }
 
         builder.Services.AddControllersWithViews()
                 .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -91,7 +98,6 @@ internal class Program
         
         var app = builder.Build();
 
-        
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

@@ -37,13 +37,13 @@ namespace Draw.Web.Controllers
 
         }
 
-        public IActionResult DownloadExe()
-        {
-            string filePath = Path.Combine(Environment.GetEnvironmentVariable("rarPath"));
-            string fileName = "DrawCAD.rar";
-            AddDownloadNumber();
-            return PhysicalFile(filePath, "application/octet-stream", fileName);
-        }
+        //public IActionResult DownloadExe()
+        //{
+        //    string filePath = Path.Combine(Environment.GetEnvironmentVariable("rarPath"));
+        //    string fileName = "DrawCAD.rar";
+        //    AddDownloadNumber();
+        //    return PhysicalFile(filePath, "application/octet-stream", fileName);
+        //}
         public void AddClickNumber()
         {
             _numberService = BusinessInstanceFactory.GetInstance<INumbersService>();

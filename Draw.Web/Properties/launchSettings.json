@@ -11,8 +11,7 @@
         "dbHost": "localhost",
         "dbName": "drawdb",
         "dbPassword": "123456",
-        "dbPort": "3306",
-        "rarPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\DrawCAD.rar"
+        "dbPort": "3306"
       },
       "hotReloadEnabled": true,
       "hotReloadProfile": "aspnetcore"
@@ -25,8 +24,7 @@
         "dbHost": "localhost",
         "dbName": "drawdb",
         "dbPassword": "123456",
-        "dbPort": "3306",
-        "rarPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\DrawCAD.rar"
+        "dbPort": "3306"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5092"

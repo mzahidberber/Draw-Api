@@ -183,7 +183,7 @@ namespace Draw.DataAccess.Concrete.EntityFramework
                 new BaseTitle { Id = 66, IndexId = 2, TextUrl1 = "Penadd.html", Title = "Pen Add", ResponeseType = "POST", Header = "/Pen/pens/add",Body="Pensadd.json", MainTitleId = 15 },
                 new BaseTitle { Id = 67, IndexId = 2, TextUrl1 = "Pendelete.html", Title = "Pen Delete", ResponeseType = "DELETE", Header = "/Pen/pens/delete",Body="Pensdelete.json", MainTitleId = 15 },
                 new BaseTitle { Id = 68, IndexId = 2, TextUrl1 = "Penupdate.html", Title = "Pen Update", ResponeseType = "PUT", Header = "/Pen/pens/update",Body="Pensupdate.json", MainTitleId = 15 },
-                new BaseTitle { Id = 69, IndexId = 2, TextUrl1 = "Penstyles.html", Title = "PenStyles", ResponeseType = "GET", Header = "/PenStyles/penstyles", MainTitleId = 16 },
+                new BaseTitle { Id = 69, IndexId = 2, TextUrl1 = "PenStyles.html", Title = "PenStyles", ResponeseType = "GET", Header = "/PenStyles/penstyles", MainTitleId = 16 },
                 new BaseTitle { Id = 70, IndexId = 2, TextUrl1 = "Penstylet.html", Title = "PenStyle", ResponeseType = "GET", Header = "/PenStyles/penstyles/{id}", MainTitleId = 16 },
                 new BaseTitle { Id = 71, IndexId = 2, TextUrl1 = "Penstylesadd.html", Title = "PenStyles Add", ResponeseType = "POST", Header = "/PenStyles/penstyles/add",Body="Penstyleadd.json", MainTitleId = 16 },
                 new BaseTitle { Id = 72, IndexId = 2, TextUrl1 = "Penstylesdelete.html", Title = "PenStyles Delete", ResponeseType = "DELETE", Header = "/PenStyles/penstyles/delete",Body="Penstyledelete.json", MainTitleId = 16 },

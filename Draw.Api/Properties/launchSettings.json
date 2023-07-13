@@ -6,12 +6,12 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "exeVersion": "1.0.1",
+        "geoUrl": "http://127.0.0.1:5001/",
         "dbHost": "localhost",
         "dbName": "drawdb",
         "dbPassword": "123456",
-        "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/",
-        "exeVersionPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\version.txt"
+        "dbPort": "3306"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
@@ -21,13 +21,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "dbHost": "localhost",
-        "dbName": "drawdb4",
-        "dbPassword": "mysql123.",
-        "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/",
-        "exeVersionPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\version.txt"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:2000"
@@ -37,13 +31,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "dbHost": "localhost",
-        "dbName": "drawdb4",
-        "dbPassword": "mysql123.",
-        "dbPort": "3306",
-        "geoUrl": "http://127.0.0.1:5001/",
-        "exeVersionPath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawExe\\version.txt"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Docker": {

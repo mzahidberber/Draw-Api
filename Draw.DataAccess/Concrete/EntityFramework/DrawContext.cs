@@ -2,17 +2,24 @@
 using Draw.Entities.Concrete.Web;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using Ninject.Activation;
+using System.Configuration;
 
 namespace Draw.DataAccess.Concrete.EntityFramework
 {
 
     public class DrawContext : IdentityDbContext<User, UserRole, string>
     {
-        public DrawContext(){}
-        public DrawContext(DbContextOptions<DrawContext> opt):base(opt){}
 
-        
+        public DrawContext()
+        {
+        }
+        //public DrawContext(DbContextOptions<DrawContext> opt) : base(opt)
+        //{
+        //}
+
+
 
         public DbSet<DrawBox>? Draws { get; set; }
         public DbSet<Layer>? Layers { get; set; }
@@ -56,13 +63,16 @@ namespace Draw.DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging();
+
             var dbHost = Environment.GetEnvironmentVariable("dbHost");
             var dbName = Environment.GetEnvironmentVariable("dbName");
             var dbPassword = Environment.GetEnvironmentVariable("dbPassword");
             var dbPort = Environment.GetEnvironmentVariable("dbPort");
             var cnstr = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
-            //var cnstr = $"server=localhost;port=3306;database=drawdb;User Id=root;password=123456;";
+            ////var cnstr = $"server=localhost;port=3306;database=drawdb;User Id=root;password=123456;";
             optionsBuilder.UseMySql(cnstr, ServerVersion.AutoDetect(cnstr));
+
+
         }
 
         public override int SaveChanges()

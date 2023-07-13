@@ -16,14 +16,6 @@ internal class Program
             options.SerializerSettings.Formatting = Formatting.Indented;
         }); ;
 
-        using (DrawContext context = new DrawContext())
-        {
-            //context.Database.EnsureCreated();
-            var pendingMigrations = context.Database.GetPendingMigrations();
-            if (pendingMigrations.Any())
-                context.Database.Migrate();
-        }
-
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

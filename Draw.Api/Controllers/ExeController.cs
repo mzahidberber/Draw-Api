@@ -14,14 +14,14 @@ namespace Draw.Api.Controllers
         [HttpPost("checkVersion")]
         public Task<IActionResult> CheckVersion([FromBody] string version)
         {
-            var path = Environment.GetEnvironmentVariable("exeVersionPath");
-            if (path != null)
+            var vrsn = Environment.GetEnvironmentVariable("exeVersion");
+            if (vrsn != null)
             {
-                var versionPath = Path.Combine(path);
-                var v = System.IO.File.ReadAllText(versionPath);
+                //var versionPath = Path.Combine(vrsn);
+                //var v = System.IO.File.ReadAllText(versionPath);
                 return Task.FromResult(
                     ActionResultInstance(
-                        Response<CheckExe>.Success(v == version ? new CheckExe { check=true,version=v} : new CheckExe { check = false, version = v }, 200)));
+                        Response<CheckExe>.Success(vrsn == version ? new CheckExe { check=true,version= vrsn } : new CheckExe { check = false, version = vrsn }, 200)));
             }
             else
                 return Task.FromResult(ActionResultInstance(Response<NoDataDto>.Fail("Unable to check version",503,true)));
