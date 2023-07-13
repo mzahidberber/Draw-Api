@@ -162,11 +162,11 @@ namespace Draw.DrawLayer.Concrete.FileCommands
             switch (_pointIndex)
             {
                 case 0:
-                    if (double.TryParse(info, out value2)) point.X = value2;
+                    if (double.TryParse(info, out value2)) point.X = Math.Round(value2, 4);
                     else return false;
                     break;
                 case 1:
-                    if (double.TryParse(info, out value2)) point.Y = value2;
+                    if (double.TryParse(info, out value2)) point.Y = Math.Round(value2, 4);
                     else return false;
                     break;
                 case 2:
@@ -194,7 +194,7 @@ namespace Draw.DrawLayer.Concrete.FileCommands
                 case 0:
                     if (double.TryParse(info, out value))
                     {
-                        radius.Value = value;
+                        radius.Value = Math.Round(value, 4);
                         _radiusIndex = 0;
                         _lastElement.Radiuses.Add(radius);
                         _model = null;
@@ -220,7 +220,7 @@ namespace Draw.DrawLayer.Concrete.FileCommands
                 case 1:
                     if (double.TryParse(info, out value))
                     {
-                        ssangle.Value = value;
+                        ssangle.Value = Math.Round(value, 4);
                         _ssangleIndex = 0;
                         _lastElement.SSAngles.Add(ssangle);
                         _model = null;
