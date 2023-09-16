@@ -364,3 +364,7 @@ C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\zh-Hant\Mic
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\NLog.Web.AspNetCore.Targets.Gelf.dll
 C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\NLog.Layouts.GelfLayout.dll
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\System.Windows.Forms.xml
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\Accessibility.xml
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\System.Deployment.xml
+C:\Users\mzahidberber\Desktop\Draw\DrawApi\Draw.Api\bin\Debug\net6.0\System.Runtime.Serialization.Formatters.Soap.xml

@@ -68,8 +68,8 @@ namespace Draw.DataAccess.Concrete.EntityFramework
             var dbName = Environment.GetEnvironmentVariable("dbName");
             var dbPassword = Environment.GetEnvironmentVariable("dbPassword");
             var dbPort = Environment.GetEnvironmentVariable("dbPort");
-            var cnstr = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
-            ////var cnstr = $"server=localhost;port=3306;database=drawdb;User Id=root;password=123456;";
+            //var cnstr = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
+            var cnstr = $"server=localhost;port=3306;database=drawdb5;User Id=root;password=mysql123.;";
             optionsBuilder.UseMySql(cnstr, ServerVersion.AutoDetect(cnstr));
 
 
