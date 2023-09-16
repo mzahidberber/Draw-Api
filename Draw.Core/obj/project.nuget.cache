@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "twT6/+ehtTzyfip0A45A9fOnfmwBSOuD+Kc5jip/jFozKRDczdPtzrQ1D9ZJCO0xGeIEh44+0cNWGflWTckNQQ==",
+  "dgSpecHash": "/L6O9lA2fxciuxGntsZiPtX/IFW9Ab4ye+hjr/ElL09ti9/j4wMBFmIIWOmN2serwGWCoFM73I4hlXdA7dpdxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
+  "projectFilePath": "c:\\Users\\mzahidberber\\Desktop\\Draw\\DrawApi\\Draw.Core\\Draw.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzahidberber\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\mzahidberber\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
