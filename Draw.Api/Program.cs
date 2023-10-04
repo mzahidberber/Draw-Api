@@ -95,7 +95,16 @@ internal class Program
             });
         });
 
-        
+        var cors = Environment.GetEnvironmentVariable("cors").Split(";");
+
+        builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+        {
+            builder.WithOrigins(cors)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        }));
+
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
@@ -107,6 +116,7 @@ internal class Program
         app.UseCustomException();
 
         app.UseHttpsRedirection();
+        app.UseCors("corsapp");
         app.UseAuthentication();
         app.UseAuthorization();
 

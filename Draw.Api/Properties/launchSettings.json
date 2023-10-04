@@ -11,7 +11,8 @@
         "dbHost": "localhost",
         "dbName": "drawdb",
         "dbPassword": "123456",
-        "dbPort": "3306"
+        "dbPort": "3306",
+        "cors": "*"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
